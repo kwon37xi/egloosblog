@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>TinyMCE사용시 onSubmit 자바스크립트 함수 호출 문제</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-01-30 10:08:53</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">TinyMCE사용시 onSubmit 자바스크립트 함수 호출 문제</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://tinymce.moxiecode.com">TinyMCE</a>와 <a title="" href="http://www.fckeditor.net/">FCKEditor</a>중에서 뭘로 웹 에디터를 사용할까 고민하다가 <a title="" href="http://tinymce.moxiecode.com">TinyMCE</a>로 결정했다.<br>다양한 브라우져 지원을 위한 노력이 돋보였고, 기능상으로도 만족할 만한 수준이기 때문이다.<br><br>헌데, 기존의 textarea를 가진 폼이 submit 될 때 onsubmit 에 지정된 함수가 호출되는데, TinyMCE를 적용한 뒤 부터 이게 두번을 클릭해야 제대로 작동하거나, 폼에 대한 유효성 검증을 제대로 못하거나 하는 현상이 생겼다.<br><br>그 첫번째 문제가 <a title="" href="http://kwon37xi.egloos.com/2967312">직전에 설명한, focus() 문제</a>이고, 두번째 문제로, TinyMCE 를 사용할 때는 onsubmit 호출시 특별한 작업을 해야 한다는 것이다.<br><blockquote class="src">&lt;script&nbsp;type="text/javascript"&gt;<br>function&nbsp;checkForm()&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>tinyMCE.triggerSave();</strong><br><br>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;기타&nbsp;폼&nbsp;유효성&nbsp;검증&nbsp;작업<br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;true;&nbsp;//&nbsp;혹은&nbsp;false;<br>}<br>&lt;/script&gt;<br>...<br>&lt;form&nbsp;name="write"&nbsp;id="write"&nbsp;onsubmit="return&nbsp;checkForm();"&gt;<br>...<br>&lt;/form&gt;<br></blockquote><br>위 처럼 <strong>tinyMCE.triggerSave(); 메소드를 먼저 호출</strong>해줘야 한다.<br>이에 대해서는 <a title="" href="http://tinymce.moxiecode.com/punbb/viewtopic.php?id=28">http://tinymce.moxiecode.com/punbb/viewtopic.php?id=28</a>에서 알게 되었다.<br><br>추가 : 2007/01/31<br>TinyMCE에 에디터에 입력한 내용을 삭제하려면, JavaScript에서 <strong>tinyMCE.setContent("");</strong>을 호출하면된다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

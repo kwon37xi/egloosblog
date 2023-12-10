@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] 자바 프로세스가 다른 자바 프로세스를 호출할 때 생기는 문제들...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-11-10 13:04:46</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] 자바 프로세스가 다른 자바 프로세스를 호출할 때 생기는 문제들...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">현재 작성하고 있는 Java 웹 어플리케이션에서 특정 서블릿을 실행하면 새로 자바 프로세스를 띄워서 작업을 시켜야 하는 경우가 있다.<br><br>조건이 있는데,<br>- 자바 서블릿은 웹으로 부터 받은 POST 파라미터를 그대로 새로운 자바 프로세스로 넘겨야 한다.<br>- 새로운 자바 프로세스는 웹 어플리케이션과 동일한 클래스 패스를 공유한다.<br><br>위와 같은 경우 몇몇 문제가 발생하는데,<br>- 어떻게 웹 파라미터를 넘기나?<br>- 로거를 공유하게 되면 동일한 로그 파일을 두 개 이상의 프로세스가 액세스해서 로그 파일이 꼬여 버린다.<br>- 새로운 자바 프로세스가 찍는 표준 출력과 표준 에러를 호출자 서블릿이 무시해버리면 새로운 자바 프로세스가 종료되지 않고 행걸리는 현상이 일어난다.<br><br>이 문제를 어찌 어찌 해결했다.<br><br>어째서 웹 어플리케이션에서 새로운 자바 프로세스를 띄워야 하냐면... 흠... 뭐 고객이 그렇게 해달라고 했으니깐~<br>근데 시간이 더 많고 고객의 거부가 없다면 RMI를 사용하는게 더 나아 보인다.(어쨌든 WAS와는 다른 독립 프로세스로 실행해야만 하는 어플리케이션이다)<b>첫째, 웹 파라미터 넘기기</b><br>프로세스를 실행하고서 Process 객체의 getOutputStream()으로 출력 스트림을 얻고 거기에다가 웹 파라미터를 HashMap으로 변경하여 직렬화 해서 해결했다.<br>파라미터가 워낙 많아서 명령행 파라미터로는 넘길 수 없었는데, 직렬화를 통해 오히려 더 쉽게 해결 됐다.<br><br><b>둘째, 로그 문제</b><br>두 개 이상의 프로세스가 동일한 로그 파일을 공유하면 안된다. 이 경우 이런 문제가 발생하는데 웹 어플리케이션과 새로운 프로세스가 Log4J 로그 정보를 공유하기 때문이다. log4j.properties에 따로 로거를 설정하면 되지 않겠느냐 하겠지만, 실제로 두 어플리케이션의 공유 클래스들도 로그를 찍기 때문에 그럴 수 없으며, 또한 새로운 프로세스가 단독으로 실행되지 않고 동시에 여러개 실행 될 수 있기 때문에 그럴 수 없다.<br><br>가장 좋은 것은 새로운 프로세스 실행에 필요한 클래스를 모두 Ant를 이용해 따로 Jar로 묶어서 서로 다른 클래스 패스로 실행시키는 것인데, 이것도 동일한 자바 클래스가 여러번에 걸쳐 동시에 호출될 수 있다는 문제를 해결해주지 못하고, 또 관리상의 귀차니즘으로 인해 포기~<br><br>이 문제는 우리가 철저하게 Commons-Logging을 사용하고, 또한 우리가 사용하는 오픈 소스 프레임워크들도 모두 Commons-Logging을 사용하기 때문에 쉽게 해결됐다. <br><br>단순히 새로운 어플리케이션의 로거를 SimpleLog로 바꿨다.<br><blockquote class="src">&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;static&nbsp;org.apache.commons.logging.Log&nbsp;log&nbsp;=&nbsp;null;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Log4j를&nbsp;사용할&nbsp;경우&nbsp;로깅이&nbsp;충돌&nbsp;난다.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;SimpleLog&nbsp;혹은&nbsp;그&nbsp;외의&nbsp;다른&nbsp;로거를&nbsp;만들어야&nbsp;한다.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Reference&nbsp;:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;http://jakarta.apache.org/commons/logging/apidocs/org/apache/commons/logging/impl/SimpleLog.html<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.setProperty("org.apache.commons.logging.Log",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"org.apache.commons.logging.impl.SimpleLog");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.setProperty("org.apache.commons.logging.simplelog.defaultlog",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"trace");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.setProperty("org.apache.commons.logging.simplelog.showlogname",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"true");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.setProperty("org.apache.commons.logging.simplelog.showdatetime",<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"true");<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log&nbsp;=&nbsp;org.apache.commons.logging.LogFactory<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.getLog(StatisJungsanExcelReservationExec.class);<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br></blockquote><br><br><b>세번째, 표준 출력과 표준 에러 해결 문제</b><br>실질적으로 서블릿은 프로세스를 호출한 직후 바로 리턴한다. 사용자는 프로세스 실행 종료를 기다려서는 안된다.<br>이런 상황에서 새로운 프로세스의 표준 출력과 표준 에러 메시지는 붕 떠버리게 되고, 원래 그런건지는 모르겠지만 이렇게 되면 새로운 프로세스는 표준 출력/표준 에러가 모두 해소될때까지 프로세스를 종료하지 않아버리는 문제가 발생한다.<br>이것 <b>System.setOut(PrintStream)</b>과 <b>System.setErr(PrintStream)</b>으로 해결했다.<br>실행되는 프로세스들이 서로 겹치지 않는 이름을 가질수 있게 파일 출력 스트림을 하나 만들어서, System.setOut()과 System.setErr()로 그 스트림을 지정하면 모든 표준 출력과 표준 에러가 그 스트림으로 전달된다.<br>덕분에 로그를 파일로 저장하는 문제까지 다 해결돼 버렸다. 덕분에 SimpleLog가 파일 출력이 안되는데도 불구하고 로그파일도 남고 Exception이 발생해도 철저하게 파일로 남는다.<br><br>Unix계통이라면 "/dev/null"로 스트림을 써버리는 것도 괜찮을 것 같다. 로그가 필요 없다면.<br><br>이것에 관해서는 <a href="http://www.javaservice.net/~java/bbs/read.cgi?m=qna&b=qna2&c=r_p&n=1123654453&k=%B1%C7%B3%B2&d=n#1123654453" title="">내가 예전에 질문했던 것</a>이 매우 큰 도움이 되었다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

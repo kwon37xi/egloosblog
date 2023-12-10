@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>NetBeans 4.1 로 개발시 사용자 ID는 무조건 영문으로..</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-20 01:15:59</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">NetBeans 4.1 로 개발시 사용자 ID는 무조건 영문으로..</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">NetBeans 4.1로 웹 어플리케이션을 개발할 때 <B>개발시 로그인한 사용자 ID는 무조건 영문</B>이어야 한다.<br><br>NetBeans가 웹 어플리케이션을 톰캣에 디플로이 하면서 <B>사용자계정의 임시 디렉토리에 웹 컨텍스트 관련 XML을 임시로 생성하고 그 경로를 UTF-8 로 URL 인코딩해서 톰캣에 날리기 때문</B>이다.<br><br>만약 톰캣의 server.xml의 &lt;Connector <B>URIEncoding="EUC-KR"</B>/&gt; 처럼 UTF-8 이 아닌 상태로 설정해 놨을 때(즉, 우리나라 대부분의 개발자들, 어쩔 수 없다. 아직은 UTF-8 인코딩이 대세는 아니기 때문에) 톰캣의 매니저가 NetBeans로 부터 UTF-8로 받은 deploy 관련 파라미터를 제대로 파싱하지 못하기 때문이다.<br><br>리눅스에서는 어차피 한글 사용자명을 생성할 수 없지만, 윈도우에서가 문제이다.<br><br>넷빈즈를 사용하려면 윈도우에서 한글 사용자명은 피하는 게 상책.<br><br>이 문제로 넷빈즈 메일링 리스트에서 논의 했는데, 멍청하게도 UR<B>I</B>Encoding 을 계속해서 UR<B>L</B>Encoding 으로 착각하고 테스트 하는 바람에 상당시간 삽질하고, 쪽팔림까지... --;<br><br>Tomcat 5.x 대에서 GET 방식으로 들어온 파라미터에 대한 인코딩 지정은 request.setCharacterEncoding()이 아니라 server.xml의 &lt;Connector URIEncoding=""/&gt;에서 해야 한다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

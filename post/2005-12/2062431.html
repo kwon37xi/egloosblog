@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Java 를 사용하면 죽을 수도 있습니다!!</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-12-28 09:25:00</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Java 를 사용하면 죽을 수도 있습니다!!</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Microsoft의 Windows NT Workstation version 4.0 운영체제와 Exchange Server 라이센스 구문에서 Java 지원에 관한 장에 나오는 문구라고 한다.<br><br>원문 : <a title="" href="http://yakovfain.javadevelopersjournal.com/java_failure_can_lead_to_death.htm">http://yakovfain.javadevelopersjournal.com/java_failure_can_lead_to_death.htm</a><br><br>"Java를 사용하면 죽을 수도 있다."<br><br><blockquote class="quote">The software product may contain support for programs written in Java. Java technology is not fault tolerant and is not designed, manufactured, or intended for use or resale as on-line control equipment in hazardous environments requiring fail-safe performance, such as in the operation of nuclear facilities, aircraft navigation or communication systems, air traffic control, direct life support machines , or weapon systems, in which the failure of Java technology could lead directly to death, personal injury, or severe physical or environmental damage<br></blockquote><br><br>"자바를 사용하면 핵 관련기기, 비행기의 시스템, 무기 등 사람의 생명에 직접 관련된 기기에서 사용할 경우 자바의 오류로 인해 사람이 죽거나 다치고 물리적 손상을 입을 수 있다"라는 경고이다.<br><br>이 라이센스 문서에는 다른 언어에 대한 언급은 전혀 없이 오직 자바에 대한 언급만 나온다고 한다.<br><br>자바 무서워.... ㅜㅜ</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

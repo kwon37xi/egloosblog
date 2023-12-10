@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>웹 브라우저별 표준 준수 현황</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-08-09 09:12:09</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">웹 브라우저별 표준 준수 현황</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://forums.mozilla.or.kr/viewtopic.php?p=27834">모질라 포럼에 빛알갱이님</a>께서 알려주신 <a title="" href="http://www.webdevout.net/browser_support.php?uas=IE6-IE7-FX1_5-OP8-OP9">Web browser standards support</a>에 가면, 각각의 웹 브라우저(Web browser)별로 XHTML, HTML, CSS, DOM, JavaScript 등의 표준 준수 여부나 표준(web standard) 준수하는 정도의 차이를 비교해 볼 수 있다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

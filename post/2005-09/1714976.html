@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Apache HTTPD] 한글 URL 해석문제 mod_url 사용</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-09-05 12:38:49</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Apache HTTPD] 한글 URL 해석문제 mod_url 사용</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Apache를 웹 서버로 쓰면서 서버 인코딩이 EUC-KR로 설정되어 있고, 그 상태에서 웹 브라우저에서 URL 인코딩이 안 된 상태의 한글 URL을 보내면 서버 측에서 인식을 못하는 문제가 있다.<br><br>그리고 사실 이 문제는 IE에서만 나타난다. FireFox는 한글이 들어오면 현재 설정 인코딩에 따라 URL인코딩을 변경해서 보내기 때문이다. 그렇지만 IE는 UTF-8로 보낸다. 그렇다고 IE탓을 할 수만도 없다.<br><br>현재 내가 관리해야 할 서버는 Apache 2, Solaris 8 이며 아파치는 <a href="http://www.sunfreeware.com">SunFreeware</a>에서 받아서 깔았다.<br><br><a href="http://kldp.net/projects/modurl/">mod_url</a> 홈페이지의 <B>CVS Viewer를 통해서 Apache 1.3 혹은 Apache 2 에 해당하는 mod_url.c</B> 파일을 다운로드 한다. 정확한 버전을 받아야만 한다.<br><br>나의 경우 Solaris 에 <a href="http://www.sunfreeware.com">SunFreeware</a>로 부터 받은 gcc 등이 모두 깔려 있는 상태였다.<br><br>그 파일을 컴파일 한다.<br><br><BLOCKQUOTE class="SOURCE"><br>$ apxs -i -a -c mod_url.c<br><br></BLOCKQUOTE><br><br>apxs 가 실행되지 않는다면 perl의 주소가 잘 못됐기 때문일 수 있다. apxs 파일을 열고 perl의 경로를 확인하고 그 경로에 perl의 링크를 걸어주면 된다.(나의 경우 <B>cd /usr/local/bin;ln -s /bin/perl</B> 을 해야만 했다)<br>아래를 httpd.conf 에 추가한다.<br><br><BLOCKQUOTE class="SOURCE"><br>&lt;IfModule mod_url.c><br>&nbsp;&nbsp;CheckURL On<br>&nbsp;&nbsp;ServerEncoding EUC-KR<br>&nbsp;&nbsp;ClientEncoding UTF-8<br>&lt;/IfModule><br><br></BLOCKQUOTE><br><br>클라이언트(웹 브라우저)가 UTF-8로 보낸 URL을 아파치가 EUC-KR로 재해석한다.<br><br><del>그리고 또 다른 문제가 있는데, 아파치를 거쳐서 JSP로 전달되는 파라미터들은 필히!! URLEncoding을 해야만 한다.<br>URL인코딩을 안하면 한글 파라미터들을 아파치가 UTF-8 인코딩으로 간주하고 엉뚱한 문자로 바꿔버린 상태로 JSP에 전달되고 JSP는 그걸 EUC-KR로 가정해버리게 되기 때문이다.<br><br><B>아파치를 사용하던 안 하던 무조건 URLEncoding을 해서 파라미터를 넘기는 것은 필수이다!!</B></del><br><br>추가 : <B>URLEncoding을 하는 것이 필수라는 사실은 변함이 없지만</B>, 아파치 + mod_url을 사용할 경우 JSP에 넘기는 파라미터에 한글등이 들어가 있을 때 URLEncoding이 된 값 조차도 인코딩을 마음대로 변경시켜버리는 문제가 있다. 현재 해결책을 찾는 중.<br><br><B>Apache가 GET 방식의 파라미터 값의 인코딩을 변경하는 문제 해결</B><br>이 문제는 사실 아파치의 문제가 아니라 Tomcat 5.x 의 문제였다. server.xml의 mod_jk 로 연결하는 커넥터 설정 부분에다가도 URIEncoding="euc-kr"이 필요하다.<br><BLOCKQUOTE class="SOURCE">    &lt;Connector port=<B>"8009"</B><br>               enableLookups="false" redirectPort="8443" debug="0"<br>               protocol="AJP/1.3" <B>URIEncoding="euc-kr"</B>/><br></BLOCKQUOTE><br><br>참조 :<br>&nbsp;<a href="http://kltp.kldp.org/stories.php?story=01/01/29/5413242">http://kltp.kldp.org/stories.php?story=01/01/29/5413242</a><br>&nbsp;<a href="http://jakarta.apache.org/tomcat/tomcat-5.0-doc/config/http.html">http://jakarta.apache.org/tomcat/tomcat-5.0-doc/config/http.html</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Vim과 레지스터</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-07-04 09:43:53</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Vim과 레지스터</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">원문 : <a href="http://bbs.kldp.org/viewtopic.php?t=58808">KLDP</a><br><br>VIM에는 GUI 환경을 위한 두 개의 레지스터가 준비되어 있다고 한다.<br>하나는 <B><FONT color="blue">*</FONT></B> 이고 다른 하나는 <B><FONT color="blue">+</FONT></B>.<br><br>MS-Windows에서는 두개가 별 차이가 없고, X-Window에서는 차이가 있다.<br>* 는 마우스로 블록을 지정하면 바로 복사되고 마우스 가운데 버튼으로 붙여넣기 할 수 있는 X-Window 의 레지스터이고 + 는 KDE와 GNOME의 클립보드(CTRL-C, CTRL-V 작동)이다.<br><br>현재 MS-Windows에서 작업중인데, 이 글을 긁어서 Ctrl-C로 복사하고서 GVIM에서 <B>"*p</B> 를 했더니 바로 붙여넣기가 작동한다.<br><br>그리고나서 GVIM에서 글의 일부를 비주얼 블록(Shift-V)로 선택하고 <B>"*y</B>로 복사해서 파이어폭스 창에 붙어넣었더니 바로 작동한다.<br><br>쪼아~</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

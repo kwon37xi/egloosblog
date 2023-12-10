@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[책] 다빈치 코드</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-07-10 17:48:22</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[책] 다빈치 코드</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><img src='./1527217/b0046915_17473883.gif'><br><a href="http://www.aladdin.co.kr/shop/wproduct.aspx?ISBN=895759051X">다빈치 코드</a> - 간만에 읽은 재미있는 추리소설이다.<br><br>추리 소설이 맞나?<br><br>2권 읽는데 이틀 걸렸다... 상당히 읽는 속도가 느린 나로서는 대단한 일이 아닐 수 없다.<br><br>http://blog.naver.com/rainsburg.do  이 블로그에는 다빈치 코드에 등장하는 다양한 장소에 대한 사진을 볼 수 있다. 책을 보면서 함께 보면 아하~! 하면서 책을 볼 수 있다.<br>헌데 너무 앞서서 사진을 보지는 않는게 좋을 것 같다. 사진과 함께 그와 관련된 책 줄거리를 함께 써 놨기 때문에 책의 재미가 반감될 수 있다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

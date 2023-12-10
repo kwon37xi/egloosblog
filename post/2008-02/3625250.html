@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>JavaScript UTF-8 Byte개수 구하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2008-02-18 22:41:00</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">JavaScript UTF-8 Byte개수 구하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><h1>JavaScript UTF-8 문자열의 byte 개수 구하기</h1><br><br><p>UTF-8 문자열의 byte 개수를 구해준다.</p>UTF-8 관련 정보는 <a href="http://ko.wikipedia.org/wiki/UTF-8" class="external" title="http://ko.wikipedia.org/wiki/UTF-8">http://ko.wikipedia.org/wiki/UTF-8</a> 를 참조해서 계산했다.<br><blockquote class="src"><br><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // UTF-8 문자열의 Byte 크기 구하기.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 주의!! : UTF-8 웹 페이지에서만 정상작동한다. EUC-KR에서는 작동하지 않는다.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 참고 자료 : http://ko.wikipedia.org/wiki/UTF-8 위키 백과의 UTF-8 항목<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 테스트 환경 : IE6, IE7, FF 2.0, Safari 3, Opera 9.2<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 각 문자의 유니코드 코드를 분석하여, UTF-8로 변환시 차지하는<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // byte 수를 리턴한다.<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function charByteSize(ch) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ch == null || ch.length == 0) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var charCode = ch.charCodeAt(0);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (charCode &lt;= 0x00007F) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 1;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (charCode &lt;= 0x0007FF) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 2;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else if (charCode &lt;= 0x00FFFF) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 3;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } else {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 4;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 문자열을 UTF-8로 변환했을 경우 차지하게 되는 byte 수를 리턴한다.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function stringByteSize(str) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (str == null || str.length == 0) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var size = 0;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (var i = 0; i &lt; str.length; i++) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; size += charByteSize(str.charAt(i));<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return size;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 테스트 코드<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // (영문 각 1 byte * 7) + (한글 * 3byte * 5) + (. * 1 byte) = 7 + 15 + 1 = 23<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var str="abcd123한글입니다.";<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert(str + " : " + stringByteSize(str));<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var str="abcd123한글입니다.\nenter";<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert(str + " : " + stringByteSize(str));<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var str="abcd123한글입니다.\nenter\t\r\n";<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; alert(str + " : " + stringByteSize(str));</p><br></blockquote><br><p>&nbsp;</p><br><p align="right">이 글은 <a href="http://kwon37xi.springnote.com/pages/758314">스프링노트</a>에서 작성되었습니다.</p></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

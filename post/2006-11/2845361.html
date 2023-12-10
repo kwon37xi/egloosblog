@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>웹접근성 향상과 국제화 팁</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-11-29 10:05:06</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">웹접근성 향상과 국제화 팁</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">2004년 10월에 쓴 글 입니다.<br><hr /><br><div class="h2">W3C 한국 사무국...</div><br><a title="" href="http://www.w3c.or.kr/">W3C 한국 사무국</a>이라는게 있다는 것을 오늘에서야 알았다.<br>웹에 관한 괜찮은 정보들이 번역되어 제공된다.<br><br>그 중에서도 <a title="" href="http://www.w3c.or.kr/Translation/qt.kr.html">접근성이 좋은 웹 사이트 작성을 위한 팁</a>과 <a title="" href="http://www.w3c.or.kr/i18n/">국제화 팁</a>이 있어서 읽어봤다.<br><br>짧은 글이지만 유용하고 꼭 지켜야 할 사항이니 읽어보자.<br><br>그 외에 XML과 HTML, CSS 등에 대한 번역된 글들이 많이 있다.<br><br>차근 차근 읽어 봐야지...</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] iBatis 쿼리 작성 XML에서 /* */ 주석 달 때 오류..</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-10-13 15:04:31</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] iBatis 쿼리 작성 XML에서 /* */ 주석 달 때 오류..</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">iBatis 쿼리 XML을 작성할 때 오라클의 주석문인 <strong>/* */</strong>을 적으면서 꼭 공백을 넣어야 한다.<br><blockquote class="src">1. /*주석*/ : 요고 안돼요~<br>2. /* 주석 */ : 요고 돼요~<br></blockquote><br><br>안그러면.. 다음과 같은 오류 발생..<br><blockquote class="src">SqlMapClient operation; uncategorized SQLException for SQL []; SQL state [null]; error code [0];   <br>--- The error occurred while applying a parameter map.  <br>--- Check the query-id-InlineParameterMap.  <br>--- Check the results (failed to retrieve results).  <br>--- Cause: java.lang.NullPointerException; nested exception is com.ibatis.common.jdbc.exception.NestedSQLException:   <br>--- The error occurred while applying a parameter map.  <br>--- Check the query-id-InlineParameterMap.  <br>--- Check the results (failed to retrieve results).  <br>--- Cause: java.lang.NullPointerException<br></blockquote><br><br>그리고 주석 내부에 <strong>#</strong>과 <strong>$</strong> 같이 iBatis가 특수하게 인식하는 문자도 넣지 말것!</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

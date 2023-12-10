@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>속도 빠르고 안전한 싱글턴</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-10-10 10:29:48</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">속도 빠르고 안전한 싱글턴</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">싱글턴 패턴에서 getInstance() 부분을 synchronized로 작성하게 되면 속도가 감소하게 된다고 한다.<br><br>synchronized는 그 자체만으로도 속도를 감소시키기는 하는데, 실질적으로 싱글턴 패턴에서 getInstance()는 거의 객체가 이미 존재하는지 여부만 검사하고 바로 return해버리므로 부하가 별로 없는 곳에서는 그 속도 차이를 감지하기 어렵다. (내 경우이다. 나는 대규모 부하를 주는 싸이트 프로그래밍을 한 경험이 없다)<br><br>하지만 그 간단한 synchronized 메쏘드의 동시 호출자가 수천명이 된다면 그 부하가 장난이 아니게 되나보다. 그 메소드가 리턴되기만을 수많은 쓰레드들이 기다리고 있는 상태가 되는 것이다.<br><br>이 문제에 대해 기존 싱글턴의 대안이 있는데,<br><blockquote class="src"><br>private final static RuntimePropertyManager ref = new RuntimePropertyManager();<br><br>public static RuntimePropertyManager getInstance() {<br>&nbsp;&nbsp;&nbsp;&nbsp;return ref ;<br>}<br></blockquote><br>이것이다.<br><br>만약에 뭔가 다른 초기화 과정이 필요하다면 static 초기화 구문을 사용하면 된다.<br><br>이 문제에 대해 굉장히 긴 논의가 <a href="http://www.javaservice.net/">JavaService.net</a>에서 이루어 졌는데, 뭐 다 옮겨올 수 없고 중간중간 불필요한 논쟁이 끼어있지만, 꼭 한번 읽어 볼 만한 쓰레드이다.<br><br>JavaService.net의 싱글턴에 관한 논쟁 쓰레드<br><br>이와 함께 저기서 소개된 링크가 있다. 언제 읽어보자.<br><br>&nbsp;&nbsp;* <a href="http://www-106.ibm.com/developerworks/java/library/j-dcl.html">http://www-106.ibm.com/developerworks/java/library/j-dcl.html</a><br>&nbsp;&nbsp;* <a href="http://www.snaq.net/java/DBPool/">http://www.snaq.net/java/DBPool/</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>다음은 파이썬...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-05-04 22:41:36</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">다음은 파이썬...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">그냥 너무 오랫동안 글을 안 올린거 같아서...<br><br>다음 할 일은 <a href="http://www.python.org/">Python</a>과 <a href="http://www.djangoproject.com/">Django</a>로 하기로 했다.<br><br>오늘 <a href="http://youngrok.com">영록</a>님과 짝 프로그래밍을 하면서 Python/Django로 새로운 프로그램(프로젝트라기는 좀 글코)의 프로토타입을 만들어 봤는데, 참 쉽게 슥슥 종이에 쓰듯 프로그램을 짰다.<br><br>재밌을거 같다~ 이제... <a href="http://kwon37xi.egloos.com/2104686">1년 반전에 한다고 해놓고 절대 안했던 파이썬 공부</a> 진짜로 시작~<br>그리고 10여만원 어치 산 Ruby 책들은 잠시... 자고 있으렴... 오빠가 금방 다시 돌아오마.<br><br>이번주는 회사에서 내 주위에 윈도우 쓰는 개발자가 별로 없어서(사실상 같은 라인의 개발자중에 윈도우 사용자가 한명도 없다) <a href="http://kwon37xi.springnote.com/pages/198437">나도 Ubuntu Feisty Fawn으로 밀어버렸다</a>.<br>후련하군~<br>Ubuntu를 사용하고 싶던 가장 큰 이유 중의 하나가 바로 Beryl 인데...<br>이런, Beryl이 Java와 궁합이 많이 안 맞는다. <a aiotitle="패치" href="http://wiki.beryl-project.org/wiki/Java">패치</a>를 했는데, 그래도 몇개 문제점 더 발견.. 이미 버그 리포팅은 돼 있군~<br><br>일단 Beryl은 멀찌감치 치워 두자.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

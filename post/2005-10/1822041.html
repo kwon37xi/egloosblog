@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>더 나은 Ant 빌드 파일 만들기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-10-10 10:26:03</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">더 나은 Ant 빌드 파일 만들기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">상식적인 내용이지만, 지키면 좋은 내용이지만 사실 나부터도 잘 안지킨것 같다.<br>원문 : <a href="http://www.informit.com/articles/article.asp?p=380343">http://www.informit.com/articles/article.asp?p=380343</a><br><br>&nbsp;&nbsp;* K.I.S.S (Keep it small and simple) : 한 타겟은 한 가지 역할만 하게 만들라.<br>&nbsp;&nbsp;* 빌드 파일의 이름은 항상 build.xml이 되고, 프로젝트의 최상위 디렉토리에 두라.<br>&nbsp;&nbsp;* 일관성있게 타겟의 이름의 지어라. 그리고 거의 모든 프로젝트에서 이 규칙을 지켜라.<br>&nbsp;&nbsp;* 환경변수(변하는 값)은 build.xml 에 하드 코딩하지 말고 *.properties 파일이나 운영체제 환경 변수를 이용하라.<br>&nbsp;&nbsp;&nbsp;&nbsp;- &lt;property environment="env"/&gt; : 선언<br>&nbsp;&nbsp;&nbsp;&nbsp;- ${env.JBOSS_HOME} : 사용<br>&nbsp;&nbsp;* 주석을 덕지 덕지 붙이지 말라. 일관성있는 타겟 이름 사용만으로도 원하는 효과를 거둘 수 있다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

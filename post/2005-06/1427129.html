@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>거짓말...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-13 02:27:27</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">거짓말...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">아...<br>연일 계속되는 야근이다.<br><br>나는 <B>야근의 힘을 절대 불신한다.</B><br><br>야근 관성에 빠지게 되면 사람은 낮에 집중력이 흐트러지게 마련이다.<br><br>내가 지금까지 본 야근 많이 하는 회사의 프로그래머들 중 낮에 출근해서 제대로 일하는 사람 거의 못봤다. 나 자신도 오늘 야근 해야 할 것 같아 싶으면 낮에는 일 안한다.<br><br>마감 막바지에 이르렀을 때를 제외하고는 야근은 백해 무익이라.<br>믿어지지 않는다면 야근 많이 하는 당신...<br>하루에 정말 몇시간이나 일하는지 시간 한번 재보시라!<br><br>어쨌든 별 효과 없는 야근 반복으로 이번 주는 지쳐 있다.<br><br>울 사수 과장님...<br><br>신혼 여행가서 행복하겠지만~~ 보고 싶어여~~~<br>나좀 살려줘여~~~ ㅜㅜ<br><br>아참.. 글의 제목이 거짓말이지.<br><br>몇달전 우리 내가 참여한 작업에서 2000만원 정도 들여서 어떤 프로그램을 사용한 적이 있었는데, 전혀 제대로 작동하지 않아 돈을 날려 버린적이 있다.<br>물어보면 항상 '''다 된다. 걱정하지말라!'''로 일관하던 그쪽 회사 영업들에게 이가 갈렸다.<br><br>오늘은 내가 그만큼은 아니지만 비슷하게 해야 했다.<br>우리 회사가 판매한 제품의 버그이지만, 마치 사용자의 잘못인 양 포장해야 했다.<br>해결책도 있고 그런거라 금전적인 피해는 별로 없었지만, 그동안 고객들이 받았을 정신적 피해가 어땠을 지 ..<br><br>아 짜증난다.. 난 영업이 아니란 말이다!!<br><br>거짓말 안하고 사회 생활하는 방법 없을까??<br>다들 그렇게 우기며 사는건가...<br><br>그냥 저냥 넘어갔지만, 별로 기분 좋지는 않다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

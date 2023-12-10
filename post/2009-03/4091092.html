@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Escape Analysis</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2009-03-17 10:35:16</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Escape Analysis</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><p><a href="http://j2ee.ulitzer.com/node/879614" class="external" title="http://j2ee.ulitzer.com/node/879614">How JVMs improve Application performance</a> 라는 글에 소개된 Escape Analysis 에 대한 정리이다. 잘못된 성능 향상 기법에 대한 글이다.</p> <p>&nbsp;</p> <p>아래와 같은 클래스가 있다. getNext()는 <strong>synchronized</strong> 상태이다.</p> <ol class="code"> <li>public class Generator {<br /> &nbsp;&nbsp;&nbsp; private int lastgen;&nbsp; // saved state<br /> &nbsp;&nbsp;&nbsp; Generator(int value) {<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // initialize lastgen using supplied value&nbsp;<br /> &nbsp;&nbsp;&nbsp; }<br /> &nbsp;&nbsp;&nbsp; public <strong><span style="color: rgb(255, 1, 3);">synchronized</span></strong> int getNext() {<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int nextgen = somefunction(lastgen);<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lastgen = nextgen;<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return nextgen;<br /> &nbsp;&nbsp;&nbsp; }<br /> }</li> </ol> <p>&nbsp;</p> <p>이 상황에서 HotClass1과 HotClass2 두 클래스의 hotMethod()에서 Generator.getNext()를 호출하고, hotMethod()가 굉장히 많이 호출되는 메소드라면, 이 두 클래스 중에 뭐가 더 빠를까?</p> <p>&nbsp;</p> <ol class="code"> <li>// HotClass1</li> <li>public class <strong>HotClass1</strong> {<br /> &nbsp;&nbsp;&nbsp; final private static int ASIZ = 10000;<br /> &nbsp;&nbsp;&nbsp; int a[] = new int[ASIZ];<br /> &nbsp;&nbsp;&nbsp; public int hotMethod() {</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>// hotMethod() 호출시마다 Generator 객체를 매번 재생성</strong></li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: rgb(255, 1, 3);"><strong>Generator mygen = new Generator(System.nanoTime());</strong></span><br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // fill in array with generated values<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i=0; i&lt;ASIZ; i++) {<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a[i] = <strong>mygen.getNext();</strong></li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // use array of values to compute something<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // and return it<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (i=0; i&lt;ASIZ-1; i++) {<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; computedValue += someFunc(a[i], a[i+1])<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return computedValue;<br /> &nbsp;&nbsp;&nbsp; }<br /> }</li> <li><br /> public class <strong>HotClass2</strong> {</li> <li>&nbsp;&nbsp;&nbsp; <strong>// Generator 객체를 한 번만 생성하고, 계속 재활용.</strong><br /> &nbsp;&nbsp;&nbsp; <span style="color: rgb(255, 1, 3);"><strong>private Generator mygen = new Generator(System.nanoTime());</strong></span><br /> &nbsp;&nbsp;&nbsp; public int hotMethod() {<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // rest of hotMethod is unchanged<br /> &nbsp;&nbsp;&nbsp; }<br /> }</li> </ol> <p>&nbsp;</p> <p>상식적인 선에서 생각하면 HotClass2가 불필요한 Generator 객체 생성 작업을 하지 않기 때문에 더 빠르다. 그리고 사실 이는 Generator.getNext()가 synchronized가 걸려있지 않거나, 컴파일시 inline으로 변경되지 않는다면 맞다.</p> <p>그렇지만, 이런 글을 쓰는 이유는 당연히도 우리의 예상과는 달리 <strong>HotClass1이 더 빠르기 때문이다</strong>.</p> <p>&nbsp;</p> <p>JVM은 일단 두 클래스 모두에서 mygen.getNext()를 inline 호출로 변경하여 메소드 호출의 부하를 없애는 최적화를 수행한다. 그리고서 HotClass1 에서는 mygen.getNext()의 synchronized 설정을 빼버린다. 왜냐하면 mygen 객체는 <strong>결코 다른 쓰레드에서 사용할 수 없는 로컬 변수이기 때문이다.</strong> <strong>객체의 스코프를 분석해서 특정 스코프를 벗어날 수 있는지 여부를 판단하는 것이 Escape Analysis(탈출 분석?)이다. 이 분석에 따라, 특정 객체가 여러 쓰레드에서 사용될 수 없으면 비록 synchronized가 걸려 있더라도 락을 걸지 않는다.</strong></p> <p>그에 반해 HotClass2는 mygen이라는 객체 변수로 Generator 객체를 생성한다. 이 경우에 mygen 객체는 다른 쓰레드에서 사용할 수 있는 가능성이 생기게 된다. 따라서 mygen.getNext()를 호출할 때 무조건 락을 걸게 된다.</p> <p>&nbsp;</p> <p><strong>Generator 클래스의 생성자는 매우 단순하다. 이 경우에는 객체의 생성 비용보다, synchronized 락을 거는 비용이 더 비싸게 작용하는 것이다.</strong></p> <p>&nbsp;</p> <p>Escape Analysis는 락 제거 외에도 다른 최적화도 수행하는데, 객체가 로컬 스코프에 제한되어 있고 다른 영역으로 탈출(escape)할 가능성이 없다면, 그 객체를 힙(heap) 영역에 생성하지 않고 쓰레드의 로컬 스택에 생성한다는 것이다. 로컬 스택에 저장된 객체는 메소드가 종료될 때 곧바로 해제되며 힙 영역을 사용하지 않는다. 만약 객체를 힙에 저장한다면 기다렸다가 나중에 가비지 컬렉터가 해지하게 된다.</p> <p>&nbsp;</p> <p>결론은 생성자가 작고, 상태 정보를 저장하지 않는 객체라면 인스턴스 변수나 클래스 변수로 생성해서 공유한 뒤에 동기화를 해서 사용하는 것보다는 그냥 메소드 내에서 로컬 변수로 생성해서 동기화를 하지 않고 사용하여 JVM에게 최적화를 맡기는 것이 더 유리하다.</p> <p>&nbsp;</p> <p>그리고 <a href="http://kangcom.com/sub/view.asp?topid=1&amp;sku=200504110013" class="external" title="http://kangcom.com/sub/view.asp?topid=1&amp;sku=200504110013">Code Complete</a> 이나 <a href="http://kangcom.com/sub/view.asp?topid=1&amp;sku=2008F0057639" class="external" title="http://kangcom.com/sub/view.asp?topid=1&amp;sku=2008F0057639">Clean Code</a> 에서도 계속해서 강조하는 것이 있다. 얼마 되지 않는 성능 향상을 위해서 코드의 가독성을 희생하지 말라. 그리고, 성능을 최적화 했다면 그게 정말로 성능을 향상 시켰는지 꼭 확인해보라. 위와 같이 예상과는 전혀 다르게 성능이 더 나빠지는 경우도 많다. <strong>성능 향상하겠다고 베베 꼬아만든 코드가 컴파일러와 JVM에 의한 성능 최적화를 방해하는 요인으로 작동하기 때문이다.</strong></p> <p>&nbsp;</p> <p style="text-align:right">이 글은 <a href="http://kwon37xi.springnote.com/pages/2907486">스프링노트</a>에서 작성되었습니다.</p></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

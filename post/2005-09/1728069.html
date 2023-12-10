@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title> Windows XP SP2 IE 6.0 파일 다운로드 클릭시 창 사라짐 현상</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-09-09 12:04:04</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title"> Windows XP SP2 IE 6.0 파일 다운로드 클릭시 창 사라짐 현상</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">설명하기가 좀 애매한데,<br>Windows XP SP2 IE 6.0에서 어떤 싸이트를 &lt;a href="..." target="_blank"> 이런 식으로 띄우고 새로 뜬 창에서 파일 다운로드를 클릭하면 창이 사라지는 현상이 발생한다.<br><br>이건 오직 XP SP2 에서만 발생하는 것으로 IE의 버그가 확실한 것 같다.<br><br>어쨌든, 창 사라짐 현상을 없애려면 다운로드 링크에 <B>target="_top"</B>을 해주면 된다.<br><br>이거때문에 울회사 사람 고생 많이 했다.. ^^</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

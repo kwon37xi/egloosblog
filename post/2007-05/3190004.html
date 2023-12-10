@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[영화] 바벨, 블랙북</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-05-24 02:53:55</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[영화] 바벨, 블랙북</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">어쩌다 보니, B 가 두개씩 들어가는 영화들을 연속으로 보게 되었다.<br><br>Babel, BlackBook.<br><br>둘 다 그다지 대중적이지는 않지만 매우 볼만한 영화이다.<br><br>바벨은 대화의 단절 때문에 발생한 일들을 보여주는데, 마치 따로 떨어진 여러 이야기들을 보여주는 것 처럼 시작하다가 나중에 보면 이 모든 일들이 각각 관련을 맺고 있는 것으로 나온다. 전세계에 걸쳐 발생한 에피소드임에도 불구하고, 그 관련성이 아주 부드럽게 이어진다.<br>결코 "재미"있다고 할 수는 없지만, 짜임새 있는 이야기와 대화를 되찾아 가는 모습을 보여주는 과정이 너무도 자연스럽다.<br><br>브래드 피트가 나온 영화 치고는 가장 대중적이지 못한게 아닐까 싶다.<br>하지만 볼만 하다.<br><br>블랙북은 한 유태인 여성이 2차 대전 말기의 네덜란드에서의 삶을 헤쳐나가는 과정을 보여주는 영화이다.<br>이것도 그다지 대중적이라 보긴 힘들지만 볼만한 영화임에는 틀림없다. 이야기 구성이 상당히 짜임새 있기 때문에 처음에는 지루할지 몰라도 나중엔 정말 몰입하게 만든다. 굳이 이 영화의 장르를 구분하자면 스릴러에 가까울 것 같다. 반전에 반전이 이어져서 일단 초반을 넘기고 나면 눈을 떼기 힘들게 만든다.<br>참고로, 초반을 넘기기 힘들어 할 남자들을 위해 첨언하자면, 중반에 가면 상당히 야한 장면들이 여러번 나오는데, 영화 스토리에 몰입해버려서 그런거엔 신경도 안쓰일 것이다.<br><br>게다가.. 이 기구한 운명의 여성이 실존 인물이란다.<br><br>자세한 소개는 <a href="http://kr.blog.yahoo.com/h960742/1233011">바벨</a>, <a href="http://kr.blog.yahoo.com/h960742/1233008">블랙북</a><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

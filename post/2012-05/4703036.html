@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] IE &lt;input type=&quot;file&quot;&gt; click 이벤트 발생시키기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-05-11 16:36:38</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] IE &lt;input type=&quot;file&quot;&gt; click 이벤트 발생시키기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">&lt;input type="file"&gt; DOM이 있을 때 여기에 $('input[type="file"]').trigger('click') 이런식으로 이벤트를 발생시키면 해당 폼을 Javascript로 submit 하는데 실패한다. Script: Access Denied. 오류가 발생하게 된다.<br><br>비 IE 브라우저에서는 문제 없다.<br><br>또한 해당 DOM이 display: none; 혹은 visible: hidden; 상태일 때도 마찬가지이다.<br><br>File Input 에 스타일을 줄 경우 IE에서는 File Input DOM 이 투명 상태로 스타일의 위를 덮어서 직접 click 이벤트를 받도록 해야한다.<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

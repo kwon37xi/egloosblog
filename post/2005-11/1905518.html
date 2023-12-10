@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>이노무 수정 욕구...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-11-06 10:57:21</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">이노무 수정 욕구...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">아 어찌하나...<br>프로그램을 유지보수 할 때 절대 피해야 할것으로 "조엘 온 소프트웨어"나 "실용주의 프로그래머" 등의 책들에서 강조하고 있는 것 중의 하나가 <strong>기존 것을 다 뜯어 고치려는 생각을 버릴것!</strong>이다.<br><br>기존의 모든 것을 자기 스타일로 뜯어 고쳐려고 드는 프로젝트는 대부분 실패한다는 것이다.<br><br>딱히 내 앞에 한 사람이 잘 못해서라기 보다는 나랑 스타일이 틀려서 다 뜯어 고치고 싶어하는 이 욕구를 어떻게 다스려야 하나? 설사 좀 잘못 만들었어도 현재 잘 돌아가고 있는 것인데...<br><br>정신 수양이 심히 필요할 듯하다.<br><br>참자!!<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>웹 표준을 지켜야 하는 이유.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-03 20:36:55</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">웹 표준을 지켜야 하는 이유.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://www.dal.co.kr/">김중태 문화원 블로그</a>에 올라온 <a title="" href="http://www.dal.co.kr/blog/archives/000935.html">웹 표준을 지켜야 하는 이유</a>이다.<br><br>(1) 익스플로러도 표준을 잘 지키는 브라우저다.<br>(2) 웹표준과 브라우저는 구분하자.<br>(3) 웹사이트는 도로, 브라우저는 이동수단인 차에 해당한다.<br>(4) 돈을 핑계 대면 구차한 변명이지만, 표준을 안 지켜도 된다고 주장하면 무식이다.<br>(5) 개발자는 자신의 가족이 익스플로러를 쓰지 못하는 경우를 고려해야 한다.<br>(6) 일반인 수준의 IT실력을 가지고도 명함에는 IT개발자라고 쓰고 싶은가?<br>(7) 표준 준수는 개발자나 디자이너의 기본 자세다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>웹 브라우저에 내용을 천천히 전송해서 순서대로 출력하기.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-01 22:54:26</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">웹 브라우저에 내용을 천천히 전송해서 순서대로 출력하기.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">웹 브라우저에 내용을 전송하는 대로 천천히 출력하는 JSP페이지를 만들 필요가 있었다.<br>간단하네...<br><br>버퍼를 없애고, 출력할 내용이 나올 때마다 Flush 하면 천천히 내용이 전송되고 웹 브라우져는 전송되는 대로 화면에 하나씩 출력한다.<br><br>Buffer="none" 으로 한다고 해도 Web Container가 약간의 버퍼링을 한다고 한다.<br>그래서 무조건 Flush~<br><blockquote class="src">&lt;%@&nbsp;page&nbsp;contentType="text/html"&nbsp;%&gt;<br>&lt;%@&nbsp;page&nbsp;pageEncoding="euc-kr"&nbsp;%&gt;<br>&lt;%@&nbsp;page&nbsp;buffer="none"&nbsp;%&gt;<br><br>&lt;!DOCTYPE&nbsp;HTML&nbsp;PUBLIC&nbsp;"-//w3c//dtd&nbsp;html&nbsp;4.0&nbsp;transitional//en"&gt;<br>&lt;html&gt;<br>&lt;head&gt;<br>&lt;title&gt;No&nbsp;Buffer&nbsp;Test&lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&nbsp;bgcolor="#FFFFFF"&gt;<br>&lt;font&nbsp;color="blue"&gt;<br>&lt;b&gt;<br>&lt;%<br>for&nbsp;(int&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;50;&nbsp;i++)&nbsp;{<br>%&gt;<br>&lt;%=&nbsp;i&nbsp;%&gt;&lt;br/&gt;<br>&lt;%<br>&nbsp;&nbsp;&nbsp;&nbsp;out.flush();<br>&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Thread.sleep(1000);<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(Exception&nbsp;ex)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}<br>%&gt;<br>&lt;/b&gt;<br>&lt;/font&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></blockquote></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

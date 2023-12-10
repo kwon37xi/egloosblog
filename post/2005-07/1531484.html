@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[책] Joel on Software</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-07-11 21:52:45</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[책] Joel on Software</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">무조건 읽어라!<br><br><img src='./1531484/b0046915_2150191.jpg'><br><br><a href="http://www.joelonsoftware.com/">조엘 온 소프트웨어</a>는 뭐 명실공히 소프트웨어 개발에 대한 최고의 블로그로 꼽힌다.<br><br>그리고, 그 블로그의 내용중 좋은 글들을 가려 뽑아 책으로 나온 것이 <a href="http://www.aladdin.co.kr/shop/wproduct.aspx?ISBN=8989975581">조엘 온 소프트웨어</a>이다.<br><br>조엘은 아마도 포그 크릭 소프트웨어의 사장이면서 Microsft 사에서도 일한 프로그래머이기도 한가보다.<br><br>소프트웨어 개발 회사 사장의 입장에서의 소프트웨어 개발과 개발자 입장에서의 올바른 소프트웨어 개발에 대해 아주 쉽고 아하! 하게 만드는 그런 글들이 흥미진진하게 펼쳐진다.<br><br>그리고, 소프트웨어 개발회사 사장이라면, 어떤 소프트웨어가 좋은 소프트웨어인지, 어떻게 개발자를 다루는지, 어떤 개발자가 훌륭한 개발자인지 가려 뽑는 방법 등, 사장으로서 알아야 할 점들도 쉽게 그리고 공감이 가게 설명한다.<br><br>책을 펴고나서 덮기까지 얼마 걸리지 않았다. 거의 손에서 놓지 않은 것 같다.<br><br>가히 소프트웨어 개발 쪽에서 일하는 사람들의 필독서라 할만 하다.<br><br>이 책을 번역하신 jrogue님은 내가 아주 자주가는 <a href="http://kr.blog.yahoo.com/jhrogue">컴퓨터 vs 책 블로그</a>를 운영하시는 분이다. 번역은 가히 예술이라 할만하다. 약간의 서구적이고 블로그 스러운 어투가 책으로 읽기엔 거슬릴 수도 있으나, 번역이 잘못된것은 전혀 아니다.<br><br>아..<br>근데.. 왜 난 책을 소개하면 다 "필독서"로 지정하는 걸까?<br>이러면 내 글에 대한 신뢰성이 떨어지는데.. --;<br><br>책을 사기 싫다면..<br><br>그냥 블로그를 읽어도 된다. 약간의 한국어로 번역된 싸이트도 있다. 하지만, 책 값이 아깝지 않을꺼라 자신한다.<br><br>http://korean.joelonsoftware.com/<a href="http://kr.blog.yahoo.com/jhrogue"></a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Eclipse + Spring &lt;context:component-scan&gt;시 classpath resource 오류</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-02-07 18:10:37</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Eclipse + Spring &lt;context:component-scan&gt;시 classpath resource 오류</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Spring 3.0.4, Eclipse 3.7.1, Lombok 10.0.8 환경에서 다음과 같이 했더니<br><blockquote class="src">&lt;context:component-scan base-package="some.service" use-default-filters="false" &gt;<br>...<br>&lt;/context:component-scan&gt;<br></blockquote><br>해당 패키지의 test 클래스 중의 하나에서 다음과 같은 오류가 발생하였다. 헌데 이상한 점은 Maven에서 컴파일하면 아무런 이상이 없는데, Eclipse에서 컴파일하면 문제가 발생하였다. 일단 해당 패키지에 대해서 component-scan을 없애버리고 모두 &lt;bean/&gt;으로 직접 생성하도록 하면 해결이 된다.<br><br>관련 오류를 겪는 분들은 참조하시길 바라며, Eclipse Java Compiler의 버그인지 Spring 3.0.4의 Component Scanner의 문제인 것인지(이건 아닌듯 하다. Maven 컴파일 하면 잘 되니까), Lombok의 장난인지 정확히 모르겠다.<br><br><span style="font-weight: bold;">진짜 원인은 다른데 있었다. 실제 오류의 원인은 Eclipse + Maven + WTP 사용시에 Mockito 라이브러리가 test 스코프로 지정돼 있기 때문에 배포가 안되는데, 정작 프로젝트의 test 코드들은 배포가 되기 때문에 발생한 것이었다.</span><br><br>유사한 문제를 겪었다는 보고가 <a target="_blank" href="http://groups.google.com/group/ksug/browse_thread/thread/b7fb53ee29471d2d">Failed to read candidate component class가 발생했는데 대응 방안이..</a> 에 있는데 이 때는 나와 경우가 다른 듯 하다. 이 때는 javaagent 로 설정한 APM 서비스중 하나의 문제였다고 한다.<br><blockquote class="src">org.springframework.beans.factory.BeanDefinitionStoreException: Failed to read candidate component class: URL [jar:file:/C:/workspaces/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/some-web/WEB-INF/lib/some.jar!/some/service/SomeServiceTest$1.class]; nested exception is java.io.FileNotFoundException: class path resource [org/mockito/stubbing/Answer.class] cannot be opened because it does not exist<br>at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.findCandidateComponents(ClassPathScanningCandidateComponentProvider.java:237)<br>at org.springframework.context.annotation.ClassPathBeanDefinitionScanner.doScan(ClassPathBeanDefinitionScanner.java:204)<br>at org.springframework.context.annotation.ComponentScanBeanDefinitionParser.parse(ComponentScanBeanDefinitionParser.java:84)<br>at org.springframework.beans.factory.xml.NamespaceHandlerSupport.parse(NamespaceHandlerSupport.java:73)<br>at org.springframework.beans.factory.xml.BeanDefinitionParserDelegate.parseCustomElement(BeanDefinitionParserDelegate.java:1338)<br>at org.springframework.beans.factory.xml.BeanDefinitionParserDelegate.parseCustomElement(BeanDefinitionParserDelegate.java:1328)<br>at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.parseBeanDefinitions(DefaultBeanDefinitionDocumentReader.java:135)<br>at org.springframework.beans.factory.xml.DefaultBeanDefinitionDocumentReader.registerBeanDefinitions(DefaultBeanDefinitionDocumentReader.java:93)<br>at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.registerBeanDefinitions(XmlBeanDefinitionReader.java:493)<br>at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.doLoadBeanDefinitions(XmlBeanDefinitionReader.java:390)<br>at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:334)<br>at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:302)<br>at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:143)<br>at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:178)<br>at org.springframework.beans.factory.support.AbstractBeanDefinitionReader.loadBeanDefinitions(AbstractBeanDefinitionReader.java:149)<br>at org.springframework.web.context.support.XmlWebApplicationContext.loadBeanDefinitions(XmlWebApplicationContext.java:124)<br>at org.springframework.web.context.support.XmlWebApplicationContext.loadBeanDefinitions(XmlWebApplicationContext.java:93)<br>at org.springframework.context.support.AbstractRefreshableApplicationContext.refreshBeanFactory(AbstractRefreshableApplicationContext.java:130)<br>at org.springframework.context.support.AbstractApplicationContext.obtainFreshBeanFactory(AbstractApplicationContext.java:467)<br>at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:397)<br>at org.springframework.web.context.ContextLoader.createWebApplicationContext(ContextLoader.java:282)<br>at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:204)<br>at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:47)<br>at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4206)<br>at org.apache.catalina.core.StandardContext.start(StandardContext.java:4705)<br>at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1057)<br>at org.apache.catalina.core.StandardHost.start(StandardHost.java:840)<br>at org.apache.catalina.core.ContainerBase.start(ContainerBase.java:1057)<br>at org.apache.catalina.core.StandardEngine.start(StandardEngine.java:463)<br>at org.apache.catalina.core.StandardService.start(StandardService.java:525)<br>at org.apache.catalina.core.StandardServer.start(StandardServer.java:754)<br>at org.apache.catalina.startup.Catalina.start(Catalina.java:595)<br>at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)<br>at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)<br>at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)<br>at java.lang.reflect.Method.invoke(Method.java:597)<br>at org.apache.catalina.startup.Bootstrap.start(Bootstrap.java:289)<br>at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:414)<br>Caused by: java.io.FileNotFoundException: class path resource [org/mockito/stubbing/Answer.class] cannot be opened because it does not exist<br>at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:158)<br>at org.springframework.core.type.classreading.SimpleMetadataReader.<init>(SimpleMetadataReader.java:45)<br>at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:80)<br>at org.springframework.core.type.classreading.CachingMetadataReaderFactory.getMetadataReader(CachingMetadataReaderFactory.java:101)<br>at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:76)<br>at org.springframework.core.type.filter.AbstractTypeHierarchyTraversingFilter.match(AbstractTypeHierarchyTraversingFilter.java:105)<br>at org.springframework.core.type.filter.AbstractTypeHierarchyTraversingFilter.match(AbstractTypeHierarchyTraversingFilter.java:95)<br>at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.isCandidateComponent(ClassPathScanningCandidateComponentProvider.java:280)<br>at org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.findCandidateComponents(ClassPathScanningCandidateComponentProvider.java:214)<br>... 37 more<br></init></blockquote></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

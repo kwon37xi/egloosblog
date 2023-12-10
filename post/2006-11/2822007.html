@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>MySpace.com, iBATIS for .Net 채용</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-11-17 14:23:24</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">MySpace.com, iBATIS for .Net 채용</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">미국판 싸이월드이자, <a title="" href="http://www.alexa.com/site/ds/top_500">세계 5대 웹 사이트</a>인 <a title="" href="http://myspace.com">MySpace</a>가 오픈소스인 <a title="" href="http://ibatis.apache.org">iBATIS for .Net</a>을 퍼시스턴스 레이어 프레임워크로 채용하기로 결정했다고 한다. (from <a title="" href="http://www.infoq.com/news/2006/11/iBATIS-MySpace">infoQ</a>)<br><br>나 개인적으로도 iBATIS가 많이 퍼지길 바라는데,<br> 1. <strong>사용법이 워낙 쉬워</strong>서 JDBC를 아는 웬만한 개발자는 하루면 기본 개념을 익히고, 이틀이면 사용하는데 별 문제를 못 느낀다.<br> 1. 그러면서도 그로인해 <strong>높아지는 생산성</strong>(JDBC 노가다는 그만 저리가라!!)은 이루 말 할 수조차 없다.<br> 1. 특히 이미 개발이 진행중인 상태에서 <strong>DB 스키마를 변경하지 않고 퍼시스턴스 레이어를 더욱 효율적인 것으로 바꾸고 싶을 때</strong> iBATIS는 최고의 선택이 되어줄 것이다.<br><br><a title="" href="http://kwon37xi.egloos.com/2119601">예전 글</a>에서도 이미 말했지만, <strong>쉽다</strong>는 점은 수많은 기술을 포용해야하고 다양한 실력 층의 개발자들이 모여있는 SI 사업에서 매우 중요한 요소라고 본다.<br>나는 요즘 구직 중에 있는데, 구직 과정중에 Hibernate를 도입했다가 프로젝트가 좌초하고 어쩔 수 없이 Hibernate와 JDBC 혹은 그 외의 프레임워크를 섞어서 쓰는 회사들을 이미 두군데나 봤다. <br><br>결코 Hibernate가 안 좋다는 뜻이 아니다.<br><strong>진입 장벽이 높은 프레임워크를 그 프레임워크를 확고부동하게 이해하고 있는 기술적 리더 없이 도입하는 것은 프로젝트를 말아먹는 지름길</strong>이라고 말하는 것이다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

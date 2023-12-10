@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title> Apache + Tomcat 한글 파일 다운로드 하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-10-09 20:13:28</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title"> Apache + Tomcat 한글 파일 다운로드 하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><blockquote class="src">&lt;%@&nbsp;page&nbsp;contentType="application/unknown;&nbsp;charset=euc-kr"&nbsp;%&gt;&lt;%@&nbsp;page<br>import="java.util.*,java.io.*"%&gt;&lt;%<br><br>/*&nbsp;아파치&nbsp;톰캣연동&nbsp;혹은&nbsp;톰캣&nbsp;단독으로&nbsp;쓰일때의&nbsp;한글&nbsp;파일&nbsp;다운로드<br>&nbsp;*&nbsp;<br>&nbsp;*&nbsp;손권남&nbsp;(kwon37xi_a#T_yahoo.co.kr)<br>&nbsp;*&nbsp;<br>&nbsp;*&nbsp;http://www.okjsp.pe.kr에&nbsp;올라온&nbsp;많은&nbsp;예제들을&nbsp;참고하고,&nbsp;나름대로<br>&nbsp;*&nbsp;경험에&nbsp;의한&nbsp;법칙등을&nbsp;적용하연&nbsp;만든&nbsp;것임.<br>&nbsp;*&nbsp;이것은&nbsp;예제일&nbsp;뿐,&nbsp;경로나&nbsp;파일&nbsp;이름&nbsp;받아들이는&nbsp;방법등은&nbsp;자신에&nbsp;맞게<br>&nbsp;*&nbsp;수정할&nbsp;것.<br>&nbsp;*<br>&nbsp;*&nbsp;맨위의&nbsp;charset=euc-kr을&nbsp;빼먹으면&nbsp;안된다.!!!!!!<br>&nbsp;*&nbsp;<br>&nbsp;*&nbsp;빼먹을&nbsp;경우&nbsp;이&nbsp;JSP&nbsp;페이지가&nbsp;EUC_KR로&nbsp;해석되지&nbsp;않아서&nbsp;이&nbsp;JSP페이지&nbsp;내의<br>&nbsp;*&nbsp;한글이&nbsp;모두&nbsp;깨져버린다.&nbsp;물론..&nbsp;여기서는&nbsp;한글이&nbsp;안쓰여서&nbsp;별&nbsp;상관은<br>&nbsp;*&nbsp;없지만..<br>&nbsp;*/<br><br>/*<br>&nbsp;*&nbsp;다운로드&nbsp;관련&nbsp;페이지는&nbsp;Servlet으로&nbsp;만드는게&nbsp;원칙이다.<br>&nbsp;*&nbsp;이것은&nbsp;그냥&nbsp;쉬운&nbsp;예제를&nbsp;보여주는&nbsp;것&nbsp;뿐이다.<br>&nbsp;*<br>&nbsp;*&nbsp;또한,&nbsp;JSP로&nbsp;만들&nbsp;경우에&nbsp;각&nbsp;태그&nbsp;사이에&nbsp;빈공간이&nbsp;있어서는&nbsp;안된다.<br>&nbsp;*&nbsp;그럴경우&nbsp;다운로드되는&nbsp;파일이&nbsp;변경될&nbsp;수&nbsp;있다.&nbsp;그러니&nbsp;그냥&nbsp;서블릿으로<br>&nbsp;*&nbsp;만들기를&nbsp;권함.<br>&nbsp;*/<br><br>request.setCharacterEncoding("euc-kr");<br><br>String&nbsp;filename&nbsp;=&nbsp;request.getParameter("filename");<br><br>if&nbsp;(filename&nbsp;==&nbsp;null)&nbsp;{<br>&nbsp;return;<br>}<br><br>String&nbsp;mime&nbsp;=&nbsp;getServletContext().getMimeType(filename);<br><br>if&nbsp;(mime&nbsp;==&nbsp;null)&nbsp;{<br>&nbsp;mime&nbsp;=&nbsp;"application/octet-stream;";<br>}<br><br>//&nbsp;자신에게&nbsp;맞게&nbsp;수정할&nbsp;것.<br>File&nbsp;file&nbsp;=<br>&nbsp;new&nbsp;File("C:/Program&nbsp;Files/Apache&nbsp;Group/Tomcat&nbsp;4.1/webapps/ROOT/"&nbsp;+&nbsp;filename);<br><br>byte&nbsp;b[]&nbsp;=&nbsp;new&nbsp;byte[2048];<br><br><br>//response.setHeader("Content-Transfer-Encoding",&nbsp;"7bit");<br>//&nbsp;위&nbsp;부분을&nbsp;아래와&nbsp;같이&nbsp;수정함.&nbsp;2005/01/17<br>response.setContentType(mime&nbsp;+&nbsp;";&nbsp;charset=euc-kr");&nbsp;<br><br>/*<br>&nbsp;*&nbsp;URLEncoder의&nbsp;사용에&nbsp;주의할것.&nbsp;J2SDK&nbsp;1.3x&nbsp;이하에서는<br>&nbsp;*&nbsp;java.net.URLEncoder.encode(filename)&nbsp;으로&nbsp;수정할&nbsp;것.<br>&nbsp;*<br>&nbsp;*&nbsp;MS&nbsp;IE&nbsp;5.5에는&nbsp;버그가&nbsp;있어서&nbsp;atatchment&nbsp;부분을&nbsp;빼줘야한다.<br>&nbsp;*<br>&nbsp;*/<br><br>if&nbsp;(request.getHeader("User-Agent").indexOf("MSIE&nbsp;5.5")&nbsp;&gt;&nbsp;-1)&nbsp;{<br>&nbsp;response.setHeader("Content-Disposition",<br>&nbsp;&nbsp;&nbsp;"filename="&nbsp;+java.net.URLEncoder.encode(filename,&nbsp;"euc-kr")&nbsp;+&nbsp;";");<br>}&nbsp;else&nbsp;{<br>&nbsp;response.setHeader("Content-Disposition",<br>&nbsp;&nbsp;&nbsp;"attachment;&nbsp;filename="&nbsp;+&nbsp;java.net.URLEncoder.encode(filename,&nbsp;"euc-kr")&nbsp;+&nbsp;";");<br>}<br><br>/*<br>&nbsp;*&nbsp;지금까지&nbsp;많은&nbsp;사람들이&nbsp;한글&nbsp;파일명을&nbsp;latin1으로&nbsp;바꾼뒤&nbsp;보냈는데,<br>&nbsp;*&nbsp;톰캣&nbsp;단독으로&nbsp;쓰이는&nbsp;경우에는&nbsp;상관없을&nbsp;수&nbsp;있지만&nbsp;아파치등&nbsp;웹&nbsp;서버와&nbsp;연동할&nbsp;경우<br>&nbsp;*&nbsp;latin1(8bit)&nbsp;으로&nbsp;된&nbsp;파일이름을&nbsp;그대로&nbsp;보내면&nbsp;한글&nbsp;파일&nbsp;이름이&nbsp;깨진다.<br>&nbsp;*&nbsp;아파치가&nbsp;(혹은&nbsp;아파치와&nbsp;톰캣을&nbsp;연동하는&nbsp;모듈이)&nbsp;헤더에서&nbsp;latin1으로된&nbsp;문자를<br>&nbsp;*&nbsp;자기&nbsp;맘대로&nbsp;변형시키는&nbsp;것으로&nbsp;보인다.(실제&nbsp;telnet&nbsp;으로&nbsp;접속해서&nbsp;헤더의<br>&nbsp;*&nbsp;파일이름부분을&nbsp;톰캣단독과&nbsp;아파치+톰캣&nbsp;일때&nbsp;보면&nbsp;latin1으로&nbsp;보낼경우에&nbsp;서로<br>&nbsp;*&nbsp;다르게&nbsp;나온다)<br>&nbsp;*&nbsp;<br>&nbsp;*&nbsp;꼭&nbsp;URLEncoding을&nbsp;해서&nbsp;보내야&nbsp;언제나&nbsp;제대로된&nbsp;한글&nbsp;이름으로&nbsp;다운로드가&nbsp;된다.<br>&nbsp;*<br>&nbsp;*&nbsp;그러나&nbsp;이것은&nbsp;모질라에서는&nbsp;작동하지&nbsp;않았다.<br>&nbsp;*&nbsp;<br>&nbsp;*&nbsp;URLencoding&nbsp;된&nbsp;파일이름이&nbsp;너무&nbsp;길경우에도&nbsp;다운로드되지&nbsp;않는다.<br>&nbsp;*&nbsp;모질라에서는&nbsp;비록&nbsp;한글파일이름은&nbsp;깨져도&nbsp;다운로되&nbsp;되는것으로&nbsp;보아<br>&nbsp;*&nbsp;IE&nbsp;5.x,&nbsp;6.x&nbsp;의&nbsp;버그로&nbsp;여겨진다.&nbsp;-&nbsp;이문제에&nbsp;대한&nbsp;해결책&nbsp;누구&nbsp;없수?<br>&nbsp;*/<br><br>response.setHeader("Content-Length",&nbsp;""&nbsp;+&nbsp;file.length()&nbsp;);<br><br>if&nbsp;(file.isFile()&nbsp;&amp;&amp;&nbsp;file.length()&nbsp;&gt;&nbsp;0)&nbsp;//&nbsp;파일&nbsp;크기가&nbsp;0보다&nbsp;커야&nbsp;한다.<br>{<br>&nbsp;BufferedInputStream&nbsp;fin&nbsp;=&nbsp;new&nbsp;BufferedInputStream(new<br>&nbsp;FileInputStream(file));<br>&nbsp;BufferedOutputStream&nbsp;outs&nbsp;=&nbsp;new<br>&nbsp;BufferedOutputStream(response.getOutputStream());<br>&nbsp;int&nbsp;read&nbsp;=&nbsp;0;<br>&nbsp;<br>&nbsp;while&nbsp;((read&nbsp;=&nbsp;fin.read(b))&nbsp;!=&nbsp;-1){<br>&nbsp;&nbsp;outs.write(b,0,read);<br>&nbsp;}<br><br>&nbsp;outs.close();<br>&nbsp;fin.close();<br>}<br>%&gt;<br></blockquote><br><div class="h2">파일 직접 다운로드와 브라우저 내에서 보기</div><br>2004/09/13 추가함.<br><br><strong>attatchment;</strong> 여부에 따라 파일의 다운로드와 플러그인을 통한 열기 여부가 결정된다. attatchment; 를 빼면 몇몇 파일은 브라우저 내부에서 직접 열린다.<br><br><div class="h2">최종 수정</div><br>2005/10/09 추가함.<br><br>한글 파일명 문제는 완전히 해결된 것이라 볼 수 없다.<br><strong>현재 IE 6.0의 경우에는 무조건 UTF-8로 URLEncoding 해서 출력해야만 했다.</strong><br><br>아웅~~ 답이 뭐냐??<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

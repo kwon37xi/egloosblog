@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Python 3000 현재 진행 상황</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-06-26 08:02:39</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Python 3000 현재 진행 상황</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">귀도 반 로섬이 <a title="" href="http://www.artima.com/weblogs/viewpost.jsp?thread=208549">Python 3000 현재 진행 상황에 대한 글</a>을 올렸다.<br><br>Py3k가 과연 나올 수 있을지 의문이라는 글을 몇개 읽은 적이 있었는데, 나오긴 나올 듯 하다. 올 8월말에 알파 버전 형태로 나오고 내년 말이 되면 정식이 나오지 않을까 싶다.<br><br>기본 소스 인코딩이 UTF-8이 될 것이고, 내부적으로는 Java와 동일하게 모든 문자열을 유니코드로 다룰 것이며, 변수명 등으로 유니코드 문자(즉, 한글도!) 쓸 수 있게 될 예정이다. 이에 따라 IO 도 Java 처럼 인코딩을 지정해서 수행할 수 있게 된다.<br><br>2.x 기반의 소스를 Py3k 기반으로 변경하는 방법에 관해서도 설명한다.<br><br>Py3k가 나오기 전에 Python 2.6이 나올 예정이며, 2.6에서 Py3k의 기능을 맛볼 수도 있을 것이다.<br><br>그 외 다수...<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

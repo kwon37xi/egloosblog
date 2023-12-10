@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>웹 애플리케이션 Acceptance Test : Selenium </title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2008-02-12 21:21:17</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">웹 애플리케이션 Acceptance Test : Selenium </h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://selenium.openqa.org/">Selenium</a> 을 적극적으로 도입하기 위해 관련 문서를 정리해보고 있다.<br><br>프로그래머가 아니더라도 쓸 수 있는 <a href="http://selenium-core.openqa.org/">Selenium Core</a>에 대해서 정리를 좀 했다.<br><br><strong><big><a href="http://kwon37xi.springnote.com/pages/804128.xhtml">Selenium Core 관련 정리</a></big></strong><br><br>Sprngnote에서 했기 때문에 계속해서 내용이 추가될 예정이다.<br><br>근데.. 개발자라면 <a title="" href="http://selenium-rc.openqa.org/">Selenium RC</a>도 도입을 고민해보는 것이 좋을 것 같다.<br><br>Java라면 JUnit이나 TestNG로 웹 Acceptance Test를 작성하는 것이 가능하다. 명령 체계는 Core와 동일한 듯 보이므로 별 차이 없이 할 수 있다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

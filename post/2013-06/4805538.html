@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Real MySQL - 읽는이에게 충격과 경악을...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2013-06-02 13:20:51</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Real MySQL - 읽는이에게 충격과 경악을...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="ttbReview"><table><tbody><tr><td><a href="http://www.aladin.co.kr/shop/wproduct.aspx?ISBN=8992939000&amp;ttbkey=ttbkwon37xi1112002&amp;COPYPaper=1" target="_blank"><img src="http://image.aladin.co.kr/product/1655/70/coversum/8992939000_1.jpg" alt="" border="0" /></a></td><td style="vertical-align:top;" align="left"><a href="http://www.aladin.co.kr/shop/wproduct.aspx?ISBN=8992939000&amp;ttbkey=ttbkwon37xi1112002&amp;COPYPaper=1" target="_blank" class="aladdin_title">개발자와 DBA를 위한 Real MySQL</a> - <img src="http://image.aladin.co.kr/img/common/star_s10.gif" alt="10점" border="0" /><br>이성욱 지음/위키북스</td></tr></tbody></table></div><br>오랜만에 만나 본 정말 좋은 우리나라 책이다. DBA 뿐만 아니라 MySQL 기반 웹 애플리케이션 개발자도 필수적으로 읽어봐야 할 책이다.<br><br>이 책을 읽으면서 함께 읽은 사람들이 "세상에.. 이걸 모르고 우리가 계속 개발하고 있었단 말인가?"를 연발했다.<br><br>이는 두 가지를 의미하는데, 이 책이 가려운데를 잘 긁어줬다는 얘기이고, 또 하나는 DBA가 아닌 애플리케이션 개발자들이 DB를 너무 대충 보고 개발한다는 점이다.<br><br>MySQL일반 뿐만 아니라 JDBC를 통한 연동 부분에서도 상당히 충격적(?)인 내용들이 있다. 예를들면 MySQL의 JDBC는 특별한 설정을 하지 않으면 PreparedStatement가 기본으로 꺼져 있고(PreparedStatement 객체로 쿼리를 날려도 소용없다. 일반 Statement로 강제 변환된다), setFetchSize()를 모두 무시하는 등 개발자의 예상을 빗나가는 행동을 많이 한다. 그 외에 MySQL 기반 웹 애플리케이션의 필수 항목인 Replication에 관련된 ReplicationDriver도 필독 사항이다(아래에 부가 설명).<br><br>예전에 SI가 주를 이루던 시대에는 Oracle이 중요했지만, 요즈음 일반 서비스 웹 애플리케이션 개발이 주를 이루는 현 시점에서는 MySQL이 더욱 중요해진 느낌이다.<br><br>MySQL 쿼리만 알고 대충 개발하는 개발자라면 모두 필독해야할 책이다.<br><br>단, MySQL에 완전히 무지한 경우에는 초보자 책을 먼저봐야한다. 이 책은 좋은 내용을 풍성하게 담고 있지만, 결코 완전한 SQL 초보자를 위한 책은 아니다. MySQL 서버를 다운로드해 설치하고 DB/테이블을 만들고 쿼리 정도는 날릴 줄 알아야 볼 수 있다.<br><br><a title="" href="http://www.wikibook.co.kr/wiki/Wiki.jsp?page=RealMySQL" target="_blank">http://www.wikibook.co.kr/wiki/Wiki.jsp?page=RealMySQL</a>에서 소스를 다운로드하여 모두 압축을 풀고 다음 명령을 실행하면 예제 테이블과 데이터가 생성된다. 이제 책의 예문을 따라 해 볼 수 있게 된다.<br><br><blockquote class="src">$ mysql -uroot -p -t &lt; employees.sql<br>$ mysql -uroot -p -t &lt; test_employees_sha.sql <br>$ mysql -uroot -p -t employees &lt; 예제DB\ employees_schema_modification.sql <br></blockquote><br>책 455쪽에 보면 Delayed Join에 대한 내용이 나오는데, 실제로 이를 테스트 하면 결과가 어떻게 나오는지 궁금해서 테스트 코드를 짜 보았다. <a target="_blank" href="https://gist.github.com/kwon37xi/5652026">https://gist.github.com/kwon37xi/5652026</a> 에서 소스를 볼 수 있고, 내 PC에서의 실행 경과는 다음과 같다.<br><ul><li>일반 Join : 19209 ms</li><li>Delayed Join : 8005ms</li></ul><p>즉, 책의 말대로 지연된 조인(delayed join)이 훨씬 빠르다.</p><p>그리고, 책에서도 나오고, 이미 많이 알려져 있는 Replication Driver가 정말 잘 작동하는지 테스트도 해 보았다. <b>MySQL Replication Driver와 Spring의 @Transactional(readOnly=true/false)을 조합하면 별도의 코딩작업 없이 MySQL Master/Slave DB 접속과 쿼리가 쓰기 트랜잭션에서는 자동으로 Master로, 읽기 트랜잭션에서는 자동으로 Slave로 가도록 만들 수 있다.</b></p><p>그래서 그게 진짜로 되는지 예제를 만들어 보았다(물론 잘 된다).</p><p>먼저 mysqlreplicationdriver.groovy 를 실행하여 일반 커넥션에 대해 setReadOnly() 에 따라 제대로 master/slave로 가는지 확인 해보고 그 다음에 ProductService.java에 @Transactional 애노테이션이 잘 작동하는지 확인해보면 된다.</p><p>Gradle이 설치 돼 있다면 별도의 IDE에 설치할 필요없이 프로젝트 문서에 나온대로 실행해서 확인해 볼 수 있다.</p><p>Replication Driver @Transactional 예제 소스 코드 : <a target="_blank" href="https://github.com/kwon37xi/jdbc-mysql-test">https://github.com/kwon37xi/jdbc-mysql-test</a></p><p><br></p><p>궁금한 사항이 있으면 저자의 <a target="_blank" href="http://cafe.naver.com/realmysql">Real MySQL 까페</a>에 들러서 물어보면 친절히 답해주신다.<br></p><p><br></p></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

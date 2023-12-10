@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[MySQL] MySQL 테이블 수정</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-08-11 18:08:30</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[MySQL] MySQL 테이블 수정</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a target="_blank" href="http://wiki.kwonnam.pe.kr/database/mysql/alter_table">http://wiki.kwonnam.pe.kr/database/mysql/alter_table</a> 이동<br><br><b><big>이름 바꾸기</big></b><br><blockquote class="SOURCE">mysql&gt; ALTER TABLE tablename RENAME bbs;<br></blockquote><br><br><b><big>컬럼 속성 수정</big></b><br><blockquote class="SOURCE">mysql&gt; ALTER TABLE tablename MODIFY colname INT NOT NULL AUTO_INCREMENT PRIMARY KEY;<br></blockquote><br><b>ALTER TABLE tablename MODIFY 컬럼이름 컬럼속성</b><br><br><b><big>컬럼 이름 바꾸기</big></b><br><blockquote class="SOURCE">sysql&gt; ALTER TABLE tablename CHANGE colname newcolname INT NOT NULL AUTO_INCREMENT;<br></blockquote><br><b>CHANGE</b>는 컬럼 속성뿐아니라 이름도 바꿔준다.<br><br><b><big>컬럼 추가</big></b><br><blockquote class="SOURCE">mysql&gt; ALTER TABLE bbs ADD name varchar(10);<br></blockquote><br><b>ALTER TABLE tablename ADD 컬럼이름 컬럼속성</b><br><br><b><big>컬럼 삭제</big></b><br><blockquote class="SOURCE">mysql&gt; ALTER TABLE bbs DROP colname;<br></blockquote><br><br><b><big>특정 컬럼 뒤에 새로운 컬럼 추가</big></b><br><blockquote class="SOURCE">mysql&gt; ALTER TABLE bbs ADD newcol varchar(10) AFTER num;<br></blockquote><br>num 컬럼 뒤에 newcol 컬럼 추가.<br><br><b><big>기존 컬럼을 지우고 맨 앞에 컬럼 추가</big></b><br><blockquote class="SOURCE">mysql&gt; ALTER TABLE bbs DROP newcol, ADD newcol VARCHAR(10) FIRST;<br></blockquote><br>맨 앞에 추가하려면 FIRST를 사용한다.<br><br><b><big>PRIMARY KEY 속성 삭제</big></b><br><blockquote class="SOURCE">mysql&gt; ALTER TABLE test DROP PRIMARY KEY;<br></blockquote><br><br><b><big>이미 PRIMARY KEY인 컬럼의 속성을 바꿀 때</big></b><br>PRIMARY KEY 속성은 지정하지 말고, NOT NULL 속성을 함께 지정해 주면 기존 PRIMARY KEY 속성은 그대로 남은 상태로 컬럼의 속성을 변경할 수 있다.<br><blockquote class="SOURCE">mysql&gt; ALTER TABLE test MODIFY a CHAR(1) NOT NULL;<br></blockquote><br><br><b><big>테이블의 내용 전체 삭제</big></b><br><blockquote class="SOURCE">mysql&gt; TRUNCATE TABLE tablename;<br></blockquote><br>트랜잭션에 의해 복구될 수 없다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

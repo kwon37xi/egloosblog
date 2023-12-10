@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>당신 때문에 부하직원이 떠난다면…</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-04-18 09:27:09</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">당신 때문에 부하직원이 떠난다면…</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">내가 경력이 쌓이고, 내 밑에 누군가 들어온다면, 그의 능력을 최대한 끌어내 줄 수 있는 상사가 되고 싶다.<br>근데, 난 아직도 막내다... --;<br><br><a title="" href="http://www.chosun.com/economy/news/200604/200604170482.html">당신 때문에 부하직원이 떠난다면...</a> 에서...<br><br><img src="http://www.chosun.com/media/photo/news/200604/200604170482_01.jpg" /></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>IBM Java Core Analyzer 출시</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-04-10 10:51:11</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">IBM Java Core Analyzer 출시</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://www.alphaworks.ibm.com/tech/jca?open&S_TACT=105AGX59&S_CMP=GR&ca=dgr-jw26awjca">IBM 에서 Java Core Analyzer</a> 라는 것을 출시했다.<br><br>무료로 사용할 수 있는, 자바 코어, 혹은 쓰레드 덤프 분석기이다.<br><br>갑자기 JVM이 죽었을 때 JVM은 코어 파일을 떨어뜨린다. 아니면, JVM이 너무 느려졌을 때 왜 느려졌는지 분석하기 위해서 <strong>kill -3 JVM의PID</strong>으로 쓰레드 덤프 파일을 생성할 수 있다.<br><br>문제는, 그 파일이 있어도, 그걸 분석하는게 결코 쉽지 않다는 점이다.<br><br><a title="" href="http://www.alphaworks.ibm.com/tech/jca?open&S_TACT=105AGX59&S_CMP=GR&ca=dgr-jw26awjca">IBM Java Core Analyzer</a>는 그 쓰레드 덤프 분석을 도와주는 도구이다.<br><br>근데, 사실 쓰레드 덤프를 떠도 그걸 읽을 줄 모르면 별 소용이 없는데, 그에 관해서는 <a title="" href="http://www.j2eestudy.co.kr/lecture/lecture_read.jsp?table=j2ee&db=lecture0201_1&id=24">How to find bottleneck in J2EE application</a>를 참조해서 보면 도움이 될 것 같다.<br><br><img src='./2345121/b0046915_10504077.png'><br><br>PS. 아.. 이거 만든거... IBM에서 일하는 한국인 프로그래머인 것 같다. 개발자 이름이 "황진우" 인 듯.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

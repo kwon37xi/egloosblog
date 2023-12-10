@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>논쟁에서 이기는 개발자가 되려면?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-13 15:30:37</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">논쟁에서 이기는 개발자가 되려면?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><br>원문 : <a href="http://www.zdnet.co.kr/techupdate/lecture/etc/0,39024989,39130505,00.htm">http://www.zdnet.co.kr/techupdate/lecture/etc/0,39024989,39130505,00.htm</a><br><br><br><B>비트겐슈타인에 따르면 철학적 문제란 ‘언어의 사용법을 착각하여 특정<br>영역에만 타당한 어법을 마구 다른 영역에 옮겨놓음으로써 발생하는<br>요술’이라고 한다. 철학적 문제까지 가지 않더라도 토론 과정에서<br>레토릭(rhetoric)의 오/남용으로 전혀 합리적이지 않고 현명하지 않은<br>결론(혹은 타협)이 도출되는 현상을 지양하기 위한 방법을 고민해본다.</B><br><br>최상훈 (필자) (마이크로소프트웨어)<br><br>2004/09/24<br><br>개발자는 의외로 토론을 많이 합니다. 각종 워크샵과 리뷰 그리고 일정 회의,<br>브레인 스토밍 등 개발 공정 과정과 업무 사이에 수많은 토론을 거쳐 해결책과<br>정책, 과제들을 결정합니다. 하지만 합리적이고 현명한 결정을 유도하는<br>토론 방법에 대해서는 미숙한 점이 많습니다. 물론 ‘좋은 알고리즘을 찾는<br>문제’라든가 ‘데이터베이스 튜닝’ 같이 검증하기 쉽고 명백한 답안이<br>존재하는 경우는 토론 내용의 문제를 일으키지 않지만 개개인의 성향이나<br>기호의 차이, 다른 가치관과 의식 수준 등이 개입된 토론은 극렬하지만 영양가<br>없이 지속되는 경우가 많습니다.<br><br>또한 토론은 어떤 문제를 두고, 여러 사람의 의견을 통해 시비를 따져 논의하는<br>것이기 때문에 자신의 의견이 옳다는 것을 증명하는 데 지나쳐 호승심이<br>발동하게 하여 바른 논리적 결론을 흐리게 하는 성향이 있습니다. 특히,<br>자신이 선호하는 언어라든가 방법론, 패러다임, 테크닉을 경쟁우위에 놓기<br>위해 갑론을박하는 경우는 지나친 종교전쟁이 되어 토론 내용은 엉망이 되는<br>경우가 허다합니다. 게다가 자신의 인격을 은닉, 변형할 수 있는 사이버 상의<br>토론은 엽기적이기까지 합니다.<br><br>양질의 소프트웨어를 만들기 위해 좋은 방법론을 잘 따라야 하듯 최고의 결론을<br>유도하고 합의하기 위해서는 좋은 토론 습관을 기르는 것이 중요합니다. 필자는<br>달변가도 아니고 토론에 능한 사람도 아니지만 여러 토론을 통해 관찰한<br>토론에서의 안티 패턴과 이를 극복하기 위해 고민했던 방법들을 여기서<br>설명하고자 합니다.<br><br><a href="http://www.zdnet.co.kr/techupdate/lecture/etc/0,39024989,39130505,00.htm">계속읽기</a><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

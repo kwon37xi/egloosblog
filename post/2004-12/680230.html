@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[UNIX-SH] 파일 확장자를 일괄적으로 바꾸자</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-17 21:14:12</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[UNIX-SH] 파일 확장자를 일괄적으로 바꾸자</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">파일의 확장자를 일괄적으로 바꿔준다.<br><br>대문자로 된 확장자를 소문자로 하거나 하기위해 만든 것~<br><br><p style="background-color:#ffff99;padding-top:3px;"><br><B>#!/bin/sh<br>#&nbsp;chext&nbsp;-&nbsp;파일의&nbsp;확장자를&nbsp;일괄적으로&nbsp;바꿔주는&nbsp;프로그램<br>#&nbsp;http://myhome.naver.com/innocens<br><br>#&nbsp;chext&nbsp;[-nm]&nbsp;확장자1&nbsp;확장자2<br>#&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;확장자1을&nbsp;가진&nbsp;파일들을&nbsp;모두&nbsp;확장자2를&nbsp;갖도록&nbsp;고친다.<br>#&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;-nm&nbsp;메시지를&nbsp;출력하지&nbsp;않음<br><br>#&nbsp;howToUse()&nbsp;:&nbsp;프로그램&nbsp;사용법을&nbsp;출력한다.<br>howToUse()&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;"Usage&nbsp;:&nbsp;$0&nbsp;[-nm]&nbsp;ext1&nbsp;ext2"<br>&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-nm&nbsp;:&nbsp;Don't&nbsp;print&nbsp;messages"<br>}<br><br>#&nbsp;프로그램의&nbsp;시작<br>message=on<br><br>if&nbsp;[&nbsp;"$1"&nbsp;=&nbsp;"-nm"&nbsp;];&nbsp;then<br>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;[&nbsp;$#&nbsp;=&nbsp;"3"&nbsp;];&nbsp;then<br>ext1=$2<br>ext2=$3<br>message=off<br>&nbsp;&nbsp;&nbsp;&nbsp;else<br>howToUse<br>exit&nbsp;1<br>&nbsp;&nbsp;&nbsp;&nbsp;fi<br>elif&nbsp;[&nbsp;"$#"&nbsp;=&nbsp;"2"&nbsp;];&nbsp;then<br>&nbsp;&nbsp;&nbsp;&nbsp;ext1=$1<br>&nbsp;&nbsp;&nbsp;&nbsp;ext2=$2<br>else<br>&nbsp;&nbsp;&nbsp;&nbsp;howToUse<br>&nbsp;&nbsp;&nbsp;&nbsp;exit&nbsp;1<br>fi<br><br>#&nbsp;이유는&nbsp;모르겠지만&nbsp;아래의&nbsp;for&nbsp;문에서&nbsp;$ext1의&nbsp;확장자를&nbsp;가진&nbsp;파일이<br>#&nbsp;존재하지&nbsp;않을&nbsp;경우&nbsp;$file&nbsp;변수에는&nbsp;*.$ext1&nbsp;이&nbsp;대입된다.<br><br>for&nbsp;file&nbsp;in&nbsp;*.$ext1;&nbsp;do<br>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;[&nbsp;$file&nbsp;=&nbsp;"*.$ext1"&nbsp;];&nbsp;then<br>echo&nbsp;"$ext1&nbsp;의&nbsp;확장자를&nbsp;가진&nbsp;파일이&nbsp;존재하지&nbsp;않습니다."<br>exit&nbsp;1<br>&nbsp;&nbsp;&nbsp;&nbsp;fi<br><br>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;[&nbsp;$message&nbsp;=&nbsp;"on"&nbsp;];&nbsp;then<br>echo&nbsp;"$file&nbsp;-->&nbsp;${file%$ext1}$ext2"<br>&nbsp;&nbsp;&nbsp;&nbsp;fi<br>&nbsp;&nbsp;&nbsp;&nbsp;mv&nbsp;$file&nbsp;${file%$ext1}$ext2<br>done<br><br>exit&nbsp;0<br></B></p></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

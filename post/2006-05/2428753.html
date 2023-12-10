@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[C/C++] Visual C++ 2005 Express Edition 설치하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-05-17 16:42:20</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[C/C++] Visual C++ 2005 Express Edition 설치하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">본의 아니게 윈도우에서 꼭 Visual C++을 사용해서 C/C++를 해야할 일이 생겨서... ^^;<br><br>Visual C++ 2005 Express Edition 은 무료로 사용할 수 있는 MS-Windows 용 C/C++ 개발도구이다. <br><div class="h2">설치하기</div><br> * 참조 URL : <a title="" href="http://lab.msdn.microsoft.com/express/visualc/usingpsdk/default.aspx">VC++ 2005 Express Edition 설치하기</a><br><br> * <a title="" href="http://msdn.microsoft.com/vstudio/express/visualC/default.aspx">VC++ 2005 Express 다운로드</a> 에서 VC++ 2005 Express Edition을 다운로드하여 설치한다.<br> * <a title="" href="http://www.microsoft.com/downloads/details.aspx?familyid=0BAF2B35-C656-4969-ACE8-E4C0C0716ADB&displaylang=en">MS Platform SDK 다운로드</a> 에서 Windows Platform SDK를 자기 PC 플랫폼(보통 x86)에 맞게 다운로드하여 설치한다. <br> * <strong>Tools -&gt; 옵션 -&gt; 프로젝트 및 솔루션 -&gt; VC++ 디렉터리</strong>에서 각 항목별로 다음 디렉토리를 추가한다. "Microsoft SDK 디렉토리"는 설치본에 따라 달라진다.<br><blockquote class="quote">&nbsp;&nbsp;&nbsp;* 실행파일(Executable files) - C:Program FilesMicrosoft SDK 디렉토리Bin<br>&nbsp;&nbsp;&nbsp;* 포함파일(Include files) - C:Program FilesMicrosoft SDK 디렉토리include<br>&nbsp;&nbsp;&nbsp;* 라이브러리파일(Library files) - C:Program FilesMicrosoft SDK 디렉토리lib<br></blockquote><br>* Win32 어플리케이션을 작성하기 위해서 <strong>%ProgramFiles%Microsoft Visual Studio 8VCVCWizardsAppWizGenericApplicationhtml1033AppSettings.htm</strong> 파일에서 다음 부분을 찾아 주석처리(//)하고, VC++ Express 를 재시작한다.<br><blockquote class="src">// WIN_APP.disabled = true;<br>// WIN_APP_LABEL.disabled = true;<br>// DLL_APP.disabled = true;<br>// DLL_APP_LABEL.disabled = true;<br></blockquote><br><br><div class="h2">Win32 프로젝트 생성</div><br>&nbsp;&nbsp;&nbsp;1.  File -&gt; New -&gt; 프로젝트 -&gt; Win32 -&gt; Win32 Console Application 선택하고, 프로젝트명 지정.<br>&nbsp;&nbsp;&nbsp;2. Application Settings에서 "Precompiled header" 체크 표시 없앰.<br>&nbsp;&nbsp;&nbsp;3. Include 디렉토리 지정 : Project -&gt; 속성 -&gt; 구성속성 -&gt; C/C++ -&gt; 추가포함디렉토리 에서 프로젝트에 필요한 Include 디렉토리 지정.<br>&nbsp;&nbsp;&nbsp;4. 라이브러리 디렉토리 지정 : Project -&gt; 속성 -&gt; 구성속성 -&gt; 링커 -&gt; 입력 -&gt; 추가종속성 에서 프로젝트에 필요한 라이브러리 파일 지정.<br>&nbsp;&nbsp;&nbsp;5. 실행시 명령행 파라미터 지정 : Project -&gt; 속성 -&gt; 구성속성 -&gt; 디버깅 -&gt; 명령인수 에서 프로그램 실행에 필요한 명령행 파라미터 지정.<br>&nbsp;&nbsp;&nbsp;6. Build -&gt; 솔루션 빌드 를 통해 컴파일 한다.<br>&nbsp;&nbsp;&nbsp;7. 디버그 -&gt; 디버깅시작(F5) 혹은 디버그 -&gt; 디버깅하지 않고 시작(Ctrl-F5)를 통해 프로그램을 실행한다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

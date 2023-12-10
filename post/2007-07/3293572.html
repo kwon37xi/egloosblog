@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Opera 9.5는 64bit 리눅스 버전도 출시된다.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-07-20 14:39:49</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Opera 9.5는 64bit 리눅스 버전도 출시된다.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">회사에서 64bit Ubuntu를 사용한다.<br>64bit 라는 것 자체는 별문제가 없는데, 특정 비 오픈소스 애플리케이션들이 64bit에서 제대로 작동하지 않는다는 문제가 있다.<br>그중 Opera 웹 브라우저도 현재는 작동하지 않는다.<br><br>개인적으로 속도 빠르고 간결한 Opera 스타일을 좋아하는 편이라, 메인 브라우저는 아니더라도, 심심할 때 마다 켜서 쓰고 싶고, 개발중인 프로그램도 오페라에서 테스트를 하고 싶은데 그게 VMWare를 띄우지 않으면 그럴 수 없어서 약간 서운 모드 였는데,<br><br><a href="http://my.opera.com/desktopteam/blog/kestrel-is-coming">오페라 9.5 부터는 64bit 리눅스를 지원</a>하게 된다고 한다.<br><br>64bit CPU 나온지가 언젠데... 인제 좀 다들 64bit 좀 지원 해주지??<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

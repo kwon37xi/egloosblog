@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Ubuntu 9.04 64bit 안정적으로 돌아가는 중..</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2009-05-14 16:20:43</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Ubuntu 9.04 64bit 안정적으로 돌아가는 중..</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Ubuntu 9.04 64bit 버전을 깔아서 일주일째 사용중이다.<br><br>2년전쯤에 64bit 버전 쓰다가 특히 플래시 때문에 힘들어서 포기했었는데, 이번에는 매우 안정적이다.<br><br>Flash 64bit Beta 버전이 나왔으나 우분투는 32bit 버전을 래핑해서 깔아준다.<br>Adobe Reader도 마찬가지로 깔아주고, Opera는 64bit 버전이 있다.<br><br>Flash가 원래 이제 안정화가 됐는지 굉장히 안정적이며, 아직까지 FireFox가 다운된적이 없다.<br><br>VirtualBox 이미지 파일을 복사해 뒀었는데, 다시 활성화하는 법을 몰라서(VMWare는 이미지를 복사해서 다시 띄우는게 굉장히 쉽다) 헤메다가 <a href="http://forums.virtualbox.org/viewtopic.php?t=13551">http://forums.virtualbox.org/viewtopic.php?t=13551</a> 보고 해결.<br><br>나의 설정은 <a href="http://kwon37xi.springnote.com/pages/3346213">http://kwon37xi.springnote.com/pages/3346213</a> 에서 볼 수 있다. 사실 별거 없다.. 글꼴 갈라지는 문제 빼면 큰 문제가 없기 때문이다. 그냥 습관적으로 해주는 것들을 적어둔 것이다.<br><br>딱 하나 문제가 있는데 아직까지 phpMyAdmin 설정이 제대로 안잡힌다.<br>곧 해결 될 것으로 보인다. 그동안 딴 걸로 때워야지..<br><br>회사 PC의 메모리 4GB를 완전히 다 쓸 수 있어서 괜시리 기분이 좋다~ ㅎㅎ<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

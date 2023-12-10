@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>jMock vs. EasyMock</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2009-04-28 14:35:46</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">jMock vs. EasyMock</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="xhtmlEditorBody"><p><a href="http://www.jmock.org/" class="external" title="http://www.jmock.org/">jMock</a>과 <a href="http://easymock.org/" class="external" title="http://easymock.org/">EasyMock</a>은 Java 단위 테스트계의 양대 모의 객체 프레임워크이다. jMock과 EasyMock 외에도 요즘 <a href="http://mockito.org/" title="http://mockito.org" class="external">Mockito</a>라는 모의 객체 프레임워크도 있다.</p> <p>&nbsp;</p> <p>나는 원래 EasyMock을 사용했었으며, Spring등 많은 자바 프로젝트들이 EasyMock을 사용하고 있다. Spring이 EasyMock을 사용하는 판국에 내가 다른 것을 선택할 이유가 없었다. 하지만 요즘들어 과거에 문자열로 호출할 메소드를 지정해야 했던 jMock이 진짜 메소드 호출 기반으로 바뀌면서 EasyMock을 맹렬히 추격하고 있다. 그래서 이 둘을 비교해보고 싶어졌다.</p> <p>&nbsp;</p> <h2>테스트 프레임워크 의존성</h2> <p>jMock은 JUnit3,JUnit4에 대해 상속이나 @RunWith() 어노테이션으로 강결합을 하게 하여 TestNG 등으로 테스트 프레임워크를 바꾸기 어려워 질 수 도있다. 하지만 테스트 프레임워크의 기능을 사용하게 되면 그만큼 코드가 간결해지며, EasyMock 처럼 테스트 프레임워크에 의존적이지 않는 코드로 작성할 수 있는 방법도 있다. 그 경우에는 코드가 더 길어진다.</p> <ol class="code"> <li>@RunWith(JMock.class)<br /> class PublisherTest {<br /> &nbsp;&nbsp;&nbsp; Mockery context = new JUnit4Mockery();<br /> &nbsp;&nbsp;&nbsp; //...&nbsp;&nbsp;&nbsp;<br /> }</li> </ol> <p>&nbsp;</p> <p>EasyMock은 테스트 프레임워크에 독립적인 방식만을 지원한다. 테스트 프레임워크와는 전혀 무관하게 작동한다. 하지만 코드가 길어진다.</p> <ol class="code"> <li>import static org.easymock.EasyMock.*;<br /> class PublisherTest {</li> <li>&nbsp;&nbsp;&nbsp; private IMocksControl mockControl</li> <li>&nbsp;&nbsp;&nbsp; @Before</li> <li>&nbsp;&nbsp;&nbsp; public void setUp() {</li> <li>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; mockControl = createControl();</li> <li>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // ....</li> <li>&nbsp;&nbsp;&nbsp; }</li> <li>}</li> </ol> <p>&nbsp;</p> <p>jMock이 두가지 방식을 지원하는데 반해 EasyMock은 한가지 방식만 지원하므로, jMock &gt; EasyMock</p> <p>&nbsp;</p> <h2>모의 객체의 행동 검증</h2> <p>jMock은 @RunWith(JMock.class)로 지정했을 경우 테스트 메소드가 종료되면 검증을 자동으로 해준다. 물론 테스트 프레임워크에 비의존적으로 짰을 경우에는 명시적으로 검증하는 코드를 넣어야 한다.</p> <p>&nbsp;</p> <p>EasyMock은 mockControl.replay(), mockControl.verify()를 명시적으로 해줘야 한다. 이걸 가끔 잊어서 테스트를 통과하면 안되는데 통과해버리는 경우를 겪을 수 있다. 물론 이 경우에는 테스트 프레임워크에 의존성이 없다는 장점이 있다.</p> <p>&nbsp;</p> <p>마찬가지로 두 가지 방식을 모두 지원하는, jMock &gt; EasyMock</p> <p>&nbsp;</p> <h2>모의 객체 생성</h2> <p>jMock은 항상 하나의 모의 객체건 여러개의 모의 객체를 테스트 할 때건 동일한 방식으로 모의 객체를 생성하고 사용한다.</p> <p>&nbsp;</p> <p>EasyMock은 딱 하나의 모의 객체를 테스트 할 때와 여러 모의 객체를 테스트할 때의 모의 객체 생성방식과 사용법이 다르다. 물론 하나만 할 때가 한 줄 더 적다. 하지만 만일 코드를 여러줄을 테스트하도록 바꿀 경우에 고쳐야할 코드가 많아서 문제를 일으킨다. 차라리 항상 여러 모의 객체를 테스트 한다고 가정하는게 유지 보수성에 더 좋다.</p> <p>&nbsp;</p> <p>코드 자체는 별 차이가 없다. jMock == EasyMock</p> <p>&nbsp;</p> <h2>수행 기대 코드(expectation code)</h2> <p>jMock은&nbsp; 수행 기대 코드가 좀 길고 장황하다. 다음과 같은 형태로, Expectations라는 클래스의 익명 클래스를 생성하면서 익명 클래스의 생성자에서 기대하는 행위를 적어준다. 하지만 JUnit 4.4 부터 지원되는 <a href="http://code.google.com/p/hamcrest/" class="external" title="http://code.google.com/p/hamcrest/">hamcrest</a> 문법을 사용할 수 있어서 가독성이 높다. 또 하나 좋은 점은, EasyMock과는 달리 모의 객체 행동의 기대 코드와 실제 테스트하려는 코드가 뚜렷이 분리되어 가독성을 높인다는 점이다.</p> <ol class="code"> <li>final String filename = "test.hwp";<br /> context.checking(new Expectations() {<br /> &nbsp;&nbsp;&nbsp; {<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; oneOf(mockServletContext).getMimeType(filename.toLowerCase());<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; will(returnValue(null));<br /> &nbsp;&nbsp;&nbsp; }<br /> });<br /> // 테스트할 코드 수행.</li> </ol> <p>&nbsp;</p> <p>jMock의 경우 기대 코드를 Expectations 의 익명클래스에서 사용한다는 점 때문에, 그 안에서 사용하는 변수를 인스턴스 필드로 하거나 <strong>로컬 변수의 경우 final</strong> 이어야 한다는 제약이 있다.</p> <p>&nbsp;</p> <blockquote> <p>참고 : new Expectations() {<span style="color: rgb(255, 1, 3);"><strong>{ oneOf (...); will(returnValue(null);) }</strong></span>}&nbsp; 이 코드는 Expectations의 익명 클래스를 생성하는 것이다. 여기서 안쪽 대괄호 부분은 익명 클래스에서 생성자의 역할을 한다. 생성자에서는 인스턴스 메소드를 자유롭게 호출할 수 있다. 바로 oneOf, will, returnValue 등의 메소드는 Expectations 클래스의 인스턴스 메소드인 것이다.</p> </blockquote> <p>&nbsp;</p> <p>EasyMock은 수행 기대 코드가 간결하다. 하지만 JUnit 4의 hamcrest와 비슷하지만 약간 다른 방식으로 기대값을 기술하기 때문에, JUnit 4의 hamcrest 기능을 사용하는 개발자들은 혼란스러움을 느끼게 된다. 그래서 나는 EasyMock을 사용할 때는 hamcrest 기능을 사용하지 않았다.</p> <p>그리고 기대 코드가 expect() 라는 구문과 mockControl.replay()를 사이에 두고 구분이 되긴 하지만 jMock에서 처럼 뚜렷이 구분되지는 않는다.</p> <p>&nbsp;</p> <ol class="code"> <li>expect(mockServletContext.getMimeType(filename.toLowerCase()))<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; .andReturn(null);</li> <li>mockControl.replay();</li> <li>// 테스트할 코드 수행...</li> <li>mockControl.verify();</li> </ol> <p>&nbsp;</p> <p>결과는 상당히 주관적이게도, 좀 장황하더라도 hamcrest 문법을 (헷갈리지 않고) 쓸 수 있고 hamcrest를 사용해 확장이 가능한 jMock의 손을 살짝 들어주고 싶다.</p> <p>jMock &gt;= EasyMock</p> <p>&nbsp;</p> <h2>Concrete Class 모의 객체 생성</h2> <p>jMock은 코드 한줄을 추가함으로써 Interface가 아닌 Class에 대한 모의 객체 생성이 가능하다.</p> <ol class="code"> <li>private Mockery context = new JUnit4Mockery() {{<br /> &nbsp;&nbsp;&nbsp; <strong>setImposteriser(ClassImposteriser.INSTANCE);</strong><br /> }};</li> </ol> <p>&nbsp;</p> <p>EasyMock은 클래스와 메소드 이름은 모두 같지만 패키지만 다른 클래스를 사용한다. 오히려 혼란스럽다.</p> <ol class="code"> <li>import static org.easymock.<strong>classextension</strong>.EasyMock.*;<br /> import org.easymock.<strong>classextension</strong>.IMocksControl;</li> </ol> <p>&nbsp;</p> <p>당연히 더욱 간편한 jMock &gt; EasyMock</p> <p>&nbsp;</p> <h2>테스트 메소드 내에서 생성된 객체를 모의 객체의 메소드에 인자로 넘길때의 검증</h2> <p>테스트 대상 클래스의 메소드가 메소드 인자들을 조합하여 어떤 객체를 생성하고, 그 값 객체를 모의 객체의 메소드에 전달 할 경우에 중간에 생성된 객체의 값을 어떻게 검증할까?</p> <p>&nbsp;</p> <p>jMock은 이런 상황에 (현재는) 대처할 수 없다. hamcrest의 TypeSafeMatcher을 상속하여 직접 기능을 구현해야 한다. 하지만 그리 어려울 것 같지는 않다.</p> <p>&nbsp;</p> <p>EasyMock이 이에 대비하여 Capture 라는 기능이 마련되어 있다. 모의 객체의 메소드에 넘기는 파라미터 객체를 가로채어 밖으로 끄집어내어 assert 구문을 적용하는 것이 가능하다.</p> <p>이에 관해서는 <a href="http://www.func.nl/community/knowledgebase/easymock-24-capturing-arguments-passed-mock-objects">http://www.func.nl/community/knowledgebase/easymock-24-capturing-arguments-passed-mock-objects</a> 를 참조한다.</p> <p>&nbsp;</p> <p>실제로 이런 경우는 거의 발생하지 않는다. 그리고 이런 경우가 발생하는 코드가 좋은 것인지는 사실 나도 잘 모르겠다.</p> <p>&nbsp;</p> <p>jMock &lt; EasyMock</p> <p>&nbsp;</p> <h2>모의 객체 메소드의 행위 지정</h2> <p>모의 객체 메소드가 특별한 행동을 하도록 코딩하고 싶을 경우가 있다.</p> <p>jMock은 <a href="http://www.jmock.org/custom-actions.html" class="external" title="http://www.jmock.org/custom-actions.html">Action</a> 으로, EasyMock은 Answer로 그 기능을 구현할 수 있다.</p> <p>&nbsp;</p> <h2>결론</h2> <p>결론은.. jMock과 EasyMock만 비교하면, jMock에 더 많은 점수를 줄 수 밖에 없다.</p> <p>&nbsp;</p> <p>하지만..... 너무 당황스럽게도.. 난 <a href="http://mockito.org/" class="external" title="http://mockito.org">Mockito</a>가 제일 좋다.</p> <p>&nbsp;</p> <p>이 조사를 하는 과정에서 <a href="http://mockito.org" class="external" title="http://mockito.org">Mockito</a>에 대해서도 더욱 조사를 했는데... 이런.. <a href="http://mockito.org/" class="external" title="http://mockito.org">Mockito</a>에 반해버렸다!!</p> <p>&nbsp;</p> <p>나름 반전드라마인가?</p> <p>&nbsp;</p> <p>Mockito가 제일 좋은 이유는 다른 모의 객체 프레임워크의 기능을 대부분 구현하면서 <strong><a href="http://martinfowler.com/articles/mocksArentStubs.html" title="http://martinfowler.com/articles/mocksArentStubs.html" class="external">Mocks aren't Stubs</a>의 원칙을 지키는 프레임워크이기</strong> 때문이다.</p> <p>왜 Mockito가 더 좋은지, Stub과 Mock을 구분하는것이 TDD를 하는데 어떤 역할을 하는지에 대해서는 <a href="http://monkeyisland.pl/2008/04/26/asking-and-telling/">http://monkeyisland.pl/2008/04/26/asking-and-telling/</a> 이 문서를 참조하면 된다. 다음에 나도 왜 그런지에 대해 저 글을 풀어서 설명해보도록 하겠다.</p> <p>&nbsp;</p> <p style="text-align:right">이 글은 <a href="http://kwon37xi.springnote.com/pages/3239546">스프링노트</a>에서 작성되었습니다.</p></div></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

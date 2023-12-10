@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>11월 중반 넋두리</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-11-16 01:06:32</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">11월 중반 넋두리</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">어제 간만에 푹자고 회사에 지각까지 해버렸더니, 오늘 어째 잠이 안온다.<br>평소에도 늦게 자는 편이지만 오늘은 또 몇시에 잠들려나.<br><br>많은 사람들의 몇달간 벌인 사투끝에 <a href="http://www.rollinglist.com">롤링리스트</a>가 세상에 나왔다.<br><br>마냥 좋을 줄 알았는데, 이런.. <a title="" href="http://www.hibernate.org">Hibernate</a>의 SELECT 쿼리 러시에 몸둘 바를 모를 지경이다. 이젠 튜닝이닷~!<br><br>실력의 부족을 절감하며.. 달리기를 멈추기는 무척이나 힘들 것 같다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

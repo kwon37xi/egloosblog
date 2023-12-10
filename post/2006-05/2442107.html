@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>JRun JSP 컴파일된 *.java 소스 남기기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-05-23 15:34:19</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">JRun JSP 컴파일된 *.java 소스 남기기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">JRun이 *.jsp 를 호출받으면 생성하는 *.java 소스를 삭제해버리고 *.class 만 남긴다.<br>이것을, 항상 *.java 소스도 남기게 변경하려면, <strong>jrun_root/servers/jrun_server/SERVER-INF/default-web.xml</strong>파일에서 다음부분을 찾아서 keepGenerated를 true로 변경한다.<br><br><blockquote class="src">&lt;servlet&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;servlet-name&gt;JSPServlet&lt;/servlet-name&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;servlet-class&gt;jrun.jsp.JSPServlet&lt;/servlet-class&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;init-param&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param-name&gt;<strong>keepGenerated</strong>&lt;/param-name&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;param-value&gt;<strong>true</strong>&lt;/param-value&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/init-param&gt;<br>&lt;/servlet&gt; <br></blockquote><br>그리고는, WEB-INF/jsp 디렉토리에 있는 모든 파일들을 다 삭제해버리고, JSP를 다시 요청하면 컴파일되면서, 소스코드가 생성된다.<br><br>참조 : <a title="" href="http://groups.google.co.kr/group/macromedia.jrun.getting_started/browse_frm/thread/c79fb7b0c5590427/042e412664f59e71?lnk=st&q=jrun4+jsp+to+java+source&rnum=1&hl=ko#042e412664f59e71">Google Groups</a><br><br>tags: jrun compile jsp java source 컴파일 소스</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

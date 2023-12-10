@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Maven을 넘어 Gradle로 가자.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-10-14 21:33:01</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Maven을 넘어 Gradle로 가자.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a target="_blank" href="http://maven.apache.org/">Maven</a>을 써 본 사람들은 대부분 느끼리라 생각하지만 매우 경직돼 있고 그로인해 무언가 Maven이 기본 지원하지 않는 빌드 과정을 추가해야 할 경우 고생이 이만 저만이 아니다. 이에, 요즘 Maven 대한 대안이 많이 나오고 있으며 그 중 가장 돋보이는 것이 <a target="_blank" href="http://www.gradle.org/">Gradle</a>(<a target="_blank" href="http://groovy.codehaus.org/">Groovy</a> 기반)이 아닌가 싶다. 그래서 차기 프로젝트의 빌드 툴로 Gradle을 도입해보고자 현재 프로젝트의 빌드 구성(매우 복잡하다)을 <a href="http://www.gradle.org/">Gradle</a>로 바꿔보며 그 가능성을 시험해 보았고 그 과정을 정리해 보았다.<br><br>매우 긴 내용이 될 것이라서 성질 급한 사람들을 위해 요약한다.<br><ul><li>난 이제 가능하면 Maven 안 쓴다. <font color="#ff0000"><b>되도록 </b></font><b><font color="#ff0000">항상</font> <font color="#ff0000">Gradle</font> 혹은 이것보다 나은 툴이 나온다면 그것을 사용하리라</b>.</li><li><font color="#ff0000"><b><a target="_blank" href="http://wiki.kwonnam.pe.kr/gradle">Gradle의 사용자 가이드를 번역</a></b></font>해 두었다. Java 프로젝트를 진행하는데 필요한 거의 모든 내용을 번역하였고, 또한 내가 경험하며 검색등으로 찾은 문제 해결책들도 모두 정리해 두었다. Maven 공부할 시간에 <a target="_blank" href="http://groovy.codehaus.org/">Groovy</a> + <a target="_blank" href="http://www.gradle.org/">Gradle</a> 공부하는게 더 생산적이라고 생각한다.<br></li></ul><br>내가 생각하는 Maven의 가장 큰 문제점은 두가지이다.<br><ul><li>프로젝트 구성/빌드 툴로써 프로젝트 구성은 정적인 설정 정보이고 빌드는 동적인 행위이다. 그런데 이것을 <font color="#ff0000"><b>정적인 데이터를 저장하는데 적합한 XML로 그 내용을 기술하게 함으로써 동적인 행위인 빌드에 크나큰 제약을 가한다</b></font>. 게다가 XML은 너무 장황해서 실제 설정 내용보다 XML 뼈대가 더 많다.<br></li><li>다른 하나는 Gradle을 사용하다 느낀 것인데, Maven은 설계상의 문제도 있다. 바로 멀티 프로젝트 구성을 <b>상속 구조</b>로 한 점이다. 그에 반해 Gradle은 <font color="#ff0000"><b>구성 주입 방식</b></font>(Configuration Injection, 설정 주입 방식이 더 나은 번역일까?)을 사용한다. 이는 빌드 구성 정보에서 매우 큰 차이를 만든다.<br></li></ul>Gradle은 Groovy DSL로 작성하며, 설정 정보는 변수에 값을 넣는 형태로, 동적인 빌드는 Groovy 스크립트로 Gradle용 플러그인을 호출하거나 직접 코드를 짜면 된다.<br><br>상속 구조는 공통 설정을 여러 프로젝트가 공유할 때 비어있는(Abstract) 프로젝트를 만들어서 거기에다 공통 설정을 넣고 그걸 상속하게 해야한다. 게다가 어느 플러그인의 설정이 조금만 달라도 해당 플러그인이 아주 유연하게 만들어져 있지 않은 이상 설정을 분리해서 프로젝트별로 중복 기술해야 한다. 즉, <b>Maven을 사용하면 쓸데없이 설정이 길어지고 중복이 발생하며 가독성도 매우 떨어진다.</b><br><br>그에 반해 구성주입 방식은 그냥 어떤 프로젝트 구성 정보가 있으면 그것을 필요한 프로젝트에 주입하는 방식이다. 주입시 프로젝트의 조건을 체크할 수 있어서 프로젝트 별로 약간 다른 설정이 가능하다. 또한 공통 구성만 주입하고 프로젝트 별로 다른 점은 바로 그 점만 프로젝트 별로 주입시켜주면 된다.<br><br>이렇게 크게 두가지점 이 Gradle이 Maven보다 훨씬 뛰어난 점이며 그것만으로도 Gradle을 사용하는 것이 훨씬 더 편하다는 것을 알 수 있다.<br><br>그럼 내가 Maven에서 Gradle(현재 1.2)로 변환한 프로젝트는 어느 정도의 복잡도를 가지고 있었을까? 단순히 CLASSPATH 지정만으로 해결되는 아키텍처들은 제외하고 빌드 구성에 영향을 주는 복잡성들만 나열하면 다음과 같다.<br><br><ol><li><b>15개 정도의 프로젝트</b>가 서로간의 의존 관계를 맺고 있다.</li><li>Spring 3.1이 뼈대를 이룬다.(이것 자체는 빌드에 영향을 안 줌)</li><li><a target="_blank" href="http://cxf.apache.org/">Apache CXF</a>를 통해 SOAP Client Java 클래스 자동 생성하고 이를 각종 서비스에서 사용한다.</li><li>JPA 2를 ORM으로 사용하며 이것의 <a target="_blank" href="http://www.hibernate.org/subprojects/jpamodelgen.html">StaticMetaModel Java Class들을 자동 생성</a>해야 한다.(Annotation Processor)</li><li><a target="_blank" href="http://projectlombok.org/">Lombok</a> 을 사용하여 Getter/Setter/Slf4j/기타 등등의 코드를 자동 생성한다.(Annotation Processor)</li><li>웹 프로젝트들은 공통 리소스를 가지고 있으며 <a href="http://help.eclipse.org/juno/index.jsp?topic=%2Forg.eclipse.platform.doc.user%2Fconcepts%2Fconcepts-13.htm">Eclipse에서는 LinkedResource</a>로 지정되어 개발시 불필요한 공통 요소 복제 작업이 안 일어나도록 처리하고 있다.</li><li>웹 프로젝트에서 Javascript 파일을 빌드 툴에서 자동 최적화 해서 배포해 준다.<br></li><li><a target="_blank" href="http://code.google.com/p/c5-db-migration/">Carbon Five Database Migration</a> 툴로 데이터베이스 마이그레이션을 진행한다.</li><li>Eclipse와 연동해야 한다. Eclipse 전용 플러그인이 있지는 않아도, 최소한 Gradle의 구성 상태를 Eclipse 설정으로 그대로 명령어 한 방으로 옮길 수 있어야 한다.</li><li>추가) Maven의 Profile 기능을 통해 개발/통합테스트/Staging/Production등을 구분하고 프로필에 따라 서로 다른 빌드 로직을 탄다.<br></li></ol><p>실제 복잡도는 더 높다. 단지 빌드에 무관한 항목들이라 기입하지 않았을 뿐이다.</p><p>저 모든 것들이 두 가지만 빼고 Maven에서 보다 더 쉽게 Gradle에서 설정 가능하였다. Eclipse 연동도 성공적으로 이뤄 내었다.</p><p>이떻게 했는지는 <a href="http://wiki.kwonnam.pe.kr/gradle">Gralde 사용자 가이드 번역</a>에 모두 기록해 두었다. 저 정도 복잡도가 된다면 웬만한 자바 프로젝트는 아무 문제 없이 구성 가능할 것이다.</p><p><br></p><p>문제를 일으킨 것은 두가지다.</p><p>첫째, <b>provided</b> 스코프가 없다. 이는 내가 보기엔 치명적인 문제이며 나를 가장 많이 괴롭힌 것이었다. 하지만 <a target="_blank" href="http://issues.gradle.org/browse/GRADLE-784">이슈로 등록</a> 되어 있어서 곧 해결 될 것으로 보이며 물론 현재 버전에서도 해결책을 찾아 내었다. 더 큰 문제는 Eclipse 연동시에 Eclipse가 provided로 지정된 라이브러리를 웹서버 띄울 때 배포하는 것이었는데 그것도 모두 해결해서 기록해 두었다. <a target="_blank" href="http://wiki.kwonnam.pe.kr/gradle/from_maven">from_maven</a> 참조</p><p>둘째, Carbon Five Database Migration(C5) 툴은 기본적으로 Maven 플러그인이다. 독립 툴이 아니다. 이를 Gradle 플러그인으로 직접 옮겼는데, 너무 쉽게 되었다. C5 자체가 실제 기능 코드와 Maven 플러그인 코드가 잘 분리되어 있기 때문이다. 게다가 Gradle 플러그인 만들어 추가 하는 것은 Maven으로 플러그인 만들어서 프로젝트에 추가 하는 것과는 차원이 다르게 쉽다.</p><p>Gradle은 기본적으로 모든 Ant 태스크를 사용할 수 있다. C5가 Ant 연동을 제공했다면 정말 아무것도 아닌 일이었겠지만, 뭐 그 덕분에 Gradle 플러그인 만드는게 얼마나 쉬운지도 배우게 되었다.</p><p>또한 나는 차기 프로젝트에서는 Ant/Maven을 둘 다 지원하는 <a target="_blank" href="http://code.google.com/p/flyway/">flyway</a>를 사용할 예정이다.</p><p><br></p><p>결론은 이렇다.</p><p><br></p><p>사실 Gradle을 사용하면서 느낀 Maven의 문제점은 더욱 더 많다. <a target="_blank" href="http://wiki.kwonnam.pe.kr/gradle/from_maven">from_maven</a> 참조 해 보시길.</p><p>앞에서도 말했듯이 난 이제 피치못할 상황이 아니면 Maven 사용 안 할 예정이다. Gradle 혹은 최소한 이보다는 나은 프로젝트 구성/빌드 도구를 사용할 것이다.</p><p>아무리 간편한 툴이라도 그 기능이 요구사항에 못 미치고 버그가 많다면 그걸 사용하면 안된다. 하지만 나는 기존에 내가 참여하고 있는 프로젝트의 빌드 구성을 모두 Gradle로 완벽하게 포팅함으로써(설정파일 줄 수가 Maven 2800줄에서 Gradle 650줄로 줄었다) 기능도 부족함이 없음을 스스로 증명했다.<br></p><p>비록 Groovy와 Gradle을 모두 다 배워야 하는 부담이 있겠지만, 그게 장기적으로 더 개발자를 이롭게 할 것이다. 나 같은 경우 순전히 Gradle을 하고 싶어서 Groovy를 배웠는데, 그 뒤로 우리 프로젝트를 관리하는 부가 시스템과 셸 스크립트들을 Groovy로 다 바꿔 버렸다. 원본 프로젝트의 Java 코드를 직접 호출 할 수 있기 때문에 훨씬 더 편해졌다.</p><p>Maven에서는 아무리 Java를 알아도 빌드 구성을 하면서 너무 힘든 경우가 많았다. 하지만 Gradle을 나의 Groovy 지식이 일천함에도 훨씬 더 편안하고 즐겁게 일을 마칠 수 있었다.</p><p><br></p><p>빌드가 아니라 프로젝트 운영 코드를 짜는데 더 집중하고 싶은가?</p><p>그러면 Gradle을 사용하자.</p><p><br></p></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

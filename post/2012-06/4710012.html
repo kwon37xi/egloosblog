@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Tomcat Context 수동 Reload</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-06-03 17:22:25</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Tomcat Context 수동 Reload</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Java 웹 프로그래머라면 아마 누구나 클래스를 수정한 뒤에 컨텍스트를 리로딩 하는 것에 많은 스트레스를 받고 있을것 같다.<br>이로 인한 시간 낭비도 만만치 않을 것이다. 다음과 같은 해결책 들이 있는데, 모두 다 맘에 안들어서 Tomcat 소스 보다가 <a target="_blank" href="http://wiki.kwonnam.pe.kr/java/tomcat/contextreload">Valve를 이용한 해결책</a>을 찾아내었다.<br><br>첫번째 해결책으로 <a target="_blank" href="http://zeroturnaround.com/jrebel/">JRebel</a> 이라는 것도 있는데, 컨텍스트 리로딩 없이 변경된 클래스를 적재시킨다. 일단 나는 사용 안 하고 있다. 회사에서 아직 안 사줬거든. 사달라는 말도 안 해 본 듯.<br><br>두번째 해결책은 &lt;Context&gt; 설정에서 reloadable="true"로 해서 클래스가 변경될 때마다 자동 Reload를 실행하는 것인데, 나는 이 방법을 무척 싫어한다.<br>이유는 클래스 수정은 하나만 하는게 아니라 여러개에 걸쳐 일어나고, 그 뒤에 Reload를 하고 싶은데 그 타이밍을 지정할 수 없기 때문에 아무 때나 Reload가 발생해서 오히려 개발 속도를 떨어뜨리고 OutOfMemory 오류를 빨리 야기 하기 때문이다.<br><br>세번째 해결책은 Tomcat이 기본 제공해주는 manager 웹 컨텍스트를 사용해서 수동 reloading 하는 것인데, 문제는 Eclipse WTP에서 설정에 실패했다는 것이다. 그리고 컨텍스트 하나 더 띄우는 것도 별로고. <a target="_blank" href="http://kwon37xi.egloos.com/1609730">구버전 WTP에서는 manager를 WTP에 함께 설정해서 띄우는데 성공</a>했었다(그게 벌써 7년 됐네). manager는 웹 페이지를 띄우고 로그인을 해야 하는 부담도 있다.<br><br>그래서 최종적으로 찾아낸 해결책이 Valve이다.<br>자세한 설정 방법과 소스는 <a target="_blank" href="http://wiki.kwonnam.pe.kr/java/tomcat/contextreload">Java Tomcat Context Reload</a> 를 참조한다.<br><br>이 방법을 사용하면 <span style="font-weight: bold;">reloadable="false"인 상태에서도 http://localhost:8080/reloadContext 를 호출하는 것 만으로 컨텍스트 리로딩이 가능하다.</span><br><br>여기서는 이 방법을 찾게 된 뒷담화만 한다.<br><br>Tomcat의 소스를 뒤져보며 *.class가 변경 됐을 때 이를 감지하고 컨텍스트를 리로딩 하는 것이 <a target="_blank" href="http://www.docjar.com/docs/api/org/apache/catalina/loader/WebappLoader.html">WebappLoader</a> 임을 알게 되었다.<br><br>WebappLoader는 *.class 변경을 탐지하면 가지고 있던 <a target="_blank" href="http://www.docjar.com/docs/api/org/apache/catalina/core/StandardContext.html">StandardContext</a> 객체의 reload() 메소드를 호출하여 컨텍스트를 리로딩한다.<br><br>그렇다면 나는 어떻게 <a target="_blank" href="http://www.docjar.com/docs/api/org/apache/catalina/core/StandardContext.html">StandardContext</a>를 주입받아서 리로딩할수 있을까?<br><br>그 답은 <a target="_blank" href="http://www.docjar.com/docs/api/org/apache/catalina/Valve.html">Valve</a> 였다. Tomcat의 Valve는 ServletFilter와 유사한데, 실제 서블릿 필터나 컨트롤러까지 가기전 Tomcat단에서 처리되는 필터같은 것이다.<br>이 Valve를 만들면서 <a target="_blank" href="http://www.docjar.com/docs/api/org/apache/catalina/Contained.html">Contained</a> 인터페이스를 구현하면 StandardContext 객체를 주입받는게 가능해지며, Tomcat 소스를 건드리지 않고, server.xml 에서 Valve만 설정하면 작동이 가능해진다.<br><br>이 때 인터페이스를 다 구현하지 말고, <a target="_blank" href="http://www.docjar.com/docs/api/org/apache/catalina/valves/ValveBase.html">ValveBase</a> 만 상속 받아서 invoke() 메소드 하나만 구현하면 끝난다. 게다가 ServletFilter랑 구현도 매우 유사해서 매우 쉽게 된다.<br><br>이제 이렇게 만든 Valve를 server.xml의 &lt;Context&gt; 부분에 설정만 해주면 된다.<br>원칙적으로 Valve는 &lt;Engine&gt;, &lt;Host&gt;, &lt;Context&gt; 항목등에 설정 가능한데, StandardContext 객체를 주입 받으려면 &lt;Context&gt;에다 설정해야 한다.<br><br>Valve는 ServletFilter와 거의 동일하기 때문에 필터에서 처럼 request URI를 가로채서 분석해서 <span style="font-weight: bold;">/reloadContext</span> 를 만나면 컨텍스트를 reload하도록 처리하면 끝.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

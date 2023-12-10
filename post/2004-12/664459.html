@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>자바 애플릿 보안 심각한 취약점 발견</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-14 09:33:34</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">자바 애플릿 보안 심각한 취약점 발견</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">자바 애플릿 관련 보안 취약점이 발견되었다.<br><br>원문 : <a href="http://www.zdnet.co.kr/news/network/0,39024416,39131811,00.htm">http://www.zdnet.co.kr/news/network/0,39024416,39131811,00.htm<br></a><br>썬 마이크로시스템즈의 자바 가동 플러그인에서 보안상의 취약점이 있다는 사실이 밝혀졌다.<br><br>여러 브라우저와 운영체제에 자바를 실행시키는 데 사용되는 이 플러그인에 결함이 발견됨에 따라 MS 윈도우와 리눅스 PC에 바이러스를 배포하는데 악용될 가능성이 제기되고 있다.<br><br>핀란드의 보안 전문가 조우코 피노넨이 지난 6월 발견한 이 결함은 지난달 썬에 의해 패치됐지만 세부 사항은 아직 공개되지 않고 있다. 보안정보 제공업체인 시큐니아(Secunia) 이 결함을 ‘매우 치명적인’ 위협으로 등급을 매긴다는 공지사항을 발표했다.<br><br>자바 플러그인은 애플릿이라고 불리는 작은 웹 프로그램들이 PC에서 안전하게 구동될 수 있도록 지원하는 역할을 수행한다. 그러나 보안상의 결함이 발견됨에 따라 보호장치를 뛰어넘어 악성 웹사이트에 접속하도록 하는 것이 가능해졌다.<br><br>피노넨은 CNET 뉴스닷컴과의 이메일 인터뷰에서 “이 결함을 사용하면 웹페이지를 보는 것과 별도로 사용자의 상호 작용이 없이도 공격자의 코드가 실행될 수 있다. 이런 경우는 대부분 ‘치명적인’ 보안 등급으로 분류된다”라고 지적했다.<br><br><a href="http://www.zdnet.co.kr/news/network/0,39024416,39131811,00.htm"><br>...계속읽기...</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

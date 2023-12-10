@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>자바 성능을 결정짓는 코딩 습관과 튜닝 이야기 오류</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2008-05-07 16:04:59</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">자바 성능을 결정짓는 코딩 습관과 튜닝 이야기 오류</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="rolling-blog"><p class="roll-description">가볍게 읽을 수 있는 자바 튜닝 이야기 이다.<br />생각보다 깊이는 없다. 그리고 매우 술술 읽히는 책이다.<br />하지만 자바 개발자들이 꼭 알아야할 내용을 포함하고 있으므로 한번쯤은 읽어봐야 한다.<br /><br />이 책에 나온 오류 몇 가지를 짚어보았다.</p><ul class="roll-item-list"><li><div class="roll-item-text"><h3>&#51088;&#48148; &#49457;&#45733;&#51012; &#44208;&#51221;&#51667;&#45716; &#53076;&#46377; &#49845;&#44288;&#44284; &#53916;&#45789; &#51060;&#50556;&#44592;</h3><div class="db-container book"><div class="wrap"><div class="image"><img src="http://image.aladdin.co.kr/cover/cover/8979145225_1.jpg" alt="" /></div><div class="info"><h4>&#51088;&#48148; &#49457;&#45733;&#51012; &#44208;&#51221;&#51667;&#45716; &#53076;&#46377; &#49845;&#44288;&#44284; &#53916;&#45789; &#51060;&#50556;&#44592; - Blog2Book &#49884;&#47532;&#51592; 03</h4><div class="text"><ul><li class="maker">저자 : &#51060;&#49345;&#48124; &#51648;&#51020;</li><li class="production">출판사 : &#54620;&#48731;&#48120;&#46356;&#50612;</li><li class="date">발행일 : Thu, 28 Feb 2008 15:00:00 GMT</li><li class="code">ISBN : ISBN8979145225</li></ul></div><div class="db-button"><span class="buy"><a href="http://www.aladdin.co.kr/shop/wproduct.aspx?ISBN=8979145225&amp;copyPaper=1&amp;ttbkey=ttbrollinglist1223001&amp;partner=openmaru_ttb" target="_blank">자세히 보기</a></span></div></div></div></div><p class="roll-item-description"></p></div></li><li><div class="roll-item-text"><h3>204&#51901; close &#50696;&#51228;</h3><p class="roll-item-description">204쪽의 잘만들어진 close 예제라고 나온 소스는 사실 잘못된 것이다. 물론 그정도만 해도 일반적으로는 문제되는 경우가 거의 없다. 그러나 어쨌든 오류의 가능성이 있다. <a href="http://kwon37xi.egloos.com/1373280">Java 리소스 닫기(Resource Close)를 제대로 하려면..</a>을 참조하여 제대로 사용하기 바란다. 그리고, 이 책에 나온 방식으로 리소스를 close() 했다가 리소스 누수가 발생한 예를 <a href="http://www.aladdin.co.kr/shop/wproduct.aspx?ISBN=8992939108">Release It!</a> 책에서 볼 수 있다.</p></div></li><li><div class="roll-item-text"><h3>static&#44284; &#50976;&#49324;&#54620; &#47928;&#51228;&#44032; &#51080;&#45716; Servlet/JSP&#51032; &#49905;&#44544;&#53556; &#51064;&#49828;&#53556;&#49828; &#47928;&#51228;</h3><p class="roll-item-description">그리고 안타까운 점 하나가 더 있다. Servlet/JSP 관련한 내용에서 Servlet과 JSP가 싱글턴으로 생성됨으로 인해 static을 사용할 때와 유사한 문제가 발생한다. 이것도 자바 웹 개발자들은 꼭 알아야 하는데, static에 관해서만 다루고 이 문제는 다루지 않고 있다. 꼭, 이원영님이 쓰신 <a href="http://www.javaservice.net/%7Ejava/bbs/read.cgi?m=devtip&amp;b=servlet&amp;c=r_p&amp;n=968185187&amp;k=JDBC&amp;d=tb#968185187">서블렛 + JDBC 연동시 코딩 고려사항</a> 시리즈를 읽고 숙지해야만 한다.</p></div></li><li><div class="roll-item-text"><h3>304&#51901; if &#47928; &#50672;&#49549;</h3><p class="roll-item-description">304쪽의 안쪽 if 문은 if {} else if {} 로 바꾸어야 불필요한 if 조건 비교가 일어나지 않는다. 안쪽 if 의 첫번째 조건이 만족되면 두 번째 조건은 절대로 만족될 수 없는데도 불구하고, else 를 안써서 쓸데없는 비교를 하게 만든 코드이다.<br />즉, 다음과 같이 변경한다.<br />if (arrObj[i][0].equals("AAA")) {<br />} else if (arrObj[i][0].equals("BBB")) {<br />}</p></div></li><li><div class="roll-item-text"><h3>308&#51901; &#49373;&#49457;&#51088;&#47484; &#53685;&#54620; &#52488;&#44592;&#54868; &#48372;&#45796;&#45716; static &#52488;&#44592;&#54868;&#47196;</h3><p class="roll-item-description">308쪽, 생성자에서 하는 일을 사실은 static {} 초기화 구문으로 해야한다. 생성자에서 사용하는 변수들을 살펴보면 모두 static 이거나 static final 인것을 알 수 있다. 이런 값들에 대한 처리를 생성자에서 할 필요는 전혀 없다. static 초기화 구문을 사용하면 JVM이 이 클래스를 인지하는 그 순간 단 한 번만 실행되므로 더욱 성능이 향상된다.<br />생성자를 없애고, 생성자에 있는 내용을 다음과 같이 변경한다. 물론 static {} 안에서 호출하는 메소드들도 모두 static으로 바꿔야 한다.<br />static {<br />    loggerMap = new HashMap();<br />    setLoggerMap(defaultLoggerCategoryNm);<br />}<br /><br />그리고 근본적으로 불필요하게 Log 관련 클래스를 만들지 말라.<br /><a href="http://logging.apache.org/log4j/">Log4J</a>와 <a href="http://commons.apache.org/logging/">Commons Logging</a> 같은 이미 너무도 훌륭한 것들이 잔뜩 나와있는데 불필요한 삽질을 반폭할 필요가 없다.<br /></p></div></li><li><div class="roll-item-text"><h3>314&#51901; Vector&#45716; &#46104;&#46020;&#47197; &#49324;&#50857;&#54616;&#51648; &#47568; &#44163;</h3><p class="roll-item-description">314쪽, Vector는 Java 1.0 대에서도 있던 것이다. Vector와 Hashtable, Enumeration등은 Collection API가 나온 이후로는 사용해서는 안되는 기피 대상 클래스들이다. Java 1.2 이후부터는 무조건 Vector 대신 ArrayList, Hashtable 대신 HashMap, Enumeration 대신 Iterator를 사용해야 한다고 보면 된다.</p></div></li></ul><p class="roll-source">이 리스트는 <a href="http://kwon37xi.rollinglist.com/list/view.do?listId=27179">롤링리스트</a>에서 작성되었습니다.</p></div></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

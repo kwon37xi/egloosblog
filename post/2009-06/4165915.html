@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>왜 Mockito가 좋은가?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2009-06-15 12:47:14</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">왜 Mockito가 좋은가?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="xhtmlEditorBody"><h1>왜 Mockito가 좋은가?</h1> <p>예전에 <a href="http://kwon37xi.egloos.com/4126439" title="http://kwon37xi.egloos.com/4126439" class="external">jMock vs. EasyMock</a> 이라는 포스팅에서 결론은 <a href="http://mockito.org" class="external" title="http://mockito.org">Mockito</a>라고 내버리면서 왜 그런지 설명을 좀 하겠다고 했었는데, 이제야 그에 관해 글을 쓴다.</p> <p>이 글은 Mockito 제작자의 <a href="http://monkeyisland.pl/2008/04/26/asking-and-telling/" title="http://monkeyisland.pl/2008/04/26/asking-and-telling/" class="external">is there a defference between asking and telling?</a>라는 글에 대한 정리이며, <a href="http://monkeyisland.pl/2008/02/01/deathwish/" title="http://monkeyisland.pl/2008/02/01/deathwish/" class="external">expect-run-verify Goodbye!</a> 라는 글과, MSDN의 <a href="http://msdn.microsoft.com/ko-kr/magazine/cc163358.aspx" title="http://msdn.microsoft.com/ko-kr/magazine/cc163358.aspx" class="external">Test Double의 연속성 살펴보기</a>, 그리고 근본 개념을 다루고 있는 Martin Fowler의 <a href="http://martinfowler.com/articles/mocksArentStubs.html" title="http://martinfowler.com/articles/mocksArentStubs.html" class="external">Mocks Aren't Stubs</a> 라는 글을 읽어보면 더 많은 도움이 될 것이다.</p> <p>&nbsp;</p> <p>이 글을 읽기전에 <a href="http://msdn.microsoft.com/ko-kr/magazine/cc163358.aspx" title="http://msdn.microsoft.com/ko-kr/magazine/cc163358.aspx" class="external">Test Double의 연속성 살펴보기</a>를 읽고 최소한 stub이 뭔지는 알고 있어야 한다.</p> <p>&nbsp;</p> <h3>테스트 대상 코드</h3> <ol class="code"> <li>public void deleteByHeadline(String headline) {<br> &nbsp;&nbsp;&nbsp; // asking/묻기<br> &nbsp;&nbsp;&nbsp; Article article = repository.findArticle(headline); // 헤드라인 문자열에 따라 Article 객체 검색<br> &nbsp;&nbsp;&nbsp; // telling/시키기<br> &nbsp;&nbsp;&nbsp; repository.delete(article); // 해당 객체 삭제를 명령함<br> }</li> </ol> <p>위와 같은 코드가 있고, 이를 단위 테스트로 테스트를 한다고 하자. 만약 모의 객체 프레임워크가 없다면 우리는 ReporitoryStub 이라는 것을 직접 만들어서 다음과&nbsp;비슷하게 할 것이다.</p> <p>&nbsp;</p> <ol class="code"> <li>Article article = new Article();<br> repositoryStub.setArticleToFind(article); // 스텁에서 리턴해줄 객체를 설정한다.<br> <br> articleManager.deleteByHeadline("foo"); // 테스트 대상 코드를 실행한다.<br> <br> repositoryStub.verifyArticleDeleted(article); // 테스트 대상 코드가 삭제코드를 호출했는지 여부를 확인하다.</li> </ol> <p>&nbsp;</p> <p>이와 같은 패턴의 테스트를</p> <ol> <li>stub</li> <li>run</li> <li>assert</li> </ol> <p>라 한다.</p> <p>&nbsp;</p> <p>정리하자면, 1. 객체에게 어떠한 값을 요청하는 행위는 스텁이며, 테스트 대상 코드를&nbsp; 호출하기 전에 미리 어떤 값을 리턴할지를 지정해주는 행위(stubbing)을 해줘야 한다.</p> <p>여기서는 repositoryStub.setArticleToFind(article); 이 코드에 해당한다.</p> <p>그리고 2. 테스트 대상 코드를 실행하고, 3. repositoryStub 객체에게 제대로 삭제를 시켰는지(telling)를 검증해야 한다. 여기서 repositoryStub.verifyArticleDeleted(article); 가 이에 해당한다.</p> <p>&nbsp;</p> <p>즉, 다시 반복해서 말하면, 테스트 대상 코드에서 묻기(asking) 부분은 stub의 역할을 한다. 그리고 시키기(telling) 부분은 제대로 호출했는지 검증해야할 부분이 된다.</p> <p>보다시피 <strong>stub은 검증의 대상이 아니다.</strong> 우리가 명확히 검증해야 할것은 <strong>올바른 객체를 삭제하는 코드에 넘겨주는 호출을 제대로 했는지 여부</strong>이다.</p> <p>&nbsp;</p> <h3>Expect-Run-Verify</h3> <p>이제 Mockto 제작자의 <a href="http://monkeyisland.pl/2008/02/01/deathwish/" title="http://monkeyisland.pl/2008/02/01/deathwish/" class="external">expect-run-verify</a> 라는 글을 읽어보자. 이 글에 따르면 기존의 모의 객체 프레임워크는 stub-run-assert가 아니라, expect-run-verify 형태이다.</p> <p>해보면 알겠지만, 이는 자연스러운 TDD의 흐름에 다소 어긋난다.</p> <p>간단히 EasyMock 모의 객체 프레임워크로 위 테스트 코드를 작성해 보도록 하자. 모의 객체 생성은 이미 됐다고 가정한다(jMock도 기븐 틀은 다를바 없다).</p> <ol class="code"> <li>// expect</li> <li>Article article = new Article();</li> <li>expect(mockRepository.findArticle("foo")).andReturn(article);</li> <li>mockRepository.delete(article);<br> <br> // run</li> <li>replay(mockRepository);</li> <li>articleManager.deleteByHeadline("foo");<br></li> <li>// verify</li> <li>verify(mockRepository);</li> </ol> <p>&nbsp;</p> <p>여기서 보면 검증해야 할 코드인 mockRepository.delete(article)이 테스트 실행 부분보다 위에 있음을 알 수 있다. TDD를 해보면 알겠지만, 이는 사고의 흐름에 역행한다.</p> <p>&nbsp;</p> <p>우리는 테스트 코드를 작성할 때 테스트를 실행하는 코드를 작성하고, 그 뒤에 테스트 실행 코드가 실행된 뒤에 어떤 상태가 되어야 하는지를 검증(assert)한다.</p> <p>그런데, 여기서는 검증에서 통과해야할 코드를 먼저 작성하고 그 뒤에 테스트 대상 코드를 실행한 것이다.</p> <p>&nbsp;</p> <p>또 다른 문제도 있는데, 위 코드에서는 mockRepository.findArticle("foo"); 도 검증 대상이라는 점이다. 이 코드는 분명 스텁인데도 불구하고 verify(mockRepository)가 호출되는 순간 검증 대상에 포함돼 버린다.</p> <p>&nbsp;</p> <h3>Mockito는?</h3> <p>Mockito는 가장 자연스러은 흐름에 따라 테스트 코드를 작성할 수 있게 해준다.</p> <ol class="code"> <li>Article article = new Article();</li> <li>// stub</li> <li>when(mockRepository.findArticle("foo")).thenReturn(article);</li> <li>// run</li> <li>articleManager.deleteByHeadline("foo");</li> <li>// assert</li> <li>verify(mockRepository).delete(article);</li> </ol> <p>보면 정확히 스텁을 수작업으로 만든 맨 처음 테스트 코드와 형태가 동일함을 알 수 있다.</p> <p>게다가 코드도 훨씬 간단하다.</p> <p>&nbsp;</p> <p>직접 해보면 TDD시에 사고의 흐름과 테스트 코드의 흐름이 자연스럽게 일치됨을 느끼게 될 것이다.</p> <p>&nbsp;</p> <h3>논쟁?</h3> <p>논쟁거리가 있는데, 바로 "스텁은 정말 검증하지 않아도 되는 것인가?"라는 점이다.</p> <p>실제로 해보면 그럴 필요 없다. 스텁이 제대로 호출 되지 않으면 단위 테스트의 나머지 검증 코드가 제대로 실행 되지 않게 되기 때문이다.</p> <p>&nbsp;</p> <h3>결론</h3> <p>Mockito는 모의 객체가 스텁인지 검증 대상이 되는 모의 객체인지를 구분하고, 사고의 흐름에 역행하지 않는다.</p> <p>게다가 실제 작성해야할 코드의 양도 다른 모의 객체 프레임워크에 비해 훨씬 적다.</p> <p>클래스와 인터페이스에 대한 모의 객체 생성 문법이 동일하여 구분할 필요가 없고(오히려 이걸 싫어하는 사람도 있다. 개발자들이 인터페이스를 안 만드는 잘못된 버릇을 들일까봐), hamcrest Matcher도 사용할 수 있다.</p> <p>&nbsp;</p> <p>마틴 파울러의 쏘트웍스사의 개발자들도 Mockito를 사용한다고 한다.(누군가가 바로 이래서 Mockito가 검증된거 아니냐는 글을 쓴 걸 본적도 있다).</p> <p>&nbsp;</p> <p>예전에 썼던 <a href="http://kwon37xi.egloos.com/4126439" title="http://kwon37xi.egloos.com/4126439" class="external">jMock vs. EasyMock</a> 글에서 처럼 기능 단위로 다른 프레임워크와 비교해야할 필요성은 못 느끼고 있다. 그냥 다른 애들 되는 것은 거의 다&nbsp; 된다고 보면 된다.</p> <p>&nbsp;</p> <p>내게는 Mockito가 현재 가장 훌륭한 Java 모의 객체 프레임워크이다. Mockito의 사용법은 <a href="http://mockito.googlecode.com/svn/branches/1.7/javadoc/org/mockito/Mockito.html">http://mockito.googlecode.com/svn/branches/1.7/javadoc/org/mockito/Mockito.html</a> 를 참조하면 된다.</p> <p>&nbsp;</p> <p style="text-align: right;">이 글은 <a href="http://kwon37xi.springnote.com/pages/3600137">스프링노트</a>에서 작성되었습니다.</p></div></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

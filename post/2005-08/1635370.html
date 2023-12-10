@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] Struts - javax.servlet.ServletException: Cannot find bean msg in any scope</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-08-11 17:28:50</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] Struts - javax.servlet.ServletException: Cannot find bean msg in any scope</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Struts를 사용한 JSP에서 아래와 같은 오류 메시지가 발생했다.<br><br><BLOCKQUOTE class="SOURCE">javax.servlet.ServletException: Cannot find bean msg in any scope<br></BLOCKQUOTE><br>이 문제는 JSP에서 아래와 같은 부분에서 발생한다.<br><BLOCKQUOTE class="SOURCE"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;html:messages&nbsp;id="msg"&nbsp;message="true"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;%--<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ActionMessages.GLOBAL_MESSAGE&nbsp;키로&nbsp;저장된&nbsp;ActionMessage&nbsp;객체가&nbsp;없다면<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이&nbsp;부분은&nbsp;실행되지&nbsp;않는다.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--%&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;b&gt;&lt;bean:write&nbsp;name="msg"/&gt;&lt;/b&gt;&nbsp;&lt;br&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/html:messages&gt;<br><br></BLOCKQUOTE><br>예외 발생 이유는 Action 에서 <B>ActionMessage</B> 객체를 생성하면서<B> 리소스 번들 키 값을 존재하지 않는 값으로 줬기 때문</B>이었다.<br>키값을 존재하지 않는 값으로 준다고 해도 ActionMessages 객체가 생성되어 스코프내에 저장되고, JSP 실행시 &lt;html:messages&gt; 내부로 들어간다는 것이 문제가 된다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

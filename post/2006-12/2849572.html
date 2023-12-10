@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[JS] 변수가 존재하나?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-01 12:22:40</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[JS] 변수가 존재하나?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">자바 스크립트에서 변수의 존재여부 검사하기.<br><blockquote class="src">&lt;SCRIPT&nbsp;language="JavaScript"&gt;<br>var&nbsp;v1="aaa";<br><br>if&nbsp;(window.v1)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;alert("v1이&nbsp;존재합니다.");<br>}&nbsp;else&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;alert("v1은&nbsp;존재하지&nbsp;않습니다.");<br>}<br><br>if&nbsp;(window.v2)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;alert("v2가&nbsp;존재합니다.");<br>}&nbsp;else&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;alert("v2는&nbsp;존재하지&nbsp;않습니다.");<br>}<br><br>if&nbsp;(eval("window.v1"))&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;alert("eval('window.v1')이&nbsp;작동합니다.");<br>}&nbsp;else&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;alert("eval('window.v1')이&nbsp;작동하지&nbsp;않습니다.");<br>}<br>&lt;/SCRIPT&gt;<br></blockquote><br>함수의 존재여부도 <strong>window.함수명</strong>을 이용해서 검사할 수 있다. ()를 주면 안된다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

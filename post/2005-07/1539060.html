@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[책] 임백준의 소프트웨어 산책</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-07-13 23:32:05</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[책] 임백준의 소프트웨어 산책</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://www.aladdin.co.kr/shop/wproduct.aspx?ISBN=897914329X">임백준의 소프트웨어 산책</a>은 현재 프로그래머들에게 최고의 화두가 되고 있는 <B>"객체지향", "디자인패턴", "리팩토링", "소프트웨어공학-XP", "XML"</B>에 대한 에세이이다.<br><br>저것들은 내게 있어서 다 한번씩 들어봤고, 다 궁금해 하고 머리로 외우려 들지만 정작 왜 필요한건지? 어째서 탄생했는지? 언제 사용하고 언제 사용하면 안되는건지? 어떻게 써야 제대로 사용하는건지 잘모르겠는, 두리뭉실한 개념들이다.<br><br>이러한 것들을 저자의 경험을 토대로하여 쉽게 에세이 형식으로 풀어냈다.<br><br>상당히 빨리 읽은 책이고 다시 한번 읽어봐야지 하고 느낀 책이다.<br><br>앞서 읽은 <a href="http://kwon37xi.egloos.com/1531484">Joel on Software</a>와 함께 올해 초 읽은 가장 멋진 프로그래밍 관련 책이다. 개인적으로는 이 책에 더 높은 점수를 주고 싶다.<br><br><P style="background: wheat; font-weight: bold; text-align: right;">디자인 패턴을 공부하는 목적은 카탈로그의<br>목록을 외우는 것이 아니라 바로 패턴의 철학을 이해하는 것이다.<br>패턴의 철학은 기존 객체나 알고리즘의<br>수정을 억제함으로써 유지보수를 향하고 있다.<br><SPAN style="color: blue;">그래서 패턴을 학습한 프로그래머는 유지보수를 고민하게 된다.<br>그것이 좋은 프로그래머다.</SPAN></P><br><br>유지보수성 - 올해 나의 최대 화두이다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

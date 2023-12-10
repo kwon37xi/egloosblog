@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>8월 중반 넋두리</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-08-19 23:40:43</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">8월 중반 넋두리</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">오랜 동안 글을 안써서, 또 한 번 넋두리를 날린다.<br><br>Python + Django로 진행하던 프로젝트에서 일단 물러나서 새로운 일을 하게 되었다.<br>Python + Django 관련해서 틈틈이 주의 사항을 몇 가지 적어 둔게 있는데, 그걸 스프링노트에 공개했다.<br><br><a href="http://kwon37xi.springnote.com/pages/209851">Django 관련해 정리해 둔 스프링노트</a><br><br>너무 띄엄띄엄이라 도움이 될까 모르겠지만, 어쨌든 아예 없는 것 보다는 나을 것 같다.<br><br>다음 프로젝트는 Spring 2.0과 Hibernate를 기반으로 진행하기로 하였다.<br>나로써는 처음으로 하는 대 고객 서비스 개발이다. 긴장 되는걸~<br>박재성님의 Spring 책을 1년 반만에 꺼내들었다. 옛날에 공부하던 밑줄 친 자국들이 선명하게 남아있군..<br>그리고 최범균님의 Hibernate책도 집어들었다. 이 두 권의 책과 <a href="http://www.springframework.org/docs/reference/index.html">Spring 레퍼런스</a> 그리고, <a href="http://www.manning.com/bauer2/">Java Persistence With Hibernate</a>책을 무기 삼아 들고 전장으로 투입~!<br><br>최범균님 책 참 잘쓰신거 같다. 내용이 이해하기 쉽고 꼭 필요한 것들을 콕콕 집어주려고 많이 노력하신 듯. 하나 안타까운건.. 어차피 Java 5를 기준으로 책을 썼다면 기왕이면 Annotation 기반으로 설정하는 것에 대해서도 좀 자세히 설명해 주시지. 모자란 부분들은 어쩔 수 없이 영어로 된 JPWH로 해결을 해야 할 듯.<br><span style="font-weight: bold;">추신: 근데.. 오타가 너무 많네요.. ㅜㅜ 2007/08/22</span><br><br>내 자신이 iBATIS in Action 책을 번역하긴 했지만, 사실 나는 Hibernate가 우리나라에서 매우 떴으면 좋겠다.<br>SI 현장에서 Hibernate가 오히려 독으로 작용할 수도 있다는 점은 여전히 동감한다. 하지만, 애초부터 Hibernate를 제대로 배워서 SI 현장에서 처음부터 개발에 들어간다면(기존 것 유지보수 말고) Hibernate를 사용해야 생산성이 훨씬 높아진다는 것에 몰표를 주고 싶다. (그러나 오바는 하지 말았으면... 기존 것을 유지보수 하거나, Hibernate를 잘 모를 경우에는 iBATIS가 배우기도 쉽고 생산성도 높은 최적의 솔루션이다)<br><br>영록님이 해 본 바로는 Java 진영에서도 <a href="http://mc4j.org/confluence/display/stripes/Home">Stripes Web Application Framework</a>와 ORM으로 Hibernate를 사용하면 Tomcat을 계속해서 재시작해야 하는 문제를 제외하고는 거의 Django나 Ruby On Rails에 필적하는 생산성 높은 웹 개발이 가능하다고 한다. Stripes의 경우 <a href="http://raibledesigns.com/rd/entry/open_source_web_frameworks_mailing">Matt Raible의 Mailing List로 본 Open Source 웹 프레임워크 순위</a>를 봐도 Stripes가 그 순위 안에 들어있다는 것만으로도 매우 가능성 있는 프레임워크임을 알 수 있다.<br><br>그러고 보니.. <a href="http://wicket.apache.org/">Wicket</a>(Java 프레임워크들 중에서 Struts를 제치고 1위이다)의 발전도 눈부시다. 하지만 개인적으로 컴포넌트 기반 프레임워크는 SI용이라고 생각하기 때문에 내 입장에서는 패스~<br><br>몇 달전에 JSF(MyFaces)를 사용해서 작업해본 적이 있는데 생산성이 극적으로 높아지는 것을 느꼈었다. 하지만 JSF의 컴포넌트 기반 프레임워크라는 특성상 자유도가 떨어지는 제약도 감수해야 했다. 결과를 빨리 빨리 보여줘야하는 환경(SI?)에서는 컴포넌트 기반 프레임워크가 정말로 큰 힘을 발휘할 것으로 보인다. 다른 사람들이 만들어둔 컴포넌트만 가져다 붙여도 웬만한 웹 애플리케이션 하나는 그냥 뚝딱 만들어진다. 경악을 금치 못할 정도로 빠르게 그러면서도 매우 복잡한 애플리케이션을 뚝딱 조립해 낼 수도 있다. 그리고 그 때문에 Sun을 비롯한 WAS 벤더들이 열심히 JSF를 밀고 있는 것 같다. 물론, 미리 좋은 컴포넌트를 만들어서 판매할 수 있다는 장점도 함께 가져갈 수 있기 때문이겠지.<br><br>아.. 오늘 넋두리 길다...<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

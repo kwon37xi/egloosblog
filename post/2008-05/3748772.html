@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>20년 후에...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2008-05-19 06:40:54</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">20년 후에...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><br>    20년 후에 후회하지 않으려면<br><br>    앞으로 20년 후에 당신은 저지른 일보다는<br>    저지르지 않은 일에 더 실망하게 될 것이다.<br>    그러니 밧줄을 풀고 안전한 항구를 벗어나 항해를 떠나라.<br>    돛에 무역풍을 가득 담고 탐험하고, 꿈꾸며, 발견하라.<br><br>    - 마크 트웨인<br><br><a title="" href="http://bobbyryu.blogspot.com/2008/05/20.html">어떤 20대 청년으로부터 메일을 받고서</a>에서 가져옴..<br><br>이제 서른 초반인데 뭐 이렇게 못 해봐서 후회할 일이 산더미 같은지 모르겠다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

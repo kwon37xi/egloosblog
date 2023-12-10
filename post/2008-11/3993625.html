@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Ubuntu Linux에 Eclipse를 깔고나서..</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2008-11-26 16:08:44</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Ubuntu Linux에 Eclipse를 깔고나서..</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">오랜만에 회사 개발 PC의 배포판을 Ubuntu 8.10으로 밀었다.<br>간만의 대규모 업데이트를 하면서 모든 설정을 다시하다보면 옛날에 했던 일들이 가물 가물 하기도 하다.<br><br>Eclipse야 수시로 설치하는 편이긴 하지만 그래도 가끔 까먹네.<br><br>리눅스에서는 Eclipse의 단축키 매핑이 윈도우와 다르게 되어있다.<br><br>가장 중요한 Content Assist가 Alt-/ 로 돼 있다(보통은 Auto Complete이라고 하지).<br>근데, 역시나 Content Assist는 Ctrl-Space가 대세이다.<br><br><span style="font-weight: bold;">Preferences -&gt; General -&gt; Editors -&gt; Keys</span> 에서 Content Assist로 검색하여 키 매핑을 Ctrl-Space / in Dialogs and Windows 로 변경한다.<br><br>여기서 문제가 있는데, SCIM 때문에 이러한 키 매핑을 입력할 수 없거나, 입력이 기본적으로 돼 있는 키 매핑들중 작동하지 않는 것도 있다(Alt-Ctrl-Down, Alt-Ctlr-Up 등).<br><br><span style="font-weight: bold;">SCIM 설정 -&gt; 프로트엔드 -&gt; 전체설정</span> 에서 단축키 항목들중에서 Eclipse 단축키와 충돌하는 것들을 없애버리자.<br>SCIM 단축키야 뭐 한영, 한자 키만 잘되면 별 문제 없으니까.<br><br>요즘 많은 무료 글꼴들이 등장했다. 그 중에서도 <a href="http://fontevent.daum.net/">다음의 다음체</a>와 <a href="http://hangeul.naver.com/index.nhn?goto=fonts#fonts">네이버의 나눔 글꼴</a>은 참 깔끔하고 가독성도 좋다. 윤석찬님과 권순선님이 있는 회사 답게 글꼴도 짜증나는 setup.exe 뿐만 아니라 zip 파일로도 제공해 준다.<br><br>다음체는 메뉴나 바탕화면 등 꾸미기 용도로, DejaVu Sans와 나눔고딕을 연결해서 Eclipse 코딩글꼴로 사용하고 있다. 다음체는 너무 튀어서 코딩용으로는 부적합해 보인다.<br><br>~/.fonts.conf 파일에 다음 내용을 추가하고, Eclipse 글꼴 설정에서 기본 글꼴을 DejaVu Sans 로 바꿔 넣었다.<br><blockquote class="src">&lt;fontconfig&gt;<br>&lt;match&nbsp;target="pattern"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;test&nbsp;name="family"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;string&gt;DejaVu&nbsp;Sans&lt;/string&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/test&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;edit&nbsp;mode="append"&nbsp;binding="strong"&nbsp;name="family"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;string&gt;NanumGothic&lt;/string&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/edit&gt;<br>&lt;/match&gt;<br>&lt;/fontconfig&gt;<br></blockquote><br>기왕이면 나눔명조의 영문 글꼴과 나눔고딕의 한글 글꼴을 합쳐서 Monospace까지 만들어서 리눅스 배포판에 끼어 넣을 수 있는 라이센스로 만들어 주면 좋을 텐데 하는 바램도 가져본다. 그러면 리눅스에서 진정 완벽한 한글 환경이 될 수 있을 텐데.<br><br>코딩용 글꼴은 Consolas나 Verdana도 코딩용으로 좋다.<br><br>그리고 마지막으로 ECLIPSE_HOME/eclipse.ini 파일을 기존 값을 함부로 건들지 말고 잘 바꿔준다. <a href="http://kwon37xi.springnote.com/pages/199140">http://kwon37xi.springnote.com/pages/199140</a>같이 하면 Eclipse 구동시 JRE대신 JDK를 사용하게 되고, 성능이 좀 더 향상된다고 한다.<br><br>오래간만에 한 Ubuntu 8.10 + Eclipse 삽질 같지도 않은 삽질기 끝~</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

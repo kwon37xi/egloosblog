@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Oracle] 내부 공유 IP에서 사용하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-09-15 21:47:26</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Oracle] 내부 공유 IP에서 사용하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">오라클(Oracle) 9i를 공유기 안의 내부 IP Windows-XP 에 설치했다.<br><br>공유기에서 오라클의 1521 포트를 해당 PC로 연결되게 하고 외부 IP에서 접속했지만, 오라클에 접속되지 않았다.<br><br>레지스트리 편집기를 열고, <B>\HKEY_LOCAL_MACHINESOFTWAREORACLEHOME0</B> 에서 <B>USE_SHARED_SOCKET = TRUE</B>를 설정하고 <B>필히 재부팅</B>을 했더니, 잘 작동한다.<br><br>검색결과 대부분이 레지스트리 키를 설정하라고만 나와서 키를 설정하고 오라클을 재시작했지만 전혀 작동안했다.<br>우연히 재부팅을 하라는 글을 읽고 재부팅 했더니... 잘된다.. --;<br><br>모를땐 일딴~~은 재부팅~!<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

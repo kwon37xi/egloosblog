@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>컴퓨터를 설치하면 제일 먼저 까는 프로그램 10 선..</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-05-23 13:17:39</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">컴퓨터를 설치하면 제일 먼저 까는 프로그램 10 선..</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">MS-Windows를 기본으로 했을 때,<br><br>1. <a title="" href="http://www.mozilla.or.kr">FireFox</a> : 웹 브라우저<br>2. <a title="" href="http://www.vim.org">VIM</a> : 에디터<br>3. <a title="" href="http://kldp.net/projects/iputty">iPuTTY</a> : SSH/Telnet<br>4. <a title="" href="http://www.nate.com">NateOn</a> : 메신저<br>5. <a title="" href="http://www.openoffice.org">OpenOffice.org</a> : 오피스<br>6. <a title="" href="http://www.foobar2000.org/">foobar2000</a> : 음악재생<br>7. <a title="" href="http://gom.ipop.co.kr/">GOM 플레이어</a> : 동영상재생<br>8. <a title="" href="http://www.emule-project.net">eMule</a> : 파일공유<br>9. <a title="" href="http://www.bkyang.com/">빵집</a> : 압축<br>10. <a title="" href="http://www.eclipse.org">Eclipse</a> : 직업상... ^^;<br><br>상용 프로그램은 거의 안쓴다.<br>요즘 세상 참 좋아져서 대부분의 작업이 오픈 소스 아니면 프리웨어로 다해결되고, 어떤 경우에는 오픈소스가 훨씬 더 뛰어나다.<br><br><a title="" href="http://www.likejazz.com/29883.html">http://www.likejazz.com/29883.html</a> 에서는 지금 트랙백 놀이중~</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

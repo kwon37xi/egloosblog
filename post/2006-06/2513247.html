@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>오늘은...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-06-23 22:53:59</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">오늘은...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">2006년 6월 23일 21시 40분.<br><br>태어나서 처음으로, 전 세계적으로 IT 분야에서 명성이 자자하고, 내가 아는 것 만으로도 세 권의 세계적인(혹은 여러 나라 말로 번역된) IT 저서를 저술한 사람과 함께 밥을 먹고 헤어진 시각.<br><br>아마 모르긴 몰라도 평생동안 이 사람보다 세계적으로 유명한 사람과 함께 식사할 일이 생길 것 같지는 않다.<br><br>얼마간은 잊혀지지 않을 것 같다.<br><br><br>대~한민국! 아자아자아자 스위스 깨는 것을 보기위해 언능 자자~!</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

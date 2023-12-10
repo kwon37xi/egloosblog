@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Eclipse] MyEclipseIDE 4.0 JSP-&gt;Java 변환된 소스 디버깅</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-10-13 15:16:42</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Eclipse] MyEclipseIDE 4.0 JSP-&gt;Java 변환된 소스 디버깅</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Eclipse 3.1 + MyEclipseIDE 4.0 + Tomcat 으로 JSP 개발을 하는 도중 JSP에서 예외가 발생하면 JSP가 Java로 변환된 소스의 줄 번호가 예외 메시지에 나오게 된다. (JSP Spec 2.0/Servlet Spec 2.4 일 경우에는 JSP 줄수도 나온다)<br><br>이럴때 소스 디렉토리에 가서 읽는 방법도 있지만, 그러지 말고 아예 톰캣이 생성하는 Java 소스를 프로젝트 디렉토리에 넣고 그 디렉토리를 소스 디렉토리로 지정해 버리면 예외 메시지에서 클릭만 해도 소스로 간다.<br><br>$CATALINA_HOME/conf/Catalina/localhost/컨텍스트명.xml 을 만들고,<br><blockquote class="src">&lt;Context path="/컨텍스트명" docBase="프로젝트실행디렉토리경로"<br>&nbsp;&nbsp;&nbsp;&nbsp;debug="0" reload="false" <strong>workDir="프로젝트디렉토리/work"&gt;</strong><br>&lt;/Context&gt;<br></blockquote><br>위와 같이 하면 톰캣이 JSP를 Java 로 변환한 소스를 프로젝트디렉토리/work에 저장하게 된다.<br><br>* Eclipse로 가서 work 디렉토리를 소스 디렉토리로 지정하고, class 내보내는 경로를 work 디렉토리 자신으로 지정한다.<br> : 프로젝트이름에서 오른쪽클릭 -> Properties -> Java Build Path -> Add Folder -> work 디렉토리 선택<br> : <del>Allow output folders for source folders 선택</del><br> : <del>work 디렉토리의 Output 폴더를 자기 자신으로 변경</del> work 디렉토리의 Output 폴더를 일반 자바 소스의 클래스 디렉토리와 전혀 상관없는 다른 디렉토리로 변경한다. work 디렉토리 자체로 Output시키면 안된다. Eclipse가 work 디렉토리의 소스를 강제로 컴파일하면서 문제를 일으킬 수 있다.<br><br>* work 디렉토리에서 오른쪽 클릭해서 이 디렉토리의 문자 인코딩을 <strong>UTF-8</strong>로 변경한다.<br><br>* $CATALINA_HOME/common/lib 디렉토리의 jsp-api.jar와 jasper-runtime.jar 를 클래스 패스에 추가한다.<br><br>* JSP를 실행하다 예외가 발생하면 work 디렉토리에서 <strong>F5</strong>를 눌러 변경사항을 읽게 한뒤에 예에 메시지의 JSP가 Java 로 변환된 소스 코드 부분을 클릭하면 그 부분으로 이동한다.<br><br>이제 쪼끔이나마 편하게 개발한 수 있다.<br><br>단... 나는 <strong>JSP 2.0/Servlet 2.4를 이용하는 것이 위와 같이 하는 것보다 정신 건강에 도움이 되리라</strong> 믿는다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

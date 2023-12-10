@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>개발 문서 정리 블로그</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2008-05-15 13:58:12</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">개발 문서 정리 블로그</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">작년부터 프로그래밍 관련 문서 정리작업을 기존 블로그에서 하던 것을 모두 <a href="http://kwon37xi.springnote.com">스프링노트</a>로 옮겼기 때문에 이 블로그에서는 개발 팁 관련 문서를 별로 보기가 힘들어 졌습니다.<br><br>"문서"라고 불리울 정도 수준의 개발 관련 글은 모두 스프링노트에서만 볼 수 있습니다.<br><br>헌데, 이게 전혀 너무 노출이 안되면 기껏 만들어 둔게 많은 사람들에게 공유가 되지 않아 노력을 무색케 하는 면이 있어서 좀 아쉬웠는데, 강모 개발자님께서 <a title="" href="http://www.springlog.com">스프링로그</a>라는 순수하게 스프링노트에 기반한 블로그 시스템을 만들어줘서 주요하다 싶은 개발 관련 글은 모두 <a title="" href="http://kwon37xi.springlog.com">나의 스프링로그</a>에 포스팅하기로 했습니다.<br><br>물론 스프링노트의 RSS를 직접 구독하고 보는 방법도 있긴한데, 그럴 경우 정제되지 않은 문서들이 계속해서 노출돼서 좀 어질어질 할 것 같습니다.<br><br><a title="" href="http://kwon37xi.springlog.com">http://kwon37xi.springlog.com</a> 에서 관련글을 구독해보세요.<br><a title="" href="http://kwon37xi.springlog.com/pages.atom">kwon37xi.springlog.com의 Atom Feed</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

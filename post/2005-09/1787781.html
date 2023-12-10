@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Java] Jakarta Commons Email 1.0 이 나왔다.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-09-29 11:38:56</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Java] Jakarta Commons Email 1.0 이 나왔다.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://jakarta.apache.org/commons/email/">Jakarta Commons Email 1.0</a>이 나왔다.<br><br>안그래도 회사 고객들에게 일괄적으로 메일을 보내라는 명령이 떨어졌는데, 딱 맞춰 나와줬다.<br><br>아주 손쉽게 이메일을 보낼 수 있었다.<br><br>워낙 API가 간단해서 뭐 설명할 것도 없다.<br><a href="http://jakarta.apache.org/commons/email/examples.html">Email 예제</a>를 보면 쉽게 할 수 있다.<br><br>주의할 것은 EUC-KR로 이메일을 보낼 때 <b>email.setCharset("euc-kr");을 Email 객체를 생성하자마자 실행</b>해줘야 한다는 것이다.<br><br>그것만 기억하면 정말 쉽게 이메일을 발송할 수 있을 것이다.<br><br>-- 추가 : <a href="http://java.sun.com/products/javamail/">Java Mail API</a> 와 <a href="http://java.sun.com/products/javabeans/glasgow/jaf.html">Java Activation Framework</a>가 필요하다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

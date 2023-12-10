@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>처음부터 다시 배우는 리눅스</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-15 23:27:36</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">처음부터 다시 배우는 리눅스</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://www.zdnet.co.kr">ZDNet</a>에서 지금 쉬운 리눅스 강좌를 하고 있다.<br><br>개인적으로 리눅스를 데스크탑으로 쓰라고 까지 할 맘은 없지만, 프로그래머라면(윈도우 프로그래머가 아닌 이상) 유닉스 명령 몇개는 필수적으로 알아야 하고, VI 에디터의 기본은 알아야 한다고 보는데, 이 강좌가... 그런 프로그래머들에게 딱 "필요한 만큼"만 설명을 하는 것 같다.<br><br> 1. <a href="http://www.zdnet.co.kr/techupdate/lecture/os/0,39024998,39129955,00.htm">개발자를 위한 리눅스 설치와 기본 명령어</a><br> 2. <a href="http://www.zdnet.co.kr/techupdate/lecture/os/0,39024998,39131367,00.htm">고급 리눅스 명령어와 중요 시스템 관리</a><br> 3. <a href="http://www.zdnet.co.kr/techupdate/lecture/os/0,39024998,39131065,00.htm">개발자를 위한 vim 편집기 사용법</a><br> 4. <a href="http://www.zdnet.co.kr/techupdate/lecture/os/0,39024998,39131586,00.htm">리눅스 환경의 새로운 변화와 적응</a> <끝></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

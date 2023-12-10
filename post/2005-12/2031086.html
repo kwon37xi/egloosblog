@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[ESB] SonicSoftware의 ESB 정의</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-12-17 02:00:43</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[ESB] SonicSoftware의 ESB 정의</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">ESB의 개념을 처음으로 만든 것으로 알려진 <a title="" href="http://www.sonicsoftware.com">SonicSoftware</a> 에서 <a title="" href="http://www.sonicsoftware.com/products/sonic_esb/architecture_definition/index.ssp">Enterprise Service Bus 정의 백서</a>를 내 놓았다.<br>뭐 <a title="" href="http://www.oreillynet.com/pub/wlg/8762">관련 기사</a>들을 보니 자사 제품 홍보를 위한 ESB 정의라는 글이 많이 보이긴 하는데, 어쨌든 ESB가 뭔지에 대한 개념이 혼미한 상황에서 ESB의 주창자가 내 놓은 정의이니 읽어볼만은 하겠지.<br><br>참고로 관련기사에 링크한 <a title="" href="http://www.oreillynet.com/pub/au/207">Dave Chappel</a>은 <a title="" href="http://www.oreilly.com/">Oreilly</a> 사의 <a title="" href="http://www.hanbitbook.co.kr/look.php?isbn=0-596-00068-5">Java Message Service</a>, <a title="" href="http://www.hanbitbook.co.kr/look.php?isbn=0-596-00675-6#author">Enterprise Service Bus</a>, <a title="" href="http://www.hanbitbook.co.kr/look.php?isbn=0-596-00269-6#author">Java Web Services</a> 등의 책을 쓴 Sonic Software의 부사장이자 기술 에반젤리스트이다. 얼마전에 방한했던걸로 아는데, 못봤네.. --;<br><br>번역 및 요약은 틈나는대로 이 글에 이어서 해 둘 예정. 과연??<br><br>tags : esb sonicsoftware</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

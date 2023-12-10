@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] Oracle - ORA-00918: column ambiguously defined.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-08-11 21:31:34</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] Oracle - ORA-00918: column ambiguously defined.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">여러 컬럼을 조인 할 경우에는 갈 컬럼 이름에 각 컬럼의 값을 가져올 테이블 이름도 붙여줘야 한다.<br><br><BLOCKQUOTE class="SOURCE">TableName.colname<br></BLOCKQUOTE><br><br>이번에 꽤 많은 테이블을 조인하는 오라클 쿼리를 작성하면서 모든 컬럼에 테이블 이름을 함께 붙여준 것을 계속 확인했으나 <B>ORA-00918: column ambiguously defined.</B>가 끊임없이 괴롭혔다.<br><br>이유는...<br><br><B>FROM 절에 동일한 테이블 명을 두 번 줬기 때문이다.</B><br><br>동일한 테이블이 조인 될 이유는 없었기 때문에 테이블 이름에 Alias 를 주지 않았었는데, 그러면서 동일한 테이블 이름을 두번 기입했기 때문이다. 컬럼에 아무리 테이블 이름을 모두 다 붙여도 FROM절이 모호 했던 것이다.<br><br>근데.. 왜 컬럼에다가 대고서 모호하다고 우기냐고요... --;<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

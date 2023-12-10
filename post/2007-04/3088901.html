@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>이 블로그는 본래의 목적을 상실할 예정입니다.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-04-02 09:39:09</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">이 블로그는 본래의 목적을 상실할 예정입니다.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">이 블로그는 "까먹지말자" 제목처럼, 제가 프로그래밍을 하면서 기억해두고 싶은 것들을 적어두는 팁 노트 같은 곳이었습니다.<br>남의 글을 베끼기 보다는, 되도록 스스로 공부하거나 번역한 것들을 올리려는 나름대로의 노력을 하였다고 생각합니다.<br><br>사실 노력에 비해 너무 많은 분들이 찾아 주셔서, 안주하고자 하는 생각이 들 때마다 저를 일깨워 주는 역할도 하였습니다.  <br><br>하지만 이제부터는 이 블로그에 개발관련 문서 같은 것은 별로 올라오지 않을 예정입니다.<br>이제부터 개발 관련 문서들은 개인화 위키 서비스인 <A href="http://kwon37xi.springnote.com"><IMG src="http://www.springnote.com/images/developer/springnote_1_88x31_1.jpg" border="0"></A>으로 올릴 수 있도록 하겠습니다.<br>그게 관련문서를 정리하고, 필요할 때 변경하는 본연의 목적에 부합하는 것 같습니다. 그렇다고 지금까지 올린 글을 모두 옮길 생각은 없습니다. 기존 링크는 모두 그대로 유지됩니다.<br><br>블로그는 말 그대로, 제 "생각"들을 끄적이는 공간이 될 것 같습니다..<br><br>근데 어쩌죠? 전 별로 생각없이 사는 사람인데... ^^</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[UNIX-SH] 어제 날짜를 알고 싶어요~</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-11-01 23:43:39</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[UNIX-SH] 어제 날짜를 알고 싶어요~</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://www.faqs.org/qa/qa-10326.html" title="">http://www.faqs.org/qa/qa-10326.html</a><br><br>나는 아래로 해결~<br><blockquote class="src">TZ=GMT+24 date <br></blockquote><br><br>-- 20051128 추가<br>다음과 같은 시도들도 해볼 것~<br><blockquote class="src"># 오늘날짜<br>TODAY=`date +"%Y%m%d"`<br><br># 어제 날짜<br>YESTERDAY=`perl -e '@T=localtime(time-86400);printf("%04d%02d%02d",$T[5]+1900,$T[4]+1,$T[3])'`<br><br># 지난 달<br>PREVMONTH=`perl -e '@T=localtime(time);@PMT=localtime(time - (86400* ($T[3] + 1)));printf("%04d%02d",$PMT[5]+1900,$PMT[4]+1)'`<br></blockquote><br> * 86400 는 하루(24 * 60 * 60)을 의미한다.<br> * 지난 달을 구할때 31일 치를 안 뺀 이유는 2월이나 30일까지 밖에 없는 달들 때문이다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

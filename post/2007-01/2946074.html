@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Vim] Tab 관련 팁을 추가했음.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-01-19 13:57:42</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Vim] Tab 관련 팁을 추가했음.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">요즘, <a title="" href="http://www.vim.org">GVim 7.0</a>으로 주로 개발을 하며, 특히 탭 기능의 덕을 많이 보고 있다.<br><br>윈도우에서 Vim 7.0을 사용할 때 몇몇 탭 기능 관련 팁을 <a title="" href="http://kwon37xi.egloos.com/1501256">[VIM] vi/vim notes 번역</a>에 추가했다.<br><br>중복 정보이긴 하지만, 탭 기능을 알고 싶은 분들을 위해 따로 글을 올린다.<br><br>◆ <b>파일 드래그 앤 드롭시 항상 탭으로 열기 (7.0 이상)</b><br><blockquote class="src">autocmd VimEnter * tab all <br>autocmd BufAdd * exe 'tablast | tabe "' . expand( "&lt;afile") .'"'<br></blockquote><br>◆ <b>윈도우 Gvim에서 연결 프로그램으로 파일 열 때 탭으로 열기 (7.0 이상)</b> : Windows에서 <strong>HKEY_CLASSES_ROOT\Applications\gvim.exe\shell\edit\command</strong> 키의 실행 옵션에 <strong>--remote-tab</strong>을 추가하면 연결 프로그램으로 GVim을 지정했을 경우 이미 GVim이 있으면 해당 GVim 창에서 새 탭을 생성해 파일을 열도록 한다.<br><br><b><big>Vim 7.0 Tab관련 매핑</big></b><br><blockquote class="src">" Vim 7.0 탭 매핑 from <a title="" href="http://www.vim.org/tips/tip.php?tip_id=1221">http://www.vim.org/tips/tip.php?tip_id=1221</a><br>map th :tabprev&lt;CR&gt;<br>map tl :tabnext&lt;CR&gt;<br>map tn :tabnew&lt;CR&gt;<br>map td :tabclose&lt;CR&gt; <br></blockquote><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

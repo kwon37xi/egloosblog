@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>-Xmx를 아무리 늘려도 Out Of Memory가 발생해요.. 그렇다면 MaxPermSize를~</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-04-20 13:32:44</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">-Xmx를 아무리 늘려도 Out Of Memory가 발생해요.. 그렇다면 MaxPermSize를~</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://raibledesigns.com/page/rd?entry=how_do_you_determine_a">How do you determine a good MaxPermSize?</a>에서 Matt 가 OOM(OutOfMemory) 에러에 시달리는데, -Xmx 사이즈를 아무리 늘려도 해결이 안됐었나 보다.<br><br>설명에 의하면 클래스의 메타 정보는 -Xmx 로 지정되는 메모리 영역이 아닌 <strong>MaxPermSize</strong>로 지정되는 메모리 영역에 들어간다고 한다.<br><br>헌데, 요즘, Spring, iBatis, Hibernate 같은 리플렉션을 이용해서 클래스 메타 정보를 가져다 쓰는 프레임워크들이 많아지면서, MaxPermSize 를 기본값으로 놓고 사용하면 메모리가 부족해지는 현상이 일어나나 보다(나는 아직 겪어보지 못했다).<br><blockquote class="src">-XX:PermSize=64m -XX:MaxPermSize=256m<br></blockquote><br>위와 같이 MaxPermSize를 지정하면 된다.<br><br>근데, 댓글들을 읽어보면 256m 은 좀 오바인것 같고, OOM 오류가 발생하면 테스트를 해가면서 세팅해야 할 것 같다.<br><br>기본 값은 JVM이 -client 옵션의 경우에는 32m -server 옵션일 경우에는 64m 이라고 한다.<br><br>또한, MaxPermSize는 -Xmx 로 지정한 메모리 용량과 별도로 할당된다. 즉, -Xmx가 256m 이고, -XX:MaxPermSize가 256m 이라면, 최대 512m이 할당될 수 있다는 것이다.<br><br><a title="" href="http://www.unixville.com/~moazam/stories/2004/05/17/maxpermsizeAndHowItRelatesToTheOverallHeap.html">MaxPermSize and how it relates to the overall heap</a>에 MaxPermSize에 대한 더 자세한 내용이 있다.<br><a title="" href="http://blog.naver.com/swucs?Redirect=Log&logNo=40011983402">JAVA(J2SE 1.4.1) 메모리 영역 구조</a>도 함 읽어보자.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

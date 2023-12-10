@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[책] 해신</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-19 11:40:55</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[책] 해신</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">최인호의 장편소설 <a href="http://www.aladdin.co.kr/shop/book/wbook.aspx?ISBN=8970633421">해신</a>을 읽었다.<br><br><img src='./686089/b0046915_1134296.gif'><br><br>평가 : 그냥... 쫌 그래...<br><br>KBS 드라마 해신을 기대하고 읽었는데, 영 기대와는 딴 판이다.<br><br>장보고 이야기에 실제로 장보고가 거의 등장하지 않는다. 실제 스토리는 "김양" 이라는 인물의 정권 찬탈 이야기라고 봐도 무방하다.<br><br>일본에 있는 "신라명신"을 갑작스레 장보고라고 단정지어버리는 것도 당황스럽고..<br>사실상 전체 내용의 반을 차지하는 고사 성어 해설도 짜증났다.<br><br>난 장보고 이야기를 보려고 책을 산거지 고사 성어나 읽으려고 산게 아니다!<br><br>실망, 실망...</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

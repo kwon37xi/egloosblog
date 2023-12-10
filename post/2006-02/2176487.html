@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>기본적인 log4j.properties와 간단한 사용법</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-02-05 22:01:56</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">기본적인 log4j.properties와 간단한 사용법</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">아직도 System.out.println()으로 디버그용 메시지를 화면에 출력한다면, 이제 삽질 그만하고 로깅 API들을 사용해 볼 것을 권장하고 싶다.<br><br>그 중에서도 난 Log4j를 사용한다. (사실 이거밖에 모른다... ;) )<br><br>혹여 log4j.properties 설정이 귀찮아서 Log4J를 사용하지 않는다면 다음의 기본적인 log4j.properties를 사용해보자. 이것만으로도 System.out.println과는 비교할 수 없는 강력하고 편리한 로깅 기능을 사용할 수 있다.<br><br>기본적인 log4j.properties<br>아래 로그설정은 로깅 메시지를 화면에도 출력하고 파일로도 출력한다. 파일의 경우에는 매일매일 날짜별로 다른 파일을 사용하므로 한개의 로그 파일이 무한정 커지는 것을 걱정할 필요는 없다.<br><br>이 설정대로 하면 로깅 메시지에 로그를 남긴 소스파일의 이름과 소스에서 메소드 이름과 줄 번호까지 출력된다. System.out.println()으로는 꿈도 못꾸는 기능들이다.<br><br><blockquote class="src">log4j.rootLogger = DEBUG, stdout, dailyfile<br><br>log4j.appender.stdout = org.apache.log4j.ConsoleAppender<br>log4j.appender.stdout.layout = org.apache.log4j.PatternLayout<br>log4j.appender.stdout.layout.ConversionPattern=%5p ({%t} %F[%M]:%L) [%d] - %m%n<br><br>log4j.appender.dailyfile.Threshold = DEBUG<br>log4j.appender.dailyfile = org.apache.log4j.DailyRollingFileAppender<br>log4j.appender.dailyfile.File = logfile.log<br>log4j.appender.dailyfile.layout = org.apache.log4j.PatternLayout<br>log4j.appender.dailyfile.layout.ConversionPattern=%5p ({%t} %F[%M]:%L) [%d] - %m%n<br></blockquote><br>저기서 logfile.log 가 로그의 내용을 출력할 파일 이름이다. 적당히 다른 이름으로 바꾼다. 절대경로로 줘도되고 위와 같이 상대경로로 줘도 된다.<br><br>위 파일을 클래스패스가 걸린 디렉토리에 두면 된다. 웹 어플리케이션은 <strong>WEB-INF/classes</strong>에 두면 된다.<br><br>로그는 어떻게 남기지?<br>각 클래스에서 로그를 남길 때는 다음과 같이..<br><br><blockquote class="src">//&nbsp;로거&nbsp;임포트하기<br>import&nbsp;org.apache.log4j.Logger;<br><br>public&nbsp;class&nbsp;ClassName&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;/**&nbsp;Log4J&nbsp;로거&nbsp;얻기&nbsp;*/<br>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;Logger&nbsp;log&nbsp;=&nbsp;Logger.getLogger(ClassName.class);<br>&nbsp;&nbsp;&nbsp;&nbsp;//혹은&nbsp;private&nbsp;Logger&nbsp;log&nbsp;=&nbsp;Logger.getLogger(this.getClass());<br>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;method()&nbsp;{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(log.isDebugEnabled())&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.debug("디버깅용&nbsp;메시지");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.info("정보를&nbsp;남기기위한&nbsp;메시지");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//어쩌구&nbsp;저쩌구&nbsp;실행...<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(Exception&nbsp;ex)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//로그에&nbsp;예외&nbsp;메시지도&nbsp;함께&nbsp;남기기<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.error("예외가&nbsp;발생했어요~~",&nbsp;ex);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}<br></blockquote><br><strong>ClassName.class</strong>는 로거가 출력할 클래스의 이름이다. 그냥 항상 클래스이름.class로 하면 된다.<br><br>만약 static 메소드에서 로거를 사용해야 한다면 로거를 생성하는 부분을<br><br><blockquote class="src">private static Logger log = Logger.getLogger(ClassName.class);<br></blockquote><br><br>위와 같이 static 으로 선언하면 된다.<br><strong>되도록 static으로 로거를 생성하지 말라.</strong> 이에 관해서는, <a title="" href="http://wiki.apache.org/jakarta-commons/Logging/StaticLog">Logging/StaticLog</a>를 참조한다. 추가: 2006/04/11<br><br>실제로 로그 메시지 출력이 어떻게 되는지는 직접 확인해보면 알 수 있을 것이다.<br><br>마무리~<br>자, 이제 프로그램에서 보기 싫은 System.out.println()을 몽땅 없애버리자!!<br>Log4J하나만으로도 디버깅하기 쉽고 뽀대나고 어딘가 비싸보이는 프로그램이 된다. ^^;</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

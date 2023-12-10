@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>2008 WoC 멘토를 하고자 합니다.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2008-12-08 22:19:45</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">2008 WoC 멘토를 하고자 합니다.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">NCSoft 오픈마루 스튜디오에서는 3년전부터 매년 <a href="http://woc.openmaru.com/">Winter of Code</a> 라는 것을 합니다. 겨울 방학때 학생들이 개발을 하고 현업에 종사하는 개발자들이 멘토링을 해주는 행사이지요.<br><br>지금까지는 한 번도 여기에 참여한 적이 없었는데요, 제가 이번에 만들고 싶은 애플리케이션이 있어서 제가 만든다기 보다는 제가 멘토로 참여하여 학생들과 함께 만들어 보고 싶네요.<br><br>오해가 있을까봐 잠깐 부연 설명 - WoC의 멘토는 개발을 해주는 것이 아니라 학생들이 개발하는데 대해 가이드만 해주는 것입니다. 개발은 학생이 하는 것입니다.<br><br>일단 제가 만들고 싶은 것을 소개합니다.<br><br>간단히 요약하면 독서 목록을 관리하고 함께 나누는 싸이트입니다. 사실은 요즘에 블로그에 올리고 있는 책 리뷰를 좀 더 편하게 써보고자 하는 욕심에서 나온 것이지요.. ^^;<br><br><ol><li>사용자는 자기가 가지고 있는 책, 보고 싶은 책, 보고 있는 책들로 목록을 만듭니다. - Aladdin, Daum, Naver, Amazon 등의 오픈 API를 사용합니다.</li><li>해당 책에 관한 리뷰를 작성하고 별점을 메깁니다.</li><li>리뷰는 MetaWebLog, Daum Blog API 등을 사용하여 블로그에 포스팅을 할 수 있습니다.</li><li>기타 기능이 더 붙습니다만, 그게 좀 핵심이 되는 것이라 여기서 상세한 아이디어는 공개하지 않겠습니다. 학생과 함께 키워나가도록 하지요. ^^</li></ol>이와 비슷한 싸이트가 이미 존재합니다. 바로 <a href="http://openyourbook.net/">OpenYourBook</a> 이지요. 사실 이 아이디어를 생각하고 난 뒤에서야 혹시 이미 비슷한게 있는거 아냐? 하고 찾아봤었습니다. 역시나 있더군요.<br><br>하지만 몇가지가 다릅니다. 그리고 사실 이게 만들어서 오픈하는 것 보다는 만드는 과정 자체를 학생이 느껴보도록 하는 것도 목표이기 때문에 이미 존재하고 말고는 크게 의미가 없습니다. 그리고 프로그램의 규모도 학생이 하기에 그렇게 부담되지 않을 정도 인 듯 하네요.<br><br>그렇다면 학생은 어떠한 스킬을 기본적으로 가지고 있어야 할까요? 아래는 제가 알려주는 것이 아닙니다. 이미 기본 지식을 알고 있거나 스스로 공부할 의지를 충분히 갖추고 있어야 합니다(좀 스펙이 높긴 하군요.. "기본"을 알고 있다는 정도로..).<br><ol><li>HTTP 프로토콜에 대한 기본적인 이해.</li><li>Java/JavaScript/CSS</li><li>Servlet/JSP(혹은 FreeMarker)<br></li><li>Spring</li><li>Hibernate 혹은 iBATIS 혹은 Spring JDBC</li><li>MVC 패턴과 Service, Dao 로 구성하는 개발 방식<br></li><li>Subversion 을 통한 소스 코드 관리<br></li><li>Eclipse</li></ol>가능한 한 제가 일하고 있는 회사의 자바 개발 환경, 개발 방식을 그대로 따르도록 하고자 합니다. 아마도 저러한 기본 지식을 갖추고 있더라도 실제로 개발한 경험은 없는 학생들도 있겠지요? 그래서 제가 회사에서 일 하던 방식을 그대로 가이드 해 주게 될 것입니다. Hibernate는 사실 욕심이 과한 듯 합니다. 상황을 봐서 iBATIS 혹은 Spring JDBC로 스펙을 낮추도록 할 예정입니다.<br><br>그리고 개발을 하는 도중 학생은 어떠한 방식을 사용하게 될까요?<br><ol><li>Test Driven Development : 제가 요즘 빠져 있습니다. 요즘에는 테스트를 만들지 않으면 거의 코드를 짜지 않으려고 하는 편이지요. 이건 저도 함께 공부하게 되겠군요.</li><li>Maven 을 통한 프로젝트 의존성 및 빌드 관리<br></li><li>기타 제가 밥도 좀 사주면서 함께 만나 짝 프로그래밍도 할 예정입니다. - 이번 WoC에는 아마도 개발자와 학생이 PC를 들고 직접 만나 모두 모여 코딩하는 세션이 들어갈 것 같습니다. 없더라도 제가 따로 시간을 내도록 할 예정입니다.</li></ol>혹시 함께 하고자 하는 학생(1명 혹은 그 이상의 팀도 가능합니다)이 있다면 오픈마루 스튜디오에서 얼마후에 하는 <a href="http://woc.openmaru.com/blog1/entry/Event-Page">W Day</a> 때 저에게 면담을 요청해주세요. <a href="http://woc.openmaru.com/blog1/entry/Event-Page">W Day</a>는 학생과 멘토들이 먼저 만남을 가지고 멘토들이 학생들을 만나보고 강연도 듣는 그런 날입니다.<br><br>이 프로젝트에 관심이 있으시면 <img src='./4006641/b0046915_493d1d5d01194.png'> 으로 이메일을 줘서 미리 약속을 잡아도 좋을 것 같고, <a href="http://woc.openmaru.com/blog1/entry/Event-Page">W Day</a> 당일날 어찌 어찌 만나게 되어도 괜찮습니다. 그러면 저는 여러분들중에 누군가를 좀 더 자세히 알고 프로젝트를 수행할 학생을 선택할 수 있게 됩니다.<br><br>야, 긴 글 읽어주셨군요. 고마워요~<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

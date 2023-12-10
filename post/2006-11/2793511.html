@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>JSP/Servlet Spec 버전별 특징</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-11-02 12:17:23</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">JSP/Servlet Spec 버전별 특징</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Java 웹 어플리케이션을 개발하다보면, 의외로 자기가 현재 사용중인 JSP/Servlet 스펙의 버전을 모르는 상태로 개발하는 것을 많이 보게 된다.<br><br>특히, 자주 나타나는 것으로 개발은 <a title="" href="http://tomcat.apache.org">Tomcat</a> 에서 하면서, 실제 갑은 톰캣이 아닌 다른 WAS를 사용할 경우가 있는데, 이는 나중에 아주 심각한 문제로 대두될 수 있다. Tomcat 5에서 Tomcat 5가 지원하는 JSP 2.0/Servlet 2.4로 (해당 스펙의 기능을 이용해서) 개발했다가, 나중에 갑이 우리는 죽었다 깨나도 웹 로직 8.1(JSP 1.2/Servlet 2.3) 쓸래... 그래버리면, 그때부터는 열심히 노가다로 고쳐야 된다.<br><br>간단하게 JSP/Servlet 스펙을 내가 아는대로 정리해본다. 특히 <strong>개발시 Tomcat으로 개발 환경을 구축한다면, 갑이 원하는 WAS가 지원하는 스펙 버전을 확인해서 그 스펙 버전에 맞는 톰캣을 사용하도록 한다.</strong> 물론 각 WAS별 지원 스펙은 해당 WAS의 업체에 물어보면 된다.<br><br><div class="h2">Tomcat 버전별 지원 스펙</div><br>* Tomcat 3.x : JSP 1.1, Servlet 2.2<br>* Tomcat 4.x : JSP 1.2, Servlet 2.3<br>* Tomcat 5.x : JSP 2.0, Servlet 2.4<br><br>위 내용은 <a title="" href="http://tomcat.apache.org/whichversion.html">http://tomcat.apache.org/whichversion.html</a>에서 확인할 수 있다.<br>물론 상위 버전을 지원하는 WAS는 하위 버전 스펙도 지원한다. Tomcat 5.x에서 JSP 1.1/Servlet 2.2 어플리케이션 짜도 괜찮다. 하지만 안그러는게 더 안전할 거 같다.<br><br><div class="h2">Tomcat 3.x : JSP 1.1, Servlet 2.2 는...</div><br>* web.xml 에서 다음과 같은 DTD를 선언해줘야 한다.<br><blockquote class="src">&lt;?xml&nbsp;version="1.0"&nbsp;encoding="ISO-8859-1"?&gt;<br>&lt;!DOCTYPE&nbsp;web-app<br>&nbsp;&nbsp;&nbsp;&nbsp;PUBLIC&nbsp;"-//Sun&nbsp;Microsystems,&nbsp;Inc.//DTD&nbsp;Web&nbsp;Application&nbsp;2.2//EN"<br>&nbsp;&nbsp;&nbsp;&nbsp;"http://java.sun.com/j2ee/dtds/<strong>web-app_2_2.dtd</strong>"&gt;<br>&lt;web-app&gt;<br>&nbsp;&lt;!--&nbsp;어쩌구&nbsp;저쩌구...--&gt;<br>&lt;/web-app&gt;<br></blockquote><br>* 한글 파라미터 처리에 심각한 문제가 있다. <strong>ServletRequest.setCharacterEncoding(String)</strong>메소드가 존재하지 않기 때문에 각 요청에 대해 일괄적인 문자 인코딩 지정을 할 수가 없다.<br>* 한글 파라미터 처리를 하려면 모든 요청에 대해서 다음 처럼 인코딩 변환작업을 해줘야 한다.<br><blockquote class="src">String&nbsp;param&nbsp;=&nbsp;new&nbsp;String(request.getParameter("param").getBytes("latin1"),"euc-kr");<br></blockquote><br>위와 같은 노가다를 안 하려면 MVC 패턴 프레임워크를 사용하면서 Controller 부분에서 일괄적으로 request 객체를 바꿔치기해서 getParameter()가 인코딩을 자동으로 해주도록 해야 한다. <a title="" href="http://kwon37xi.egloos.com/2601305">Spring MVC에서 그런식으로 한 예제(이거도 사실 불완전함).</a><br>사실.. 한글 문제가 아니더라도 MVC패턴 프레임웍을 쓰는것이 여러모로 좋은 것은 이미 다들 아실거 같다.<br>* Filter와 Listener가 존재하지 않는다. 특히 Filter는 상당한 노가다를 줄여주는 역할을 해서, 많이 애용되지만 JSP 1.1/Servlet 2.2에는 존재하지 않는다.<br>* 서블릿을 web.xml에서 매핑하지 않고 패키지명을 포함한 클래스의 완전한 이름을 통해 브라우저에서 서블릿의 직접 호출이 가능하다. 매우 좋지 않은 습관이지만 어쨌든 가능하다.<br><br>너무 오래된 스펙이고 불편한 점이 많으므로 되도록 사용하지 않는게 좋다. 갑이 이 스펙의 WAS를 요구하면 설득해서 최소한 JSP 1.2/Servlet 2.3 으로 바꾸도록 하길 권장하고 싶다.<br><br><div class="h2">Tomcat 4.x : JSP 1.2, Servlet 2.3 는...</div><br>* web.xml 에서 다음과 같은 DTD를 선언해줘야 한다.<br><blockquote class="src">&lt;?xml&nbsp;version="1.0"&nbsp;encoding="ISO-8859-1"?&gt;<br>&lt;!DOCTYPE&nbsp;web-app<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PUBLIC&nbsp;"-//Sun&nbsp;Microsystems,&nbsp;Inc.//DTD&nbsp;Web&nbsp;Application&nbsp;2.3//EN"<br>&nbsp;&nbsp;&nbsp;&nbsp;"http://java.sun.com/dtd/<strong>web-app_2_3.dtd</strong>"&gt;<br>&lt;web-app&gt;<br>....<br>&lt;/web-app&gt;<br></blockquote><br>* <strong>ServletRequest.setCharacterEncoding(String)</strong>를 통해서 파라미터의 문자 인코딩을 일괄적으로 지정할 수 있다.<br>* Filter와 Listener가 존재한다.<br>* Filter와 ServletRequest.setCharacterEncoding(String)를 이용하면, 한번에 한글 관련 설정이 끝난다.<br>&nbsp;&nbsp;<a title="" href="http://www.javaworld.com/jw-06-2001/jw-0622-filters.html">FIlter 강좌 하나...(영문)</a><br>&nbsp;&nbsp;<a title="" href="http://www.onjava.com/pub/a/onjava/2001/04/12/listeners.html">Listener 강좌 하나...(영문)</a> : 리스너는 웹 어플리케이션이 시작/종료 되거나, 세션 생성/파괴와 같은 특정 이벤트가 발생할 때 부가적인 작업을 해줄 수 있도록 하는 클래스이다.<br>* 기본적으로 서블릿 매핑을 web.xml에 작성하지 않으면 서블릿을 호출할 수 없다.(이게 더 좋은거다... 보안상)<br>* JSTL 1.0 이 도입되었다.<br><br>JSP 1.2/Servlet 2.3 이 현재 우리나라에서 제일 많이 쓰이는 것으로 보이며 개발시 어느정도 무난하다 할 수 있다.<br><br><div class="h2">Tomcat 5.x : JSP 2.0, Servlet 2.4 는...</div><br>* web.xml 에서 다음과 같은 Schema를 선언해줘야 한다.<br><blockquote class="src">&lt;?xml&nbsp;version="1.0"&nbsp;encoding="ISO-8859-1"?&gt;<br>&lt;web-app&nbsp;xmlns="http://java.sun.com/xml/ns/j2ee"<br>&nbsp;&nbsp;&nbsp;&nbsp;xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"<br>&nbsp;&nbsp;&nbsp;&nbsp;xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee&nbsp;http://java.sun.com/xml/ns/j2ee/<strong>web-app_2_4.xsd</strong>"<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>version="2.4"</strong>&gt;<br>&lt;!--&nbsp;<strong>DTD에서&nbsp;Schema&nbsp;로&nbsp;바뀌었다.</strong>&nbsp;--&gt;<br>&lt;/web-app&gt;<br></blockquote><br>* 쉽고 강력해진 Tag Library 작성기능.<br>* EL을 JSTL이 아닌 모든 템플릿 문자열에서 사용가능하다.<br>* JSTL 1.1 이 도입되었다.<br>* Function 커스텀 태그를 만들 수 있다.<br>* 그외 자세한 JSP 2.0/Servlet 2.4의 변경 사항 <a title="" href="http://kr.geocities.com/kwon37xi/jsp20/WhatsNewJSP20-1.html">JSP 2.0 뭐가 바뀌었나</a>를 참조한다.<br><br><a title="" href="http://kwon37xi.egloos.com/1462013">Tomcat 4.x/5.x에서의 한글 문제 해결법</a>도 한 번 읽어보시길 권한다.<br><br>개인적으로는 JSP 2.0/Servlet 2.4의 사용을 권장하고 싶다. 스펙 버전이 올라갈 수록 JSP 개발은 더 쉬워지고 생산성도 높아진다(물론 갑이 이 스펙을 지원하는 WAS 사용을 결정했을 때 얘기이다).<br><br>tags : java jsp servlet 서블릿 spec 스펙 version 버전 </div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

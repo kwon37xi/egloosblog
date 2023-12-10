@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>The output format must have a &#39;{http://xml.apache.org/xslt}content-handler&#39; property!</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-05-02 12:03:03</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">The output format must have a &#39;{http://xml.apache.org/xslt}content-handler&#39; property!</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://xml.apache.org/xalan-j/">Xalan</a>을 이용해서 XSLT를 수행할 경우,<br><blockquote class="src">org.apache.xml.utils.WrappedRuntimeException: The output format must have a '{http://xml.apache.org/xslt}content-handler' property!<br></blockquote><br>저 오류가 발생한다면, 거의 틀림없이 <strong>J2SDK 1.4.1 이하 버전</strong> 사용자이다. 1.4.1 이하에 포함된 Xalan의 버그라고 한다. <strong>J2SDK 1.4.2로 하거나 최신 Xalan을 받아서 endorsed 디렉토리에 복사</strong>해 두면 된다.<br><br>톰캣의 경우에는 <strong>common/endorsed</strong> 디렉토리에 두면된다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

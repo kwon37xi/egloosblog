@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>JSP 2.0 뭐가 바뀌었나? 하고 홈페이지 XHTML로 개편.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-09-20 00:25:00</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">JSP 2.0 뭐가 바뀌었나? 하고 홈페이지 XHTML로 개편.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">예전에 번역했던 <a href="http://kr.geocities.com/kwon37xi/jsp20/WhatsNewJSP20-1.html">JSP 2.0 뭐가 바뀌었나?</a>를 정리해서 <a href="http://kr.geocities.com/kwon37xi/">홈페이지</a>에 올렸다.<br><br>뭐 거의 달라진건 거의 없지만... 오타 수정 정도..<br><br>그리고 홈페이지를 유효한 XHTML 1.0  문서로 개편했다.<br><br>야후의 무식한 스크립트 추가만 아니면 완벽했을 텐데.. 좀 아깝긴하다.<br><br>홈페이지를 보다보면 IE 사용자는 최상단에 이상한 막대기를 보게 될것이다.<br>IE가 CSS 표준중에서 fixed 을 잘 지원하지 못해서이다.<br>FireFox와 Opera 에서는 문제없다.<br><br>IE에서도 글 읽는데는 문제 없기 때문에 무시하고 넘어간다.<br><br>가끔 CSS 바꿔치기 해가면서 홈페이지가 순식간에 변신하는 일이 생길 수도 있다. ^^;<br>물론 HTML은 하나도 안바뀐다.<br>CSS 장난질을 위해서 XHTML+CSS을 사용한거니까.<br><br>올 추석은 차도 하나도 안 막히고 잘 끝났다~<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

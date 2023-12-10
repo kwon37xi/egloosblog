@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Java 7 변경된 사항들</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2011-09-07 23:02:54</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Java 7 변경된 사항들</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Java 7이 출시 되었으나, 우리나라에서는별 반향은 없는것 같다.<br><br>사실 Java 5 때 처럼 크게 바뀐점도 없으니까.<br><br>게다가 <a target="_blank" href="http://www.lucidimagination.com/blog/2011/07/28/dont-use-java-7-for-anything/">Java 7 Hotspot VM의 loop 최적화 버그 때문에 실제 운영시 사용하면 안되기도 하고</a>.<br><br>어쨌든 버그는 시간이 해결해 줄 것인지라, Java 7에서 변경된 점을 정리하였다.<br><br><a target="_blank" href="http://wiki.kwonnam.pe.kr/java/7">Java 7 변경된 점</a><br><br>자료가 모이는 대로 조금씩 바뀔예정이다.<br><br>가장 중요한 변경점만 빨리 알고 싶다면 <a target="_blank" href="http://hamletdarcy.blogspot.com/2011/07/java-7-small-language-changes.html">http://hamletdarcy.blogspot.com/2011/07/java-7-small-language-changes.html</a> 이 글의 동영상만 봐도 된다.<br><br>현재 Eclipse Indigo 는 Java 7을 지원하지 않고 있다. <span style="text-decoration: line-through;">Eclipse 3.8 개발 버전</span> Eclipse 3.7 Indigo SR1을 받아서 해야 Java 7 사용이 가능하다.<br>NetBeans 7.0 과 IntelliJ IDEA 최신 버전은 Java 7 을 잘 지원하고 있다.<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

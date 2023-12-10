@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Oracle 관리 및 SQLPlus 정리</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-07-05 13:05:06</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Oracle 관리 및 SQLPlus 정리</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><CENTER><BIG><B>-- Oracle 관리 및 SQLPlus 정리 --</B></BIG></CENTER><br><br>오라클 9i Release 2 기준으로 작성되었음.◈ SGA 정보보기(정상 설치/실행 상태인가?)<br><BLOCKQUOTE class="SOURCE">$ sqlplus system/manager<br>SQL> show sga<br></BLOCKQUOTE><br><br>◈ DBA로 접속<br><BLOCKQUOTE class="SOURCE">$ sqlplus "sys/passwd as sysdba"<br></BLOCKQUOTE><br><br>◈ DB 시작<br>-- 일반 시작<br><BLOCKQUOTE class="SOURCE">$ sqlplus "sys/passwd as sysdba"<br>startup -- DB 인스턴스 시작<br>startup force -- DB가 실행중일 경우 강제로 종료했다 시작<br>startup restrict -- 일반 사용자 접근 금지 상태로 DB 시작<br></BLOCKQUOTE><br><br>-- 단계별 시작<br><BLOCKQUOTE class="SOURCE">$ sqlplus "sys/passwd as sysdba"<br>startup nomount; -- NO Mount 단계<br>alter database mount; -- Mount 단계<br>alter database open; -- Open 단계<br></BLOCKQUOTE><br><br>◈ DB 종료<br><BLOCKQUOTE class="SOURCE">$ sqlplus "sys/passwd as sysdba"<br>shutdown normal -- 세션,트랜잭션 종료시까지 대기후 종료<br>shutdown transactional -- 트랜잭션 종료시까지 대기후 종료<br>shutdown immediate -- 즉시 종료. 모든 DML 롤백<br>shutdown abort -- 비정상 즉시 종료. 백업과 복구시에만 사용.<br></BLOCKQUOTE><br><br>◈ 로그인 없이 SQL*Plus 만 실행하기<br><BLOCKQUOTE class="SOURCE">$ sqlplus "/nolog"<br></BLOCKQUOTE><br><br>◈ Table 생성 스크립트 뽑아내기<br><BLOCKQUOTE class="SOURCE">$ exp mlb/mlb file=결과덤프파일.dmp compress=n rows=n tables=테이블명<br></BLOCKQUOTE><br><br>◈ <B>&amp;</B> 기호 이용하기<br><BLOCKQUOTE class="SOURCE">1. 첫번째 방법<br>SELECT 'You '||Chr(38)||' Me' FROM DUAL;<br><br>2. 두번째 방법<br>SET DEFINE OFF<br>SELECT 'You &amp; me' FROM DUAL;<br></BLOCKQUOTE><br><br>◈ 편집기 및 SQL*Plus 공통 설정 지정하기<br><strong>$ORACLE_HOME/sqlplus/admin/glogin.sql</strong>에 SQL*Plus 실행시 항상 지정되는 전체 설정을 할 수 있다.<br>여기서 "ed" 명령으로 실행되는 에디터는 다음 처럼 지정할 수 있다.<br><blockquote class="SOURCE">DEFINE_EDITOR=gvim.exe<br></blockquote><br><br>◈ 프로시져 혹은 함수등의 소스 뽑아내기<br><BLOCKQUOTE class="SOURCE">SET NEWPAGE 0<br>SET TERMOUT OFF<br>SET VERIFY OFF<br>SET SPACE 0<br>SET PAGESIZE 0<br>SET FEEDBACK OFF<br>SET HEADING OFF<br>SET TRIMSPOOL ON<br>SET LINESIZE 500<br>SPOOL procedure_name.sql<br>SELECT TEXT FROM USER_SOURCE WHERE NAME='프로시져혹은함수이름' ORDER BY LINE;<br>SPOOL OFF<br></BLOCKQUOTE><br>이렇게 저장된 procedure_name.sql 에서 불필요한 부분을 삭제하한다. 각 줄의 공백은 SET TRIMSPOOL ON 에 의해 제거된다.<br>VIM 공백 제거 : <B>:%s/ *$//g</B><br>그리고 이렇게 생성된 소스 맨 앞에 <B>CREATE OR REPLACE PROCEDURE</B> 등을 붙여서 각 프로시져 등의 생성 스크립트로 사용할 수 있게 된다.<br><br>◈ 오류 내역출력<br><BLOCKQUOTE class="SOURCE">SHOW ERRORS<br></BLOCKQUOTE><br>직전에 발생한 오류 내역 출력<br><br>◈ 숫자 출력 범위 늘리기<br><BLOCKQUOTE class="SOURCE">SET NUM 15<br></BLOCKQUOTE><br>숫자를 15자리까지 출력<br><br>◈ 쿼리 결과를 셸 스크립트로 자동 저장하기<br><BLOCKQUOTE class="SOURCE">#!/bin/sh<br># 오늘 날짜를 셸 변수로 지정<br>TODAY=`date +"%Y%m%d"`<br><br>sqlplus username/password << <B>ENDSQL</B><br>-- 아래는 출력시 불필요한 형식 꾸미기가 안들어가게 한다.<br>SET ECHO OFF<br>SET NEWPAGE 0<br>SET SPACE 0<br>SET PAGESIZE 0<br>SET FEEDBACK OFF<br>SET HEADING OFF<br>SET TRIMSPOOL ON<br><br>SPOOL 저장할파일_<B>${TODAY}</B>_ORIG<br><B>SELECT COL1 || '|' || COL2 || '|' || COL3 -- 실행할 쿼리<br>FROM MYTABLE;</B><br>SPOOL OFF<br>QUIT<br><B>ENDSQL</B><br><br># 처음과 마지막 쿼리 잔재 제거. 일단 스풀을 실행해보고나서 파일 위,아래에 추가되는<br># 불필요한 줄수를 알아본다. (여기서는 위에 2줄과 맨 아래 1줄)<br>sed -e "1,2d" -e "$d" 저장할파일_${TODAY}_ORIG > 저장할파일_${TODAY}<br><br># 최종적으로 "저장할파일_${TODAY}"만 남겨둔다<br>rm 저장할파일_${TODAY}_ORIG<br></BLOCKQUOTE><br>위와 같은 내용으로 셸 스크립트를 만들면 SQL*Plus 로 쿼리 결과를 특정한 형식(여기서는 각 컬럼을 세로 바(|)로 나눈 형식)으로 뽑아낼 수 있다.<br>그리고 이 경우 셸 환경 변수 값을 TODAY 처럼 SQL 쿼리 문장에 삽입하는 것이 가능하다.<br><br>◈ 쿼리 수행 시간 알아내기<br><BLOCKQUOTE class="SOURCE">SET TIMING ON<br></BLOCKQUOTE><br>이렇게 설정하고 쿼리를 날리면 쿼리 수행시간도 함께 출력된다.<br><br>◈ DBMS_OUTPUT.* 으로 출력되는 양 조절<br><blockquote class="src">SET SERVEROUTPUT ON SIZE 4000;<br>Execute DBMS_OUTPUT.PUT_LINE(SYSDATE) <br></blockquote><br><br>◈ 참조<br><UL><LI><a href="http://www.orafaq.com/faqplus.htm">SQL*Plus FAQ</a><br><LI><a href="http://www.ss64.com/orasyntax/plus_set.html">SQL*Plus set commands</a><br></UL></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

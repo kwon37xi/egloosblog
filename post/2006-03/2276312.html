@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Apache HTTPD] 특정 디렉토리에 암호 걸기/IP 인증</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-03-13 11:37:34</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Apache HTTPD] 특정 디렉토리에 암호 걸기/IP 인증</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">회사 홈페이지에 <a href="http://moniwiki.sf.net">모니위키</a>를 설치했는데(지금 까지는 내부망에서만 사용하다가...) 외부 사용자가 함부로 보면 안되기 때문에, 현재 회사 사용자의 IP를 통한 자동 인증과 그 외 지역에서 접근을 하기 위한 비밀번호 인증을 걸기로 했다.<br><br>Apache HTTPD 1.3, PHP 버전.. 모름... --;<br><br><strong>.htaccess</strong>을 사용하기 위해서는 httpd.conf에 다음이 필요하다.<br><blockquote class="src">AllowOverride AuthConfig Limit<br></blockquote><br>현재 호스팅 업체는 All로 지정되어 있지 않을까 싶다. None으로 지정하면 .htaccess 사용불가.<br>참조 : 곰아리님, <a href="http://httpd.apache.org/docs/2.0/howto/htaccess.html">http://httpd.apache.org/docs/2.0/howto/htaccess.html</a><br><br><blockquote class="src">$ htpasswd -c /home/kwon37xi/passwords kwon37xi<br><br># 이후 kwon37xi 사용자를 위한 비밀번호 입력.<br></blockquote><br>위와 같이 비밀번호 파일을 만들어주면 "USERID:암호화된비밀번호" 쌍을 가지는 passwords 파일이 생성된다.<br><br>그리고서, 로그인을 거치지 않으면 페이지를 볼 수 없게 해야하는 홈페이지 디렉토리로 이동해서,<br><blockquote class="src">$ vi <strong>.htaccess</strong><br><br># 다음 내용 입력...<br><strong>Satisfy any</strong><br>AuthType Basic<br>AuthName "By Invitation Only"<br>AuthUserFile /home/kwon37xi/passwords<br>Require user kwon37xi<br><br># IP 인증 - 비밀번호 인증만 할 경우에는 아래 Limit 항목 전체가 불필요함.<br>&lt;Limit GET POST&gt;<br>order deny,allow<br>deny from all<br>allow from <strong>192.168.1.1</strong> [or IP or DomainName ...]<br>require valid-user<br>&lt;/Limit&gt;<br></blockquote><br>192.168.1.1 은 암호 인증없이 접근 가능한 IP이다. 위에 관해서 <a href="http://www.oops.org/?t=lecture&sb=apachea&n=1">http://www.oops.org/?t=lecture&sb=apachea&n=1</a>를 참조했다.<br>앞으로는 회사 내부에서의 접속은 그냥 통과하고, 그 외지역에서의 접속은 kwon37xi라는 사용자명과 위에서 지정한 비밀번호를 입력하지 않으면 해당 디렉토리 이하의 페이지들은 볼 수 없다.<br><br>Tags: apache httpd .htaccess authentication password 비밀번호 사용자인증 인증</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

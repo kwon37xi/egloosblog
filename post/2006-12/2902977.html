@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>죽갔네...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-28 23:02:58</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">죽갔네...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">출퇴근 시간 총 4시간.. 어리버리 정신 차리고 그러는거까지 합치면, 5시간...<br><br>아웅....<br><br>방을 구하려니, 내년 초까지는 적금을 깰 수 없어서 당장 대책이 없구...<br><br>당장은 Ruby, PHP 그리고.. 아마도 언젠가는 Python도 해야할거 같고...<br><br>게다가 번역도 해야하고.<br><br>압박이 장난이 아니다.<br><br>서른 살의 방황은 무려 4개월만에 드디어 끝났는데,<br><br>오히려 정신이 더 혼미해진다....</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

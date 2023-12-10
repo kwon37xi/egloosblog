@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Eclipse] DB 플러그인 SQL Explorer 소개</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-08-10 10:45:34</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Eclipse] DB 플러그인 SQL Explorer 소개</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><B><BIG>SQL Explorer : Eclipse를 위한 RDMS 쿼리 도구</BIG></B><br><br>모 사이트 지원나갔는데, 간만에 RDB에 접속할 일이 생겼다. 한 1년만인가..<br>select * from table; 빼놓고는 생각나는게 없네.. ^^<br><br>옆에 있는 사람이 DB접속해서 쿼리 날리고 결과 보여주는 프로그램이 없는 나를 보고 원시인 보듯 하는 것같다.. ^^<br>멋진 이클립스 플러그인으로 본떼를 보여주리라~~<br><br><B>◆ 어디서 받나?</B><br><br><a href="http://eclipse-plugins.2y.net/eclipse/index.jsp">Eclipse Plugins</a> 싸이트에 갔더니 DB 관련 플러그인 중에 가장 높은 순위에 있는 것이 <a href="http://sourceforge.net/projects/eclipsesql">SQL Explorer</a>였다. 그래서 선택했다.<br><br>설치는 다 아시다시피 이클립스 디렉토리에 압축을 풀면 된다.<br><br>Ecllipse 3.1을 지원한다.<br><br><B>◆ 사용</B><br>SQL Explorer 는 단독 퍼스펙티브로 작동한다.<br><br>이클립스 차림표에서 <B>Windows->Open Perspective->Other->SQLExplorer</B> 항목을 선택한다.<br><br>여기부터는 My SQL을 기준으로 설명한다.<br>화면 좌측 Drivers 뷰는 DB 접속 템플릿과 같은 것이다. 드라이버 클래스등을 설정해 준다.<br><br><B>◆ JDBC 드라이버 설정</B><br><B>MMMySQL Driver에서 오른쪽 클릭 -> Change the Selected Driver -> Extra Classpath</B> 에서 "Add" 단추를 눌러 My SQL JDBC 드라이버 JAR 파일을 지정한다.<br><br>JDBC드라이버의 JAR는 알아서 구한다.<br><br>Fedora Core 2 에서는 yum install mysql-jdbc 해주면 /usr/share/java 디렉토리에 My SQL의 JDBC 드라이버 JAR가 깔린다.<br><br><B>◆ 접속 정보 설정</B><br><B>Aliases</B> 탭을 누른다. 여기서 진짜 접속에 쓰이는 정보를 설정한다.<br><B>Aliases 뷰의 빈 공간에서 오른쪽 클릭 -> Create New Alias</B>를 누르고 접속에 사용될 별명(아무 이름)과 Driver(MMMySQL Driver 선택), 접속 URL, 사용자명, 비밀번호 등을 기록한다.<br><br><img src='./1630695/b0046915_10364668.png'><br><br><B>◆ 접속과 쿼리 날리기</B><br>이제 Aliases 뷰에 새로 만들 접속 정보가 표시된다.<br>접속정보에서 오른쪽 단추를 누르고 <B>Open...</B>을 하면 접속된다.<br><br>화면 가장 오른쪽 <B>Database Structure View</B> 에서 말 그대로 데이타베이스의 구조, 테이블, 테이블 구조 등을 볼 수 있다.<br><br>SQL문장을 입력하고 실행하려면 화면 오른쪽 하단 Connections 에서 접속 정보의 이름을 오른쪽 클릭하고 New SQL Editor를 하면 화면 가운데에 SQL 문장을 입력하는 편집기가 나온다.<br>거기에서 SQL문을 입력하고 사람이 달리기 하는 모양의 아이콘을 누르면 화면 가운데 하단에 결과가 나온다.<br>단축키로 <B>Ctrl-F9</B> 가 지정되어 있다고 나오지만 작동하지 않았다.<br><br>주: MS-Windows에서는 Ctrl-F9 작동했음<br><br><img src='./1630695/b0046915_10395678.png'><br><br><B>◆ 장/단점</B><br>사실 나는 이 프로그램의 장단점을 논할 수 없다. 딴 걸 써본게 거의 없으니.<br>내 생각에 좋은 점이라면 일단 매우 많은 데이타베이스에 대한 접속 템플릿이 미리 마련되어 있어 초보자들에게 거부감이 덜하다는 점이다.<br><br>허나 도움말이 없다... --;<br><br>참조 : <a href="http://www.eclipsenews.com/en_archive/etips_08042004.html">http://www.eclipsenews.com/en_archive/etips_08042004.html</a><br><br><B>◆ 기타</B><br>쿼리문 중간에 SQL 주석(<B>--</B>)을 넣으면 쿼리가 동작하지 않는다.<br>MySQL이나 SQL*Plus 등에서 작동해도 SQL Explorer에서는 안된다. 쿼리문 중간의 주석은 모두 제거할 것.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

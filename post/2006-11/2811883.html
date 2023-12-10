@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Vim] Plugins I use</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-11-12 09:52:46</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Vim] Plugins I use</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="h1">내가 사용하는 <a title="" href="http://vim.org">Vim </a>Plugin 들..</div><br>내가 주로 사용하는 Vim 플러그인들을 조금씩 정리한다.<br>* <a title="" href="http://kwon37xi.egloos.com/1643980">Linux 등에서 Vim 으로 자바 어플리케이션 작성하기</a><div class="h2"><a title="" href="http://www.vim.org/scripts/script.php?script_id=184">vtreeexplore</a> : 파일/디렉토리 탐색창</div><br>디렉토리 목록을 보면서 파일을 열어서 편집할 수 있게 해준다.<br><blockquote class="src">" .vimrc TreeExplore 관련 설정<br>let treeExplVertical=1<br>let treeExplHidden=1<br>let treeExplWinSize=30<br>map te :VSTreeExplore&lt;CR&gt;<br></blockquote><br>Vim 명령모드에서 <strong>te</strong>를 누르면 왼쪽에 새로운 창이 생기면서 탐색기가 뜬다.<br><strong>o</strong>를 누르면 해당 디렉토리로 이동하거나 파일이 열린다.<br><strong>S</strong>를 누르면 명령행 셸이 열린다.<br>기타 도움말은 $VIMRUNTIME/doc/vtreeexplorer.txt 을 참조한다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

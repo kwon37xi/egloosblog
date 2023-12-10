@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>JDBC SQL 구문에 클라이언트 정보 남기기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2014-03-08 16:59:11</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">JDBC SQL 구문에 클라이언트 정보 남기기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">DB 서버가 한 대 있고, 해당 서버에 접속해서 쿼리를 날리는 Java 웹 애플리케이션이 여러 개라고 해보자.<br>커머스 업체라고 했을 때 사용자 화면 애플리케이션, 상품 정보 관리 애플리케이션, 정산 애플리케이션 등이 별도로 존재하며 어떤 특정 DB에 모두 동시에 접속하는 경우가 발생한다는 것은 쉽게 예상할 수 있을 것이다.<br><br>DB 서버의 로그를 보니 Slow Query가 남아 있는데, 도대체 이 Slow Query를 호출한 애플리케이션이 무엇인지 어떻게 하면 빠르게 판단할 수 있을까?<br><br>제일 쉬운 방법은 SQL 구문에 주석으로 각 클라이언트(애플리케이션)의 정보를 남기는 것이다.<br>SQL은 <strong>/* 이런 저런 내용 */</strong> 형태로 주석을 남기는 것을 지원한다.<br><br>Java 6/JDBC 4 Spec에서 바로 이러한 Client Info를 남길 수 있는 기법을 지원한다(<a title="" href="http://docs.oracle.com/javase/6/docs/api/java/sql/Connection.html#setClientInfo%28java.lang.String,%20java.lang.String%29" target="_blank">Connection#setClientInfo</a>). 나는 현재 MySQL만 사용하고 있지만 다른 많은 DB들도 이를 구현하고 있으리라 예상한다.<br><br>더 아래에서는 Hibernate 사용시 Interceptor를 통해 더 쉽게 처리하는 방법도 간단히 소개한다.<br><br><span style="font-size:170%;"><strong>JDBC 4 Client Info</strong></span><br><a title="" href="http://dev.mysql.com/doc/relnotes/connector-j/en/news-5-1-0.html" target="_blank">MySQL의 경우 5.1.10 버전</a>부터 JDBC 4의 Client Info 스펙을 구현하고 있다. (단, <strong>MySQL Replication Driver는 아직도(2014년 3월) 이를 구현하지 못하고 있다.</strong>)<br><br>이 스펙을 구현한다고 해서 모든 JDBC 드라이버가 SQL의 주석으로 Client 정보를 남기는 것은 아니다. 하지만 MySQL은 <a title="" href="http://www.docjar.com/html/api/com/mysql/jdbc/JDBC4CommentClientInfoProvider.java.html" target="_blank">JDBC4CommentClientInfoProvider</a>를 Client Info 처리의 기본 구현체로 지정하고 있으면 이것이 바로 주석으로 정보를 남기는 역할을 한다. 이 구현체는 <code>clientInfoProvider</code> JDBC URL 파라미터를 통해 원하는 것으로 바꾸는 것이 가능하다.<br><br>일단은 아주 생짜 JDBC로 어떻게 작동하는지 코드로 보여주면 다음과 같다.<br><blockquote class="src">//&nbsp;예외처리는&nbsp;모두&nbsp;무시했음.&nbsp;모범적인&nbsp;코드&nbsp;예가&nbsp;아니므로&nbsp;실전에서&nbsp;따라하지&nbsp;말&nbsp;것.<br>Class.forName("com.mysql.jdbc.Driver");<br><br>Connection&nbsp;connection&nbsp;=&nbsp;DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8&amp;user=root&amp;password=root");<br><br>InetAddress&nbsp;localhost&nbsp;=&nbsp;InetAddress.getLocalHost();<br><br><strong>connection.setClientInfo("ApplicationName",&nbsp;"JDBC4&nbsp;Test&nbsp;Application");<br>connection.setClientInfo("ClientHostname",&nbsp;localhost.getHostName());<br>connection.setClientInfo("ClientAddress",&nbsp;localhost.getHostAddress());</strong><br><br>Statement&nbsp;statement&nbsp;=&nbsp;connection.createStatement();<br>ResultSet&nbsp;resultSet&nbsp;=&nbsp;statement.executeQuery("select&nbsp;1");<br></blockquote><br><br>위 코드를 실행하면 MySQL의 쿼리 로그에 다음과 같이 찍히게 된다. 즉, DBA가 Slow Query를 발견했다면 즉시 어느 애플리케이션의 어느 서버에서 온 쿼리인지 인지할 수 있다.<br><blockquote class="src"><strong>/* ApplicationName=JDBC4 Test Application, ClientHostname=kwon37xi-dev, ClientAddress=127.0.1.1 */ </strong>select 1<br></blockquote><br><br>하지만 현대 애플리케이션에서 Connection을 매번 직접 생성하여 값을 설정하는 일은 하지 않는다. 특히 Spring을 사용한다면 Connection 객체는 사실상 구경도 할 필요가 없고, 할 수는 있더라도 안하는게 더 좋다.<br><br><a title="" href="http://jolbox.com/" target="_blank">BoneCP 커넥션 풀</a>은 <a title="" href="https://github.com/wwadge/bonecp/blob/master/bonecp/src/main/java/com/jolbox/bonecp/BoneCPConfig.java" target="_blank">BoneCPConfig.java</a> 설정에서 <code>setClientInfo</code> 메소드를 통해 미리 클라이언트 정보를 <code>Properties</code> 객체로 넣어둘 수 있는 기능을 지원하고 있다. 따라서 커넥션 풀 설정시 한 번만 해주면 모든 Connection에 대해 Client Info가 전달된다.<br><br><span style="font-size:170%;"><strong>Hibernate Interceptor</strong></span><br>Hibernate를 사용하는 경우(JPA를 통해서든 직접이든) <a title="" href="https://github.com/hibernate/hibernate-orm/blob/master/hibernate-core/src/main/java/org/hibernate/Interceptor.java" target="_blank">Interceptor</a> 인터페이스 중에서 <code><strong>onPrepareStatement</strong></code> 메소드 구현을 통해서 위와 같은 일을 하는게 가능하다.<br>이 경우 좀 더 유리한데, 왜냐하면 이 인터셉터 구현체는 모든 쿼리 요청마다 매번 호출되기 때문이다. 따라서 모든 쿼리 호출시 호출 당시의 정보(접속 URL, 호출한 클래스와 메소드 정보) 등도 함께 넣는게 가능하다.<br><br><code>onPrepareStatement</code>는 특별히 키/값 쌍을 넣거나 하는 것이 아니라 DB에 전송하기 전의 SQL 구문을 직접 편집하는 것이므로 SQL 주석을 개발자가 직접 만들어 넣어주면 된다.<br><br>실제 구현은 <code>EmptyInterceptor</code>를 상속하여 다른 것은 무시하고 <code>onPrepareStatement</code>만 구현하는 것이 좋다.<br><br>JPA 사용시 <code><strong>hibernate.ejb.interceptor</strong></code>로 Interceptor 구현 클래스의 FQCN을 지정해주면 된다.<br><br>워낙 쉬워 코드 예를 들지는 않겠지만 한가지 팁을 주면, Spring MVC 사용시 Spring MVC Interceptor를 통해 현재 URL정보와 컨트롤러 클래스/메소드 정보를 수집해두고 이를 ThreadLocal을 통해서 Hibernate Interceptor에 전달하여 SQL 구문에 URL과 컨트롤러 클래스/메소드 정보까지 집어넣는 것이 가능해진다. SQL 구문을 보고나서 오류 발생 URL을 즉시 알 수 있어서 오류 대응 능력이 조금 높아질 것이다. 단, SQL 구문이 길어짐으로써 생기는 다른 단점들은 감안해야 한다.<br><br>그리고 마지막으로, <span style="color:#ff0000;"><strong>사용자가 직접 입력하거나 변조할 수 있는 정보를 Client Info로 절대로 넣지말라. 굳이 넣어야 겠다면 이 또한 <a title="" href="http://en.wikipedia.org/wiki/SQL_injection" target="_blank">SQL Injection</a>의 하나로 공격 대상이 될 수 있으므로 철저히 검증해서 넣도록 주의해야 한다.</strong></span><br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Eclipse WTP Root Context Path 관련 버그 회피하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2011-03-04 17:11:09</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Eclipse WTP Root Context Path 관련 버그 회피하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Eclipse 3.6 Helios WTP 에는 <strong>웹 애플리케이션의 Context Path가 "/" 로 지정</strong>돼 있고 Tomcat을 사용할 경우 개발에 지장을 초래하는 다양한 버그가 존재한다.<div></div><div><ol><li>Publishing 이 제때 안 이뤄진다. 그래서 Tomcat을 실행해 보고, Publishing 이 안돼 있는 상태이면 Tomcat을 끄고 다시 켜야한다.</li><li>파일이 변경 될 때마나 work 디렉토리를 통째로 삭제해 버린다. <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=334977">버그리포팅</a></li><li>내 생각에는 2번 현상 때문에 *.jsp, *.tag 파일들이 컴파일이 잘 됐음에도 JSP/Tag 컴파일된 클래스에 대한 ClassNotFoundException이 수시로 발생한다. 이건 톰캣을 다시 껐다 켜기 전에는 해결이 안 된다.</li></ol><div>나를 가장 괴롭힌 것은 3. 번 오류이다. 정말 사람 짜증을 극한으로 몰아붙이는 버그이다. 우리 팀 팀원들이 이 버그 때문에 WTP를 통하지 않은 채 Jetty를 바로 띄워서 사용하기도 한다.</div></div><div><br></div><div></div><div>이때문에 IDE를 바꿀 생각을 하고 Netbeans, IntelliJ IDEA를 테스트 해 보았으나 우리의 개발 환경 Spring 3 + JPA 2(Hibernate 3.5) + Maven 다중 Profile 환경에서 아무런 문제 없이 <b>깔끔하게 프로젝트가 설정되는 IDE가 단 한개도 없었다</b>.</div><div><br></div><div></div><div>물론 IDE의 설정을 어찌 어찌 파고들면 어찌 어찌 해결책을 찾을지도 모르지만, 이미 익숙한 IDE(Eclipse)를 버리고 그런 삽질을 또 처음부터 하고 싶지는 않았다.</div><div><br></div><div></div><div>그럼 Eclipse에서의 해결책은? <b>"/" Context Path를 사용하지 말라.</b></div><div><b><br></b></div><div><b></b></div><div>그러면 이 모든 문제가 해결 된다.</div><div><br></div><div></div><div>하지만 평소에 HTML에 경로를 지정할 때, 혹은 CSS 파일에서 절대 경로로 배경화면 이미지 URL을 지정했을 경우 등에서 다양한 문제가 발생한다.</div><div><br></div><div>제일 좋은 것은 항상 <b>${request.contextPath}/board/1</b> 이런 식으로 모든 URL에 항상 ContextPath를 명기하는 것이다. 이렇게 하면 어떠한 컨텍스트 패스를 지정해도 잘 작동한다. CSS 파일에서는 항상 상대 경로로 백그라운드 이미지를 지정하면 된다.</div><div><br></div><div></div><div>${request.contextPath}가 제대로 명시안된 상태로 개발하는&nbsp;기존의&nbsp;환경을 그대로 유지하고자 할 때의 해결책은 Tomcat의 Context Path를 "/" 가 아닌 무언가로 명시하되, Apache 등의 서버를 연동하고, 이 연동에서 강제로 ContextPath를 제외한 주소로 연결 가능하게 하는 것이다.</div><div><br></div><m-ta http-equiv="content-type" content="text/html; charset=utf-8"><div></div><div>ContextPath 가 "/web" 이고, 개발 서버의 hostname을 development 라고 했을 때 Apache Virtual Host 설정을 다음과 같이 했다.</div><blockquote class="src">&lt;VirtualHost&nbsp;*:80&gt;</blockquote><blockquote class="src">&nbsp;&nbsp;&nbsp;&nbsp;ServerName&nbsp;development</blockquote><blockquote class="src">&nbsp;&nbsp;&nbsp;&nbsp;ServerAdmin&nbsp;webmaster@localhost</blockquote><blockquote class="src">&nbsp;&nbsp;&nbsp;&nbsp;DocumentRoot&nbsp;/home/kwon37xi/tmp/apache-tomcat-6.0.30/webapps/web</blockquote><blockquote class="src">&nbsp;&nbsp;&nbsp;&nbsp;&lt;Location&nbsp;/&gt;</blockquote><blockquote class="src">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ProxyPass&nbsp;http://localhost:8080/web/</blockquote><blockquote class="src">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ProxyPassReverse&nbsp;http://localhost:8080/web/</blockquote><blockquote class="src">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ProxyPassReverseCookiePath&nbsp;/web /</blockquote><blockquote class="src">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/Location&gt;</blockquote><blockquote class="src">&lt;/VirtualHost&gt;</blockquote><div>물론 <b>mod_proxy_http</b>가 활성화 돼 있어야 &nbsp;하고, DocumentRoot 등은 잘 알아서 할 수 있으리라 믿는다.</div><div><br></div><div></div><div>여기서 주의해서 봐야 할 곳은 ProxyPassReverse와 ProxyPassReverseCookiePath 이다.</div><div><br></div><div></div><div><b>ProxyPassReverse</b> 설정의 역할은 Redirect등을 할 때 강제로 붙어오는 /web/board/1 등의 ContextPath가 지정된 주소를 자동으로 /board/1 식으로 변환해준다.</div><div><br></div><div></div><div><b>ProxyPassReverseCookiePath</b>&nbsp;는 세션과 쿠키를 사용할 경우 필수이다. Tomcat은 세션 쿠키를 생성할 때 Path로 ContextPath를 지정해서 생성한다. 따라서 세션 쿠키는 ContextPath를 뺀 주소(/board/1)등에는 전달이 안된다. 그러면? 당연히 평생가도 로그인을 할 수 없다. ReverseCookiePath는 <b>Cookie의 Path값에서 ContextPath를 제거해준다.</b></div><div><b><br></b></div><div></div><div>참조 :&nbsp;<a href="http://wiki.kwonnam.pe.kr/apache/proxy">http://wiki.kwonnam.pe.kr/apache/proxy</a></div><m-ta http-equiv="content-type" content="text/html; charset=utf-8"><div></div><div>이제부터는 Tomcat 배포한 웹 애플리케이션은 /web 컨텍스트 패스이면서 &nbsp;http://development/board/1 식으로 URL을 요청해 가며 테스트하는게 가능해진다.</div><div><br></div><div></div><div>이 상태로 개발을 하면 맨 위에 말한 Eclipse WTP + Tomcat 환경의 버그가 하나도 발생하지 않게 되어 상당히 쾌적해 진다.</div><div></div><div>다시 만난 Eclipse야 반가워. 그래도 언능 버그를 고쳤으면 좋겠다.</div></m-ta></m-ta></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

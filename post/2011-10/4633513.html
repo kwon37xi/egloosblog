@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>드라마 파스타와 장인정신드립</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2011-10-12 08:10:45</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">드라마 파스타와 장인정신드립</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">요즘 드라마 파스타를 보고 있는데(집에 쳐박혀 있다보니 이 외에도 이것저것 많이도 본다..), 여기 보면 공효진이 냉장고에 밤새 갇혀 있다가 얼어 죽을까봐 냉장고를 꺼버려서 음식을 상하게 만드는 장면이 나온다.<br><br>그걸보고 그 다음날 냉장고에 갇힌 공효진을 꺼내주면서 <span style="text-decoration: line-through;">김주혁</span>이선균이 상한 재료들 보면서 공효진을 비난하며 말한다.<br><br>"니가 요리사냐?"<br><br>이거 내가 보기엔 일본 만화들에 흔히 나오는 장신정신 드립인거 같은데.. 내가 이런상황 겪으면 나는 <span style="text-decoration: line-through;">김주혁</span>이선균한테 이렇게 물을 것 같다.<br><br>"니가 인간이냐?"<br><br>어디서 같잖은 장인정신드립이야. 사람이 죽을 뻔했는데.<br>애들이 만화나 드라마 보고 이런거 멋지다고 배울까봐 겁난다.<br><br>그에 반해 파스타에서 상당히 맘에드는 장인정신드립을 하는 것이 하나 있는데, 바로 파스타 소스와 피클을 퇴출시키는 장면이다.<br><br>파스타의 소스를 잔뜩 넣고, 설탕으로 범벅한 피클을 고객에게 내 놓는 이유는 바로 요리사가 자신의 요리에 자신이 없기 때문이라는 것이다.<br><br>자극적인 소스와 피클은 요리 고유의 맛을 가리면서 그 자극이 요리가 맛없다는 사실을 가려준다.<br><br>공감한다.<br><br>프로그래머가 흔히 과용하는 혹은 PM등에 의해 사용을 강요당하는 소스와 피클이 있다.<br><br>야근.<br><br>그리고.. 문서?</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

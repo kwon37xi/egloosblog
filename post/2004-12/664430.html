@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>MSN Web Messenger</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-14 09:25:45</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">MSN Web Messenger</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://webmessenger.msn.com">http://webmessenger.msn.com</a><br><br>좋군요. 정말 잘됩니다.<br>레드햇 7.3으로 일하느라 MSN 접속을 거의 못했는데, 이젠 쓸 수 있게 되었네요.<br>(물론 레드햇 7.3에서 MSN이 안되는건 아니었는데요, 자바 기반이라 너무 느려서 --;)<br><br>이 MSN 웹메신저는 자바를 쓰지도 액티브 액스를 쓰지도 않는 순수한 웹기반 메신저인 듯.<br>모질라에서도 아무 문제없이 잘 되는군요.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

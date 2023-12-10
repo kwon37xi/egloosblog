@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>JSP 페이지에서 컬렉션 객체 생성하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2010-10-22 17:24:11</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">JSP 페이지에서 컬렉션 객체 생성하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="xhtmlEditorBody"><p style="font-size: 12px;">가끔 JSP로 뷰를 만들다 보면 &nbsp;데이터의 배열이나 맵이 반복적으로&nbsp;필요한 경우가 있다.</p> <p style="font-size: 12px;">그렇다고 그걸 컨트롤러 단에서 작성해서 넘겨 주기에는 뭔가 찝질한 아주 사소한 그런 데이터들...</p> <p style="font-size: 12px;">뭐 물론 그런 경우가 많진 않지만 오랜만에 그런일이 나한테 생겼다.</p> <p style="font-size: 12px;">&nbsp;</p> <p style="font-size: 12px;">나는 원래 2~3년간 JSP를 사용한적이 없다. 거의 Freemarker만 사용했으며, JSP는 후져서 못쓰겠다고 생각하는 편이다. (-_-); Freemarker는 자체 템플릿 언어에서 데이터 생성등 JSP에서는 삽질로 할일을 쉽게 해주는 다양한 기능들이 있다.&nbsp;어쨌든 지금은 JSP를 써야하므로...</p> <p style="font-size: 12px;">&nbsp;</p> <p style="font-size: 12px;">스크립틀릿으로 하면 사실 간단히 된다. 하지만 그렇게는&nbsp;정말 하기 싫었다. 내가 짠 JSP에 스크립틀릿은 허용하지 않겠어!</p> <p style="font-size: 12px;">그래서 생각한 것이 태그 라이브러리 바디에서&nbsp;JSON 형태로 문자열을 입력하면 그걸 파싱해서 리스트나 맵 객체를 리턴하는 커스텀 태그를 만들면 어떨까? 하는 것이었다. 바로 아래와 같은 식으로 말이다.</p> <ol class="code"> <li> <p style="font-size: 12px;">&lt;k:jsonObject var="cities"&gt;<br /> [ "서울", "대전", "부산", "광주" ]<br /> &lt;/k:jsonObject&gt;</p> </li> </ol> <p style="font-size: 12px;">그래서&nbsp;<a href="http://json-lib.sourceforge.net/">http://json-lib.sourceforge.net/</a>&nbsp;를 이용해 아주 간단히 해결했다.</p> <p>&nbsp;</p> <h3>Tag 소스 코드</h3> <ol class="code"> <li>package com.egloos.kwon37xi.tags;<br /> <br /> import java.io.StringWriter;<br /> import java.util.ArrayList;<br /> import java.util.HashMap;<br /> <br /> import javax.servlet.jsp.JspException;<br /> import javax.servlet.jsp.tagext.JspFragment;<br /> import javax.servlet.jsp.tagext.SimpleTagSupport;<br /> <br /> import net.sf.json.JSONArray;<br /> import net.sf.json.JSONObject;<br /> <br /> public class JsonObjectTag extends SimpleTagSupport {<br /> &nbsp;&nbsp;&nbsp; /**<br /> &nbsp;&nbsp;&nbsp; &nbsp;* PageContext에 저장할 변수 이름<br /> &nbsp;&nbsp;&nbsp; &nbsp;*/<br /> &nbsp;&nbsp;&nbsp; private String var;<br /> <br /> &nbsp;&nbsp;&nbsp; public String getVar() {<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return var;<br /> &nbsp;&nbsp;&nbsp; }<br /> <br /> &nbsp;&nbsp;&nbsp; public void setVar(String var) {<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; this.var = var;<br /> &nbsp;&nbsp;&nbsp; }<br /> <br /> &nbsp;&nbsp;&nbsp; public void doTag() throws JspException {<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; String jsonString = getJsonString();<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; boolean isArray = jsonString.startsWith("[");<br /> <br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Object result = isArray ? parseJsonArray(jsonString) : parseJsonMap(jsonString);<br /> <br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; getJspContext().setAttribute(getVar(), result);<br /> &nbsp;&nbsp;&nbsp; }<br /> <br /> &nbsp;&nbsp;&nbsp; private Object parseJsonArray(String jsonString) {<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; JSONArray jsonArray = JSONArray.fromObject(jsonString);<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return JSONArray.toCollection(jsonArray, ArrayList.class);<br /> &nbsp;&nbsp;&nbsp; }<br /> <br /> &nbsp;&nbsp;&nbsp; private Object parseJsonMap(String jsonString) {<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; JSONObject jsonObject = JSONObject.fromObject(jsonString);<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return JSONObject.toBean(jsonObject, HashMap.class);<br /> &nbsp;&nbsp;&nbsp; }<br /> <br /> &nbsp;&nbsp;&nbsp; private String getJsonString() {<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; JspFragment body = getJspBody();<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; if (body == null) {<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; throw new RuntimeException("Tag Body가 꼭 필요합니다.");<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }<br /> <br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; StringWriter writer = new StringWriter();<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; try {<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; body.invoke(writer);<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; } catch (Exception e) {<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; throw new RuntimeException("Tag Body 실행 중 오류가 발생하였습니다.", e);<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return writer.toString().trim();<br /> &nbsp;&nbsp;&nbsp; }<br /> }</li> </ol> <h3>WEB-INF/tlds/json-tag.tld</h3> <ol class="code"> <li>&lt;?xml version="1.0" encoding="utf-8" ?&gt;<br /> &lt;!DOCTYPE taglib<br /> &nbsp; PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"<br /> &nbsp; "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd"&gt;<br /> &lt;taglib&gt;<br /> &nbsp;&nbsp;&nbsp; &lt;tlibversion&gt;1.0&lt;/tlibversion&gt;<br /> &nbsp;&nbsp;&nbsp; &lt;jspversion&gt;2.0&lt;/jspversion&gt;<br /> &nbsp;&nbsp;&nbsp; &lt;shortname&gt;k&lt;/shortname&gt;<br /> &nbsp;&nbsp;&nbsp; &lt;uri&gt;http://kwon37xi.egloos.com/json-tags&lt;/uri&gt;<br /> <br /> &nbsp;&nbsp;&nbsp; &lt;tag&gt;<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;name&gt;jsonObject&lt;/name&gt;<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;tagclass&gt;com.egloos.kwon37xi.tags.JsonObjectTag&lt;/tagclass&gt;<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;bodycontent&gt;scriptless&lt;/bodycontent&gt;<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;attribute&gt;<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;name&gt;var&lt;/name&gt;<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;required&gt;true&lt;/required&gt;<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;rtexprvalue&gt;false&lt;/rtexprvalue&gt;<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;/attribute&gt;<br /> &nbsp;&nbsp;&nbsp; &lt;/tag&gt;<br /> &lt;/taglib&gt;</li> </ol> <p>&nbsp;</p> <h3>사용 예</h3> <p>이 태그라이브러리는 &lt;k:jsonObject&gt; JSON 구문&lt;/k:jsonObject&gt; 형태로 호출할 수 있다. 리스트는 [1,2,3] 형태로 만들고, 맵은 { key: "값", key2: "값2" } 이런 형태이다.</p> <ol class="code"> <li>&lt;%@ page language="java" contentType="text/html; charset=UTF-8"<br /> &nbsp;&nbsp;&nbsp; pageEncoding="UTF-8"%&gt;<br /> &lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %&gt;<br /> &lt;%@ taglib prefix="k" uri="http://kwon37xi.egloos.com/json-tags" %&gt;<br /> &lt;html&gt;<br /> &lt;head&gt;<br /> &lt;title&gt;JsonObject TagLib 테스트&lt;/title&gt;<br /> &lt;/head&gt;<br /> &lt;body&gt;<br /> <strong><br /> &lt;k:jsonObject var="cities"&gt;<br /> [<br /> &nbsp;&nbsp;&nbsp; "서울",<br /> &nbsp;&nbsp;&nbsp; "대전",<br /> &nbsp;&nbsp;&nbsp; "부산",<br /> &nbsp;&nbsp;&nbsp; "광주"<br /> ]<br /> &lt;/k:jsonObject&gt;</strong></li> <li><br /> &lt;h2&gt;List 예제 : Cities&lt;/h2&gt;<br /> &lt;ul&gt;<br /> &nbsp;&nbsp;&nbsp; &lt;c:forEach var="city" items="${cities}"&gt;<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;li&gt;${city}&lt;/li&gt;<br /> &nbsp;&nbsp;&nbsp; &lt;/c:forEach&gt;<br /> &lt;/ul&gt;<br /> <strong><br /> &lt;k:jsonObject var="person"&gt;<br /> {<br /> &nbsp;&nbsp;&nbsp; name: "손권남",<br /> &nbsp;&nbsp;&nbsp; address : "경기도 성남시 ...",<br /> &nbsp;&nbsp;&nbsp; phone: "010-1111-2222",<br /> &nbsp;&nbsp;&nbsp; homepage: "http://kwon37xi.egloos.com"<br /> }</strong><br /> &lt;/k:jsonObject&gt;<br /> <br /> &lt;h2&gt;Map 예제 : Person&lt;/h2&gt;<br /> &lt;ul&gt;<br /> &nbsp;&nbsp;&nbsp; &lt;c:forEach var="entry" items="${person}"&gt;<br /> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &lt;li&gt;${entry.key} : ${entry.value}&lt;/li&gt;<br /> &nbsp;&nbsp;&nbsp; &lt;/c:forEach&gt;<br /> &lt;/ul&gt;<br /> &lt;p&gt;물론 person['homepage']도 가능 : ${person['homepage']}&lt;/p&gt;<br /> &lt;/body&gt;<br /> &lt;/html&gt;</li> </ol> <p>&nbsp;</p> <p style="text-align:right">이 글은 <a href="http://kwon37xi.springnote.com/pages/6605363">스프링노트</a>에서 작성되었습니다.</p></div></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

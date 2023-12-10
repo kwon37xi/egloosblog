@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Java에서 비밀번호는 char [] 로 저장하자.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-08-25 16:34:55</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Java에서 비밀번호는 char [] 로 저장하자.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">사용자에게서 비밀번호를 입력받아 저장하거나, 올바른 사용자인지 검증하는 과정에서 필연적으로 컨트롤러에서 비밀번호를 받아서 잠시동안 메모리에 가지고 있을 수 밖에 없다.<br>물론 SSL과 비밀번호 암호화(복호화가 불가능한&nbsp; SHA2 + SALT 등으로)를 하겠지만, 암호화를 하기전 중간 과정에 메모리에 비밀번호가 남아있는 그 동안에도 보안에 신경써야 한다.<br><br>그래서 비밀번호를 String이 아닌 <b>char []</b>로 저장하는 것이 좋다.<br><br>String은 불변 객체로 JVM에서 GC가 일어날 때까지 메모리에 그대로 남아 있으며, 그럴 때 메모리 덤프를 뜨면 비밀번호를 알아내는게 가능하다고 한다.<br>또한 절대로 해서는 안되는 짓이긴 하지만 요청을 처리하는 중간 과정 어디에선가 실수로 비밀번호를 출력한다고 하자.<br>이때 그 값은 toString()의 결과가 찍히기 되는데, 문자열로 저장하면 비밀번호가 그대로 찍히게 된다.<br><br>하지만 문자 배열의 경우에는 객체를 가리키는 엉뚱한 문자가 찍히게 된다.<br><br><blockquote class="src">String strPassword="Unknown";<br>char[] charPassword= new char[]{'U','n','k','w','o','n'};<br>System.out.println("String password: " + strPassword);<br>System.out.println("Character password: " + charPassword);<br><br>String password: Unknown<br><b>Character password: [C@110b053</b><br></blockquote><br>따라서 <b>비밀번호를 다뤄야 하는 곳에서는 String이 아닌 char []을 사용하자!</b><br><br><a title="" href="http://javarevisited.blogspot.kr/2012/03/why-character-array-is-better-than.html" target="_blank">Why character array is better than String for Storing password in Java</a><br><a title="" href="http://javarevisited.blogspot.kr/2012/05/best-practices-while-dealing-with.html" target="_blank">Best Practices while dealing with Password in Java</a><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

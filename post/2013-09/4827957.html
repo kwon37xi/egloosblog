@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>JSP/Freemarker 템플릿 상속을 통한 레이아웃 관리</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2013-09-12 23:00:37</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">JSP/Freemarker 템플릿 상속을 통한 레이아웃 관리</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">ᅟJava 웹 개발자들은 웹 페이지 템플릿 프레임워크는 JSP나 <a href="http://freemarker.org/">Freemarker</a> 등을 사용하고 레이아웃을 관리할 때는 또 <a href="http://wiki.sitemesh.org/display/sitemesh/Home">Sitemesh</a>나 <a href="http://tiles.apache.org/">Tiles</a> 같은 별도 프레임워크를 도입하고 있다. 사실 얼마전까지는 다른 선택사항이 없었다.<br><br>하지만 Java 외의 다른 언어 세계에서는 레이아웃을 관리할 때 별도의 프레임워크를 거의 사용하지 않고 있다. <a href="https://www.djangoproject.com/">Django</a>, <a href="http://jade-lang.com/">Jade</a>, <a href="http://jinja.pocoo.org/docs/">Jinja2</a> 같은 템플릿 프레임워크들을 보면 <b>템플릿 상속(template inheritance)</b>이라는 개념을 통해 레이아웃을 굉장히 쉽고 간편하게 관리한다.<br><br><b>템플릿 상속</b>은 객체 지향 언어에서 클래스 상속과 약간 비슷하다. 부모 클래스에서 뼈대를 만들어 놓으면, 자식 클래스에서 일부 메소드를 재정의 하여 부모의 뼈대는 재활용 하면서 일부 기능을 바꿔치기 하듯, 템플릿 상속도 부모 템플릿에 레이아웃의 기본 뼈대를 만들고, 자식 템플릿에서 부모 템플릿의 특정 영역을 바꿔치기 하는 방식으로 레이아웃을 관리한다. 사실 이 형태는 이미 Sitemesh에서 다소 불편한 방식으로 유사하게 작동하고 있다.<br><br>템플릿을 상속할 때 좋은 점은 별도의 프레임워크가 필요없고, 그에 따른 설정도 필요없다. Java에서 클래스 상속하려고 별도 XML 설정 파일 만들어서 관계를 기술하거나 하지는 않지 않는가? 단지 <b>자식클래스 extends 부모클래스</b>라고 자식 클래스에 기술할 뿐이다.<br><br>템플릿 상속을 일단 알게 되면 그 뒤 부터는  별도 프레임워크(Sitemesh, Tiles 등)을 사용한 레이아웃 관리는 정말 정말 귀찮은 일이 되어버린다. 그런데 Java 진영은 아직도 대부분 JSP를 사용하고 그 나머지 일부는 Freemarker를 사용하는 형국인지라 이게 이만저만 불편한게 아니다.<br><br>그래서 그냥 Freemarker용 템플릿 상속 지시자(directive)와 JSP용 템플릿 상속 태그 라이브러리(tag library)를 만들었다(Freemarker의 지시자는 JSP의 태그 라이브러리 같은 것).<br><ul><li><a href="https://github.com/kwon37xi/freemarker-template-inheritance">Freemarker Template Inheritance</a><br></li><li><a href="https://github.com/kwon37xi/jsp-template-inheritance">JSP Template Inheritance</a></li><br></ul>템플릿 상속은 콜럼부스의 달걀과 비슷하게 그 아이디어를 처음 내는게 어렵지 실제 사용 방법은 정말 말도 안된다 싶을 정도로 쉽다.<br><br>JSP를 예로 보여주면 다음과 같이 하면 레이아웃이 끝난다. Java외의 다른 언어를 해본 적이 없는 사람이라면 설정이 너무 없어서 진짜? 라고 되물을지도 모른다.<br><br><span style="font-size:130%;"><b>Layout 역할을 하는 base.jsp</b></span><br><blockquote class="src">&lt;%@page&nbsp;contentType="text/html;&nbsp;charset=UTF-8"&nbsp;%&gt;<br><font color="#3366ff">&lt;%@&nbsp;taglib&nbsp;uri="http://kwonnam.pe.kr/jsp/template-inheritance"&nbsp;prefix="layout"%&gt;</font><br>&lt;!DOCTYPE&nbsp;html&gt;<br>&lt;html&nbsp;lang="en"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;head&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;JSP&nbsp;Template&nbsp;Inheritance&lt;/title&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/head&gt;<br><br>&lt;h1&gt;Head&lt;/h1&gt;<br>&lt;div&gt;<br><span style="background-color: rgb(255, 255, 102);">&nbsp;&nbsp;&nbsp;&nbsp;&lt;layout:block&nbsp;name="header"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;header<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/layout:block&gt;</span><br>&lt;/div&gt;<br><br>&lt;h1&gt;Contents&lt;/h1&gt;<br>&lt;div&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;<br><span style="background-color: rgb(102, 255, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&lt;layout:block&nbsp;name="contents"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;Contents&nbsp;will&nbsp;be&nbsp;placed&nbsp;under&nbsp;this&nbsp;h2&lt;/h2&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/layout:block&gt;</span><br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/p&gt;<br>&lt;/div&gt;<br><br>&lt;div&nbsp;class="footer"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;hr&nbsp;/&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href="https://github.com/kwon37xi/jsp-template-inheritance"&gt;jsp&nbsp;template&nbsp;inheritance&nbsp;example&lt;/a&gt;<br>&lt;/div&gt;<br>&lt;/html&gt;<br></blockquote><br><br><span style="font-size:130%;"><b>Layout을 사용하여 실제 내용을 채워넣는 JSP 페이지</b></span><br><blockquote class="src">&lt;%@page&nbsp;contentType="text/html;&nbsp;charset=UTF-8"&nbsp;%&gt;<br>&lt;%@&nbsp;taglib&nbsp;uri="http://kwonnam.pe.kr/jsp/template-inheritance"&nbsp;prefix="layout"%&gt;<br><font color="#3366ff"><b>&lt;layout:extends&nbsp;name="base.jsp"&gt;</b></font><br><span style="background-color: rgb(255, 255, 51);">&nbsp;&nbsp;&nbsp;&nbsp;&lt;layout:put&nbsp;name="header"&nbsp;type="REPLACE"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;This&nbsp;is&nbsp;an&nbsp;example&nbsp;about&nbsp;layout&nbsp;management&nbsp;with&nbsp;JSP&nbsp;Template&nbsp;Inheritance&lt;/h2&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/layout:put&gt;</span><br><span style="background-color: rgb(51, 255, 255);">&nbsp;&nbsp;&nbsp;&nbsp;&lt;layout:put&nbsp;name="contents"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lorem&nbsp;ipsum&nbsp;dolor&nbsp;sit&nbsp;amet,&nbsp;consectetur&nbsp;adipiscing&nbsp;elit.&nbsp;Proin&nbsp;porta,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;augue&nbsp;ut&nbsp;ornare&nbsp;sagittis,&nbsp;diam&nbsp;libero&nbsp;facilisis&nbsp;augue,&nbsp;quis&nbsp;accumsan&nbsp;enim&nbsp;velit&nbsp;a&nbsp;mauris.<br>&nbsp;&nbsp;&nbsp; &lt;/layout:put&gt;</span><br>&lt;/layout:extends&gt;<br></blockquote><br><br>딱 보면, <b>부모 페이지의 &lt;layout:block&gt; 부분이 자식 페이지의 &lt;layout:put&gt;에 의해 대체되는 방식으로 작동</b>한다는 것을 이해할 수 있을 것이다.<br>여러번에 걸친 상속도 물론 가능하기 때문에 가장 바깥 레이아웃과 그것을 상속하는 여러개의 중간 레이아웃을 만드는 것도 가능하다.<br><br>자세한 설명은 링크를 타고가서 보면 된다.<br><br>그리고 마지막으로 이제는 Java 개발자들도 JSP 좀 버렸으면 좋겠다(아래 내용 대부분은 Freemarker도 마찬가지).<br><ul><br><li>JSP는 범용 템플릿이고, 구문도 장황해서 대부분의 템플릿 작업인 HTML에 사용하기에는 코드가 너무 지저분해진다.<br></li><li>JSP는 기본적으로 데이터를 HTML Escape하지 않기 때문에 <a target="_blank" href="http://ko.wikipedia.org/wiki/%EC%82%AC%EC%9D%B4%ED%8A%B8_%EA%B0%84_%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8C%85">Cross Site Scripting 공격</a>에 취약해지는 코드를 짜기 쉽다. 기본을 HTML Escape으로 하고, 특별한 경우에 변환 없이 바로 출력하게 하는 것이 더 안전하다.<br></li><li>MVC 분리로 로직과 뷰단이 별개로 존재할 수 있는 상황에서 JSP 컨테이너에 의존적인 환경은 뷰 전용 기능(JSP에서는 Tag Library나 JSTL Function등)을 만들고 테스트하기가 어렵다.</li><br></ul>위와 같은 이유들 때문이다.<br><br>요즘 Java 진영에도 JSP와 Freemarker 외의 대안들이 나오고 있다. 아래 소개하는 것들은 어쩌면 아직은 완전히 무르익지 않았을지 모르지만 내가 눈여겨 보고 있는 것들이다.<br><ul><li><a title="" href="https://github.com/neuland/jade4j" target="_blank">Jade4j</a> / <a href="https://github.com/neuland/spring-jade4j">Spring-Jade4j</a> : 요즘 내가 가장 눈여겨 보고 있다.<br></li><li><a title="" href="http://trimou.org/" target="_blank">Trimou</a> : 매우 많은 언어로 포팅된 <a title="" href="https://github.com/mustache" target="_blank">Mustache</a> 템플릿의 구현체</li><li>추가 : <a target="_blank" href="https://github.com/jknack/handlebars.java">Handlebars</a> : 현재 사용중. Mustache를 계승하여 기능을 좀 더 보강.<br></li><br></ul></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

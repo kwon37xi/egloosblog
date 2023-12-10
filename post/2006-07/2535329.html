@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>개발자가 빠지기 쉬운「나쁜 습관 6가지」</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-07-03 13:59:22</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">개발자가 빠지기 쉬운「나쁜 습관 6가지」</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://www.zdnet.co.kr">ZDNet</a>에 <a title="" href="http://www.zdnet.co.kr/builder/dev/etc/0,39031619,39139921,00.htm">개발자가 빠지기 쉬운「나쁜 습관 6가지」</a>라는 글이 올라와 있다. 꽤 오래전 글인데 이제서야 읽었다.<br><br>그냥, 한개씩 인용하면서 내 생각을 써보련다.<br><br><div class="h2">1. 닷넷 애플리케이션 개발을 위해서는 비주얼 스튜디오 닷넷이 필수적이란 생각.</div><br>MS쪽 개발자들은 IDE와 프로그래밍 언어를 동일한 것으로 간주하는 경향이 있는 것으로 보인다. 뭐, 별로 내가 신경쓸 얘기는 아니고...<br>그에 반해 Java 개발자들 중에는 "우리나라 개발자들은 언어를 속속들히 이해하기 위해 IDE를 안쓰고 에디터를 사용한다"라고 말하는 경우가 있는데, 콧방귀를 뀌어주고 싶다. 실제로 내가 만나본 대다수의 에디터 사용 개발자들은 IDE 사용법을 새로 배우는 것이 귀찮아서 에디터를 사용할 뿐이다. 이런 개발자들은 보통 자기가 사용하는 에디터의 기능도 제대로 알고 쓰는 경우가 별로 없다.<br>나는 "공부할 때는 에디터로 해서 실수를 해보면서 언어의 내부를 이해하고, 개발은 IDE로 해서 개발시 불필요한 시간 낭비를 막고 오로지 노가다가 아닌 개발 그 자체에 시간을 투자해야 한다"라고 생각한다.<br>그래서 Eclipse와 Ant 를 써서 불필요한 노가다를 최대한 배재한 상태로 개발한다.<br><br>오해가 있을까봐 추가하자면, 에디터를 사용하는 절대 고수가 없다는 얘기는 결코 아니다. AppFuse를 만든 <a title="" href="http://raibledesigns.com/">Matt Raible</a>도 얼마전까지는 에디터 추종자였던 것으로 안다. 단지 내가 아직까지 못 만나봤다는 얘기다.<br>내가 만나본 고수들은 대부분 IDE를 통해 잡일은 컴퓨터에게 시키고 자신은 창조적인 설계와 코딩에 시간을 할애하는 방식으로 프로그램을 짰다.<br><br><div class="h2">2. 내가 습득한 정보, 꼭꼭 숨기기</div><br>그에 대한 댓가는 바로 숨긴 그 사람이 지게 된다.<br>사람들이 문제만 생기면 전화해서 당신을 찾을 것이고, 당신은 자신을 찾아서 물어보는 많은 사람들에게 우쭐대겠지만, 전화받느라 당신이 낭비하는 시간들을 생각해보라.<br>다른 사람이 잘 못 짠 코드를 수정하느라 낭비하는 시간들을 생각해보고.<br>휴가를 가서도 안심인 안될껄?<br><br>언젠가 읽은 글 중의 하나... 가장 필요한 사원은 자신이 없어도 업무가 잘 돌아갈 수 있게 일하는 사원이라는 것이다.<br>한 사람 빠진다고 일이 안되는 상태로 만들면서 일하는 사원은 해고 1순위의 무능력한 사람이다. (참조 : <a title="" href="http://kwon37xi.egloos.com/2595716">진정한 SW 전문가란...'과거형'과 '미래형'의 차이</a>)<br><br><div class="h2">3. 코드에서 코멘트 빠뜨리기</div><br>이것은 2번과 일맥상통한다고 본다.<br>예전이나 지금이나 나의 모토는, "컴퓨터가 이해하는 프로그램은 어느 바보라도 짤 수 있다. 진정한 프로그래머는 사람이 이해하는 코드를 짠다."<br>코드 자체도 사람이 이해하게 짜고, 거기다가 API Doc만 봐도 다 이해되는 단순 명료하면서도 이해하기 쉬운 코멘트까지 달면 얼마나 좋겠나?<br><br>내가 없어도 다른 사람이 내가 짠 프로그램 때문에 고생할 일 없는 그런 프로그램을 짜야하는데, 갈길이 멀다.<br><br><div class="h2">4. 버전 컨트롤 시스템의 가치를 간과하는 것</div><br>버전 컨트롤 시스템을 안 쓰는 회사나 프로젝트에서는 절대 일 안하리라.<br>그리고 그런 업체에서 짠 프로그램의 유지보수는 절대 거부!!<br>그런 회사에서는 10중 8~9가 아니라 지금까지 100% 소스 코드를 decompile 해야 했고, 그나마도 다행히 최신 버전의 클래스를 찾아서 컴파일하면 운이 좋은 거다. 엉뚱하게 옛날에 짜고 실제 실서버에서는 안도는 클래스를 디컴파일해서 낭비하는 시간을 생각하면 눈물이 앞을 가린다.<br><br>버전 컨트롤 시스템을 안쓰면 개발자들 간에도 심각한 불화를 초래할 수 있다.<br>FTP를 이용해서 개발 할경우 서로 상대방이 짠 코드를 덮어 씌우는 일이 빈번히 발생하고, 그럴 때마다 사실상 누구의 책임으로 돌릴 수 없는 사안임에도 상대방을 비난하게 된다.<br>화목하고 안전하고 안심할 수 있는 개발환경을 원한다면 무조건 버전 컨트롤 시스템을 쓰라.(CVS, Subversion, etc...)<br><br><div class="h2">5. 웹 서비스가 모든 프로젝트에서 필요하다는 생각</div><br>써야 할 것을 써야 할 곳에 쓰자.<br>뽀대를 추구하다 쪽박찰 수 있다.<br><br><div class="h2">6. 데이터 확인의 중요성을 자주 잊는 것</div><br>특히 자주 까먹는 것은 데이터가 Null 이나 "" 이냐 여부 같은 것이다.<br>두 가지는 서로 다른 것이다.<br>DB의 경우 내가 유지보수를 넘겨 받은 시스템이 외래키를 안써서 테이블간의 키가 서로 안 맞는 일이 자주 발생해서 골치가 심하다.<br>데이터의 무결성을 보장하고 확인할 수 있도록 프로그램을 안짜면 나중에 오류의 원인을 밝혀내기도 힘겨운 거 같다.<br><br>이상, 나름대로 생각을 달아본 개발자가 빠지기 쉬운 나쁜 습관 6가지이다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

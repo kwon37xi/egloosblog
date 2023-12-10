@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>GMail로 메일링 리스트 구독하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-03 10:32:24</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">GMail로 메일링 리스트 구독하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">두달 전쯤인가, <a href="http://www.okjsp.pe.kr">OKJSP</a> 의 운영자님이신 kenu님의 세미나를 들어러 갔었다.<br><br>그러다가 GMail을 이용해서 외국 개발자들의 메일링 리스트를 사용하면 편리하다는 말을 듣고 해봤는데, 참 괜찮은거 같다.<br>메일링 리스트를 다 읽어보진 않지만, 가끔 시간 날 때 훑어 보다보면 생각지도 못한 아이디어를 얻을 경우가 많다.<br><br>많은 프로그래밍 책들이 프로그램을 잘짜기위한 한 방법으로 강조하는 것이 하나 있는데, 바로 유명 싸이트의 질문 답변란을 들락날락 하라는 거다.<br>질문의 해결책을 생각하면서도 실력이 늘지만, 앞으로 나 또한 부딪히게 될 어떤 문제를 미리 해결해 버리는 일도 많이 생기기 때문이다.<br><br>아파치 등의 외국 개발자들 메일링 리스트는 바로 이러한 우연찮은 정보와 아이디어의 보고이다.<br><br>GMail은 일단 공간이 크기 때문에 별로 용량걱정이 없다.<br>그리고 검색기능이 뛰어나다.<br><br>그러나 한가지 문제가 있는데, 편지함 나누기 기능이 없다는 거다.<br>모든게 다 "Inbox"에 들어간다..<br><br>여러개의 메일링 리스트를 구독하는데, 어떤게 어느 리스트의 메일인지 구분이 안가는 문제가 생간다는 뜻이다.<br><br>그러나 사실 Label과 Filter 기능을 사용하면 간단히 해결된다.<br><br>Label을 각 메일링 리스트별로 만들어준다.<br>그리고 Settings -> Filters에서 각 메일링 리스트의 이메일 주소를 To 부분에 조건으로 주고, 필터링 액션을 Apply the label로 지정해주면 된다.<br><br>그렇게 하면 여러개의 메일링 리스트를 깔끔하게 분류하여 관리할 수 있게 된다.<br><br><img src='./1391102/b0046915_10261137.png'></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

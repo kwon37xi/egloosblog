@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Conditional Comment로 IE 브라우저별 CSS 읽어들이기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-02-26 17:59:31</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Conditional Comment로 IE 브라우저별 CSS 읽어들이기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a target="_blank" href="http://firejune.com/1740">IE 버전에 따른 하위 호환성을 HTML만으로 구분</a>을 보면 다음과 같은 방법으로 IE 하위버전에 대한 CSS를 관리하자고 제안하고 있다.<br>사실 이미 많이 쓰이는 방법이라 생각하는데, 더 많은 사람들이 이 방식을 사용했으면 해서 한 번더 글로 남긴다.<br><br><blockquote class="src">&lt;link&nbsp;rel="stylesheet"&nbsp;href="/css/style.css"&nbsp;type="text/css"&gt;<br>&lt;!--[if&nbsp;lt&nbsp;IE&nbsp;7&nbsp;]&gt;&lt;link&nbsp;rel="stylesheet"&nbsp;href="/css/ie6.css"&nbsp;type="text/css"&nbsp;/&gt;&lt;![endif]--&gt;&nbsp;<br>&lt;!--[if&nbsp;lt&nbsp;IE&nbsp;8&nbsp;]&gt;&lt;link&nbsp;rel="stylesheet"&nbsp;href="/css/ie7.css"&nbsp;type="text/css"&nbsp;/&gt;&lt;![endif]--&gt;&nbsp;<br>&lt;!--[if&nbsp;gte&nbsp;IE&nbsp;8&nbsp;]&gt;&lt;link&nbsp;rel="stylesheet"&nbsp;href="/css/ie8.css"&nbsp;type="text/css"&nbsp;/&gt;&lt;![endif]--&gt;<br></blockquote><br>이 방법은, <span style="font-weight: bold;">IE 버전별 핵을 써야하는 CSS를 따로 분리한 CSS 파일로 만들고 기본 style.css 에는 핵을 사용하지 않는 표준 문법을 준수하는 스타일만을 두는 방식이라고 보면 될 것 같다.<br></span><br>나는 이 방법을 매우 추천하는데 세 가지 이유가 있다.<br><br>1. 표준 준수 브라우저에서는 불필요한 CSS 파일을 적재할 필요가 없어지므로 성능이 향상된다.<br>2. IE의 과거버전에 대한 지원 중단시 ie6.css 파일을 삭제하고 Conditional Comments만 지우면 만사가 해결되는 유지보수성 확보.<br>3. <span style="font-weight: bold;">표준 스타일시트(여기서는 style.css)가 진짜로 표준을 준수했는지 확인이 쉬워진다.</span><br><br>사실 내가 가장 중요시 하는 점은 3번이다.<br><a target="_blank" href="https://addons.mozilla.org/ko/firefox/addon/web-developer/">Firefox Web Developer</a> 부가기능에는 자동으로 스타일시트가 표준을 준수했는지 실시간 확일을 해주는 기능이 있다. 물론 다른 브라우저에도 다 있을 것이다.<br><br>그런데, 이게 IE Hack과 표준을 모두 한 CSS에 섞어 쓰게 되면 IE Hack도 비표준이므로 오류로 잡아내게 된다. 이에 따라 처음에는 표준 문법 준수 여부를 잘 확인하다가도, 결국에는 수많은 IE Hack들 속에 섞여있는 잘못 작성한 CSS를 찾기가 어려워지면서 포기하게 된다(정확히 말하면 비표준 코드를 찾는 다기 보다는 오타 등으로 잘 못 작성한 CSS를 찾는 것이다).<br><br>이게 Condtional Comment를 사용하게 되면 IE에서만 IE Hack을 사용하는 코드가 적재되므로, 이 상황에서 발생한 비표준 CSS는 진짜로 코드를 잘 못짠 것임이 거의 확실하게 된다.<br><br>즉, 진짜 오류를 잡아내기가 쉬워지게 된다.<br><br>내가 정적인 언어를 더욱 선호하는 경향이 있는데, 이러한 이유중에 하나는 Compile Time Error Checking이 훨씬 더 쉽다는 강점 때문이다. 그런 면에서 HTML/CSS/Javascript는 나한테 별로 좋게 다가오는 프로그래밍 코드라고 보기는 어렵다.<br><br>그러나 방법을 찾아보면 이렇게 Compile Time 오류 검사를 철저하게 만들 수 있는 요소들이 나오게 된다. Javascript의 경우 "use strict"를 사용하고, CSS는 지금 이 글에서 말하는 방법.<br><br>HTML 같은 경우도 나 같은 경우 우리 프로젝트에서 Servlet Filter를 통해 reponse가 text/html일 경우 자동으로 HTML 5 Validator를 호출하여 Validation을 하는 환경을 구축하기도 했었다. 그러나 이 방법은 팀내 호응이 낮고, 속도도 느려서 일단은 제거했다.<br>HTML의 경우에는 브라우저가 특정 URL에 포함된 문서(즉, 개발/테스트 환경 URL)에 대해 무조건 HTML Validation을 해주는 플러그인이 나왔으면 하고 바라고 있다. (이미 나왔나??) -&gt; 추가 있미 있다. <a target="_blank" href="https://addons.mozilla.org/ko/firefox/addon/html-validator/">Firefox Html Validator</a>, <a target="_blank" href="https://chrome.google.com/webstore/detail/cgndfbhngibokieehnjhbjkkhbfmhojo">Chrome Html Validator</a> Chrome 용이 좀 더 좋은 듯.<br><br>그 외에도 동적인 언어의 경우 단위 테스트 강화를 통한 오류 검사 강화가 가능하겠다.<br><br>어.. 이상하다.. 말이 샜네.<br>암튼 오류는 되도록 실행시보다 Compile Time에 잡는게 좋겠다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

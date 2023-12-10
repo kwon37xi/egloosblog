@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>다행히 난 내 약점뿐만 아니라 장점까지도 이미 파악하고 있으니까 말야.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-07-16 01:28:39</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">다행히 난 내 약점뿐만 아니라 장점까지도 이미 파악하고 있으니까 말야.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><blockquote><span style="font-size:130%;"><strong>(난쟁이인)내 발은 몸집에 비해 너무나 작고, 머리는 너무 큰데 말이야. 하지만 너무 불쌍하게 여길 건 없어. 다행히 난 내 약점뿐만 아니라 장점까지도 이미 파악하고 있으니까 말야. 내 무기는 바로 마음이야. 형에게는 검이 있고 로버트 왕에게는 해머가 있듯이 내겐 마음이 있는 거야. 그리고 그 마음은 검이 숫돌을 필요로 하듯 책을 필요로 하지. 그 날을 날카롭게 유지하려면 말이야.</strong></span><br></blockquote><br><br>- 난쟁이 티리온 라니스터, 왕좌의 게임, 얼음과 불의 노래<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

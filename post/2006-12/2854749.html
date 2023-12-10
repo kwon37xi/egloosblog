@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>JNI 한글 잘 쓰기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-04 13:14:36</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">JNI 한글 잘 쓰기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">작년 중반에 JNI을 이용해 C 언어로 만들어진 형태소 분석기를 호출하는 자바 프로그램을 짠 적이 있다.<br>그때 한글 문제를 해결하기 위해서 특별한 라이브러리를 써야 했는데, 그 원래 싸이트가 사라져서 여기 올려둔다.<br><br>한글 문제가 발생하는 이유는 JNI에서 자바가 C 쪽으로 문자열을 넘겨줄 때 UTF-8을 쓰기 때문이라고 한다. 하지만 C쪽은 운영체제의 한글 인코딩(보통은 EUC-KR, 다른 언어권이라면 또 다른 인코딩..)을 사용하기 때문에 둘 간의 상호 변환이 필요하다.<br><br>그 JNI를 위한 C 소스는 <a title="" href="http://kr.geocities.com/kwon37xi#JNINativeStringUtil">http://kr.geocities.com/kwon37xi#JNINativeStringUtil</a> 에 있다.<br>김덕태라는 분이 만드셨나보다.<br><br><div class="h2">주의할 점</div><br>Java쪽에서 넘겨 받은 문자열을 "jstring string" 변수에 저장하였을 때 C언어에서 사용할 수 있는 문자열로 가공하려면,<br><blockquote class="src">&nbsp;&nbsp;&nbsp;&nbsp;char&nbsp;*&nbsp;cString;&nbsp;/*&nbsp;최종&nbsp;C&nbsp;문자열을&nbsp;가리킬&nbsp;포인터&nbsp;*/&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;jbyteArray&nbsp;jba;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;jba&nbsp;=&nbsp;javaGetBytes(env,&nbsp;string);<br>&nbsp;&nbsp;&nbsp;&nbsp;cString&nbsp;=&nbsp;jbyteArray2cstr(env,&nbsp;jba);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;cString&nbsp;이&nbsp;C어언에서&nbsp;사용할&nbsp;수&nbsp;있는&nbsp;문자열이다.&nbsp;이것을&nbsp;사용한&nbsp;후에&nbsp;필히<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;메모리를&nbsp;free해줘야만&nbsp;한다.&nbsp;그렇지&nbsp;않으면&nbsp;메모리&nbsp;누수로&nbsp;어플리케이션이<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;죽는다.&nbsp;*/<br><br>&nbsp;&nbsp;&nbsp;&nbsp;free(cString);<br></blockquote><br><strong>보시다시피 Java 문자열에서 C 문자열로 변환한 뒤에 필히 메모리를 free해야만 한다.</strong></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

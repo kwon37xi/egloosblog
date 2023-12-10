@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>&lt;A&gt; 링크 연속 클릭 방지</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-02-05 20:14:08</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">&lt;A&gt; 링크 연속 클릭 방지</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><blockquote class="src">&lt;a target='_balnk' href="http:whatever" onClick="return !count++"&gt;click&lt;/a&gt;<br></blockquote><br>여기서 count 는 어떤 이름이라도 상관없습니다.<br><br>단지 다른 JavaScript 전역변수 이름과 충돌하지만 않으면 됩니다.<br><br>최초에 저 링크가 클릭되었을 때 count 라는 변수가 생성되고 0으로 초기화가 됩니다. 거기다 !를 했으니 true가 됩니다. 하지만, 그 직후에 count++ 에 의해서 count 가 1이 되겠죠. (count 값은 이미 return 된 이후에 증가합니다.)<br><br>그래서 그 다음번에 다시 링크를 클릭하면 return !count++ 에서 count는 1이고, !1 은 false 이므로 false가 리턴되어 링크는 작동하지 않습니다.<br><br>위와 같은 원리로 자바 스크립트를 만들어도 연속 클릭을 방지해줍니다.<br><br>전역변수 만들고, 모든 폼을 submit 하는 자바 스크립트 함수에서 그 전역변수를 체크합니다. 값이 1이면 return false, 그렇지 않으면 일단 전역변수를 ++ 한 뒤에 return true; 합니다.<br><br><a href="http://groups.google.co.kr/groups?hl=ko&amp;lr=&amp;ie=UTF-8&amp;oe=UTF-8&amp;newwindow=1&amp;threadm=1272ff69.9903d2b3%40usw-ex0105-035.remarq.com&amp;rnum=6&amp;prev=/groups%3Fq%3D%A1%A1%A1%A1%A1%A1%A1%A1%A1%A1%A1%A1%A1%A1javascript%A1%A1%A1%A1%A1%A1%A1%A1%A1%A1%A1%A1%A1%A1%2Bdisable%2Bdouble%2Bclick%26hl%3Dko%26lr%3D%26ie%3DUTF-8%26oe%3DUTF-8%26newwindow%3D1%26selm%3D1272ff69.9903d2b3%2540usw-ex0105-035.remarq.com%26rnum%3D6">관련링크</a><br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

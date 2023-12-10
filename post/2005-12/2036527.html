@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>직관으로 프로그램 짜기...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-12-19 06:20:35</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">직관으로 프로그램 짜기...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">간만에 주말을 늘어지게 퍼질러 잤더니, 지금 이시간까지 이런 저런 책들을 보면서 잠을 못 이루고 있다.<br>그동안 꺼내볼 엄두를 못 내던 마이크로소프트웨어 12월호를 읽었다. 그 중에 임백준님의 "로버트는 왜 회사를 그만 두었는가"라는 글을 인용한다.<br><br><blockquote class="quote">논리적 인과관계를 철저하게 따지는 대신, 즉흥적으로 떠오르는 심정적인 직관에 근거한 프로그래밍이 부른 화근이었다. 엄정한 논리로 구축되는 프로그래밍의 세계에서는 '아마도 이럴 것이다'라는 추측이 아니라 '이렇다'라는 명백한 인식만이 요구된다. 하지만 로버트는 우선적으로 버그의 복잡성을 얕보았고, 논리가 아니라 자기의 직관에 의지했기 때문에 코드 안에 치명적인 버그를 남기고 말았다. 나무가 물과 햇빛을 먹고 자라는 것 처럼 소프트웨어의 버그는 생각을 게을리하는 프로그래머의 방심을 먹고 산다는 점을 망각한 대가였다.<br></blockquote><br>헉...!! 이거 나다!!<br><br>나는 아무렇지도 않게 직관해 의존해서 문제의 해결책을 도출한다. 그리고는 일단 내 직관을 믿고 저질러 버린다. 그게 설혹 운영중인 시스템이라 할지라도.<br>일반적으로는 직관을 따르는 것이 맞거나, 아니면 직관의 실패를 또 다른 직관으로 풀어나가다보면 문제가 해결되곤 했다.<br>하지만 문제는 한 번의 실패로 인해 치명적인 손실을 가져올 수도 있을 경우에 조차 직관에 의존하려 든다는 점이다.<br>혹은 그 직관 때문에 본의 아니게 다른 사람에게 거짓말을 하게 된 것처럼 되어 버리는 경우도 흔하다. 그냥 "뭐 이건 저래서 이랬나봐." 라고 그냥 버릇처럼 말해버린 것을, 다른 사람이 듣고서 상층부에 "이건 저래서 이렇게 됐던 것입니다. 그러므로 이렇게 해결하면 될것입니다."라고 보고가 들어갔는데, "이건 저래서"라는 나의 직관에 의한 가정이 틀렸기 때문에 결론적으로 그 해결책도 잘못된 것이 되어버리는 것이다.<br><br>좀 더 긴장감을 가지고, 버그를 논리적으로 따져들어가는 버릇을 들여야겠다.<br>항상 증명하기 전에는 "이렇다"라고 말하지 말고, "이럴 수도 있으니 일단 확인해 보죠"라는 말 버릇을 들여야 하는 건가?<br><blockquote class="quote">성장하는 사람은 실수를 두려워하거나 거부하지 않아야 한다. 실수를 정정당당하게 끌어안고 그것을 뛰어넘는 사람만 발전할 수 있는 법이다. 하지만 로버트는 자기의 실수가 주는 심리적인 압박을 감당하지 못하고 결국 실수의 현장으로부터 달아나버리고 말았다. 영우는 바로 그 점 때문에 호감을 느끼던 로버트에게 실망하지 않을 수 없었다.<br></blockquote><br>실수로 부터 도망쳐서도 안되겠지만, 같은 실수를 계속 반복하지도 말자.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

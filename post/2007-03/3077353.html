@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>PHP - HTML에디터 사용시 XSS를 막자!</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-03-27 19:56:17</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">PHP - HTML에디터 사용시 XSS를 막자!</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">요즘 게시판이나 기타 싸이트를 만들면서 HTML 에디터를 많이 사용할 것이다.(<a title="" href="http://tinymce.moxiecode.com/">TinyMCE</a>, <a title="" href="http://www.fckeditor.net/">FCKEditor</a> 등)<br>그런데, 이런 에디터를 무턱대고 사용하는 99%는 Cross site scripting(XSS) 해킹의 목표가 된다.(<a title="" href="http://cafe.naver.com/itgogo.cafe?iframe_url=/ArticleRead.nhn%3Farticleid=6297">XSS공격방법예제</a>)<br>이러한 에디터들을 사용하면 당연히 HTML을 화면상에 그대로 출력해야 하므로, 그 HTML에 javascript를 호출하는 <strong>href="javascript:functioncall();"</strong>이나 <strong>onload="functioncall();"</strong> 같은 HTML 태그의 속성들이 같이 끼어들어갈 수 있게 된다. 심하면 <strong>&lt;script&gt;</strong>이 대 놓고 들어가지는 경우도 있고..<br><br>물론 에디터를 사용해서 작성하면 이러한 공격성 코드를 모두 제거해 준다(최소한 TinyMCE는 그렇다).<br>하지만, 웹의 특성상, POST, GET 요청을 굳이 웹 브라우저에서하지 않고(즉, Javascript를 거치지 않고) 바로 요청을 서버에 전송하는 것이 가능하므로, 클라이언트측의 유효성 검사만 믿고 입력내용을 그대로 화면에 뿌려주면 바로 XSS 공격대상으로 전락하게 된다. <br><br>서론이 길다...<br><br>PHP에 TinyMCE를 사용하면서 이걸 어찌 해결하나  하다가(구체적으로 말하면 어떤 정규 표현식을 써서 해결하지?? 하고 머리굴리다가) 찾은 것... <a title="" href="http://sourceforge.net/projects/kses">kses</a><br>원하는 태그와 불필요한 속성들(onload, onclick 등)을 모두 제거하고 원하는 태그들만 남겨두는 라이브러리이다.<br><br>사용법도 간단하다.. README 파일을 읽어보라..<br><blockquote class="src">&lt;?php<br><br>include&nbsp;'kses.php';<br><br>$allowed&nbsp;=&nbsp;array('b'&nbsp;=&gt;&nbsp;array(),<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'i'&nbsp;=&gt;&nbsp;array(),<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'a'&nbsp;=&gt;&nbsp;array('href'&nbsp;=&gt;&nbsp;1,&nbsp;'title'&nbsp;=&gt;&nbsp;1),<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'p'&nbsp;=&gt;&nbsp;array('align'&nbsp;=&gt;&nbsp;1),<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'br'&nbsp;=&gt;&nbsp;array());<br><br>$val&nbsp;=&nbsp;$_POST['val'];<br>if&nbsp;(get_magic_quotes_gpc())<br>&nbsp;&nbsp;$val&nbsp;=&nbsp;stripslashes($val);<br>#&nbsp;You&nbsp;must&nbsp;strip&nbsp;slashes&nbsp;from&nbsp;magic&nbsp;quotes,&nbsp;or&nbsp;kses&nbsp;will&nbsp;get&nbsp;confused.<br><br><strong>$val&nbsp;=&nbsp;kses($val,&nbsp;$allowed);</strong>&nbsp;#&nbsp;The&nbsp;filtering&nbsp;takes&nbsp;place&nbsp;here.<br><br>#&nbsp;Do&nbsp;something&nbsp;with&nbsp;$val.<br><br>?&gt;<br></blockquote><br><br>중간에 stripsplashes($val)부분도 중요하다. <strong><a title="" href="http://kr2.php.net/manual/en/function.get-magic-quotes-gpc.php">get_magic_quotes_gpc()</a></strong>가 true일 경우에는 따옴표에 붙은 특수문자를 꼭 제거 한뒤에 이 라이브러리를 사용할 것.<br><br>HTML 에디터를 통해 들어온 모든 데이터를 kses 라이브러리에 통과시켜서 공격성 코드를 모두 제거해서 저장한다.<br><br>이건 물론 PHP에만 해당하는게 아니다. 모든 언어에 다 해당하는 것이다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

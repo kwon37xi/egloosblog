@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>정부 발주 프로젝트 프로그래밍 가이드 라인</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-11-26 22:03:25</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">정부 발주 프로젝트 프로그래밍 가이드 라인</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">이글은 2004년 8월에 쓴 것입니다.<br><hr /><br>한국 전산원이 추진할 정부 발주 프로젝트의 프로그래밍 가이드라인입니다.<br><br><a title="" href="http://e-standard.nca.or.kr/down/guideline.pdf">http://e-standard.nca.or.kr/down/guideline.pdf</a><br><br>주로 웹 프로그래밍에 관해 설명하며,<br>앞으로는 3대 브라우져(IE, Mozilla(Firefox), Opera)를 모두 아우르는 표준 HTML 4.0혹은 XHTML 1.0 과 　　JavaScript를 사용하지 않을 경우 정부 발주 프로젝트에서 제외될 가능성이 있습니다.<br><br>데이터 공유 표준은 XML과 XML Schema 입니다.(DTD는 제외되어 있습니다)<br><br>한국 전산원이 강력하게 추진하여 우리나라가 웹을 자유롭게 항해할 수 있는 나라가 되길 바라마지 않습니다.<br><br>KLDP에서 논의 중인 <a title="" href="http://bbs.kldp.org/viewtopic.php?p=176763">웹 표준화 운동 전개 제언</a>입니다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

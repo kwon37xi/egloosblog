@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Spring + Hibernate + OpenSessionInView 사용시 주의할 점.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2008-04-15 21:19:03</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Spring + Hibernate + OpenSessionInView 사용시 주의할 점.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Spring Framework와 Hibernate를 연동해서 사용할 때는 Hibernate의 Lazy Loading을 사용하려면 꼭 OpenSessionInView 필터 혹은 인터셉터를 적용해줘야 한다.<br>그런데, 롤백이 일어날 때 세션이 항상 닫혀버리고, 그로인해 Lazy Loading이 먹통이 되는 현상이 있어서 오늘 하루종일 삽질하다가 회사 동료분에게 자문을 구하고 함께 페어로 스프링 소스 다 까보고 그러다가 문제를 드디어 해결했는데, 너무도 허탈한 것은... 이미 OpenSessionInViewFilter API DOC에 해결책이 다 나와 있다는 것...<br><br><a title="" href="http://kwon37xi.springnote.com/pages/1075048">Spring FrameWork와 Hibernate 그리고 거기서 OpenSessionInViewFilter를 적용할 때의 주의점과 그 원인</a>을 정리 해 두었다.<br><br><strong><span style="font-size:130%;">Read The F(ine|ucking) Manual!</span></strong><br><br>그리고 혹시 다음에 나오는 스프링 관련 책이 있다면, 지금 이 내용을 꼭 넣어야 할 것으로 보인다. 스프링과 하이버네이트 연동시에는 사실상 무조건 해줘야 할 것으로 보이는 내용이다.<br><br>이번주에 이상하게 포스팅 많이하네...<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

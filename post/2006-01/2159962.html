@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>재수 없는 인생...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-01-31 01:22:43</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">재수 없는 인생...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">내 인생에 재수는 없다.<br><br>내 인생에 별로 패배라 할 만한 것 혹은 재도전이라 할 만한 것이 없다.<br><br>잘났다고?<br>천만의 말씀.<br><br>나는 패배할 것 같으면 아예 시도도 안했으니까.<br><br>대학은 과는 내가 원하는 과지만, 어쨌든 내가 붙을 것 같은 학교에 지원해서 한 번에 붙었다.<br><br>자격증 시험을 볼 때는 일단 시험을 보는 것이 아니라, 공부를 조금 해보다 어.. 할만한데 싶으면 좀 더 공부를 하다가 모의고사를 보고 붙을만 하다 싶을 때 시험을 봐서 붙었다.<br>조금 공부해보다 어렵다 싶으면 아예 시도도 안했다.<br><br>여자는, 나를 좋아할만 하다 싶은 여자한테만 대쉬했다. 그래도 대부분 싫다고 했지만. 한 번 싫다고 한 여자한테는 다시는 대쉬한 적이 없다.<br><br>스타 크래프트를 하면 나는 꼭 제일 잘하는 녀석과 같은 팀이 되려고 한다. 그리고 거의 패배하지 않는다. 제일 잘하는 그 녀석은 나랑 스타하면서 나에게 무수한 패배를 당하고 지금의 실력을 쌓았다.<br><br>누가 나보다 잘한다는 것을 이미 알고 있다면, 그 사람과은 아예 게임을 안한다.<br><br>내 인생에 도전이란게 없다.<br><br>그래서 패배도 사실상 없다.<br><br>그래서... 승리의 기쁨도 없다.<br><br>언듯 보면 승리 같지만 다 가짜 승리다.<br><br><br>오늘 처음으로 패배할 것을 뻔히 알면서 도전했다가 패배했다.<br><br>패배가 ... 왠지 기분 좋다.<br><br>앞으로 더 많이 지는 인생을 살리라.<br><br>언젠간 나도 진정한 승리의 맛을 보게 되리라.<br><br><strong>새해, 더 많이 지는 한해가 되길 바랍니다!</strong></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

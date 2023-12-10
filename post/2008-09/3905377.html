@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>통합 영어 사전</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2008-09-16 14:38:29</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">통합 영어 사전</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">영어 단어 찾을 때 여러 사전을 훑어 보는 편인데, 일일이 찾기 귀찮아서, 단어 입력하면 영한/영영/위키피디아/OneLook 에서 검색해서 보여주는 <a href="http://kr.geocities.com/kwon37xi/multidic.html">통합 영어 사전</a>을 만들었다.. 별거 없다. 걍 iframe 여러개 연것이다.<br><br>번역할 때 써먹어야지.<br><br><span style="font-weight: bold;">혹시 영미권 문화에 관한 구문을 검색할 수 있는 사전 알고 계시면 추천 부탁드려요. 기타 좋은 구문 사전들 추천 해주시면 감사.</span><br><br>PS. IE에서는 제대로 안보임. CSS 실력이 딸려서.. --; FF,Safari,Chrome,Opera에서는 잘 됨.<br><br>앞으로 추가했으면..<br><ul><li>특정 사전만 지정하기</li><li>출력 순서 지정하기</li><li>프레임 크기 조정, 혹은 모든 사전을 단일 스크롤로 한번에 볼 수 있게 하기<br></li><li>IE에서 돌아가게.. --;<br></li></ul></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

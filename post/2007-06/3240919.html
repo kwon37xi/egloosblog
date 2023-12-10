@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>iBATIS + Altibase 사용시 Statement 안 닫히는 문제가 보고 되었습니다.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-06-20 13:44:08</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">iBATIS + Altibase 사용시 Statement 안 닫히는 문제가 보고 되었습니다.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><font size="4"><a href="http://ibatis.apache.org">iBATIS</a>와 <a href="http://www.altibase.com/">Altibase</a></font>를 연동해서 사용할 경우 <font size="4"><span style="font-weight: bold;">Statement 가 안 닫히는 문제</span></font>가 보고 되었습니다.(from <a title="" href="http://trypsr.tistory.com/">http://trypsr.tistory.com/</a>)<br><br>현재 국내에서 Altibase를 사용하는 시스템들이 점차 늘어나고 있는것 같은데, <span style="font-weight: bold;">iBATIS와 연동시 Statement가 제대로 닫히는지 꼭 확인해 보시기 바랍니다.</span><br><br><br>정확히 문제의 원인이 iBATIS인지 Altibase가 JDBC 규약을 잘못 지킨 것인지는 파악을 못했습니다. Altibase JDBC 드라이버 혹은 iBATIS의 특정 버전에서만 일어나는 현상인지 등도 파악하지 못하고 있습니다. 또한 이걸 피해갈 수 있는 방법도 파악을 못했습니다.(Altibase를 구경해 볼 수가 있어야 말이지요.. --;).<br><br>다시 말씀드리지만 iBATIS+Altibase 연동시에는 Statement가 정확히 닫히는지 여부를 필수적으로 테스트해보고 나서 하시기 바랍니다.<br><br>그리고 이 현상을 피해갈 수 있는 방법을 찾으신 분은 공개해주시면 다른 분들께 큰 도움이 될 것 같습니다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

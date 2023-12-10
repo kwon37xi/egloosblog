@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>뮤지컬 브로드웨이 42번가</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-07-10 17:52:20</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">뮤지컬 브로드웨이 42번가</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">뮤지컬 브로드웨이 42번가는 단연 내가 본 얼마 안되는 뮤지컬중 최고였다!!<br><br>끝없이 펼쳐지는 화려한 탭댄스의 향연!<br>2시간을 저렇게 춤출 수 있는 에너지를 뿜어내는 배우들이 놀라웠다.<br><br>게다가 화려한 무대 장치들..<br>그중 압권은 대형 원형 거울로 춤 추는 장면을 반사해서 보여주는 장면..<br>너무 깜짝 놀랐다.<br>그 외에도 많은 무대장치들이 나왔다 사라진다. 도대체 저 많은 것들을 어디다 뒀다 가져오는지 신기할 따름이었다.<br><br>최고의 배우는 단연 도로시 브록(Dorothy Brock) 역할의 배우가 아니었을까 싶다.<br>얼굴을 자세히 못보고 출연 배우 명단도 제대로 못봐서 확신은 없지만 김선경씨가 아니었나 싶다.<br>정말 놀라운 노래 실력과 연기력 때문에 자지러지는줄 알았다.<br><br>멋지다 브로드웨이 42번가!!<br><br>메리 크리스마스~~</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

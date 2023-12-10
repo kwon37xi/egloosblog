@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>이렇게 하면 당신은 실패하는 리더</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-13 15:01:43</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">이렇게 하면 당신은 실패하는 리더</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">원문 : <a href="http://news.empas.com/show.tsp/20040812n05444/?s=6&e=184">http://news.empas.com/show.tsp/20040812n05444/?s=6&e=184</a><br><br>LG경제연구원은 12일 ‘실패하는 리더, 이렇게 행동한다’라는<br>보고서에서 성공하는 리더와 실패하는 리더의 차이는 작은 행동 하나에서<br>시작된다고 지적했다. 다음은 실패하는 리더형.<br><br><br>◇좌고우면형 스스로 결정하는 힘이 부족, 우물쭈물한다. 자신의 결정에 대한<br>믿음이 부족해 많은 변수를 고려, 자연히 의사결정은 지체된다.<br><br>또 자신의 결정을 옳다고 생각하면서도 상대방의 의견에 따라 번복하는<br>경우가 잦다.<br><br>부하에 대해서도 강하게 질책하지 못하고 상사에게 결정을 미룬다.<br><br>◇정저지와형 우물안 개구리처럼 변화에 둔감하다. 기존 관행이나 고정관념을<br>탈피하지 못한다. 또 구성원들의 창조적 실험정신을 고무시키려는 노력과<br>의지가 부족하다.<br><br>◇안하무인형 인재가 열정적으로 업무에 몰입할 수 있도록 동기를 부여하는<br>것이 바람직하다. 그러나 여전히 ‘시키는 대로 하라’고 고함치면서<br>권위적이고 독선적인 행동으로 일관한다. 부하와 대화도 거의 하지 않는다.<br><br>◇등하불명형 등잔 밑이 어두운 리더다. 핵심적 결정만 자신이 하면 된다고<br>생각한다. 현장 방문을 거의 하지 않거나 핵심측근의 제한된 정보에 의존,<br>의사결정을 한다.<br><br>◇필벌지상주의형 칭찬에는 인색하고 과실에 대한 질책만 일삼는다.<br><br>사소한 일에 꼬투리를 잡고 실적이 미진하면 대안을 제시하지 않고 다그치기만<br>한다.<br><br>◇희생요구형 부하직원을 ‘일벌레’처럼 여기는 리더다. 구성원이 항상<br>바쁘게 움직이면 안도하고 잠시 여유를 가지면 불안해 한다. 항상 일이<br>우선이고 구성원의 능력과 재능을 키워주는 일에는 무관심하다. <br><br>[배병문기자 bm1906@kyunghyang.com]</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

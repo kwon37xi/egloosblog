@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Log4J는 어떻게 소스 코드 줄번호를 얻어오나? 그리고 효율적 로깅.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-11-15 09:35:12</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Log4J는 어떻게 소스 코드 줄번호를 얻어오나? 그리고 효율적 로깅.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://logging.apache.org/log4j/docs/">Log4J</a>는 로깅시 소스 코드 이름과 줄번호도 함께 출력해 준다.<br><br>대체 어떻게 소스코드 이름과 줄번호를 얻어온단 말이냐?<br><br><a href="http://weblogs.java.net/blog/zarar/archive/2005/11/sneaky_sneaky_l.html">예외를 날려서 예외의 StackTrace를 파싱해서 소스코드 이름과 줄번호를 얻어온다</a>고 한다.<br><br>흠... 그런데, 이 예외 발생은 상당한 시간을 잡아먹는 작업이다.<br><br><del>이러한 상황에서 log.debug(String ..) 을 남발하게 되면 당연히 속도 감소가 생길 수 밖에 없다.</del><br>착각이다. 예외를 통한 소스 위치 찾기는 log.debug()를 직접 호출하더라도 Debug레벨이 아니면 실제로 작동하지 않으므로, 속도에 영향을 줄 수 없다.<br><br>예외 뿐만 아니라 로그 메시지에 함께 보내는 String 객체들 때문에도 엄청난 속도 감소가 발생한다.<br>String 객체를 단 한개만 로그에 사용하면 상관 없지만, 보통 로그 메시지는 String + String + ... 식으로 여러 문자열을 더해서 날리게 되는데, String이 불변객체(값을 변경할 수 없고, 값 변경이 필요할 경우에는 새로운 객체를 생성)이기 때문에, String 더하기를 할 때마다 새로운 객체를 생성하는 오버헤드가 발생한다. 이 문자열 +로 인한 오버헤드는 if 문으로 어떤 로그 레벨인지를 검사하는 것보다 아주 매우 매우 큰 수준이라고 한다.(어디선가 비교 결과를 본적 있는데 까먹었음... --;)<br><br>이것을 막기 위해서는 딴건 몰라도 로깅할 때 <strong>log.isDebugEnabled()</strong>로 필히 검사하고 로그를 남겨야 겠다.<br><blockquote class="src">if (log.isDebugEnabled()) {<br>&nbsp;&nbsp;&nbsp;&nbsp;log.debug("로그야~~");<br>}<br></blockquote><br>당연한 얘기지만 System.out.println()을 통한 로깅은 소스코드에 관한 정보도 안알려주고, 어떤 쓰레드에서 실행됐는지도 알 수 없고, 조건절을 통해서 String + 연산을 막을 수도 없고, 경우에 따라 로그 레벨도 조절할 수 없다.<br><br><strong>System.out.println()을 통한 로깅 절대 금지!!</strong><br><br>또한, 나는 Log4J를 직접 사용하는 것 보다는 <a title="" href="http://jakarta.apache.org/commons/logging/">Jakarta Commons Logging</a> 사용을 적극 권장하고 싶다.<br><br>로거간의 충돌 현상이나, Log4J 사용이 뭔지 알 수 없는 이유로 불가능한 상황에 직면할 수 있는데, Commons Logging 을 사용하면 자기가 원하는 로거로 마음대로 제거하거나 끼워 넣을 수 있고, Log4J를 사용할 경우에는 특별한 설정과정 없이 바로 사용할 수 있기때문에 별다르게 귀찮을 것도 없다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

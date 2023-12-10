@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>iBatis로 생산성 높은 DB 프로그래밍 하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-01-16 11:27:22</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">iBatis로 생산성 높은 DB 프로그래밍 하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">이번 프로젝트에서 생산성 향상의 일등공신은(Eclipse+MyEclilpseIDE 겠지만, 도구 빼고) <a title="" href="http://ibatis.apache.org">iBatis</a>인것 같다.<br><br>iBatis를 이용하면 쿼리 작성과 수정시의 소모적인 노가다가 대폭 줄어들고, SQL코드도 알아보기 쉽다.<br>비슷한 역할을 하는 Hibernate 대비 장점이라면 무엇보다 <strong>배우기 쉽다!!</strong>라는 점이라고 본다. 한 이틀이면 개발자 교육 끝내고 바로 작업들어갈 수 있다. 그러면서도 그로인해 높아지는 생산성은 엄청나다.<br>다음 페이지들에서 iBatis 정보를 한국어로 얻을 수 있다. 모두 이동국님이 작성한 것으로, iBatis 를 퍼뜨리기 위해 많이 노력하시는거 같고, 덕분이 큰 도움이 되었다.<br><br>* <a title="" href="http://wiki.javajigi.net/pages/viewpage.action?pageId=52">SQLMaps를 이용한 객체-관계 맵핑</a><br>* <a title="" href="http://openframework.or.kr/JSPWiki/Wiki.jsp?page=PersistentLayer">Java PersistentLayer</a><br>&nbsp;&nbsp;&nbsp;- <a title="" href="http://openframework.or.kr/JSPWiki/attach/Hibernate/iBATIS-SqlMaps-2-Tutorial_ko.pdf">SQL Maps2.0 tutorial(한글판)</a><br>&nbsp;&nbsp;&nbsp;- <a title="" href="http://openframework.or.kr/JSPWiki/attach/Hibernate/iBATIS-SqlMaps-2_ko.pdf">SQL Maps2.0 개발자 가이드(한글판)</a><br><br>혹시나 우리나라에서 Hibernate가 더 인기가 좋다는 이유로 (Hibernate를 전혀 모르는 상태에서) Hibernate를 선택하려 한다면, 다시 한 번 생각해 볼 것을 권하고 싶다. Hibernate는 배우고 제대로 활용하는데 장벽이 iBatis에 비해 상당히 높다고 한다(SQL을 사용하지 않기때문에).<br><br>제대로 이해하지 못하고 사용한 프레임워크가 프로젝트를 좌초시킬 수 있는 예를 개발자 커뮤니티 게시판에서 좀 본 것같고, 나 자신도 잘 모르는 프레임워크를 무턱대고 도입해 고생한 기억이 좀 있다(프레임워크가 안 좋기 때문이 아니라 제대로 이해를 못하고 사용하기 때문에...).</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

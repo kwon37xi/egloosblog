@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[책] 피플웨어</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-07-10 17:54:08</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[책] 피플웨어</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><img src='./1527232/b0046915_17532250.gif'><br>평가 : 꼭 읽자~!<br><a href="http://www.aladdin.co.kr/shop/book/wbook.aspx?ISBN=8974422492">피플웨어</a>는 지식 산업계에서 사람이 얼마나 중요한지에 대해 강조하는 책이다.<br><br>기술과 사람 중 무엇을 선택해야 하는가? 먼저 사람이고 그 사람들이 기술을 발전시킨다.<br><br>방금 다 읽었는데, 뭐라고 글을 써야할지 모르겠다.<br><br>그냥 무조건 읽어볼것. 읽고서 후회하지 않을 것이다.<br><br>피플 웨어를 쓴 톰 디마르코의 다른 책 [http://www.aladdin.co.kr/shop/book/wbook.aspx?ISBN=8995300973 데드라인]도 프로젝트를 성공으로 이끌기 위해 중요한 것이 다시한 번 '''사람'''임을 소설 형식으로 보여주는 책이다.<br>딱히 재밌는 소설은 아니지만 그렇다고 지루하지도 않다.<br><br>아... 글빨 늘리겠다고 열심히 했는데 잘 안되네.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>비트토런트 클라이언트인 Azureus 기반 동영상 공유 싸이트 등장</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-07 23:38:55</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">비트토런트 클라이언트인 Azureus 기반 동영상 공유 싸이트 등장</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://azureus.sourceforge.net/">자바로 만들어진 오픈 소스 비트토런트 P2P 공유 프로그램인 Azureus</a> 를 기반으로 하여 초고화질(HD혹은 DVD급) 화질의 동영상을 공유하는  UCC 싸이트 <a title="" href="http://www.zudeo.com/">Zudeo</a>가 등장했다.<br><br>뭐... 지금 하나 볼려고 받고 있는데... 이런... 사이즈가 1.2기가네. 암튼 받고 있는 중인데..<br><br>물론 파일을 공유해서 받는 것이지 요즈음의 플래시기반 실시간 시청같은 것은 아니다.<br><br><a title="" href="http://www.kbench.com/news/?no=35341">KBench의 관련 기사</a>에 따르면 UCC 외에도 동영상 권리사들과 협약을 맺어서 공식적으로 저작권 있는 동영상을 제공할 예정이라고 한다.<br><br>이쁜 아가씨들 나오는 첨보는 미국 드라마를 받아보고 있는데, 초당 1.1MB 전송하고 있다.(bps가 아니다) 상당히 빠른편에 속한다.<br><br>근데.. 자야되는데..</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

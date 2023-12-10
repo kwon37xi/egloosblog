@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>BASH 컬러 프롬프트</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-07-29 23:34:41</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">BASH 컬러 프롬프트</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="h2"> 왜? </div><br>사실 프롬프트 같은 거에 거의 신경 안쓰는 편인데, 하다보니 필요해졌다.<br><br>윈도우에서 다른 유닉스 서버에 접속해 작업할 때는 별도의 클라이언트를 사용하니 상관 없겠지만, 리눅스에서는 보통 한텀이나 X텀을 띄우고 telnet 혹은 ssh 명령으로 다른 서버에 접속한다.<br><br>이때 내 컴퓨터의 프롬프트와 서버측의 프롬프트가 서로 비슷하면, 이게 내가 서버에 접속한 상태인지 내 로칼에 있는 상태인지 헷갈릴 경우가 많다.<br><br>아무리 프롬프트에 접속한 서버의 이름을 넣어 두더라도 헷갈리는 건 어쩔 수 없다.<br><br>그래서 로칼 프롬프트를 컬러로 하기로 했다.<br><br><div class="h2">나의 새로운 프롬프트</div><br><br><strong>~/.bashrc</strong> 에 다음과 같이 해 둔다..<br><br><blockquote class="src">PS1='e[0m[e[1;31mue[0m@e[1;34mhe[0m w]<br>$ '<br></blockquote><br><br><img src='./2595755/b0046915_2337104.png'><br><br><div class="h2">참조</div><br>다음에서 프롬프트 관련한 KLDP 사람들의 다양한 예를 볼 수 있다. 또 다른 참조 링크들과 함께...<br><br><a title="" href="http://bbs.kldp.org/viewtopic.php?t=30236">http://bbs.kldp.org/viewtopic.php?t=30236</a><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

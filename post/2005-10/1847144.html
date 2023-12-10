@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>JRun 4.0 과 Log4J</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-10-18 08:12:13</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">JRun 4.0 과 Log4J</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">JRun 4.0 에서 어플리케이션을 돌려야 한다.<br><br>톰캣을 이용할 때는 상관이 없었는데, JRun을 사용하니 <a href="http://logging.apache.org/log4j/docs/">Log4J</a>가 전혀 작동하지 않는다.<br><br>이유를 찾아보니 JRun 4.0 이 클래스 로딩에 관해서 표준을 지키지 않기 때문이라고 한다.<br><br>원래는 WEB-INF/lib/log4j-버전.jar 를 읽어들여야하는데, 그렇지 못한 것이다. 대신 $JRUN4_HOME/servers/lib 디렉토리에 jar 파일을 두어야 했다.<br><br>우리같은 경우에는 <a href="http://jakarta.apache.org/commons/logging/">Jakarta Commons Logging</a>에다가 Log4j를 붙여서 사용하고 있다.<br><br><blockquote class="src">* $JRUN4_HOME/servers/lib 디렉토리에 log4j-버전.jar 파일 복사<br>* $JRUN4_HOME/servers/lib 디렉토리에 log4j.properties 파일 복사<br>* cd $JRUN4_HOME/servers/lib<br>* jar cvf log4j-props.jar log4j.properties<br>* JRun 재시작<br></blockquote><br><a href="http://www.atlassian.com/software/jira/docs/v2.5.3/servers/jrun4.html">Installing JIRA on JRun 4.0</a>이라는 문서를 참조했다.<br><br>commons logging 패키지는 WEB-INF/lib 에 그냥 둔다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

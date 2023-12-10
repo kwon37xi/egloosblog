@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>hamcrest의 hasProperty</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-01-17 01:43:20</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">hamcrest의 hasProperty</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">hamcrest의 Generic 타입 체킹은 정말 최악인것 같다.<br>뭔가 근본적인 설계가 잘못 돼 있는 느낌인걸? 특히 컬렉션 관련 부분이 그렇다.<br><br>아무튼, hasProperty()라는 Matcher가 있는데, 객체의 특정 필드값만을 비교 대상으로 지정할고 싶을 때 사용한다.<br><br>예를 들면 이런식이다.<br><br><blockquote class="src">List&lt;User&gt; users = new ArrayList&lt;User&gt;();<br>users.add(new User("이하늬", 20, "예뻐~")); // name, age, description<br>users.add(new User("김태희", 30, "더 예뻐~"));<br> <br>assertThat(users, Matchers.&lt;User&gt;hasItem(Matchers.&lt;User&gt;hasProperty("name", is("김태희"))));<br></blockquote><br><br>users 컬렉션의 객체 중에 "name" 필드의 값이 "김태희"인 객체가 하나라도 있으면 true가 된다. <strong>User 객체 전체를 비교하는게 아니라, "name" 필드의 값만 비교하는 것이다.</strong><br><br>코드가 상당히 난잡하다는 것을 몸소 느낄 수 있을 것 같다. 하지만 어쨌든 가끔씩 유용하게 사용할 만한 매처이다.<br>단일 객체 비교시에는 큰 의미가 없어 보이고, 컬렉션에서 특정 필드의 값을 검사할 때 유용할 법하다.<br><br>처음에 hasProperty를 소개한 해외 블로그의 경우에는 Generic을 정상적으로 못 쓰고 users 컬렉션을 (Iterable&lt;Object&gt;) 형태로 캐스팅하는 식으로 해결하고 있었다. 어쨌든 내가 보기엔 타입을 Matcher.&lt;User&gt;hasItem(..) 형태로 명시하는게 더 나아 보인다.<br><br>hamcrest의 컬렉션 관련 매처들은 이곳 저곳에서 사람 복잡하게 만드는 느낌이다.<br>- 더 나은 해결책이 있다면 좀 공유해주시면 감사하겠습니다.<br><br>더욱 자세한 사항은 <a title="" href="http://wiki.kwonnam.pe.kr/java/junit/hamcrest" target="_blank">http://wiki.kwonnam.pe.kr/java/junit/hamcrest</a>에 정리해두었다.</user></object></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

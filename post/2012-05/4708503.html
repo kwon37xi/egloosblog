@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] Eclipse + Mockito + JUnit 에서 NoSuchField: NULL 예외 발생</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-05-29 15:35:22</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] Eclipse + Mockito + JUnit 에서 NoSuchField: NULL 예외 발생</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Eclipse 3.7 + Mockito 1.9 + JUnit 4.7을 사용하는데 갑자기 <span style="font-weight: bold;">NoSuchField: NULL</span> 예외가 발생하기 시작했다.<br><br>일단 JUnit 4.10으로 업그레이드를 해보았으나 작동하지 않았다.<br><br>계속해서 이유를 탐색하다가 <span style="font-weight: bold;">junit-dep 4.4</span> 에 의존성이 걸려 있음을 발견하였다.<br><br><a title="" href="http://stackoverflow.com/questions/7688395/nosuchfielderror-when-trying-to-run-a-junit-test-with-spring" target="_blank">NoSuchFieldError when trying to run a jUnit test with Spring</a> 글을 참조해보면 <span style="font-weight: bold;">JUnit 4.5 이상을 사용해야</span> 하는데, junit 은 4.7인데, 어떤 라이브러리의 의존성이 junit-dep은 4.4인 이상한 의존관계가 맺어진 상태인 것이다.<br><br>불필요한 라이브러리를 삭제하고, 의존관계를 정리하여 JUnit을 완전히 4.10 버전으로 맞췄더니 해결 되었다.<br><br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

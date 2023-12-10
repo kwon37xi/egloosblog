@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+        <title>황급 거북이 3돈.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                    <span class="sub"><img src="../../images/logo_sub.png" width="57" height="12" alt="포토로그"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-07-20 11:29:04</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">황급 거북이 3돈.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <!-- 포토 슬라이드 -->
+                        <div class="photo-container">
+                            <!-- 메인 슬라이더 -->
+                            <div class="photo-slider swiper">
+                                <div class="swiper-wrapper">
+                                    
+                                        <div class="swiper-slide">
+                                            <img class="image_mid" alt="" src="./7843/b0046915_1126255.jpg" width="600" height="450">
+                                        </div>
+                                    
+                                        <div class="swiper-slide">
+                                            <img class="image_mid" alt="" src="./7843/b0046915_11263112.jpg" width="600" height="450">
+                                        </div>
+                                    
+                                </div>
+                            </div>
+                            <!-- 썸네일 슬라이더 -->
+                            <div class="thumb-slider swiper">
+                                <div class="swiper-wrapper">
+                                    
+                                        <div class="swiper-slide">
+                                            <img class="image_mid" alt="" src="./7843/b0046915_1126255.jpg" width="600" height="450">
+                                        </div>
+                                    
+                                        <div class="swiper-slide">
+                                            <img class="image_mid" alt="" src="./7843/b0046915_11263112.jpg" width="600" height="450">
+                                        </div>
+                                    
+                                </div>
+
+                                <button type="button" class="swiper-button nav-prev">이전</button>
+                                <button type="button" class="swiper-button nav-next">다음</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p>규만이 아기 경현이를 위한 돌 선물. 몇명이 모여서 샀다.처음 사본 금제품인데(반지도 사본적이 없다), 이럴수가... 순금이 이렇게 가볍다니.묵직한 것을 기대했다가 실망 가득.</p>
+                    <div class="post-footer">
+                        <button class="btn" onclick="button_click();">목록</button>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+        <script>
+            var thumbSlider = new Swiper('.thumb-slider', {
+                slidesPerView: 'auto',
+                spaceBetween: 9,
+                freeMode: true,
+                watchSlidesProgress: true,
+                breakpoints: {
+                    769: {
+                        slidesOffsetBefore: 79,
+                        slidesOffsetAfter: 79,
+                    }
+                },
+            });
+            var photoSlider = new Swiper('.photo-slider', {
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: ".nav-next",
+                    prevEl: ".nav-prev",
+                },
+                thumbs: {
+                    swiper: thumbSlider,
+                },
+            });
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

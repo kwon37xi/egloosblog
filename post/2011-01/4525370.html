@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>구글 크롬 주소입력창으로 I&#39;m Feeling Lucky 사용하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2011-01-18 22:53:34</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">구글 크롬 주소입력창으로 I&#39;m Feeling Lucky 사용하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://superuser.com/questions/20648/firefox-search-bar-defaults-to-im-feeling-lucky" target="_blank">Firefox에서는 주소입력창에 검색어를 입력하면 구글 I'm Feeling Lucky를 통해 검색을 하고 가장 근접한 검색 결과 페이지로 자동 이동하도록 설정하는 것이 가능</a>하다.<div><br></div><div>구글 크롬(Google Chrome)을 주 브라우저로 쓰기 시작한지 꽤 됐는데 가장 불편한게 이 기능의 부재이다.</div><div><br></div><div>사실 가장 간편한 방법은 기본 검색엔진을 구글 I'm Feeling Lucky로 바꾸는 것인데, 평소에 구글 검색을 꾸준히 사용해야 하기 때문에 무작정 이런식으로 할 수는 없다. 어쨌든 가장 많이 사용하는 것은 구글의 일반 검색이니까.</div><div><br></div><div>어찌어찌 이리저리 하다보니 해결책이 도출되었다.</div><div><br></div><div>주소입력창에서 오른쪽 마우스 클릭을 해서 "<b>검색엔진수정(E)</b>"를 선택하고 검색엔진을 하나 더 추가한다.</div><div>추가 버튼을 누르고 이름은 "Google I'm Feeling Lucky"를 입력하고,</div><div><br></div><div>키워드에 <b><font class="Apple-style-span" color="#FF0000" size="4">`</font></b> 를 입력한다. ` 는 숫자 1 왼쪽에 있는 역따옴표이다.</div><div><br></div><div>그려고 URL에&nbsp;<b><a href="http://www.google.com/search?ie=UTF-8&amp;oe=UTF-8&amp;sourceid=navclient&amp;gfns=1&amp;hl=ko&amp;q=%s">http://www.google.com/search?ie=UTF-8&amp;oe=UTF-8&amp;sourceid=navclient&amp;gfns=1&amp;hl=ko&amp;q=%s</a></b>&nbsp;을 입력한다. 구글 I'm Feeling Lucky의 검색 쿼리이다.</div><div><br></div><div>이제 저장하고, Ctrl-L 을 눌러 주소표시줄로 간뒤에 ` 를 입력하면 즉시 I'm Feeling Lucky 검색상태로 변경된다. 원칙적으로는 Tab 키를 눌러야 하는데, ` 를 비롯한 몇몇 문자를 키워드로 지정하면 즉시 키워드로 지정된 검색 엔진 지정상태로 변경된다.</div><div><br></div><div>몇몇 특수 문자에 대해서 이런식으로 반응하도록 만들어진 것 같다. 느낌표(!), # 등을 검색엔진 키워드로 설정하고 테스트 해봐도 동일하게 반응 한다. Tab 키를 누르지 않아도 즉시 해당 검색엔진 선택 상태로 바뀐다.</div><div><br></div><div>이걸 이용해서 가장 많이 쓰는 검색엔진들의 키워드를 `,!,@,# 등으로 지정했다.</div><div><br></div></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

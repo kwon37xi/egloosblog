@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>JVM의 DNS 캐시</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2010-08-27 00:04:09</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">JVM의 DNS 캐시</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="xhtmlEditorBody"><p>JVM은 일단 실행되면 그 이후부터의 도메인 네임을 통한 네트워크 접속시 DNS 정보를 캐싱한다. 그것도 JVM을 재시작 할 때까지 영원히 캐싱한다.</p> <p>&nbsp;</p> <p>요즘 OpenAPI를 사용하는 경우가 많은데, 이 JVM의 DNS 캐시는 OpenAPI를 제공하는 서버의 IP 주소가 갑자기 바뀌었을 경우 문제를 일으킬 수 있다.</p> <p>Java 웹 서버를 운영할 때 상대방 OpenAPI 서버의 IP가 바뀌면 웹 서버를 껐다 켜야만 DNS 정보가 갱신되어 그제서야 API 서버에 제대로 접속이 된다. 따라서 OpenAPI 를 사용하는 웹 서비스로 만들 경우에는 DNS 캐시 기능을 끄거나 캐싱 시간을 조정할 필요가 있다.</p> <p>&nbsp;</p> <p>관련 정보 :</p> <ul> <li>SAP 블로그 : <a href="http://www.sdn.sap.com/irj/scn/weblogs?blog=/pub/wlg/1887" class="external" title="http://www.sdn.sap.com/irj/scn/weblogs?blog=/pub/wlg/1887">Controlling DNS Caching&nbsp; in the Java Virtual Machine</a></li> <li><a href="http://code.google.com/intl/en/apis/recaptcha/docs/java.html" class="external" title="http://code.google.com/intl/en/apis/recaptcha/docs/java.html">reCAPTCHA Java API 문서</a> - reCAPTCHA 서버가 가끔 IP를 바꿔서 이런문제가 발생한다고 한다.</li> <li>더 자세한 설명 : <a href="http://www.rgagnon.com/javadetails/java-0445.html">http://www.rgagnon.com/javadetails/java-0445.html</a></li> </ul> <p>&nbsp;</p> <p>가장 간단한 해결 방법은 Java 실행 옵션에 시스템 프라퍼티를 지정하는 것이다. 아래는 DNS 캐싱 시간을 30초로 지정한다. SUN/Oracle JVM에 한한다.</p> <ol class="code"> <li>java <strong>-Dsun.net.inetaddr.ttl=30</strong></li> </ol> <p>&nbsp;</p> <p>Tomcat의 경우에는 $CATALINA_HOME/bin/setenv.sh 파일에서 CATALINA_OPTS 혹은 JAVA_OPTS 환경 변수를 지정하고 위의 프라퍼티를 지정한다.</p> <p>&nbsp;</p> <p>다음 방법은 Java 1.4 이상 버전에서 <strong>jre/lib/security/java.security</strong>&nbsp;파일에 프라퍼티를 추가하는 것이다. 기본값은 -1이며 영원히 캐싱한다는 의미이다. 다음은 30초간 캐싱한다고 지정한다. 0은 캐시를 끈다.</p> <ol class="code"> <li>networkaddress.cache.ttl=30</li> </ol> <p>&nbsp;</p> <p>프로그램적으로도 가능하다.</p> <ol class="code"> <li>java.security.Security.setProperty("networkaddress.cache.ttl" , "30");</li> </ol> <p>&nbsp;</p> <p style="text-align:right">이 글은 <a href="http://kwon37xi.springnote.com/pages/6308505">스프링노트</a>에서 작성되었습니다.</p></div></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

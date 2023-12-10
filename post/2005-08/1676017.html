@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Swing] Java Swing tips</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-08-24 10:41:40</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Swing] Java Swing tips</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Java Swing 관련 팁들을 모은다.<br><B>◆ 시스템 기본 룩앤필 적용</B><br><BLOCKQUOTE class="SOURCE"><br>try {<br>&nbsp; &nbsp; // LookAndFeel을 시스템의 기본 값으로 설정한다.<br>&nbsp; &nbsp; // Java 5.0에서 Windows XP의 경우 XP 테마로 나온다.<br>&nbsp; &nbsp; UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());<br>&nbsp; &nbsp; SwingUtilities.updateComponentTreeUI(JFrame객체); // 모든 UI 변경<br>} catch (Exception ex) {<br>&nbsp; &nbsp; // LookAndFeel 설정 실패<br>&nbsp; &nbsp; ex.printStackTrace();<br>}<br><br></BLOCKQUOTE><br><br><B>◆ 창 최대 상태로 시작</B><br><BLOCKQUOTE class="SOURCE"><br>// 창을 최대화한다.<br>jframe.setExtendedState(JFrame.MAXIMIZED_BOTH);<br>jframe.setVisible(true);<br><br></BLOCKQUOTE><br>jframe.pack()을 실행할 필요 없음.<br><br><B>◆ JPanel에 Component를 add 했지만 화면상에 반영이 안된다.</B><br>JPanel 객체의 <B>updateUI()</B> 메소드를 실행해야 한다.<br><br><B>◆ 참조 링크</B><br><UL><LI><a href="http://johnchildress.com/tame/">Swing Examples - 훌륭한 스윙 예제들</a></LI><br><LI><a href="http://www.cs.cf.ac.uk/Dave/HCI/HCI_Handout_CALLER/HCI_Handout_CALLER.html">Human Computer Interaction (Part 2: Pratical HCI Programming) Java Swing - Swing 기초 예제</a></LI><br></UL></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

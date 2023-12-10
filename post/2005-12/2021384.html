@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>LG 핸드폰 외국 광고</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-12-13 23:28:48</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">LG 핸드폰 외국 광고</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://digg.com">http://digg.com </a>을 구독하고 있는데, 갑자기 <a title="" href="http://digg.com/links/LG_Commercial._A_must_see_">LG 제품의 광고-정말 볼만해!</a>라는 글이 올라 와 있다.<br><br>뭔가 하고 봤지...<br><br><a title="" href="http://thatvideosite.com/view/1222.html">http://thatvideosite.com/view/1222.html</a><br><br>뭐, 미성년자 관람 쬐끔 가능 수준이다.<br><br>어느 나라에 방송된 광고일까 궁금한데, 아래 댓글들을 보니, 방송을 탈 수준은 아닌거 같고, 광고 학과 같은데서 학생들에게 보여주면서 창의력 계발등에 사용하는 것일 확률이 높다고 한다.<br><br>암튼, 웃겼다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

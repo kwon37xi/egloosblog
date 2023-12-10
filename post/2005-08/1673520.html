@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Swing] Swing 어플리케이션용 기본 아이콘 모음</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-08-23 17:37:07</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Swing] Swing 어플리케이션용 기본 아이콘 모음</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://java.sun.com/developer/techDocs/hi/repository/">Java look and feel Graphics Repository</a> 에서 자바 Swing 어플리케이션 작성시 사용할 수 있는 기본적인 아이콘 묶음을 받을 수 있다.<br><br>무료로 사용할 수 있다고 한다.<br><br>각 아이콘을 눌러보면, 아이콘별 역할과 일반적으로 사용되는 단축 글쇠등이 나온다.<br>되도록이면 다른 개발자들이 개발한 어플리케이션과 일관성을 유지하게 만드는 것이 좋겠다.<br><br>별로 이쁘게 꾸미지 않아도 되는 기능 위주의 스윙 어플리케이션을 개발할 때 통일성 있는 아이콘으로써 사용하면 좋을 듯 하다.<br><br>이 링크의 홈 디렉토리를 눌러보면 <a href="http://java.sun.com/developer/techDocs/hi/index.html">Java Software Human Interface</a>에 대한 글을 볼 수 있다. 일관성있는 인터페이스를 위해 언제 한 번 읽어봐야할 듯 하긴 한데... 언제쯤?? ^^;;<br><br>그리고 이 아이콘과 단축 글쇠 사용 예제를 <a href="http://java.sun.com/products/jfc/tsc/articles/actions/">Using the Swing Action Architecture</a>에서 볼 수 있다.<br><br>흠.. 요즘 Swing 관련 개발때문에 공부중...<br><br>아 복잡해.. 한 번에 하나만 하고 살면 안될까??<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

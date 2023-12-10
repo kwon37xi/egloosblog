@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Subversion svn+ssh PuTTY Subclipse/TortoiseSVN 설정</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-06-27 10:51:29</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Subversion svn+ssh PuTTY Subclipse/TortoiseSVN 설정</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="h1">Subversion svn+ssh 방식으로 설정해서 PuTTY/Subclipse/TortoiseSVN으로 접속하기</div><br><a title="" href="http://subversion.tigris.org">Subversion</a>을 써볼까 하여 테스트 중이다.<br>Subversion은 CVS에 비해서 장점이 많다.<br>1. 파일명 변경이 히스토리에 남는다.(CVS는 기존 파일을 삭제한 것으로 간주해버린다)<br>1. 원자적 커밋(모든 파일이 커밋되면 되는거고 아니면 모두 롤백)<br>1. 커밋 단위별 버저닝.(CVS는 각 파일별로 버전을 메기지만 SVN은 커밋단위로 버전을 메기기 때문에, 직전 커밋상태로 모든 파일을 되돌리는 것이 가능하다)<br>뭐 대충 이런 장점들이 있다.<br><br>하지만 Subversion을 지금 바로 우리 회사 프로젝트에 도입하는 것은 흠.. 아직 CVS를 갈아 엎고 도입하기에는 무리 같다. Subversion 자체가 문제가 아니라 현재의 Eclipse용 Subversion Client인 Subclipse(1.0.3) 때문이다.<br>CVS Client에서 안보이던 버그들 때문에 다른 개발자들이(나부터도) 짜증 날 듯 하다.<br>기존에 CVS가 없었고, 처음으로 버전 관리 시스템을 도입하려 한다면, 도입해도 무관할 듯하다. 버그가 있다고 해도 (이미 CVS클라이언트에 익숙하지 않다면)그렇게 짜증날 정도는 아닌 것 같다.<div class="h2">참조</div><br>&nbsp;* <a title="" href="http://tortoisesvn.sourceforge.net/?q=book/print/5&amp;PHPSESSID=856b2d1ca0e8ec705ff96309ac6ffcff">http://tortoisesvn.sourceforge.net/?q=book/print/5&amp;PHPSESSID=856b2d1ca0e8ec705ff96309ac6ffcff</a><br>&nbsp;* <a title="" href="http://subclipse.tigris.org/servlets/ReadMsg?list=users&amp;msgNo=3334">http://subclipse.tigris.org/servlets/ReadMsg?list=users&amp;msgNo=3334</a><br>&nbsp;* <a title="" href="http://wiki.kldp.org/wiki.php/FindPage?action=titlesearch&amp;value=Subversion">KLDP Wiki Subversion</a><br><br><div class="h2">서버측 설정</div><br>서버는 Linux, Unix, Cygwin 을 사용하고, SSH를 통해 보안이 강화된 접속을 사용한다.<br><br><a title="" href="http://kwon37xi.egloos.com/1784525">지난번에 CVS는 pserver로 보안이 안되는 접속방식</a>을 사용했는데, Subversion은 SSH를 사용하는 이유는, 첫째는 SSH를 사용하는 것이 안쓰는 것보다는 여러모로 좋다는 사실엔 이견의 여지가 없으며, Subversion은 SSH를 사용하지 않고 svnserver를 직접 사용할 경우 각 사용자와 사용자의 비밀번호를 지정할 때 전혀 CVS와 같은 방식의 비밀번호 암호화 조차도 하지 않기 때문에 좋지 아니하다~<br><br>Subversion 패키지와 openssh 패키지를 설치해 두면 되며, 대부분의 배포판이 패키지를 제공하므로 설치상의 어려움이 전혀 없다.<br><br>* 키 생성하기<br>각 사용자 별로 Linux/Unix에 계정을 만들고 자신만의 키를 생성해야 한다. 즉, 아래 작업은 각 사용자별로 다 해야하는 것이다.<br><br><blockquote class="src">$ ssh-keygen -b 1024 -N <strong>mypassword</strong> -f kwon37xiKey<br>mypassword는 Passphrase라고 부르며 비밀번호 같은 것으로 자신만 알도록 임의로 만든다.<br></blockquote><br>kwon37xiKey(개인키), kwon37xiKey.pub(공개키) 파일 생성된다.<br><br>공개키를 자기 Unix/Linux 계정에 등록한다.<br><blockquote class="src">$ mkdir ~/.ssh<br>$ cp kwon37xiKey.pub ~/.ssh/authorized_keys<br></blockquote><br>그리고 kwon37xiKey(개인키) 파일을 자신의 컴퓨터(Eclipse 등을 실행하는)로 다운 받는다.<br><br>* 리포지토리 생성<br><blockquote class="src">$ cd<br>$ svnadmin create repos --fs-type fsfs<br></blockquote><br>결과 /home/username/repos 리포지토리가 생성되었다.<br>리포지토리의 경우 해당 리포지토리를 여러 사용자가 공유하기 위해서는 Group을 만들고 그 Group에 대해 rwx 권한을 줘야 한다.<br>그리고, 그 리포지토리를 사용할 사용자들은 모두 해당 Group에 속해야 한다.<br><br><div class="h2">클라이언트 측 설정</div><br>* Subclipse 설치<br>Eclipse에서 <a title="" href="http://subclipse.tigris.org">Subclipse</a>를 사용한다.<br><a title="" href="http://subclipse.tigris.org/install.html">Subclipse 설치</a>문서를 참조하여 설치한다.<br><br>* TortoiseSVN을 다운로드한다.<br><a title="" href="http://tortoisesvn.tigris.org">TortoiseSVN</a>은 Windows 용 SVN 클라이언트로, 탐색기를 이용해서 Subversion을 매우 편리하게 이용할 수 있다. Eclipse에서 Subclipse를 사용해서 SVN을 접속할텐데 TortoiseSVN을 일부러 설치하는 이유는? 아래에 나온다.<br><br>* PuTTY 설정<br><a title="" href="http://www.chiark.greenend.org.uk/%7Esgtatham/putty/">영문판 PuTTY</a> 혹은 <a title="" href="http://kldp.net/projects/iputty">한국어판 PuTTY</a>를 설치한다.<br><br>PuTTY는 SSH/Telnet 접속도구이고, SSH 키 관리를 하는 기능과 SFTP를 이용한 안전한 파일 송수신 기능 등을 갖고 있다. 우리가 사용할 기능은 SSH 키 관리 기능이다.<br><br><div class="h2">클라이언트에 개인키 설정</div><br>개인키를 사용하기 위해서는 PuTTY가 인식할 수 있는 형태로 변환하는 것이 필요하다.<br><strong>puttygen</strong>을 실행하고 메뉴에서 "Conversions -&gt; Import Key"를  선택한다. kwon37xiKey 파일을 선택하고서 Passphrase로 아까 키 생성시 지정했던 "mypassword"를 입력한다. "Save private key" 버튼을 클릭해서 kwon37xiKey.PPK 정도의 이름을 줘서 저장한다. 확장자는 <strong>PPK</strong>이다.<br><br><strong>C:\Documents and Settings[user_name]Application Data\Subversion\config</strong> 파일을 열어서 아래와 같이 PuTTY의 PLINK경로를 가리키도록 변경한다. Eclipse의 SVN 플러그인인 Subclipse나 TortoiseSVN이 PLINK를 이용해서 SSH접속을 하도록 하는 것이다. 헌데, 여기서는 PuTTY의 PLINK가 아니라 TortoiseSVN의 PLINK를 사용했다.<br><blockquote class="src">[tunnels]<br>ssh = C:/Program Files/TortoiseSVN/bin/TortoisePlink.exe<br></blockquote><br>TortoisePlink.exe는 PuTTY의 plink.exe를 변경한 것이라고 한다. PuTTY의 plink를 사용하지 않은 이유는 PuTTY의 plink는 SSH관련 작업이 있을 때마다 귀찮은 화면이 자꾸뜨는데, TortoisePlink는 그렇지 않다.<br>그리고 경로를 지정할 때 유닉스 식으로 지정했음에 주의하라. 디렉토리 구분은 <strong>/</strong>이고, 경로에 공백이 나올 때는 <strong></strong>을 이용해서 이스케이핑을 해야 한다.<br><br>PuTTY <strong>Pagent</strong>를 실행하면 시스템 트레이에 아이콘이 생기는데, 해당 Pagent 아이콘의 Add Key 메뉴를 통해 이용해서 개인키(아까 저장한 kwon37xiKey.PPK) 를 저장한다. 개인키 저장시 키를 만들지 지정한 Passphrase를 물어보면 그것을 입력한다.<br><br>Pagent를 "시작 프로그램"에 등록하여 항상 시작되게 해 두면 이제부터 PuTTY를 쓰거나 Eclipse의 Subclipse를 이용할 때 해당 서버에 로그인 시도시 자동으로 로그인 된다.<br><br>그리고 Pagent의 개인키는 Pagent를 새로 시작할 때마다 다시 지정해야 한다.<br><br><div class="h2">Subclipse</div><br>Subclipse의 SVN Repository Perspective로 전환하여 <strong>svn+ssh://</strong>username@yourhostname.com<strong>/home/username/repos</strong>를 새로운 리포지토리로 등록한다.<br><br>1. 프로젝트를 생성하고, 해당 프로젝트를 SVN에 import 할 때(프로젝트를 최초로 SVN에 올릴 때) 프로젝트명에서 오른쪽 단추를 클릭해서 "Team -&gt; Share Project"를 통해 Import를 한다.<br>2. Repository Type에서 SVN을 선택한다.<br>3. SVN 리포지토리의 폴더 네임을 선택하는 항목에서 <strong>"Use specified folder name"</strong>을 선택하고, 폴더명을 <strong>"Project명/trunk"</strong>로 지정한다. 이렇게 하지 않으면 Branch나 Tag를 생성할 수가 없다. (약간 짜증난다..)<br><br>기타 참조할 점으로,<br>CVS에서 "add to .cvsignore" 와 같이 특정 파일을 리포지토리에 등록하지 않도록 지정하려면, <strong>"Team -&gt; Add to svn:ignore"</strong>을 하면된다. 이것은 "svn:ignore" 프라퍼티를 지정하는 것으로, 이렇게 할경우에는 프로젝트를 Commit 해야 이에 관한 사항이 SVN 리포지토리에 전달된다. 그래서 좀 헷갈린다. CVS처럼 .cvsignore 파일 같은 것을 커밋하는게 아니라 프로젝트를 선택해서 Commit 해야한다.<br><br>지금까지 Subclipse(1.0.3)를 사용한 결과는, 아직은 약간 불안정하다는 것이다. 뭔지 모를 파악 안되는 행동들을 가끔씩 한다.<br>그래도 사용을 못할 정도의 문제는 없는 것 같다.<br><br>그외에 <a title="" href="http://www.polarion.org/index.php?page=overview&amp;project=subversive">Subversive</a> 라는 것도 있다. SSH를 이용한 접속에는 아예 실패하여 그냥 포기했다. Subversive의 경우 메일링 리스트를 보니 Eclipse 공식 프로젝트로 진입하기 위한 노력을 하고 있는 것으로 보인다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

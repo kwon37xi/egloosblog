@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] 데이터 무결성 검증은 되도록 DB에 맡기는게 좋지 않을까?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-12-30 15:55:10</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] 데이터 무결성 검증은 되도록 DB에 맡기는게 좋지 않을까?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">이번에 한 프로젝트에서 제일 짜증났던 것 중의 하나는, <strong>데이터 무결성</strong>이다.<br><br>데이터가 원래 의도와는 전혀 다른 방식으로 들어갔는데, 그것때문에 프로그램이 이래 저래 오류를 뱉어낸다.<br><br>DB 상의 오류를 찾다가 날 새는 것이 허다하다.<br><br>외래키등의 설정도 안돼 있고, 날짜를 넣는데 20050023 뭐 이런 날짜도 있다.<br><br>프로그램의 버그를 일찍 찾아내기 위해서도, 혹은 어쩌다 발생할 직접적인 DB 제어에서 무결성을 보장하기 위해서라도, 되도록 프로그램 차원이 아니라 DB 차원에서의 데이터 무결성 제약을 잘 구성하는 것이 필요할 것 같다.<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

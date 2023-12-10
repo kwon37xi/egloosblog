@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>XML Properties를 통해 알아본 Spring 3.1 사용자 정의 PropertySource 등록법</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-10-20 21:55:41</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">XML Properties를 통해 알아본 Spring 3.1 사용자 정의 PropertySource 등록법</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Spring 3.1에 추가된 PropertySource에 <a target="_blank" href="http://static.springsource.org/spring/docs/3.1.x/javadoc-api/org/springframework/context/annotation/PropertySource.html">@PropertySource</a> 애노테이션으로는 XML Property 파일을 추가할 수 없는 버그가 있다.<br>@PropertySource에 지정된 리소스를 읽어들이는 코드인 <a target="_blank" href="http://static.springsource.org/spring/docs/3.1.x/javadoc-api/org/springframework/core/io/support/ResourcePropertySource.html">ResourcePropertySource</a>에 버그가 있기 때문이다. 해당 코드를 보면 지정된 리소스를 무조건 *.properties 파일로 간주하고 읽어버린다.<br><br>그런데 문제는 나는 *.properties를 매우 싫어한다. <a target="_blank" href="http://kwon37xi.egloos.com/4665590">시대착오적인 설정 파일 *.properties를 버리자.</a> 참조.<br>일단 버그 리포팅은 해 뒀는데 어쨌든 당장 해결책이 필요해서 땜빵을 해봤다.<br><br>원리는 간단하다. @Configuration 지정된 자바 설정 코드에서 @PostConstruct로 <a target="_blank" href="http://static.springsource.org/spring/docs/3.1.x/javadoc-api/org/springframework/core/env/Environment.html">Environment</a> 객체에 원하는 프라퍼티를 <a target="_blank" href="http://static.springsource.org/spring/docs/3.1.x/javadoc-api/org/springframework/core/env/PropertiesPropertySource.html">PropertiesPropertySource</a>로 변환하여 추가해주는 방식을 취해보았다. 프라퍼티 소스는 등록 되더라도 <a target="_blank" href="http://static.springsource.org/spring/docs/3.1.x/javadoc-api/org/springframework/context/support/PropertySourcesPlaceholderConfigurer.html">PropertySourcesPlaceholderConfigurer</a>는 작동 안 할 줄 알았는데 그것도 잘 작동한다.<br><br><blockquote class="src">@Configuration<br>public&nbsp;class&nbsp;SpringConfig&nbsp;{<br><br>&nbsp;&nbsp;@Autowired<br>&nbsp;&nbsp;private&nbsp;org.springframework.context.ConfigurableApplicationContext&nbsp;applicationContext;<br><br>&nbsp;&nbsp;@Autowired<br>&nbsp;&nbsp;private&nbsp;org.springframework.core.io.ResourceLoader&nbsp;resourceLoader;<br><br>&nbsp;&nbsp;@PostConstruct<br>&nbsp;&nbsp;public&nbsp;void&nbsp;addXmlProperties()&nbsp;throws&nbsp;Exception&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;addXmlProperties("classpath:my-properties.xml");<br>&nbsp;&nbsp;&nbsp;&nbsp;addXmlProperties("classpath:my-properties2.xml");<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;private&nbsp;void&nbsp;addXmlProperties(String&nbsp;location)&nbsp;throws&nbsp;IOException,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InvalidPropertiesFormatException&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;Resource&nbsp;resource&nbsp;=&nbsp;resourceLoader.getResource(location);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;Properties&nbsp;properties&nbsp;=&nbsp;new&nbsp;Properties();<br>&nbsp;&nbsp;&nbsp;&nbsp;properties.loadFromXML(resource.getInputStream());<br>&nbsp;&nbsp;&nbsp;&nbsp;applicationContext<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.getEnvironment()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.getPropertySources()<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.addLast(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new&nbsp;PropertiesPropertySource(<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getNameForResource(resource),&nbsp;properties));<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;//&nbsp;from&nbsp;ResourcePropertySource<br>&nbsp;&nbsp;private&nbsp;static&nbsp;String&nbsp;getNameForResource(Resource&nbsp;resource)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;name&nbsp;=&nbsp;resource.getDescription();<br>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!StringUtils.hasText(name))&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name&nbsp;=&nbsp;resource.getClass().getSimpleName()&nbsp;+&nbsp;"@"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;System.identityHashCode(resource);<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;name;<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;@Bean<br>&nbsp;&nbsp;public&nbsp;static&nbsp;PropertySourcesPlaceholderConfigurer&nbsp;placeholderConfigurer()&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;new&nbsp;PropertySourcesPlaceholderConfigurer();<br>&nbsp;&nbsp;}<br>}<br></blockquote><br>사실 이걸 시도해 보기 전까지는 웹 애플리케이션에서 원하는 사용자 정의 프라퍼티 소스를 추가하려면 web.xml의 설정에서 contextInitializerClasses 를 지정하고 새로운 <a title="" href="http://static.springsource.org/spring/docs/3.1.x/javadoc-api/org/springframework/context/ApplicationContextInitializer.html" target="_blank">ApplicationContextInitializer</a> 구현체를 만들어야 한다고 생각하고 있었다(지금까지 읽은 문서들은 그렇게 설명을 하고 있었다). 이걸 해보고 나서야 일반적인 Spring 설정 프로세스를 통해서도 충분히 가능함을 알았다.<br><br>현재로서는 스프링 컨텍스트 단위 테스트 수준에서만 검증한 상태인데, 실제 프로젝트에 적용했을 때 어떻게 될지는 좀 더 살펴봐야 겠다.<br><br>그외 다른 항목들은 내 위키의 <a target="_blank" href="http://wiki.kwonnam.pe.kr/springframework/propertysource">springframework:propertysource</a> 를 참조하면 된다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

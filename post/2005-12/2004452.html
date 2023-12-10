@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Oracle] 대용량의 통계 데이터의 분류</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-12-08 10:23:36</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Oracle] 대용량의 통계 데이터의 분류</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">궁금해서 물어 봤다...<br><br><a title="" href="http://database.sarang.net/?inc=read&aid=25129&criteria=oracle&subcrit=qna&id=&limit=20&keyword=&page=1">http://database.sarang.net/?inc=read&aid=25129&criteria=oracle&subcrit=qna&id=&limit=20&keyword=&page=1</a><br><br>Oracle 9.2 입니다.<br><br>매우 대용량(한달에 2~5천만건)의 통계 처리가 필요한 데이터가 있습니다.<br>꽤 많은 컬럼을 가진 테이블에 이 모든 정보를 다 넣습니다.<br>그 상태에서 웹 화면에서는 사용자의 요구에 따라 통계를 내서 보여주는<br>데이터가 약 10여 종류로 나뉘게 됩니다.<br><br> 이걸 한 테이블에 있는 걸 가지고 그대로 쿼리를 하면 속도가 너무 느리기<br>때문에 10여 종류의 화면에 따라서 각 화면에 필요한 데이터만 추려서 따로<br>10여개의 테이블을 만들어서 저장했습니다.<br><br>뭐 하지만, 각 화면에서 클릭해서 상세정보를 요청하면, 제일 큰 테이블로<br>가서 요청된 데이터만 가져다 보여줍니다.<br>문제는 이러한 데이터 분류작업이 너무 오래걸린다는 겁니다.<br>(매월 단위로 하긴 합니다만..)<br>이러한 상황에서, 화면 종류에 따라 뷰를 만드는 것과 따로 테이블을<br>만들어서 저장하는 것 둘 중에서 뷰가 확실히 편할 것은 같은데, 화면에서<br>쿼리 속도는 어떨까요?<br><br>따로 테이블을 만드는 것이 비록 수고스럽긴 해도 속도가 더 빠른가요?<br>아니면 다른 방법이 있을까요?<br><br>지금까지 이런 대량의 데이터를 다뤄본적이 없어서 어찌해야 할지를<br>모르겠습니다.<br><br>감사합니다.<br><br> <br>이 글에 대한 댓글이 총 6건 있습니다.<br><br>어떤 상황인지 정확히 제가 이해를 못해서 답이 될지 모르겠습니다만..<br><br>매월단위 통계를 내신다고 하셨는데..<br><br>테이블로 만드는게 당연히 속도면에선 빠르지요..<br><br>만약 VIEW를 만드실때 여러 TABLE들이 JOIN이 되고 통계니까 GROUP BY SUM이 되었을텐데 그 VIEW를 SELECT할때마다 GROUP BY SUM이나 JOIN을 그때 그때 수행하므로 VIEW는 조회속도가 많이 떨어질수밖에 없습니다... 단 월별 통계이므로 실시간 데이타 반영이 아니라면.. MATERIALIZE VIEW를 만드시면 속도는 해결하실 수 있을겁니다. 실시간으로 정보를 제공하는 경우엔 M-VIEW가 REFRESH해야 하는 시간때문에 문제가 될수 있을텐데 월통계라면 무난하리라 봅니다.<br><br>원하시는 답이 되었는지 궁금하네요..<br><br>그럼.. 좋은 결과 있으시길..<br>기형륜(midaskey)님이 2005-12-07 14:57:30에 작성한 댓글입니다.<br><br>기형륜님께 질문이 있습니다.<br><br>댓글중에 "MATERIALIZE VIEW" 라는 말이 있는데 여기 저기 자료를 찾아봐도 특별한 설명이 안보이는 군요.<br><br>설명 좀 부탁해도 될까요? 자세한 설명을 요청드리는 것은 아니고 대충 이런 것이라라고 간략한 설명이라도 해 주시면 고맙겠습니다.<br>김강환(hashtable)님이 2005-12-07 15:43:31에 작성한 댓글입니다.<br><br>제가 보기에도 일반 뷰를 사용하는건 속도 향상에 도움이 되지 않아 보입니다.<br><br>기형륜님 말씀대로 MATERIALIZE 뷰를 사용하시던지 집계테이블을 만드시는것이 나을듯 합니다.<br><br> <br><br>MATERIALIZE뷰에 대해서 물으셨는데요...<br><br>간단히 설명드리면<br><br>일반 뷰는 데이타를 가지고 있는게 아니라 sql문만 가지고 있는 논리적인 테이블이죠.<br><br>근데 MATERIALIZE뷰 (M뷰)는 물리적으로 존재하는 테이블입니다.<br><br>다 설명 드리기는 그렇고 찾아보시면 자료 많이 있을겁니다...<br>이현석(dreamlhs)님이 2005-12-07 16:36:45에 작성한 댓글입니다.<br><br>제가 오타가 있었네요..정확히 쓰면 MATERIALIZED VIEW가 맞구요..여기 사랑넷에서도 자주 언급이 된걸로 압니다. 이현석님이 설명을 해주셨는데 문서에서 정의한 개념을 조금 더 더붙히자면....<br><br><strong>오라클 Materialized View는 처음에 대용량의 데이타 웨어하우징에서 Summary테이블을 Query하는 SQL문의 성능을 증진시키기 위하여 도입된 개념이다. 여기에서 Summary 테이블이란, 우리가 SQL Query 문에서 SUM, MAX, MIN ...등의 값을 구하는 경우 이들 값을 미리 구하여 다른 테이블에 이들 값을 저장해 놓을 수 있는데, 이때 이 테이블을 일컫는 것이다. 대부분 이들 값을 구하기 위해서는 전체 테이블을 Full Search 하여, Aggregate Operation을 통하여야 하므로 많은 비용이 드는 함수이다. 이들 값을 수행시간에 매번 구한다면 테이블 사이즈가 큰 경우 값을 얻는 시간과 비용이 많이 드는 것은 물론이고, 시스템 전체에 부하를 주게되어 다른 트랜잭션들에까지 영향을 미치게 된다. 이런 경우, Materialized View를 이용하면, 대용량 데이타베이스에서 데이타의 Inner/Outer Join을 통한 데이타 수집이 용이하다.<br>이 Materialized View는 Cost-Based 옵티마이저의 Query-Rewrite와 양방향의 Replication(Snapshot)을 통한 원격 테이블간의 Sub-query를 사용하는 것을 기본으로 하고 있다.<br>기 본 개념 Oracle8i에서 대용량 데이타베이스에서의 Summary 작업의 수행 속도 증대를 위하여 Materialized View를 도입하였다고 언급하였는데, 이는 쉽게 설명하여 Query 실행시간의 수행 속도를 위하여 여러 가지의 Aggregate View를 두어, 미리 비용이 많이 드는 조인이나 Aggregate Operation을 처리하여야 하는 SQL을 위해, 이들을 데이타베이스의 한 테이블로 저장하도록 하는 것이다. 즉, 사용자가 각 지역의 각 제품에 대한 가격의 합을 자주 필요로 하는 경우, 미리 이의 관련 데이타를 한 테이블로 저장하여 필요시 바로 결과를 얻을 수 있도록 하는 것이다. 또한 이는 Cost-Based 옵티마이저의 Rewrite 메커니즘을 적용하여, 사용자가 필요 부분을 Query할 때 미리 만들어져 있는 Aggregate View와 SQL문이 꼭 같지는 않더라도 결론적인 정의만 같으면 자동으로 Summary 테이블을 사용하도록 유도한다.<br></strong><br> <br>이렇게 나와있네요..  ^^;<br>기형륜(midaskey)님이 2005-12-07 17:45:25에 작성한 댓글입니다.<br><br>아 MATERIALIZE VIEW가 아니라 MATERIALIZED VIEW 였군요.<br><br>그래서 여기 저기 검색해 봐도 자료가 안나왔던 거군요.<br><br> <br><br>그런데 MATERIALIZED VIEW 라는 단어도 처음 듣는 단어네요.<br><br>오라클 사용한지가 벌써 몇 년째인데 첨 듣는 단어도 있고...<br><br>뭐 이리 알아야 할 것도 많은지 참...<br><br> <br><br>아무튼 이현석님,기형륜님 감사합니다.<br>김강환(hashtable)님이 2005-12-07 18:01:39에 작성한 댓글입니다.<br><br>원하는 조건에 아주 잘 맞는 것 같습니다.<br><br>실제 통계 데이터는 매우 대용량이지만 한번 저장되고 나면 값이 변하지 않습니다.<br><br>주기적으로 데이터의 입력이 있을 뿐이지요.<br><br> <br><br>좋은 충고 감사드립니다.<br>권남~(kwon37xi)님이 2005-12-08 10:21:55에 작성한 댓글입니다. Edit Ｘ<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

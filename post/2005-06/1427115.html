@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>영어 단어와 구문의 의미 검색하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-13 02:21:34</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">영어 단어와 구문의 의미 검색하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">회사에서 번역 숙제가 떨어졌는데, 계속 등장하는 "out of the box " 라는 말의 의미가 전혀 파악이 안되었다.<br>어떤 사전에도, Google 을 해봐도.. 그 의미에 대한 설명은 정말 찾기 힘들고, 계속해서 out of the box 를 사용한 문장들만 등장했다.<br><br>아무튼 고생끝에 좋은 싸이트를 발견했다.<br><br>영어 단어와 구문을 입력하면 영어로 그 의미를 알려주는 싸이트!<br><br><a href="http://www.onelook.com/">OneLook</a><br><br>이 싸이트는 자기 스스로 데이타를 갖고 있는 것이 아니라 다른 싸이트에서 검색하여 그 결과의 링크만을 알려준다.<br><br>아무튼 "Out of the box" 줄여서 OOTB 의 의미는<br>----<br>1) "Out of the box" is an expression that describes nonconformal, creative thinking. The term is used as an adverb to describe the thinking or as an adjective to describe the ideas. The term is said to derive from a famous puzzle created by early 20th century British mathematician Henry Ernest Dudeney, in which someone is asked to interconnect nine dots in a three-by-three grid by using four straight lines drawn without the pencil leaving the paper. In order to be successful, the puzzle solver has to realize that the boundries of the dot array are psychological. The only way to solve the puzzle is to extend the lines beyond the artificial boundry created by the nine dots. One also thinks of the expression "boxed-in," or having reduced choices. In the fast-paced world of information technology, employers often say they are looking for someone who "thinks out of the box." Older, related but really different terms include blue sky, far out, and off the wall. A variation is "outside the box."<br><br>As you might expect, the term "in the box" is sometimes used to describe conformal thinking. For example, in a recent magazine article about MP3 and music pirating, a manager of some music groups is quoted as saying of major label recording companies who have been slow to adapt to the Internet, "They're always thinking inside of the box."<br><br>2) "Out of the box" is also used as a synonym for "off the shelf," meaning a ready-made software, hardware, or combination package that meets a need that would otherwise require a special development effort. <br>----<br><br>1번의 의미는 "깨는 생각", "혁신적인 사고" 정도의 의미가 되려나?<br><br>내가 찾는 의미는 두 번째 것이다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

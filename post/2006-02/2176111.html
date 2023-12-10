@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[책] Effective Java - 좋아!!</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-02-05 19:37:29</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[책] Effective Java - 좋아!!</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Effective Java<br><br>평가 : 필독서<br><br><a title="" href="http://www.aladdin.co.kr/catalog/book.asp?UID=1009244455&ISBN=8990109140">Effective Java -자바 유창하게 말하기</a><br><br>아직 다 보지는 않았지만, 정말 좋은 책이다.<br>자바를 공부하는 사람이라면 꼭 보라고 권하고 싶다.<br>(사실 책을 보면서 "권하고 싶지 않은 책"을 블로그에 소개하지는 않는다.)<br><br>자바로 프로그램을 짠다고 그게 다 자바가 아님을 알려준다.<br>진짜 자바로 짜는 프로그램은 이런것이다!! 라고 알려준다.<br><br>자바 프로그래머들이 흔히 저지르기 쉬운 실수를 콕콕 찝어주고, 그런 실수를 어떻게 피해가는지 또한 콕콕 찝어준다.<br><br>서평에 보면 자바의 창시자인 제임스 고슬링이 이 책을 권하는 것이 나오는데, 권할만 하다. 자바의 창시자들이 만든 자바 클래스들 조차도 이 책에서 참 많이도 욕먹는다.<br><br>번역서가 두 개네?<br>맞다. 번역서가 두개이고 왜 두번째 번역서가 나올 수 밖에 없었는지 이해가 된다.<br>첫번째 번역서는 거의 한국어라고 봐주기 힘든것 같다.<br><br>필히 두번째 번역서(내가 위해 링크해 둔 것)이나 원서를 사서 보시라.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

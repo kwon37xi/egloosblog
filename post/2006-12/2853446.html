@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Mono : .Net on Linux</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-03 20:34:53</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Mono : .Net on Linux</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://www.go-mono.com/">Mono</a>는 Microsoft .Net 의 오픈 소스 구현체이다.<br>리눅스를 비롯한 비 MS-Windows 플랫폼에서 작동한다.<br><br><div class="h2">Mono 설치</div><br>Fedora Core 3 에서 모노를 설치하려면 모노 공식 사이트 보다는 <a title="" href="http://dag.wieers.com/home-made/apt/">http://dag.wieers.com/home-made/apt/</a> 이 리포지토리를 이용하는게 낫다.<br><br><strong>/etc/yum.repos.d</strong>에 dag.repo 파일을 다음과 같이 생성한다.<br><blockquote class="src">[dag]<br>name=Dag RPM Repository for Fedora Core<br>baseurl=http://apt.sw.be/fedora/$releasever/en/$basearch/dag<br>gpgcheck=1<br>enabled=1<br></blockquote><br>그리고 GPG키를 임포트 한다음에 <strong>yum install mono-core</strong> 해준다.<br><blockquote class="src">$ rpm --import http://dag.wieers.com/packages/RPM-GPG-KEY.dag.txt<br>$ yum install mono-core<br></blockquote><br><br><div class="h2">C# 컴파일</div><br>모노는 또한 C# 컴파일러도 포함하고 있다. - <strong>mcs</strong><br><br><blockquote class="src">$ mcs Hello.cs // 컴파일<br>$ mono Hello.exe // 실행<br></blockquote><br><br>자세한 사용법은 다음 링크에 있다.<br><br><a title="" href="http://www.gotmono.com/docs/tools/cscomp-cmdlo.html">http://www.gotmono.com/docs/tools/cscomp-cmdlo.html</a><br><br>이제.. 윈도우로 부팅 안해도 C# 공부할 수 있다~ ㅋㅋ</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

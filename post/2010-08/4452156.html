@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>JPASchemaExport</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2010-08-20 22:04:28</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">JPASchemaExport</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="xhtmlEditorBody"><p>Hibernate Entity Manager / JPA Annotation 을 사용할 경우 Maven 2에서 Schema Export가 잘 작동하지 않아서 프로그래밍적인 방법으로 해결하였다.</p> <p>$CLASSPATH/META-INF/persistence.xml 파일이 있다고 가정하고 있다.</p> <p>&nbsp;</p> <ol class="code"> <li>Ejb3Configuration cfg = new Ejb3Configuration();<br> HashMap&lt;String,String&gt; props = new HashMap&lt;String,String&gt;();<br> props.put("hibernate.format_sql","true");<br> Ejb3Configuration configured = cfg.configure("<strong>퍼시스턴스유닛이름을 적는다</strong>", props);<br> SchemaExport se = new SchemaExport(configured.getHibernateConfiguration());<br> se.setDelimiter(";");<br> se.create(true, false);</li> </ol> <p>&nbsp;</p> <p>이걸로 끝~ 간단하다.</p> <p style="text-align: right;">이 글은 <a href="http://kwon37xi.springnote.com/pages/6274153">스프링노트</a>에서 작성되었습니다.</p></div></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

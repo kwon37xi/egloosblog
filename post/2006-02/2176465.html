@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[책] 코드 한 줄 없는 IT 이야기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-02-05 21:55:50</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[책] 코드 한 줄 없는 IT 이야기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">평가 : 꼭 읽어볼것~<br><br><img src="http://www.aladdin.co.kr/Cover/893154832X_1.gif" /><br><br>말 그대로 코드 한 줄 없이 IT를 이야기 하는 책이다.<br><br>2004년 현재 IT 업계의 판도와 미래를 열어갈 기술에 대해 폭넓게 설명한다.<br><br>자바, .Net, Web Services, XML, SOA, 개발 방법론, 유비쿼터스, 그리드 컴퓨팅 등에 대해 소개한다.<br><br>특정한 기술에 대한 지엽적인 소개가 아니라 현재 각광 받고 있는 기술들에 대해 포괄적으로 설명하고 왜 그 기술들이 중요한 의미를 지니는지 설명한다.<br><br>IT의 나무가 아닌 숲을 보여주기 위해 기획된 책이다.<br><br>오로지 프로그래밍 언어만 아는 프로그래머(난 오직 자바 뿐~~)와 IT 업계의 임원, 영업직 사원들이 읽어보면 정말 좋겠다. 그러고 보니 IT에 관련 있는 사람은 다 읽어보라는 뜻이군..<br><br>특히 '''이거 아니면 안되!!!''' 하는 외곬수들... 꼭 읽어보기를 강권하고 싶다.<br><br>가끔 보는 IT업계의 외곬수들은 보통 자기가 아는 것 외의 것에 대해서는 관심도 없고 알려고 들지도 않는 것 같다. 마치 논어, 맹자 조차도 이교도의 책이라며 벌레 보듯 하는 일부 모 종교인들 같다.<br><br>개인적으로는 앞으로 웹 서비스 분야에서 일할 것 같고, 개발 방법론의 도입에 큰 관심이 있어서 더욱 기쁜 맘으로 읽은 것 같다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

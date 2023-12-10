@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>OpenSolaris 아직은 Java 개발환경으로는 부적합 해 보인다.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2008-12-05 10:03:01</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">OpenSolaris 아직은 Java 개발환경으로는 부적합 해 보인다.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://opensolaris.org/os/">OpenSolaris 2008. 11</a> 버전이 출시되어 Java개발 환경으로 적합한지 알아보고자 <a href="http://www.virtualbox.org/">VirtualBox</a>로 깔아보았다.<br>내가 오픈 솔라리스를 개발 환경으로 적합한지 확인해 보고 싶었던 이유는 현재 내 개발환경인 Ubuntu Linux에서 Flash가 너무 많이 충돌하기 때문이다. 뭐 복잡한 Flash일 경우에만 그렇긴 하지만 어쨌든 어느정도 짜증을 유발 시킬 정도로 충돌이 난다.<br><br>하지만 솔라리스에서는 그런 일이 거의 없다고 한다. 바이너리 호환성이 뛰어나기 때문이라고 한다.<br>거기다 <a href="http://kr.sun.com/developers/solaris/techdocs/startup_guide.pdf">DTrace</a>라는 독특한 디버깅 도구를 갖추고 있다.<br><br>그리고 무엇보다... 뽀대날것 같지 않은가?<br><br>일단 정말로 FireFox를 통한 브라우징은 안정적이다.<br>Flash도 아직은 9 버전이지만 안정적으로 잘 지원된다.<br>VirtualBox가 지원되니까 당연히 다른 운영체제도 깔아서 쓸 수 있을 것이고.<br>Java도 물론 잘 실행된다.<br><a href="http://blogs.sun.com/yongsun/entry/how_to_switch_to_scim">SCIM 을 설치하여 간단히 세벌식을 사용할 수 있게 되었다.</a> -&gt; iiim 도 세벌식을 지원한다.<br>NVidia의 경우에는 Solaris용 그래픽 카드 드라이버를 제공해준다고 한다. (나는 VBox에 설치해서 현재는 무관하다).<br>TTF 글꼴이 잘 지원되므로 다음체나 네이버 나눔 글꼴등도 잘 설치된다.<br><br>하지만 문제도 많다.<br><br>SWT는 Sparc Solaris만 지원한다. 따라서 SWT로 만들어진 Eclipse를 사용할 수 없다.<br>그렇다면 IntelliJ나 NetBeans는 잘 될까? 잘 된다. 하지만... Java Swing에서 <span style="text-decoration: line-through;">한글이 출력되지 않는다. 따라서 한글 코딩을 하는 사람은 사용할 수 없다.</span> - 한글 출력은 글꼴을 조정해주면 볼 수 있었다. 한글 입력이 안되는 것은 SCIM 문제였다. <span style="text-decoration: line-through;">그러나 기본 제공되는 iiim을 사용하면 세벌식을 쓸 수 없다.</span><br><br>기본 제공되는 iiim 에서도 세벌식을 쓸 수 있다. -&gt; <a href="http://docs.sun.com/app/docs/doc/819-0397/6n2qvpqci?l=ko&amp;a=view">http://docs.sun.com/app/docs/doc/819-0397/6n2qvpqci?l=ko&amp;a=view</a><br><br>GVIM이 없다. 무슨 생각으로 VIM만 집어 넣었는지 모르겠다. Emacs는 잘 되는지 모르겠지만 나는 Emacs과가 아니다.<br>Opera는 메뉴에서 한글이 출력되지 않는다. QT 관련 설정을 뭔가 바꾸면 될것 같긴하다. 웹 브라우저 자체는 잘 되니까.<br>XMMS, MPlayer가 기본 패키지로 제공되지 않는다. 컴파일 해야 한다. 가끔은 놀기도 해야 하지 않는가?<br><br>결론.. 결정적으로 Eclipse가 안되고 Java Swing에서 한글 입력이 안되는 것 때문에 Java 개발환경으로는 부적합하다.<br>다음 버전에서는 개선 되길~<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

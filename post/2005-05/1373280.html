@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Java 리소스 닫기(Resource Close)를 제대로 하려면..</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-05-29 23:10:43</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Java 리소스 닫기(Resource Close)를 제대로 하려면..</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">요즘 보고 있는 책 <a href="http://www.aladdin.co.kr/shop/wproduct.aspx?ISBN=8931431155">Core EJB</a> 책을 보다보니 Stream 을 닫는 부분이 잘못 나와있다.<br>(뭐, 이거 빼고는 아직은 읽기에 부담스럽지 않고 만족스럽다..)<br><br>어찌 했냐면,<br><br><br>try {<br> ...<br>} catch(..) {<br> ...<br>} finally {<br>&nbsp; &nbsp; if (writer != null) writer.close();<br>&nbsp; &nbsp; if (reader != null) reader.close();<br>&nbsp; &nbsp; if (socket != null) socket.close();<br>}<br><br><br>위와 같이 했는데, <B>이렇게 하면 안된다.</B><br>위와 같이하면 <B>첫번째 writer.close() 에서 예외가 발생하면 그 이후의 다른 close() 문들은 전혀 실행되지 않고 빠져나가 버려 리소스 누수가 발생하게 된다.</B><br><br>이것은 스트림이나 소켓 뿐만 아니라 JDBC Connection 에서도 마찬가지 이다.<br><br>그러므로 다음과 같이 바꿔야만 쓰겠다.<br><br><br>try {<br> ...<br>} catch(..) {<br> ...<br>} finally {<br>&nbsp; &nbsp; if (writer != null) {<br>&nbsp; &nbsp; &nbsp; &nbsp; try { writer.close(); } catch (Exception ex) {}<br>&nbsp; &nbsp; }<br><br>&nbsp; &nbsp; if (reader != null) {<br>&nbsp; &nbsp; &nbsp; &nbsp; try { reader.close(); } catch (Exception ex) {}<br>&nbsp; &nbsp; }<br><br>&nbsp; &nbsp; if (socket != null) {<br>&nbsp; &nbsp; &nbsp; &nbsp; try { socket.close(); } catch (Exception ex) {}<br>&nbsp; &nbsp; }<br>}<br><br><br>if / for / while 문 등은 비록 실행할 문장이 한 개 뿐이라도 괄호를 치는 것을 원칙으로 한다.<br>그리고 일일이 귀찮더라도 다 try/catch 안에 .close() 문을 넣어야 안전하게 리소스를 닫는 것이 된다.<br><br><a href="http://jakarta.apache.org/commons/dbutils/">Jakarta Commons DBUtils</a>에는 저런 귀찮은 try/catch 없이 메소드 하나 호출로 JDBC 리소스를 닫아주는 메소드가 있다.<br><a href="http://jakarta.apache.org/commons/dbutils/apidocs/org/apache/commons/dbutils/DbUtils.html">DbUtils.closeQuietly()</a>를 한번 사용해 보시라.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

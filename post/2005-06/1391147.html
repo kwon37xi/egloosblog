@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>JUnzip 0.3 배포</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-03 10:46:33</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">JUnzip 0.3 배포</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">작년 연초에 Fedora Core를 사용하기 시작하면서 MS-Windows에서 압축된 Zip 파일을 UTF-8 리눅스에서 풀 때 생기는 문제를 해결하기 위해 만든 JUnzip을 0.3으로 업그레이드 했다.<br><br>자바밖에 할 줄 모르므로 당연히 자바로 만들어졌으며, <a href="http://jazzlib.sf.net">jazzlib</a>가 모든 압축 푸는 일을 다 하기 때문에 내가 해준건 파일 이름 인코딩 변환밖에 없다.<br><br>뭐 사실 그다지 달라진건 없는데, 중간에 kldp.org가 junzip을 저장하고 있던 하드 디스크가 깨지면서 junzip 파일들도 같이 깨지고, 나는 나대로 하드 날리고 해서 소스가 유실됐었다.<br><br>그 때문에 다시 작성해야 했고, 그와 더불어 <a href="http://jakarta.apache.org/commons/cli/">commons-cli</a> 라이브러리를 이용해 목록보기 및 특정 디렉토리에 압축풀기 옵션을 추가해줬다.<br><br>JUnzip 소스와 바이너리는 <a href="http://kldp.net/projects/junzip">http://kldp.net/projects/junzip</a> 에서 구할 수 있다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

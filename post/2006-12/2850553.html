@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>*.jsp를 WEB-INF 아래에 숨겨라.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-01 23:06:19</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">*.jsp를 WEB-INF 아래에 숨겨라.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">관련글 : <a title="" href="http://wiki.apache.org/struts/StrutsCatalogHidingPagesUnderWEBINF">http://wiki.apache.org/struts/StrutsCatalogHidingPagesUnderWEBINF</a><br><br>Struts 등의 MVC 패턴 프레임웍을 사용할 경우에는 컨트롤러가 호출하는 자바 클래스에서 로직 처리를 끝내고서 JSP파일로 포워딩을 한다.<br><br>여기서 JSP파일은 실제로 웹 브라우저의 주소창에 나타나지 않는다.<br><br>포워딩을 할 경우 포워딩 시키기 전에 웹브라우저가 호출한 주소가 남아 있고, 포워딩된 주소는 단지 서버측에서 실행되어 결과만을 웹브라우저로 전달한다.<br><br><strong>JSP/Servlet 컨테이는(앞으로는 웹 컨테이너)는 WEB-INF 디렉토리 이하를 보안상의 문제로 웹 브라우저를 통한 접근을 금지하고 있다. 하지만 포워딩을 통한 접근은 웹 브라우저를 통하지 않기 때문에 가능하다.</strong><br><br>MVC 패턴에서 뷰로 사용되는 JSP 페이지들은 컨트롤러를 통하지 않고서 직접 액세스 될 필요가 전혀 없고 어떤 경우에는 그렇게 되면 안되는 때도 있다.<br><br>그래서 <strong>뷰로 사용되는 JSP 페이지를 WEB-INF 아래에 두는 것을 권장하는 것 같다.</strong><br>그럴 경우, 결코 웹 브라우저를 통한 직접 액세스가 불가능하므로, 컨트롤러를 통해서 액세스 됨을 보장할 수 있기 때문이다.<br><br>WEB-INF 아래에 두는것 외에도 *.jsp 접근을 막는 방법이 또 있다.<br><blockquote class="src">&lt;!--&nbsp;브라우저로&nbsp;접속한&nbsp;사용자가&nbsp;JSP&nbsp;파일로&nbsp;직접&nbsp;접근할&nbsp;수&nbsp;없게&nbsp;한다.&nbsp;--&gt;<br>&lt;security-constraint&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;web-resource-collection&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;web-resource-name&gt;PreventViewingJSPs&lt;/web-resource-name&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;description&gt;브라우저로&nbsp;접속한&nbsp;사용자가&nbsp;JSP파일로&nbsp;직접&nbsp;접근할&nbsp;수&nbsp;없도록&nbsp;한다.&lt;/description&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;url-pattern&gt;*.jsp&lt;/url-pattern&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http-method&gt;GET&lt;/http-method&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;http-method&gt;POST&lt;/http-method&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/web-resource-collection&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;auth-constraint&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;role-name&gt;&lt;/role-name&gt;&nbsp;&lt;!--&nbsp;여기에&nbsp;role-name을&nbsp;적어도&nbsp;된다.&nbsp;존재하지&nbsp;않는&nbsp;것으로&nbsp;--&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/auth-constraint&gt;<br>&lt;/security-constraint&gt;<br></blockquote><br>위와 같이하면 WEB-INF 상위에 있는 *.jsp 들에도 웹 브라우저에 주소를 쳐서 직접 접근은 막히게 된다. 컨트롤러를 통해 포워딩을해서 접근하는 방법 뿐이다.<br><br>또 다른 문제로, 로그를 웹 컨텍스트 디렉토리에 그대로 남기는 경우가 있는데, 절대로 그래서는 안 될 것 으로 보인다.<br>많은 사람들이 로그에 접속한 사람의 ID와 비밀번호, 그리고 주민등록번호등을 남기기도 하는데, 이것을 웝 컨텍스트 디렉토리에 둘 경우 우연찮게 유출될 가능성이 매우 높다. <strong>로그 파일들도 WEB-INF 디렉토리 아래에 두거나, 아니면 웹 컨텍스트와 전혀 상관없는 디렉토리에 둬야 할 것으로 보인다.<br>제일 좋은 것은 웹 컨텍스트와 전혀 다른 디스크 파티션에 두는 것일 것 같다.</strong><br>그렇게 하면 서로 다른 디스크를 사용하므로 시스템 성능 향상도 가져올 것이다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

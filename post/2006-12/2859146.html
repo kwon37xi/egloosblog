@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>XML DTD</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-06 17:13:29</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">XML DTD</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">XML DTD에 대한 회사 내부 스터디에 사용한 것.<br>Professional XML 2nd ed.를 정리한 것임.<br><div class="h2">DTD?</div><br>&nbsp;* Document Type Definition - 문서 형 정의<br>&nbsp;* DTD 선언은 데이터 안에 포함하거나 별도의 다른 문서로 존재할 수 있다. DTD는 XML 데이터의 구조와 내용을 나타내는 규칙을 정의한다. 단 하나의 DTD만이 XML 문서와 데이터 객체에 연관될 수 있다.<br>&nbsp;* 내부/외부 서브셋<br>&nbsp;&nbsp;1. 내부 서브셋 : DTD 선언을 XML 데이터 내부에 포함.<br>&nbsp;&nbsp;2. 외부 서브셋 : DTD 선언이 다른 문에서 위치. .dtd 파일<br>&nbsp;&nbsp;3. 내부 서브셋에 있는 DTD 선언은 외부 서브셋에 있는 선언보다 우선순위가 높다. 유사한 선언이 양쪽에 존재할 때, 내부 서브셋의 선언이 사용된다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

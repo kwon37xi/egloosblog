@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Struts] JSP Spec 2.0 에서는 Struts-EL을 사용하지 말 것.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-08-03 10:37:02</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Struts] JSP Spec 2.0 에서는 Struts-EL을 사용하지 말 것.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">JSP Spec 2.0/Servlet Spec 2.4 를 이용해 JSP를 작성할 때는 Struts-EL을 사용할 필요가 없고, 사용할 수도 없을 것이다.(테스트는 안해봄..)<br><br>JSP 1.2 에서는 EL 을 <a href="http://jakarta.apache.org/taglibs/index.html">JSTL</a>이 처리해야만 했다. 그래서 Apache JSTL 1.0 에는 EL을 처리하는 라이브러리가 포함되어 있다.<br><br>하지만 JSP 2.0 부터는 EL을 JSP 컨테이너가 처리하고 그 결과를 Tag Library로 넘겨준다. JSP 2.0 에서 사용하는 JSTL 1.1은 전혀 EL에 관해 신경쓸 필요가 없는 것이다.<br><br>Struts-EL은 Apache JSTL 1.0 의 EL 처리 라이브러리를 사용한다.<br><br><B>그러므로 JSP 2.0 에서는 전혀 Struts-EL을 쓸 필요가 없다. Struts 표준 Tag Library를 사용하면서도 자연스럽게 EL을 사용할 수 있다.</B><br><br><BLOCKQUOTE class="SOURCE"><br>EL language is part of JSP2.0 spec as prefered language. On a Servlet 2.4/JSP 2.0 container, all tags will be EL enabled, so Struts "standard" tags will accept EL expressions and automatically handle JSTL tags.<br><br>On JSP 1.2 container, you can use JSTL and EL-enhanced tags to get the same syntax. A JSTL implementation can be downloaded from jakarta-taglibs (1.0.x) and EL enhanced Struts tags from tag contrib dir. Struts 1.2 will include Tiles-EL tags that were missing from 1.1 struts-el contrib.<br><br>Web use those tags on our app without trouble and they're very usefull, as some logic that needed lot's of logic:xx tags becomes simple in EL.<br><br>When migrating to JSP 2.0 container, you will just need to change taglib directive on your JSPs to the struts "standard" tags. <br><br>From : <a href="http://saloon.javaranch.com/cgi-bin/ubb/ultimatebb.cgi?ubb=get_topic&f=58&t=002297">http://saloon.javaranch.com/cgi-bin/ubb/ultimatebb.cgi?ubb=get_topic&f=58&t=002297</a><br><br></BLOCKQUOTE></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

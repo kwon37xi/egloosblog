@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>개인 위키 장애 상태</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2013-11-09 15:28:30</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">개인 위키 장애 상태</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">2013년 11월 10일, 복구 완료. DNS 변경 전파에 시간이 좀 걸릴 수는 있지만 머지않아 다 될 듯.<br>--<br>개인 위키인 <a target="_blank" href="http://wiki.kwonnam.pe.kr">http://wiki.kwonnam.pe.kr</a> 가 장애가 났다.<br><a href="http://www.just4fun.co.kr/forum/view/?id=101">호스팅 서버의 하드디스크 배드 섹터로 인한 장애</a>라 하며 복구가 사실상 힘들 것으로 예상된다.<br><br>다행인 것은 최근 해당 서비스의 장애가 빈번하여, 믿음이 떠난지 오래되었고 그로 인해 얼마 전부터 매일 매일 백업을 걸어 놓고 있었다는 점.<br><br>해당 서비스를 곧바로 해지하고 좀 더 안정적인 곳으로 옮겨 탈 준비에 착수 중...<br><br>이번엔 <a target="_blank" href="http://nginx.org/">nginx</a>로 구성하고 가는 김에 인증서 까지 붙여봐야겠다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

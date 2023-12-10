@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Apache Pure Java 관계형 DB - Derby 10.1.1.0 출시</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-08-05 09:00:53</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Apache Pure Java 관계형 DB - Derby 10.1.1.0 출시</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">IBM이 <a href="http://www.apache.org">Apache</a>에 기증한 Cloud Scape가 <a href="http://db.apache.org/derby/">Derby</a> 10.1.1.0 으로  아파치 인큐베이터를 떠나서 공식 출시 되었다.<br><br>순수 자바 관계형 데이터베이스이고 자바 어플리케이션에 내장되어서도 작동하고 일반 DB 서버처럼 띄워서 접속해서 작동할 수도 있다고 한다.<br><br>아마도 현존하는 가장 좋은 순수 자바 RDB 로 알고 있다.<br><br>가벼운 어플리케이션을 만들때 DB가 필요하다면 <a href="http://hsqldb.org/">HSQLDB</a>를 내장 DB로 사용하는 것도 괜찮을것 같아 보이는데..<br><br>암튼, 관심있게 지켜보는 두가지 순수 자바 DB - <a href="http://db.apache.org/derby/">Derby</a>와 <a href="http://hsqldb.org/">HSQLDB</a>이다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

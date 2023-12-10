@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Tomcat Context reload 단축키로 만들기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-08-23 13:53:55</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Tomcat Context reload 단축키로 만들기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Python으로 개발하다가 Java로 개발이 넘어오니까, Tomcat 리로딩 때문에 짜증이 이만 저만이 아니다.<br>자동 리로딩이 되긴 하지만 전혀 내가 원치 않는 타이밍(개발 중간)에 자기 맘대로 리로딩 되고는 정작 내가 원할 때는 리로딩이 자동으로 안되기도 한다. 이게 옛날에는 그러려니 했는데... 지금은 괜히 더 짜증이 많이 난다.. --;<br><br>Ubuntu Linux + Tomcat 환경에서 Tomcat 리로딩을 빠르게 자동으로 하는 단축키를 할당했다.<br><br>1. 일단 Auto Reload를 끈다. 내가 원할 때만 리로딩을 하게 한다.<br><blockquote class="src">&lt;Context path="/mycontext" <span style="font-weight: bold;">reloadable="false"</span> 어쩌구.../&gt;<br></blockquote><br><br>2. 수동 리로딩을 위해서 tomcat-users.xml 에 사용자를 등록한다.<br><blockquote class="src">&lt;user username="admin" password="admin" <strong>roles="manager"</strong>/&gt;<br></blockquote><br>roles="manager"인게 중요하다.<br><br>3. 원래는 톰캣을 띄운 후에 <a title="" href="http://localhost:8080/manager/html">http://localhost:8080/manager/html</a> 로 접속하면 화면을 보면서 컨텍스트를 선택해서 리로딩이 가능하지만 그것도 귀찮다. 명령어 한방으로 끝내자.<br><blockquote class="src">wget --spider --http-user=admin --http-password=admin http://localhost:8080/manager/html/reload?path=/mycontext<br></blockquote><br>저 명령만 실행해도 Tomcat 로그 혹은 콘솔 창에서 mycontext 가 리로딩 되는 로그를 확인할 수 있다. 물론 사용자명,비밀번호,컨텍스트 명은 자신의 환경에 맞게 바꿔야 한단.<br><br>4. 리눅스에는 <a title="" href="http://hocwp.free.fr/xbindkeys/xbindkeys.html">xbindkeys</a> 라는 특정 명령을 단축키로 등록하는 프로그램이 있다. 이걸 이용해 저 명령을 시스템 단축키로 지정한다. <a title="" href="http://www.linux.com/articles/59494">xbindkeys 사용법 설명</a><br><blockquote class="src"><strong>$HOME/.xbindkeysrc 파일</strong><br># For the benefit of emacs users: -*- shell-script -*-<br>"wget --spider --http-user=admin --http-password=admin http://localhost:8080/manager/html/reload?path=/mycontext"<br>m:0x50 + c:61<br></blockquote><br>위 설정은 Win+/ 에 저 명령을 등록한 것이다.<br><br>이제 xbindkeys를 실행한 뒤에 Win+/ 를 누를 때 마다 잽싸게 Tomcat의 mycontext 컨텍스트가 리로딩 된다.<br>"m:0x50 + c:61"은 키 매핑을 의미하는데 <strong>xbindkeys -k</strong> 명령을 실행하고 원하는 키 조합을 누르면 키 조합에 관한 문자열이 나온다. 그걸 복사해서 붙여 넣으면 원하는 대로 바꿀 수 있다. 단, 설정을 고친 뒤에는 xbindkeys를 kill 하고 재실행해야 한다.<br><br>특정 키에 명령을 넣는 프로그램들들은 물론이고, wget도 윈도우용으로 있기 때문에 윈도우에서 개발하는 사람들도 충분히 위와 같은 환경을 구축할 수 있다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

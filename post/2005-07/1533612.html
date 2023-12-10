@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>웹 표준 관련 서적 한국어판 번역 출간 소식</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-07-12 12:51:23</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">웹 표준 관련 서적 한국어판 번역 출간 소식</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><B><a href="http://www.sumanpark.com/archive/S_050711034742Q5QX.html">http://www.sumanpark.com/archive/S_050711034742Q5QX.html</a></B><br><br>드디어 우리나라에도 8월에 웹 표준 관련 서적이 나오게 된다.<br><br>매우 훌륭하다고 소문이 자자한 책이라고 한다.<br><br>아무리 말로 표준을 지키라고 떠들어봐야 제대로된 책 한권도 없는 상태에서 그러는 건 무용지물.<br><br>이제 드디어 제대로 표준 지키기를 종용할 수 있게 될것 같다.<br><br>참고로, 저 링크에 가서 저 링크에 트랙백을 날리면 추천을 통해서 10명에게 번역판을 나눠준다고 한다.<br><br>응모해 보시라~~</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

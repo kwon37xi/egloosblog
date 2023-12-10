@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Debug] Hibernate, dbutils, HSQLDB, Maven 삽질 몇 가지</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2008-10-16 21:30:37</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Debug] Hibernate, dbutils, HSQLDB, Maven 삽질 몇 가지</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">한동안 Javascript와 Ruby만 살펴보다가 다시 Java로 턴하니 삽질이 많다.<br><font size="4"><br>1. HSQLDB 1.8과 DbUnit 문제</font><br>Hibernate기반의 DAO에 대한 테스트를 강화하고자 하고 있는데, 처음에는 MySQL기반으로 테스트를 돌렸더니 너무 느렸다. 테스트하다가 답답해서 돌아가실 것 같아 <a href="http://hsqldb.org">HSQLDB</a>기반으로 변경을 했더니 <a href="http://www.dbunit.org/">DbUnit</a>의 Fixture 적재 기능이 제대로 작동하질 않았다. Boolean Type이 뭔지 모르겠다면서 자꾸 막혀버렸다. 아래와 같은 오류가 발생한다.<br><blockquote class="src">data type (16, BOOLEAN) not recognized and will be ignored. See FAQ for more information</blockquote><br>문제는 DbUnit 2.2 이하 버전이 HSQLDB의 Boolean 타입을 제대로 인지하지 못한다는 것이었다. 그렇다면 나는 왜 DbUnit 2.2를 썼는가? 이유는.. Maven 로칼 리포지토리 목록에 2.2가 들어있길래 2.2가 최신 버전인줄 알았던 것이다. --; 2.3으로 바꾸면 해결~<br><br>덕분에 조금이나마 더 빠른 속도로 DAO를 테스트 할 수 있었다.<br><br>또 하나, DAO 테스트 덕분에 Entity 매핑에 논리적 문제가 있덨것을 바로 잡아내는 행운도 있었다.<br><span style="font-weight: bold;">내가 DAO 테스트를 해야 한다고 생각하는 이유 중의 하나가 바로 Hibernate 매핑에 문법적으로는 문제가 없으나 논리적으로 문제가 있을 경우에 서비스가 잘 돌아가는 듯하다가 황당한 데이터를 쌓는 것을 몇번 겪었기 때문이다.</span><br><br><a href="http://www.dallaway.com/acad/dbunit.html">DB Testing</a> 이라는 문서를 보면 DAO를 왜 테스트 해야 하는지 어느정도 수긍하게 된다.<br><br><font size="4">2. HSQLDB shutdown 문제</font><br>Maven의 "hibernate3:hbm2ddl"을 사용하여 무사히 DB 스키마를 자동생성해 주었다고 생각했으나, 오산이었다. HSQLDB는 커넥션이 닫힐때 명시적으로 SHUTDOWN 명령을 주지 않으면 안된다. 그렇지 않으면 죽어라 날렸던 명령들이 커넥션이 닫히는 순간 일부가 사라져버린다. 따라서 테이블 생성 명령이 실행되다 말아버리는 것처럼 보이게 된다.<br><br>이럴 때 자동으로 connection이 모두 닫힐 때 shutdown을 하려면, 다음과 같이 JDBC URL 프라퍼티로 shutdown=true를 지정하면 된다.<br><blockquote class="src">hibernate.connection.url=jdbc:hsqldb:file:target/testdb/testdb<strong>;shutdown=true</strong></blockquote><br>몇분간의 삽질 해결.<br><br><font size="4">3. Maven 플러그인에서의 Dependency</font><br>Maven 2의 플러그인의 실행 classpath에 jar 파일을 추가하려면 plugin 단의 dependencies 요소에 의존성을 지정해야 한다. 프로젝트의 dependencies 요소에 아무리 지정해봐야 소용없다.<br><br>이거 때문에 HSQLDB의 jar를 못 찾아서 Hibernate Schema 자동 생성이 자꾸 실패해서 한참을 헤맸다. 계속해서 "No suitable driver" 라는 메시지만 반복적으로 내 뱉을 뿐이다.<br><a href="http://www.sonatype.com/community/definitive_guide.html">Maven Definitive Guide</a>는 뽑아만 놨지 보지도 못하고 있다. Java는 뭐 하나 나오면 그거 하나에 책이 500페이지가 기본으로 넘는다. --; 어쨌든 빨리 속독이라도 해둬야 삽질이 줄어들듯.<br><br><font size="4">4. Maven pom.xml 수정과 Eclipse 3.4 Ganymede</font><br>아~ 짜증나...! <a href="http://m2eclipse.codehaus.org/">M2Eclipse</a> 플러그인을 깔아서 Maven을 사용하는데, pom.xml을 수정했고, 프로젝트가 다른 Maven 프로젝트에 의존성이 있을경우, 해당 프로젝트들을 Project -&gt; Clean을 실행하지 않으면 Classhpath가 제대로 잡히지 않는다. 에잇!!<br><br>------------<br>Ruby On Rails에서는 DB 테스트 기능이 기본으로 제공되고 프로젝트 생성 즉시 굉장히 쉽게 테스트를 시작할 수 있다.<br><br>하지만 Java는 환경 설정에서 삽질이 이만 저만이 아니구나.<br><br>테스트 DB용 Spring Application Context 구축, 테스트용 DB 생성, DbUnit을 통한 Fixture 준비 등.. 해줄게 많다.<br><br>그래도 다 구축해놓고 나니 좀 뿌듯한데~<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

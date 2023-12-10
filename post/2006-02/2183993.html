@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[책] 천사와 악마</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-02-08 10:16:34</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[책] 천사와 악마</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><A HREF=http://www.aladdin.co.kr/shop/wproduct.aspx?ISBN=8957590765&partner=egloos TARGET=_NEW><IMG SRC=http://image.aladdin.co.kr/coveretc/book/coveroff/8957590765_1.jpg BORDER=0 ALIGN=LEFT>천사와 악마 1</A><br>댄 브라운 지음, 양선아 옮김 / 대교베텔스만주식회사(베텔스만)<br>나의 점수 : ★★★★<br><br><br>시간 가는줄 모르고 읽었다.<br><br>다빈치 코드에 비하면 재미도나 사실성이 약간 떨어지긴 하지만, 그래도 재미있게 읽었다.<br><br>"천사와 악마"라는 제목이 그닥 맘에 안들었는데, 암튼..<br><br>과학과 종교가 서로 나는 천사, 너는 악마 식으로 싸우는 것에 대해 경종을 울리는 소설이다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

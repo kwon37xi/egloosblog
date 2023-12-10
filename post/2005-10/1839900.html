@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>행복하다...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-10-15 23:37:24</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">행복하다...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">요즘 빡세다..<br>다른 사람들이 만들어 놓았던 프로그램을 수정하고 기능추가 하는 작업을 한다.<br><br>보통 12시 퇴근에, 9시 출근을 반복하고, 토,일요일 다 나간다.<br><br>기존 소스가 멋질거라는 기대는 절대 하지 않는다.<br><br>프레임웍이 전혀 없던 기존 소스를 어느 정도는 프레임웍을 갖춘 상태로 바꾸느라, 뭐 사실 기존 소스 코드 거의 안보고 걍 새로 짜버리는 사태에 직면했지만..<br><br>근데..<br><br>그래도 기분이 나쁘지 않다.<br><br>끝없는 열정과 그에 따르는 실력과 그러면서도 겸손함과 타인에 대한 배려를 잃지 않는 사람들과 일한다는건..<br><br>정말 흔히 경험하기 어려운일일 것 같다.<br><br>..... 많이 배우고 있습니다 .....<br><br>근데.. 블로그에 글을 자주 남길 수 있을것 같지는 않다...<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

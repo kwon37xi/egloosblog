@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>창조적으로 생각하기 - TRIZ</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-06-28 10:43:51</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">창조적으로 생각하기 - TRIZ</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">어제, 회사에서 창조적으로 생각하는 방법 - TRIZ에 대한 교육을 들었다.<br>세시간이 너무 짧게 느껴질 정도로 재밌고 유익하게 들었다.<br><br><a title="" href="http://www.trizacademy.net/">생각의 창의성-TRIZ</a> 홈페이지.<br><br>TRIZ란, 전세계 200만개의 특허들을 분석하여, 그 중에 창의적이라고 생각되는 것들이 어떤식으로 문제를 해결하였는지를 살펴보고, 창의적으로 문제를 해결하는 법칙들을 뽑아낸 것이다.<br><br>기본적으로 우리가 문제에 부딪히는 이유는 "모순" 때문이며, TRIZ는 이 <strong>모순을 해결하는 방법을 찾아내는 법칙</strong>들의 모음이다.<br><br>* 모순의 예 : 비행기는 착륙하려면 바퀴가 있어야 하고, 바퀴가 있으면 공기 저항 때문에 에너지가 훨씬 더 많이 들기 때문에 바퀴가 없어야 한다. - "바퀴가 있어야 하면서, 없어야 하는" 모순 상태에 빠진다.<br>* 해결 책 : TRIZ의 <strong>시간 분할 법칙</strong>에 따라 이륙/착륙 할 때는 바퀴를 빼 놓고 공중에 있을 때는 바퀴를 접어 둔다. 이 간단한 아이디어가 나오는데 몇 십년이 걸렸다.<br><br>대부분의 내용을 홈페이지에서 볼 수 있다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

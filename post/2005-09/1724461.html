@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Stripes - Java 5 annotation 기반 웹 어플리케이션 프레임워크</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-09-08 09:22:03</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Stripes - Java 5 annotation 기반 웹 어플리케이션 프레임워크</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Java 5 Annotation 기반으로 작동하는 웹 어플리케이션 프레임워크 <a href="http://stripes.mc4j.org/confluence/display/stripes/Home">Stripes</a> 1.01 이 나왔다.<br><br>사실 <a href="http://struts.apache.org">Struts</a>가 강력하고 안정적이지만, 복작한 설정파일과 그 관리의 어려움으로 진입장벽이 상당히 높다. 또한 커스텀 태그의 명칭 등의 일관성이 약간 부족하고 <a href="http://java.sun.com/products/jsp/jstl/index.jsp">JSTL</a>과 뭔가 엇박자인 것이 사실이다.(이 사항들은 다른 WAF에 비해 상대적으로 그렇다는 것이지 Model 1 방식보다 안좋다는 뜻이 아니다)<br><br><a href="http://stripes.mc4j.org/confluence/display/stripes/Home">Stripes</a>는 완전히 Java 5 기반이며, <a href="http://www.theserverside.com/news/thread.tss?thread_id=36388">TSS에 올라온 설명</a>에 의하면 Servlet 2.4/JSP 2.0 기반이라고 한다.<br><br>즉, 우리나라에서 가장 많이 쓰일 것으로 개인적으로 예상하는 Java 1.4.2, Tomcat 4.1/Servlet 2.3/JSP 1.2 기반으로는 사용할 수 없다. 하지만 <a href="http://kr.blog.yahoo.com/kwon37xi/606476.html?p=1&pm=l&sk=0&sv=2.0">JSP 2.0의 강력한 기능들</a>을 만나고 나면 JSP 1.2로 돌아가고 싶지 않을것이다.<br><br>또한 JSTL과 JSF와 어울리게 만들었다고 한다.<br><br>요즘, Struts의 <del>대체</del> 경쟁상대 WAF로 <a href="http://wicket.sourceforge.net/">Wicket</a> 이라는 것이 상당히 뜨고 있다고 한다. 그와 함께 Stripes의 행보도 궁금해진다.<br><br>Stripes는 LGPL 오픈 소스 라이센스를 따른다.<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Intel SpeedStep CPU 속도조절하기 </title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-11-17 23:22:49</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Intel SpeedStep CPU 속도조절하기 </h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">집에 있는 내 컴퓨터는 IBM R32 Intel SpeedStep Mobile Pentium 4 이다.<br><br>SpeedStep은 노트북 등에서 컴퓨터 사용량에 따라 CPU 속도를 자동 조절해서 불필요한 전력 사용을 줄여서 노트북 사용시간을 늘려주는 효과가 있다고 알고 있다.<br><br>헌데 문제는, 나는 항상 노트북에 전원을 연결해 쓰기 때문에 이 기능이 불필요하고, 기본적으로 낮은 속도로 작동하도록 설정되어 있어서 얼마전까지 리눅스에서 CPU를 (원래 1.6MHz인데) 1.2 MHz 로 사용해야만 했다.<br><br>그것때문에 걍 윈도우만 쓸까도 했는데, 3개월 전쯤까지 구글에 안걸리던 SpeedStep 관련 리눅스 드라이버가 오늘 오래간만에 시도한 구글링에서 딱 걸려버렸다.<br><br><a title="" href="http://mnm.uib.es/gallir/cpudyn/">cpudyn</a>이라는 프로그램이다.<br><br>웬만한 메이저 배포판에는 다 패키징되어 있는 것 같다. 이것은 데몬으로 작동하므로 데몬으로 올려줘야 한다.<br><br>현재 사용중인 Fedora Core 3(에궁.. 언제 업글하징?? 요즘 바빠서리..)도 <a title="" href="http://dag.wieers.com/home-made/apt/">Dag</a>를 통해 바로 설치해서 사용할 수 있었고, 다음처럼 결과를 확인해 볼 수도 있었다. 페도라에서는 설치하자마자 데몬으로 뜬다.<br><br><blockquote class="src">[<font color="red">kwon37xi</font>@<font color="blue">localhost</font> ~]<br>$ <strong>cat /proc/cpuinfo</strong><br>processor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;0<br>vendor_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;GenuineIntel<br>cpu&nbsp;family&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;15<br>model&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;2<br>model&nbsp;name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Intel(R)&nbsp;Pentium(R)&nbsp;4&nbsp;Mobile&nbsp;CPU&nbsp;1.60GHz<br>stepping&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;4<br>cpu&nbsp;MHz&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;<strong>1600.392</strong><br>cache&nbsp;size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;512&nbsp;KB<br>fdiv_bug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;no<br>hlt_bug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;no<br>f00f_bug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;no<br>coma_bug&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;no<br>fpu&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;yes<br>fpu_exception&nbsp;&nbsp;&nbsp;:&nbsp;yes<br>cpuid&nbsp;level&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;2<br>wp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;yes<br>flags&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;fpu&nbsp;vme&nbsp;de&nbsp;pse&nbsp;tsc&nbsp;msr&nbsp;pae&nbsp;mce&nbsp;cx8&nbsp;mtrr&nbsp;pge&nbsp;mca&nbsp;cmov&nbsp;pat&nbsp;pse36&nbsp;clflush&nbsp;dts&nbsp;acpi&nbsp;mmx&nbsp;fxsr&nbsp;sse&nbsp;sse2&nbsp;ss&nbsp;ht&nbsp;tm<br>bogomips&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;3156.6<br></blockquote><br><br>느낌뿐일지 모르지만, 어쨌든, FireFox가 훨씬 부드럽게 작동하는것이 느껴진다~~ 아 좋다~<br><br>간만에 일찍 퇴근해서 상큼하게 마무리를 하고, 자.. 인자 자자~~</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

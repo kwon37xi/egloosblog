@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[링크] 개발팀을 어떻게 꾸려가야 할까요?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-07-22 16:11:00</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[링크] 개발팀을 어떻게 꾸려가야 할까요?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://kldp.org">KLDP</a>에 매우 건설적인 논의가 하나 올라와 있습니다.<br><br><a title="" href="http://kldp.org/node/72071">개발팀을 어떻게 꾸려가야 할까요?</a>라는 글에 많은 분들이 나름대의 생각을 전개하고 어떤 분은 좋은 책과 툴들을 추천해주시기도 하며, 자신의 경험을 들어 현실적인 예를 보여주기도 합니다.<br><br>개발팀을 어떻게 잘 꾸려갈 수 있을까, 더 체계적인 구성으로 "노가다가 아닌 개발"을 하고 싶다.. 뭐 이런 분들 꼭 가서 글을 읽어보시고, 좋은 경험 있으면 거기서 함께 나눠주셨으면 좋겠습니다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

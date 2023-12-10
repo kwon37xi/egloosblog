@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>HTML에서 display:none; 인 요소에 focus() 실행하지 말것</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-01-30 09:58:58</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">HTML에서 display:none; 인 요소에 focus() 실행하지 말것</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">HTML의 textarea가 <a title="" href="http://tinymce.moxiecode.com/">TinyMCE</a>를 도입하면서 TinyMCE에 의해서 자동으로 style="display: none;" 이 적용되게 되었다.<br>이렇게 되자 FireFox에서는 괜찮았는데, IE에서는 갑자기 스크립트 오류가 발생하면서 비정상 작동을 하기 시작하였다.<br><br>이유는 해당 Text Area의 값이 비어 있을 경우, onsubmit에서 호출되는 함수가 해당 부분에 focus()를 실행하기 때문이었다.<br><strong>style="display: none;" 으로 설정된 요소에 대해서는 focus()를 실행해서는 안된다. 특히 IE에서는.</strong><br><br>이 문제를 알아내기 위해서 IE용 자바 스크립트 디버거를 찾아봐야만 했다. 파이어폭스는 아주 편리하게 JavaScript 디버깅이 가능한데, IE는 이상하게도 꼭꼭 숨겨 두었다.<br><br>그에 관해서는 몇몇 링크로 대체한다.<br> * <a title="" href="http://blogs.msdn.com/ie/archive/2004/10/26/247912.aspx">IEBlog : Scripting Debugging in Internet Explorer</a><br> * <a title="" href="http://blog.naver.com/joycestudy/100029218668">Internet Explorer 에서 Javascript 코드 디버깅 쉽게 하기</a><br> * <a title="" href="http://cafe.naver.com/nyloper.cafe?iframe_url=/ArticleRead.nhn%3Farticleid=968">Microsoft Script Debugger 사용법</a><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

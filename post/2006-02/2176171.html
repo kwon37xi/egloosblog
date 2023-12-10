@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>HTML/CSS/JS 기초 다지기...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-02-05 20:11:26</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">HTML/CSS/JS 기초 다지기...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://korea.internet.com">http://korea.internet.com</a>에 보면 꽤 잘 정리된 HTML/CSS/JavaScript 강좌가 있습니다.<br><br>웹 프로그래머이면서도 HTML/CSS/JS에 대한 이해가 부족하신분들 꽤 계시리라 생각합니다. 한번 정도는 읽어보세요.<br><br>참.. 공짜지만 로그인하지 않으면 안보입니다.<br>일단 주요 강좌의 직접링크를 정리해 봅니다.<br><br>    * HTML 기초 다지기 : <a href="http://korea.internet.com/channel/content.asp?cid=187&nid=13909">http://korea.internet.com/channel/content.asp?cid=187&amp;nid=13909</a><br><br>    * HTML/CSS 포함 보다 자세한 강좌 : <a href="http://korea.internet.com/channel/content.asp?cid=187&nid=1665">http://korea.internet.com/channel/content.asp?cid=187&amp;nid=1665</a><br><br>    * CSS 기초 다지기 : <a href="http://korea.internet.com/channel/content.asp?cid=187&nid=14224">http://korea.internet.com/channel/content.asp?cid=187&amp;nid=14224</a><br><br>    * DHTML 강좌 : <a href="http://korea.internet.com/channel/list.asp?cid=186&zid=9">http://korea.internet.com/channel/list.asp?cid=186&amp;zid=9</a><br><br>    * JavaScript 기초 다지기 30강 : <a href="http://korea.internet.com/channel/content.asp?cid=189&nid=12545">http://korea.internet.com/channel/content.asp?cid=189&amp;nid=12545</a><br><br>활용팁에도 보면 매우 좋은 강좌들이 많습니다. 저걸 언제 다보나.. 에효..<br><br>나는야.. 웹프로그래머이면서도 JavaScript로 폼값 체크하는것을 오늘에서야 배운... --;<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

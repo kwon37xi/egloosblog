@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Cygwin] Java 사용하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-04-12 16:27:51</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Cygwin] Java 사용하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://cygwin.com">Cygwin</a>에서 Java를 사용할 때는 경로 지정 때문에 문제가 발생한다.<br><br>cygwin 에서는 Unix 처럼 /path/target 형태의 경로를 사용하지만, 거기서 실행하는 Java 는 Cygwin 어플리케이션이 아니라 윈도우용 어플리케이션이기 때문에 당연히 유닉스 방식의 경로 지정을 인지하지 못한다.<br><br>클래스패스를 지정할 때는 다음 처럼 먼저 Cygwin 방식으로 클래스 패스를 설정한 뒤에, 그것을 윈도우의 절대 경로로 바꾸면 된다. <strong>cygpath -wp</strong> 명령을 사용한다.<br><blockquote class="src">CYG_CLASSPATH=/home/kwon37xi/study_unittest/bin<br>CYG_CLASSPATH=$CYG_CLASSPATH:/home/kwon37xi/study_unittest/lib/junit.jar<br>CLASSPATH=`<strong>cygpath -wp</strong> $CYG_CLASSPATH`<br>export CLASSPATH<br></blockquote><br>"echo $CLASSPATH" 해보면 유닉스 형태가 아닌 윈도우 형태의 경로로 설정돼 있음을 확인할 수 있다. 또한 ":"이던 경로 분리자가 윈도우 방식의 ";"로 자동으로 바뀐다.<br><br><strong>javac -d 경로</strong>명령으로 컴파일 할 때는 저게 안 먹는다. cypath -wp 옵션은 C:cygwinhome.. 이런식으로 경로를 생성하는데, javac -d 에서 지정하는 경로는 Java 문자열 처럼 를 특수문자로 간주한다. 그럴때는  대신 / 를 사용하면 된다.<br><blockquote class="src">CYG_TARGET_DIR=/home/kwon37xi/study_unittest/bin<br>TARGET_DIR=`<strong>cygpath -mp</strong> $CYG_TARGET_DIR`<br><br>alias javac="javac -d $TARGET_DIR"<br></blockquote><br>javac 명령을 실행하면 자동으로 -d 옵션이 붙는다.<br><br>참조 : <a title="" href="http://www.inonit.com/cygwin/">Cygwin and Java</a><br><br>Cygwin에서 한글이 안 써진다면, <a title="" href="http://kwon37xi.egloos.com/680249">Cygwin에서의 한글 쓰기 설정도 읽어볼 것..</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

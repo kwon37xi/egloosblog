@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>도저히 이해가 안되는 버그에 대한 디버깅...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-03 20:29:23</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">도저히 이해가 안되는 버그에 대한 디버깅...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">평상시 보통 버그 혹은 이상 작동에 대한 디버깅은 내가 그냥 하고 넘어간다.<br>하지만, 디버깅을 하다보면 도저히 이해가 안되는 버그가 나올 때도 있다.<br><br>계속 디버깅하다가 나중에는 "이건 분명 컴파일러의 버그야!!" 라는 말까지 나오게 하는 도무지 이해 안되는 프로그램의 작동에 맞닥뜨리게 되면 다 때려치우고 싶어지기도 한다.<br><br>그럴때는 나는(그리고 우리 회사의 다른 사람들도 거의 묵시적으로..) 사무실 밖에 나가서 경치를 한 번 보고 쉼호흡을 크게 한다음에 다음과 같이 한다.<br><br>이건 <a title="" href="http://bbs.kldp.org/viewtopic.php?t=54077">KLDP에 올라온 질문</a>에 대해 내가 답으로 올린 글이다.<br><hr /><br>다른 개발자를 부릅니다.<br><br>내가 왜 프로그램을 그렇게 짰는지 조목조목 설명하며 실행하며 보여줍니다.<br><br>여기서 중요한 것은, 절대로 그 사람은 내 말을 무시하면 안됩니다. 모든 말 한마디 한마디를 의미있게 새겨듣습니다.<br><br>그러면 그 사람이 나에게 이해 안되는 사항 등을 이것저것 묻고 이것저것 해보자고 건의합니다.<br><br>그때 절대로 나는 그 사람말을 무시하거나, 설마 그건 절대 아닐꺼야.. 뭐 그딴 소리 절대 하지 말고, 정성껏 대답하고 그 사람의 건의대로 실행해봅니다.<br><br>그리고 이번엔 또 내가 건의하고, 실행해봅니다.<br><br>결코 서로 상대방의 말을 무시하면 안됩니다.<br><br>저걸 반복합니다.<br><br>기분좋게 디버깅이 끝납니다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

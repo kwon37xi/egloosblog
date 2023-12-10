@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>소설처럼 읽히는 프로그래밍</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-13 14:54:22</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">소설처럼 읽히는 프로그래밍</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">원문 : http://www.zdnet.co.kr/news/column/hotissue/article.jsp?id=68005&forum=1<br><br>임백준 (루슨트 테크놀로지 네트워크)<br><br>필자가 근무하고 있는 회사의 직원들에게 지난 3년은 견디기 힘든<br>시간이었다. 많은 사람들이 '정리해고'의 폭풍 속에서 하나 둘 씩 짐을 꾸려서<br>떠날 수밖에 없었기 때문이다. 13만명에 달하던 직원이 (분사를 포함해서) 3만<br>5000명으로 줄어드는 과정을 견디는 일은 고통스러운 일이었다. 정리해고의<br>규모가 방대했기 때문에 떠나는 이의 쓸쓸한 모습에 자기 자신의 모습이<br>겹치는 것은 이상한 일이 아니었다.<br><br>하지만 그러한 풍경이 루슨트에 국한된 일은 아니었다. 인터넷 거품의 붕괴라고<br>불리는 극단적인 상황은 당시 어디에나 편재하는 보편적인 현상이었다. 90년대<br>말의 IT 호황을 경험한 사람들 입장에서는 좀처럼 믿기 어려운 일이었지만<br>사람들이 새로운 현실에 적응하는데 까지는 그렇게 오랜 시간이 필요치<br>않았다. 불과 얼마 전까지만 해도 '스톡옵션'과 '승진'을 말하며 화려한<br>비상을 꿈꾸던 사람들이 정리해고의 흉흉한 소식에 조바심을 느끼며 촉각을<br>곤두세우기 시작했다. '더 나은' 조건을 찾아서 직장을 수시로 옮기던 사람들은<br>이제 '더 나쁘지' 않은 조건을 유지하는 일에 힘을 기울이기 시작했다.<br><br>최악의 순간을 벗어난 것으로 보이는 상황에서도 사람들은 여전히 몸을 낮춘<br>채 해고의 칼날을 피하기 위한 노력을 멈추지 않았다. 그것을 이상하게<br>여기는 사람은 아무도 없었다. 마치 '동그란 네모'라는 말과 다름없는<br>'고용 없는 성장(jobless recovery)'이라는 형용 모순이 (적어도 미국에서는)<br>신문의 경제면을 채웠고, 당분간 '고용자 시장(employer's market)'이 계속될<br>것이라는 전망은 수시로 언급되었다.<br><br>특히 미국의 IT 시장에서는 인도나 중국의 값싼 프로그래머에게 일을<br>맡기는 개념을 지칭하는 '해외 아웃소싱' 바람이 불어서 현지에 존재하는<br>프로그래머들의 목을 조였다. 이와 같은 현상은 어제의 일이 아니라 '최악의<br>상황'이 이미 종료되었다는 2004년 오늘의 풍경이 되어가고 있다.<br><br><a href="http://www.zdnet.co.kr/news/column/hotissue/article.jsp?id=68005&forum=1">계속읽기...</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

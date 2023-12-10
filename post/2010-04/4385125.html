@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>에러 로그 이메일 발송</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2010-04-29 17:55:18</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">에러 로그 이메일 발송</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="xhtmlEditorBody"><p>서비스를 운영하다 보면 오류가 발생하기 마련이고, 발생한 오류를 로그로 남기더라도 직접 서버의 오류를 지속적으로 확인하지 않는한 오류가 발생했는지 여부도 모르고 넘어가게 마련이다.</p> <p>그래서 로그를 이메일로 발생하거나 중앙 데이터베이스에 일괄 저장하여 굳이 여러 서버의 로그 파일을 뒤져보지 않아도 오류가 발생한 것을 확인 할 수 있도록 하는 것이 좋다.</p> <p>&nbsp;</p> <p>Log4j 에서 ERROR 레벨의 로그를 SMTP 서버를 이용해 이메일로 전송하되 분당 최대 전송 개수를 제약하도록 시스템을 구성했다. 물론 굉장히 쉽게 됐다. 대부분은 Log4j 가 알아서 해주니까.</p> <p>분당 최대 전송 개수를 제약한 이유는, 어쩌다가 별로 특기할게 없는 오류 때문에 오류 이메일 폭탄을 맞을 수도 있기 때문이다.</p> <p>여기서 우리는 서버를 여러대 사용하기 때문에 오류 발행시 호스트명도 함께 출력하도록 하였다.</p> <p>&nbsp;</p> <p>가끔보면 아직도 System.out.println()과 Log4j가 뭔차이가 있냐면 그냥 System.out.println()을 쓰겠다는 분들이 아직도 있다고 한다. 이것을 보면 System.out.println() 으로 로그를 남기는 것과 제대로된 로거를 사용할 때 얼마나&nbsp;효율이 달라지는지 조금이나마 느낄 수 있을 것 같다.</p> <p>&nbsp;</p> <h2>SMTPAppender&nbsp; 기본</h2> <p>Log4j 에서는 SMTPAppender 를 사용해서 쉽게 이메일을 발송하게 바꿀 수 있다.</p> <p><a href="http://onjava.com/pub/a/onjava/2004/09/29/smtp-logging.html?page=2">http://onjava.com/pub/a/onjava/2004/09/29/smtp-logging.html?page=2</a> 에서 보면 기본 SMTPAppender 설정을 볼 수 있다. 아래는 ERROR 레벨의 로그만 이메일로 전송하도록 되어 있다.</p> <ol class="code"> <li><strong>&lt;appender name="EMAIL"&nbsp; class="org.apache.log4j.net.SMTPAppender"&gt;</strong><br /> <strong>&nbsp;&nbsp;&nbsp; &lt;param name="threashold" value="error" /&gt;</strong><br /> &nbsp;&nbsp;&nbsp; &lt;param name="BufferSize" value="512" /&gt;<br /> &nbsp;&nbsp;&nbsp; &lt;param name="SMTPHost" value="smtp.foobar.com" /&gt;<br /> &nbsp;&nbsp;&nbsp; &lt;param name="From" value="log4j@server5" /&gt;<br /> &nbsp;&nbsp;&nbsp; &lt;param name="To" value="neo@foobar.com" /&gt;<br /> &nbsp;&nbsp;&nbsp; &lt;param name="Subject" value="[SMTPAppender:<span style="COLOR: #ff0103;"><strong>%h</strong></span>] Application message" /&gt;<br /> &nbsp;&nbsp;&nbsp; <strong>&lt;layout class="org.apache.log4j.PatternLayout"&gt;</strong><br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;param name="ConversionPattern"<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; value="[%d{ISO8601}]%n%n%-5p%n%n%c%n%n%m%n%n" /&gt;<br /> &nbsp;&nbsp;&nbsp; &lt;/layout&gt;<br /> &lt;/appender&gt;<br /> <br /> &lt;root&gt;<br /> &nbsp;&nbsp;&nbsp; &lt;level value="all" /&gt;<br /> &nbsp;&nbsp;&nbsp; &lt;appender-ref ref="STDOUT"/&gt;<br /> <strong>&nbsp;&nbsp;&nbsp; &lt;appender-ref ref="EMAIL" /&gt;</strong><br /> &lt;/root&gt;</li> </ol> <p>&nbsp;</p> <p>위와 같이 하면 사실 일반적인 목저으로는 아무 문제 없이 되는데 그래도 살짝 문제가 있다. 첫째 여러 서버를 운영하고 있을 경우 어느 서버에서 오류가 발생했는지 알 수가 없다. 둘째 제목과 내용에 한글이 안들어간다. 제목이야 뭐 항상 같으니까 상관없지만 내용중에 한글이 안들어가는건 좀 문제가 있다. 세번째로 어쩌다 다소 사소한 오류때문에 발생하는 오류 이메일 폭탄을 맞을 수도 있다.</p> <p>&nbsp;</p> <h2>내용에 한글 표시되도록</h2> <p>제목은 말고 내용에 한글이 표시 될 수 있게 하려면 &lt;layout&gt; 구현 클래스를 상속해서 처리해야 한다.</p> <ol class="code"> <li> <pre> import org.apache.log4j.PatternLayout;<br /> public class UTF8PatternLayout extends PatternLayout {<br /> <strong> @Override<br /> public String getContentType() {<br /> return "text/plain; charset=utf-8";<br /> }</strong><br /> }<br></pre></li> </ol> <p>다음과 같이 PatternLayout의 컨텐트타입을 지정해주면 된다. 근데 왜이래야 할까? &lt;param&gt;으로 처리 안되나? 안된다. Log4j 1.2.x 에 포함된 PatternLayout 부모 클래스의 getContentType() 메소드는 항상 "text/plain"을 리턴하게 되어있다.</p> <p>&lt;layout&gt;에서 사용한 클래스를 방금 작성한 것으로 바꿔치기 하면 내용에 UTF-8 문자가 잘 보이게 된다. 더 잘 만들려면 setter/getter를 만들고 &lt;param&gt;으로 값을 넘겨주도록 하면 좋을 것 같다.</p> <p>&nbsp;</p> <h2>어느 서버에서 발생한 오류인지 Hostname 찍기</h2> <p>이메일 제목에 hostname을 넣어서 전송해야 오류난 지점의 기타 로그를 확인하러 가기가 편할 것이다.</p> <p>이 작업을 위해 SMPTAppender를 상속해서 setSubject(String subject) 메소드를 오버라이드 한다. 위에서는 이메일의 제목에 있는 %h 부분이 로그를 남긴 호스트명으로 바뀌어서 들어오게 된다. 혹시 자동으로 hostname을 남길 수 있는 방법 아시는 분 있으면 알려주시면 감사.</p> <p>&nbsp;</p> <ol class="code"> <li> <pre> @Override<br /> public void setSubject(String subject) {<br /> String hostname = getHostname();<br /> <strong> String finalSubject = subject.replaceAll("%h", hostname);<br /> super.setSubject(finalSubject);<br /></strong>}<br /> <br /> private static String getHostname() {<br /> String hostname = "unknown";<br /> InetAddress inetAddress = null;<br /> try {<br /> <strong> inetAddress = InetAddress.getLocalHost();<br /> hostname = inetAddress.getHostName();</strong> </pre> <pre> } catch (Exception ex) {<br /> ex.printStackTrace();<br /> }<br /> return hostname;<br /> }<br></pre></li> </ol> <p>예외는 일부러 먹었다.</p> <p>&nbsp;</p> <h2>로그 남기는 개수 제한하기</h2> <p>로그를 무한정 남기지 않고 1분에 10개정도씩만 남기고 그 이상은 무시하게 남기고 싶었다.</p> <p>이 작업은 <strong><a href="http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/spi/Filter.html" title="http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/spi/Filter.html" class="external">org.apache.log4j.spi.Filter</a> 클래스를 상속해서 <a href="http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/spi/Filter.html#decide%28org.apache.log4j.spi.LoggingEvent%29" title="http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/spi/Filter.html#decide%28org.apache.log4j.spi.LoggingEvent%29" class="external">public int decide(LoggineEvent event)</a> 를 구현</strong>하면 된다. 조건에 따라 로그를 이메일로 전송하고 싶으면 <a href="http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/spi/Filter.html#ACCEPT" title="http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/spi/Filter.html#ACCEPT" class="external">Filter.ACCEPT</a>를, 그냥 무시하고 싶으면 <a href="http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/spi/Filter.html#DENY" title="http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/spi/Filter.html#DENY" class="external">Filter.DENY</a>를 리턴하면 된다.</p> <p>그리고서 &lt;appender&gt;에 &lt;filter&gt;요소를 추가해주면 된다. 나 같은 경우 다음과 같이 설정 파일을 구성했다.</p> <ol class="code"> <li> <pre> <strong>&lt;filter class="mypackage.utils.log4j.LimitFilter"&gt;</strong><br /> &lt;param name="minutes" value="1" /&gt;<br /> &lt;param name="maxLogCount" value="10" /&gt;<br /> &lt;/filter&gt;<br></pre></li> </ol> <pre> 상위 필터인 &lt;param name="threashold" value="error" /&gt; 조건 때문에, 이 필터는 항상 ERROR 레벨 이상의 로그 이벤트만을 전달받는다. 구현은 각자 취향대로 하시길.<br></pre> <pre> PS) 오늘 deepblue님에게 우연히 들었는데, SMTP로 로그를 남기면 SMTP 접속은 매번 새로 접속을 맺기 때문에 성능저하 요소가 될 수 있다고 한다. 커넥션 풀을 JDBC가 성능이 더 좋을 지도모르는데, 이건 테스트가 다소 필요할 듯.<br></pre> <p style="text-align:right">이 글은 <a href="http://kwon37xi.springnote.com/pages/5681217">스프링노트</a>에서 작성되었습니다.</p></div></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

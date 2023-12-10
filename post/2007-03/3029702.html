@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Ruby/RubyOnRails IDE 비교?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-03-03 16:43:09</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Ruby/RubyOnRails IDE 비교?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://tnlessone.wordpress.com/2007/02/28/ruby-rails-ide-comparison-idea-netbeans-radrails/">Ruby / Rails IDE Comparison : Idea, Netbeans, RadRails</a>에 루비/루비 온 레일스 IDE 비교가 올라왔다.<br><br>얼마전에 공개된 <a title="" href="http://www.netbeans.org">NetBeans</a> 6.0 M7의 Ruby 플러그인이 오픈 소스 제품중에서는 <a title="" href="http://www.radrails.org/">Eclipse의 Ruby 플러그인</a> 보다 낫다는 결과가 나왔다.<br><br><blockquote class="quote">Indeed my Ruby / Rails editor of choice for the moment is definitely NetBeans as it’s the one my productivity will increase the most with, and it is free.</blockquote><br><br>그리고 NetBeans 6.0 M8 부터는 나의 숙원(??)이었던 프로젝트 단위로 파일 문자 인코딩 설정 기능이 들어간다.<br><br>Windows와 같은 비 UTF-8 계통 운영체제에서 현재의 NetBeans를 사용하면 UTF-8 애플리케이션 작성이 매우 힘들다.<br>그에 반해 Eclipse는 프로젝트 단위로 문자 인코딩을 지원할 수 있어서, 운영체제의 인코딩에 상관 없이, 다양한 인코딩으로 개발이 가능하다.<br><br>우리회사에서는 대부분 Eclipse Ruby/RoR 플러그인을 사용하거나, <a title="" href="http://macromates.com/">TextMate</a>(for Mac)라는 프로그램을 사용하는 것 같다.<br><br>나는 <a title="" href="http://www.phpeclipse.de">PHPEclipse</a>... --;<br><br>나도 Ruby하게 해주세요... 네??? ㅜㅜ</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

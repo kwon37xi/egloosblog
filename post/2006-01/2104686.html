@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>파이썬 공부 시작</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-01-11 02:02:40</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">파이썬 공부 시작</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">뭐 별다른 얘기도 아니고 다른 사람들은 관심도 없는 얘기지만 나자신의 마음을 다잡기 위해서 쓴다.<br>예전에 스크립트 언어를 공부하고 싶다고 했는데, 이번에 <a title="" href="http://www.aladdin.co.kr/shop/wproduct.aspx?isbn=8989345774">파이썬 관련해서 좋은 책</a>도 나오고 해서, 파이썬을 공부하기로 결정했다.<br><br>PHP를 가장 먼저 해보고 싶었는데, 흠, 몰라... 이 변덕쟁이!!!!<br><br>마음을 다잡는 차원에서, 이 책을 모두 공부하고 난 다음에는 책 내용에 입각해 파이썬 레퍼런스 문서를 만들 예정이다. 언제 끝날지는 모르고...<br>(번역하기로 했던 것들이나 빨리 번역하시지?? -.-;)<br><br>에고, 작년 5월에 시작했던, VIM 문서 번역.. 이것도 정말 별거도 아닌데 시간 너무 끄네.. 이거는 이번 주말에 마무리를 여기서 자신과의 약속!<br><br>그리고, VIM을 사용하다보니, VIM의 진정한 가치는 정규표현식을 알아야 발휘된다는 생각이 문득 문득 드는 관계로, 정규 표현식 관련 문서를 모으고, 지금 찝어둔 두 개 정도의 영문 문서를 번역해야 겠다.(2월달이 끝나기 전에)<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[책] 히스토리안</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-12-29 12:36:13</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[책] 히스토리안</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><A HREF=http://www.aladdin.co.kr/shop/wproduct.aspx?ISBN=8934919000&partner=egloos TARGET=_NEW><IMG SRC=http://image.aladdin.co.kr/coveretc/book/coveroff/8934919000_1.jpg BORDER=0 ALIGN=LEFT>히스토리언 - 전3권</A><br>엘리자베스 코스토바 지음, 조영학 옮김 / 김영사<br>나의 점수 : ★★★<br><br>교보문고를 돌아다니다가 제목과 대략의 설명이 맘에들어(역사관련 소설을 좋아하는 편이다) 무턱대고 책 한권을 사서 집에 왔다.<br><br>책을 펼쳐보니.. 2권...!! 헉... 세권짜리 시리즈를 두번째 권만 사왔다... --;<br><br>인터넷에 주문해서 더 샀다.<br><br>3대에 걸쳐 실존인물이었던 "드라큘라"가 살아 있다는 증거를 찾아내고, 드라큘라를 찾아내는 이야기이다.<br><br>드라큘라가 살았던 15세기 중후반의 유럽역사를 계속해서 이야기 해주는데, 그게 뭐 나쁘지는 않다.<br><br>혹시 "<a title="" href="http://www.aladdin.co.kr/shop/wproduct.aspx?ISBN=8935651117">콘스탄티노플 함락</a>"이라는 시오노 나나미 전쟁 3부작중 한권을 보았다면, 이게 딱 그 시대이기 때문에 좀더 흥미진진할 것 같다.<br><br>초 중반은 흥미진진하지만, 후반으로 가면... 글쎄... 좀 지루하고, 결론이...<br>너무 허탈하기 그지없다.<br><br>사람을 그렇게 긴장시켜놓고, 글 몇 줄로 마무리를 지어버리다니.. 나빠!!</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

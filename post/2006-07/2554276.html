@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[JS] select 에 option 설정 새로 하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-07-11 14:53:56</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[JS] select 에 option 설정 새로 하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">select 객체에 있는 기존 option 객체를 모두 삭제하고, 새로운 option 객체들로 채워넣기.<br><br><blockquote class="src">var selectObject = document.getElementsByName("selectObjectName")[0];<br><br>// 모든 Option 들 삭제<br>while (selectObject.length != 0) {<br>selectObject.options.remove(0);<br>}<br><br>// 새로운 Option 추가<br>var option = new Option("출력문자열", "값");<br>selectObject.add(option);<br>// 계속 새로운 Option 객체를 만들어 추가한다.<br></blockquote><br><br>참조 : <a title="" href="http://www.devguru.com/Technologies/ecmaScript/quickref/option.html">option 객체</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

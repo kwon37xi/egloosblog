@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>바쁜 연말이 될 것 같다.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-11-19 13:36:25</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">바쁜 연말이 될 것 같다.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">한동안 너무 우울하게 살았다.<br><br>지나고 보면 정말 아무것도 아닌데.<br><br>뭐 덕분에 더 겸손해지고 내 미래에 대해 더욱 생각해 볼 기회가 되긴 했다.<br><br>연말은 덕분에 더욱 바쁘고 정신없이, 다른 생각 할 겨를 없이 살게 될 것 같다.<br><br>그 동안의 우울 모드 좀 떨쳐버리고 산뜻한 겨울을 보내보자.<br><br>그리고, 이제는 입이 아니라 코드로 말하기 위해 노력하는 프로그래머가 되어야 겠다는 각오를 다지고 있다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

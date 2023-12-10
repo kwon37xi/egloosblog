@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Spring ChainedTransactionManager 어떻게 사용해야 하나?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2014-07-12 18:13:54</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Spring ChainedTransactionManager 어떻게 사용해야 하나?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Spring Data Commons 1.6에는 <a target="_blank" href="http://docs.spring.io/spring-data/commons/docs/1.6.2.RELEASE/api/org/springframework/data/transaction/ChainedTransactionManager.html">ChainedTransactionManager</a>라는 것이 추가 돼 있다<br><br>하나의 애플리케이션에서 여러 데이터베이스에 접근할 때 <code>@Transactional</code> 애노테이션을 통해 트랜잭션을 잡아줄 때 여러 데이터소스(DataSource)의 트랜잭션 매니저(Transaction Manager)를 따로따로 지정해서 작업해야 한다.<br>사실 그렇게까지 어려운 일은 아니지만 확실히 복잡도가 높아지긴 한다. 그래서 편리하게 사용하라고 나온 것이 <a target="_blank" href="http://docs.spring.io/spring-data/commons/docs/1.6.2.RELEASE/api/org/springframework/data/transaction/ChainedTransactionManager.html">ChainedTransactionManager</a>이다.<br>이는 여러 트랜잭션 매니저를 인자로 받아 <code>@Transactional</code>에 기본 트랜잭션 매니저로 등록시켜두면, <strong>트랜잭션이 시작될 때 지정된 모든 트랜잭션 매니저의 트랜잭션을 동시에 시작시키고 메소드 종료시에 동시에 커밋(commit) 혹을 롤백(rollback)을 수행</strong>한다.<br><br>javadoc 문서에 보면 <q>The configured instances will start transactions in the order given and commit/rollback in reverse order, which means the PlatformTransactionManager most likely to break the transaction should be the last in the list configured. A PlatformTransactionManager throwing an exception during commit will automatically cause the remaining transaction managers to roll back instead of committing.</q>라고 나온다.<br>즉, <ul><li>지정된 순서대로 트랜잭션이 실행되고,</li><li>지정된 역순으로 트랜잭션이 종료된다.</li><li>다시말해, 에러를 내기 쉬운 트랜잭션을 마지막에 지정해서 트랜잭션 종료 작업이 최초로 호출되도록 해야한다</li></ul><br>왜냐면, 에러를 낼 가능성이 높은 트랜잭션이 최초로 롤백이 돼야 그 뒤의 다른 트랜잭션도 따라서 롤백 되기 때문이다. ChainedTransactionManager는 단지 트랜잭션 시작과 종료를 동시에 해줄 뿐이지 Two Phase Commit을 지원하는게 아니라서 이미 다른 트랜잭션이 커밋된 상황에서 하나의 트랜잭션이 롤백 됐다고 해서 이미 커밋된 것들이 다시 롤백되지는 않는다. 따라서 <strong>가장 위험한 요소를 최초로 커밋/롤백 시도</strong>하도록 해야 한다.<br><br>그런데 문제가 여기서 끝나지 않는다.<br><br>Spring의 PlatformTransactionManager는 기본적으로 트랜잭션이 시작될 때 Connection을 확보한다. 여기서 실제로 해당 Connection의 사용여부는 중요하지 않다. <strong>그냥 무조건 Connection을 확보</strong>한다.<br><br>ChainedTransactionManager가 firstTransactionManager와 secondTransactionManager를 묶은 상태일때, ServiceA가 firstTransactionManager의 데이터소스만 사용하는 작업을 하더라도 secondTransactionManager의 데이터소스의 커넥션까지 함께 물고 들어가게 된다.<br><br>이 상황이 되면 실제로 <b>secondTransactionManager는 아무 하는 일도 없이 커넥션 고갈 상태에 빠질 수 있다.</b> 게다가 secondTransactionManager에 참여하는 데이터소스의 최대 커넥션 갯수가 firstTransactionManager의 커넥션 갯수보다 더 적은 상황이라면 사태는 더욱 심각해진다.<br><br>따라서 최종적으로 봤을 때 <strong>ChainedTransactionManager에 참여하는 모든 DataSource의 최대 커넥션 갯수는 동일하게 맞춰주는 것이 좋다.</strong><br><br>또한, Spring은 <a href="http://docs.spring.io/spring/docs/3.2.9.RELEASE/javadoc-api/org/springframework/jdbc/datasource/LazyConnectionDataSourceProxy.html" target="_blank">LazyConnectionDataSourceProxy</a>라는 것을 제공해주고 있다.<br>이를 사용하면 트랜잭션 매니저에 의해 커넥션이 호출되더라도 <strong>실제로 커넥션이 사용되기 전까지 원본 데이터소스에 커넥션 요청을 미룸으로써 불필요한 커넥션 생성 요청을 방지</strong>해준다. 따라서 CTM 으로 묶여있는 데이터소스들이 사용도 안되는 커넥션 요청으로 커넥션 고갈을 겪는 문제를 완화시켜준다.<br><br>LazyConnectionDataSourceProxy는 ORM 사용시 캐시 히트율이 높아서 ReadOnly 트랜잭션은 시작했으나 정작 DB에 한번도 액세스하지 않는 상황이 될 때도 매우 유용하다.<br><br>위 사항은 직접 테스트를 해보았다.<br><br><a href="https://github.com/kwon37xi/ChainedTransactionManagerTest" target="_blank">ChainedTransactionManagerTest</a>에서 테스트 코드와 결과를 볼 수 있다.<br><br><b><font size="4">추가 - Chained 트랜잭션 범위내에서 그에 포함되는 Chained 트랜잭션 매니저나 단독 트랜잭션 매니저의 실행<br></font></b><br>ChainedTransactionManager와 그 하위 ChainedTransactionManager 혹은 단독 트랜잭션 매니저의 동기화에 대한 테스트 결과,<br>상위에 ChainedTransactionManager로 트랜잭션이 걸리고 그 하위의 메소드에 상위 매니저에 포함되는 트랜잭션매니저로 트랜잭션이 걸려 있으면 상위 트랜잭션 매니저와 동기화 된 상태임을 확인하였다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

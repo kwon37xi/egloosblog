@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Spring에서 단위테스트시 객체 주입 쉽게 하기 ReflectionInjector</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-01-08 17:22:07</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Spring에서 단위테스트시 객체 주입 쉽게 하기 ReflectionInjector</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Spring Framework에서 어노테이션 기반의 객체 주입(@Resource, @Autowired)이 가능해지면서 생긴 변화가 하나 있다. 바로, <span style="font-weight: bold;">Settter/Getter 메소드를 만들지 않게 된다</span>는 점이다.<br><br>뭐 그건 좋은데, 그에 따라 부차적으로 딸려오는 문제가 하나 있다. 바로 단위테스트시에 private 필드에 대한 객체 주입(Injection)이 복잡해 진다는 점이다. Spring의 경우 이에 대한 해법으로 <a target="_blank" href="http://static.springsource.org/spring/docs/2.5.x/api/org/springframework/test/util/ReflectionTestUtils.html">ReflectionTestUtils</a> 라는 것을 제공해주고 있다.<br><br>그런데 ReflectionTestUtils를 사용하면 코드가 길고 복잡해진다. 단위 테스트 클래스의 코드가 아래와 같은 형태가 될 것이다.<br><br><blockquote class="src">...<br>ReflectionTestUtils.setField(articleService, "articleDao", articleDao);<br>ReflectionTestUtils.setField(articleService, "commentDao", commentDao);<br>...<br></blockquote><br><br>그 외에도 리팩토링시에 "articleDao", "commentDao" 등의 문자열은 리팩토링이 안 된다는 문제도 함께 있다.<br><br>이게 은근히 짜증나는 일인지라 해결책을 찾아야지 찾아야지.. 하면서 미루고 있다가 ReflectionInjector 라는 간단한 유틸리티 클래스를 만들어서 처리해보았다. <a target="_blank" href="http://wiki.kwonnam.pe.kr/java/unittest/reflectioninjector">ReflectionInjector</a>에서 관련 소스를 받을 수 있다.<br><br>ReflectionInjector를 사용하면 소스가 아래와 같은 형태가 된다.<br><br><blockquote class="src">import&nbsp;static&nbsp;kr.pe.kwonnam.reflectioninjector.ReflectionInjectorUtils.injector;<br>...<br>injector(articleService).set(articleDao)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.set(commentDao)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.set("userDao",&nbsp;userDao)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.set(SearchEngineDao.class,&nbsp;searchEngineDao);<br></blockquote><br>불필요하게 소스가 길어지는 것을 막으려고 Method Chain을 할 수 있게 하였다.<br><br>기본적으로는 자동으로 타입 매칭을 해서 필드 객체를 주입하지만, 필드의 타입과 필드의 이름을 명시하는 것도 가능하게 해 두었다. 사실 이 중에서 Class 타입을 명시해서 주입하는 걸 얼마나 쓸지는 의문이긴 하다.<br><br><br>그리고 덤으로 별로 필요할 가능성이 적긴 하지만 필드의 값을 가져오는 것(Getter)도 가능하게 만들어 두었다.<br><br>혹시 오류가 있다면 <a target="_blank" href="http://wiki.kwonnam.pe.kr/java/unittest/reflectioninjector">ReflectionInjector</a>에 있는 소스 안의 이메일로 신고해 주면 감사.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

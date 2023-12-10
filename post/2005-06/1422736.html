@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>2000년 호주 - 시드니(Sydney)에서</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-11 23:42:18</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">2000년 호주 - 시드니(Sydney)에서</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">2000년 호주에 머물 때 시드니에서..<br><br>약 한달 보름 정도 머물렀다.<br><br>시드니의 오페라 하우스는 사진으로 보는 것만큼 아름답고, 그 옆에 있는 공원은 사람들에게 자연과 넉넉함을 안겨준다.<br><br><img src='./1422736/b0046915_23351119.jpg'><br><br>서울에도 저런 넉넉함을 줄수 있는 아름다운 곳이 있으면 얼마나 좋을랑가...<br><br>AU$5 정도면 사진 뒷편에 보이는 하버 브리지 탑 위에 올라갈 수 있다. 시드니 오페라 하우스는 내가 저 탑위에 올라가서 찍은 것이다.<br><br><img src='./1422736/b0046915_23353159.jpg'></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

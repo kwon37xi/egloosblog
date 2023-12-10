@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[MySQL]  MySQL 4.1.x 문자셋, 인코딩, UTF-8</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-08-11 14:04:20</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[MySQL]  MySQL 4.1.x 문자셋, 인코딩, UTF-8</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">오밤중에 잠이 안와서 MySQL 갖고 노는 중..<br><br>현재 나의 Fedora Core 3 UTF-8 리눅스 상에서, JDBC와 한글 문제를 일으키지 않는 MySQL 4.1.x 설정 상태는...<br><br>기존 버전에서는 "euc-kr"로 표기되는 문자셋이 "euckr"로 바뀌었다.<br><br><b><big>/etc/my.cnf</big></b><br><blockquote class="SOURCE">[client]<br>default-character-set=utf8<br>[mysqld]<br>default-character-set=utf8<br>[mysqldump]<br>default-character-set=utf8<br></blockquote><br><br><b><big>JDBC Driver URL</big></b><br><blockquote class="SOURCE">jdbc:mysql://localhost:3306/struts?useUnicode=true&amp;characterEncoding=UTF8<br></blockquote><br><br><b><big>현재 문자셋 정보 보기</big></b><br><blockquote class="SOURCE">show variables like 'c%';<br></blockquote><br>결과<br><blockquote class="SOURCE">character_set_client : utf8<br>character_set_connection : utf8<br>character_set_database : utf8<br>character_set_results : utf8<br>character_set_server : utf8<br>character_set_system : utf8<br>character_sets_dir : /usr/share/mysql/charsets/<br>collation_connection : utf8_general_ci<br>collation_database : utf8_general_ci<br>collation_server : utf8_general_ci<br></blockquote><br><br><b><big>이미 생성된 DATABASE의 문자셋 바꾸기</big></b><br><blockquote class="src"><br>-- 테이블의 문자셋 정보 확인.<br>INFORMATION_SCHEMA.TABLES or SHOW CREATE TABLE [TABLENAME];<br></blockquote><br><blockquote class="SOURCE">mysql&gt; SET character_set_client = utf8;<br>mysql&gt; SET character_set_results = utf8;<br>mysql&gt; SET character_set_connection = utf8;<br>mysql&gt; ALTER DATABASE [DB명] DEFAULT CHARACTER SET utf8;<br></blockquote><br><br><b><big>이미 데이터가 들어간 테이블의 문자셋 변환</big></b><br><blockquote class="SOURCE">create table test (merong varchar(20) collate latin1_general_ci);<br><br>이렇게 만들어진 테이블에 한글 데이터를 넣은 후 필드를 euckr 로 변경하려면<br>다음처럼 해야 합니다.<br><br>alter table test modify merong binary(100);<br>alter table test modify merong varchar(20) collate euckr_korean_ci;<br><br>binary 로 바꾸면 문자셋 특성이 사라지기 때문에 이런 변환과정을 거쳐야<br>합니다(메뉴얼에 의하면). 그냥 바꾸면 문자들이 손상됩니다.<br></blockquote><br>참조 : <a href="http://database.sarang.net/?inc=read&amp;aid=22988&amp;criteria=mysql&amp;subcrit=&amp;id=&amp;limit=20&amp;keyword=collation&amp;page=1">Database.sarang.net에 올라온 글</a><br><br><b><big>DB와 테이블 생성시 지정</big></b> from <a href="http://www.phpwact.org/php/i18n/utf-8/mysql">MySQL and UTF-8</a><br><blockquote class="src"><br>Database:<br>(CREATE | ALTER) DATABASE ... DEFAULT CHARACTER SET utf8<br><br>Table:<br>(CREATE | ALTER) TABLE ... DEFAULT CHARACTER SET utf8<br></blockquote><br><br><b><big>기존 EUC-KR 데이타를 4.1.x로 옮기기</big></b><br><a href="http://okjsp.pe.kr/bbs?act=VIEW&amp;seq=43402&amp;bbs=bbs2&amp;keyfield=subject&amp;keyword=mysql&amp;pg=0">http://okjsp.pe.kr/bbs?act=VIEW&amp;seq=43402&amp;bbs=bbs2&amp;keyfield=subject&amp;keyword=mysql&amp;pg=0</a><br><br>* <a title="" href="http://appletree.mine.nu:8080/blog/archives/32">MySQL의 기본 인코딩(default encoding)을 UTF8으로 설정하기</a> : 이미 euc-kr 등으로 존재하는 DB를 UTF-8로 변경하는 방법등을 소개한다.<br><br><hr><br>기타 MySQL 한글(대부분 UTF-8) 사용에 관한 문제를 계속 이 글에 추가할 예정</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

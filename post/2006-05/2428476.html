@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>각종 데이터베이스 비교 싸이트</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-05-17 13:34:30</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">각종 데이터베이스 비교 싸이트</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">새로운 프로젝트에, 데이터베이스를 선정해야할 경우 참조해보면 괜찮을 싸이트가 있다.<br> * <a title="" href="http://en.wikipedia.org/wiki/Comparison_of_relational_database_management_systems">Wikipedia: Comparison of relational database management systems</a><br> * <a title="" href="http://www.geocities.com/mailsoftware42/db/">OPEN SOURCE DATABASE SOFTWARE COMPARISON</a><br>Wikipedia 링크의 아래 부분에 보면 그외 참조할 링크들도 나온다.<br><br>사실 상용 DB가 아닌 오픈 소스 DB의 비교를 위해 찾아본 것이다.<br><br>어째... <a title="" href="http://www.postgresql.org/">PostgreSQL</a>에 눈길이 많이 가지만, 한국어 자료 부족과 속도 부분이 조금 아쉽다.<br><br> tags: 데이터베이스 비교 database db comparison</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Xubuntu 14.04 설치기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2014-05-20 23:41:06</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Xubuntu 14.04 설치기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">요즘은 리눅스 그 중에서도 특히 <a target="_blank" href="http://www.ubuntu.com/">Ubuntu</a>를 설치하는 일이 워낙 쉽다보니 딱히 설치기 같은 것을 언제부터인가 안 썼었다.<br>그리고 나는 정확히 말하면 Ubuntu가 아닌 <a target="_blank" href="http://xubuntu.org/">Xubuntu</a> 혹은 <a target="_blank" href="http://www.linuxmint.com/">Mint MATE</a>를 더 선호하는 사람이다. 간결하고 익숙하기 때문이다(결론은 나이들어서 변화가 귀찮다).<br><br>이번에 Xubuntu 14.04 LTS 가 출시되면서 회사 개발용 PC를 밀면서 Xubuntu로 갔는데, 설치 자체는 편했지만 몇가지 버그가 괴롭혔다. Ubuntu Unity버전에 비해 사용자가 적다보니 Xubuntu에 대한 버그 리포팅이나 해결책이 별로 안 나와있는 상황이라 삽질이 좀 있었다.<br><br>그래서 간략히 설치기의 링크를 걸고, 그 중 주의해야할 버그들을 공유한다.<br><br><a target="_blank" href="http://kwonnam.pe.kr/wiki/linux/ubuntu/14.04">Xubuntu 14.04 설치기</a> 에서 기본적인 것은 읽어 보도록 하고,<br>부딪힌 버그와 해결책은 다음과 같다.<br><br><strong><big>1. 지속적인 Apport 경고창 - 부팅시마다 알지도 못하는 경고창이 뜬다.</big></strong><br><blockquote class="src"># 먼저 /var/crash 의 파일들을 삭제한다. 여기 있는 파일들이 부팅시 에러메시지로 나오는 것이다.<br>sudo rm /var/crash/*<br>sudo vi /etc/default/apport<br># enabled=1 -> 0 으로변경<br> <br># apport restart 혹은 재부팅<br>sudo restart apport<br></blockquote><br><br><strong><big>2. 나눔 고딕 글꼴 상단 잘림 문제</big></strong> -&gt; <a href="https://github.com/igxactly/config-fonthinting-nanum">https://github.com/igxactly/config-fonthinting-nanum</a><br><br><strong><big>3. 한글 입력기 나비 Nabi 설치시 화면 왼쪽 위(좌상단) 클릭 안됨.</big></strong><br>이 문제가 나를 가장 많이 골치아프게 한 것인데, 처음에는 무엇 때문인지도 몰랐다. 이상하게 화면 좌상단의 일부분이 전혀 클릭이 안되는 현상이 발생한다. 그렇다고 거기에 뭐가 있는것 같지도 않았는데....<br>제어판 -> 창관리자 기능향상 설정에서 <strong>합성(Composite) 기능</strong>을 끄면 갑자기 나비의 팔렛트가 해당 위치에 떡하니 나타난다. 이것이 클릭을 막고 있는데, 합성이 켜져 있을 경우 안보이는 것이었다.<br>팔렛트 숨기기를 아무리 해도 안 없어진다. 나비의 버그로 보인다. 결국 UIM으로 갈아탔다. iBus는 Shift-Space 사용시에 미묘한 타이밍 흐트러트림이 발생해서 싫어한다.<br>(이 현상 때문에 굳이 합성 기능을 꺼둘 필요는 없다)<br><br><strong><big>4. XFCE 창관리자(XFWM)의 단축키 변경 안 되는 버그</big></strong><br>리눅스에는 보통 두 종류의 키보다 단축키 조합이 있는데 하나는 창관리자(Window Manager)용으로 창(window)과 작업공간을 제어하는 단축키가 있고 일반 애플리케이션을 호출하는 단축키가 지정가능하다.<br>그런데 창관리자용 단축키를 변경했는데 적용이 안되는 현상이 발생했다.<br>이는 창관리자 단축키 설정시에 과거 설정과 신규 설정이 동시에 설정파일에 입력되면서 나타나는 버그이다. 결국 과거 설정을 설정 파일에서 지워줘야 한다.<br><strong><code>~/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml</code></strong>이게 설정파일인데 잘보면 동일한 역할에 대한 설정이 두 번씩 나오는 것을 볼 수 있다. 그 중에서 자기가 원치 않는 것을 삭제해버리고 XFCE를 재시작 하면 된다.<br><br><strong><big>새로운 기능</big></strong> - <a href="http://smdavis.us/2014/04/15/14-features-of-xubuntu-14-04/">Xubuntu 14.04 new features</a><br>합성(Composite) 기능이 켜진 상태에서 Alt 키를 누른 상태로 마우스 휠을 움직이면 화면이 확대된다. 원래 안됐었나? 관심이 너무 없었네.<br><iframe width="560" height="315" src="//www.youtube.com/embed/y8GvTbgkMd4" frameborder="0" allowfullscreen="allowfullscreen"></iframe><br><br>웬만하면 이번에는 6개월 후에도 계속 이 버전을 유지하면서 PPA로 주요 애플리케이션만 업그레이드 하는 전략을 취해 봐야겠다. 그게 안되면 이번에 LTS 기반으로 2년간 가기로 정한 Linux Mint MATE 로 가서 장기간 써야겠다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

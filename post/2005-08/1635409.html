@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[MySQL] MySQL 덤프(Dump) 하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-08-11 17:44:29</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[MySQL] MySQL 덤프(Dump) 하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a target="_blank" href="http://wiki.kwonnam.pe.kr/database/mysql/dump">http://wiki.kwonnam.pe.kr/database/mysql/dump</a> 로 옮겨감.<br>원문 : <a href="http://www.okjsp.pe.kr/bbs?act=VIEW&amp;bbs=bbs4&amp;keyfield=content&amp;keyword=&amp;seq=30723&amp;pg=0">http://www.okjsp.pe.kr/bbs?act=VIEW&amp;bbs=bbs4&amp;keyfield=content&amp;keyword=&amp;seq=30723&amp;pg=0</a><br><ul><br>  <li>데이터베이스 덤프하기<br><blockquote class="SOURCE">$ mysqldump -u 사용자명 -p DB이름 &gt; 덤프파일명.sql<br></blockquote><br>  </li><li>데이터베이스 로드하기<br>  로드하기 전에 로드할 데이터베이스에는 덤프 대상에 속한 테이블이 없어야만 한다.<br><blockquote class="SOURCE"># 데이터베이스 초기화<br>mysql&gt; drop database DB이름<br>mysql&gt; create database DB이름<br><br># 데이터 로드<br>$ mysql -u 사용자명 -p -e "source 덤프파일명.sql" DB이름 <br></blockquote><br></li></ul></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Ubuntu Feisty/Gutsy Cairo 업데이트 하지 마세요.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-12-05 01:37:15</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Ubuntu Feisty/Gutsy Cairo 업데이트 하지 마세요.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://barosl.com/blog/entry/programs-based-on-cairo-crashes">http://barosl.com/blog/entry/programs-based-on-cairo-crashes<br></a> 여기서 보다싶이, 오늘자(2007/12/4) cairo 라이브러리를 업데이트하면 ms의 ttc 글꼴을 사용하는 PC에서 <span style="text-decoration: line-through;">시스템을</span> X 윈도우를 다운시켜버릴 수 있다.<br><br>절대로 업데이트를 하지 말거나, <a title="" href="http://ubuntu.or.kr/forum/viewtopic.php?f=2&amp;t=1942">http://ubuntu.or.kr/forum/viewtopic.php?f=2&amp;t=1942</a>에 따라 강제로 과거 버전으로 되돌려야 한다.<br><br>나같은 경우는 Feisty amd64를 쓰고 있었는데, 이 문제로 일 하나도 못하고, 지금 이시간까지 업그레이드 하고, 프로젝트 하던거 복구하고 있다(해결책을 모르는 동안이었거든..). 기왕에 하는거  Gutsy 32bit로 돌아섰다.<br>cairo 버전을 되돌리거나 ttc 글꼴 제거하는 것을 알아내기 전에 시스템을 뒤엎어 버렸다. --;<br><br>그리고, Gutsy 32bit로 돌아서면서 Gutsy에는 vm-player 패키지가 없길래 vmware-server로 설치를 했는데, 이런 이런.. 가상머신 속도가 훨씬 빠른거 같다.<br><br>에잉~<br>어제는 안했고, 오늘은 못했다...<br>뭐를?<br>코딩 단 한 줄도..</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

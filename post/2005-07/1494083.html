@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>출근해서...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-07-01 09:01:41</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">출근해서...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">비가 온다..<br>어.. 집에서 나올 땐 괜찮았는데..<br><br>전철역에서 회사(파견 근무지)까지 열라 뛰었을 것 같지만, 무료 일간지를 머리에 쓰고 천천히 걸어왔다.<br><br>건물 1층 샌드위치 가게의 아가씨가 한 웅큼 건내준 냅킨으로 젖은 곳들을 대충 닦고 샌드위치를 시켜먹었다.<br><br>샌드위치를 씹고 빗물은 주르륵 주르륵 흘러내리는 건물의 대형창 밖으로 지나다니는 차와 사람들을 보며 웬지 낭만적이다라는 생각을 하다가 트름을 한 번 해주고는 일터로 올라왔다.<br><br>자 이제 <a href="http://www.ezpolitics.net/board/zboard.php?id=FreeBoard&no=634">개구리를 먹자!</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

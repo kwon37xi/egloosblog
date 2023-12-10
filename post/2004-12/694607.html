@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>유닉스 상에서 띄운 데몬이 금방 죽어버린다.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-21 10:13:56</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">유닉스 상에서 띄운 데몬이 금방 죽어버린다.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">유닉스상에서 실행한 데몬(시스템의 기본 데몬 말고, 일반 계정에서 데몬 형태로 실행한 프로그램)이 실행후 잠시후에 죽어버리는 현상이 발생한다면, 셸을 의심해봐야 할 것 같다.<br><br>셸에 따라 <B>&amp;</B>로 실행한 명령을 로그아웃하더라도 계속 살려두기도 하고, 로그아웃 즉시 하위 프로세스들을 죽여버리는 경우도 있다.<br><br>셸을 /bin/sh, /bin/ksh 등으로 바꿔가면서 데몬을 실행해본다. <B>/etc/passwd</B>에서 해당 계정에 대해서 바꾸면된다.<br><br>여러번의 시도에도 안된다면 할 수 없이 <B>nohup</B>을 이용한다.<br><br><B>$ nohup mydaemon > /dev/null 2&>1 &</B><br><br>위와 같이 실행하면 데몬 실행을 사실상 100% 보장한다고 볼 수 있다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

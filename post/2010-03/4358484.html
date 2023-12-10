@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Tomcat 7/6.24 리로딩 메모리 누수 문제 해결</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2010-03-16 22:42:34</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Tomcat 7/6.24 리로딩 메모리 누수 문제 해결</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">몇달만에 <a target="_blank" href="http://hanrss.com">hanrss</a>를 모두 훑어 보면서 정리하고 있다. 만여개에 달하는 포스팅들을 (영어로된 된 것들을 대부분 무시하면서) 보고 있는데 이제 거의 다 정리된 듯.<br><br>몇가지 자바 개발자들(사실은 내가)이 관심있어할만한 소식이 있어서 정리.<br><br><a target="_blank" href="http://java.dzone.com/articles/memory-leak-protection-tomcat">들리는 소식 중에 하나가 Tomcat이 웹 애플리케이션을 리로딩할 때 생기는 메모리 누수를 해결했다고 한다.</a> 이 메모리 누수는 PermGen 공간에 생기는 것인고 대부분은 애플리케이션의 버그인데, 그럼에도 애플리케이션 리로딩시에 PermGen 영역을 강제로 정화시켜주는 기능을 만들었다고 한다.<br>원래 Tomcat 7에 들어가는 기능이지만 6.24에도 역포팅됐다고 한다.<br>나는 이 메모리 누수 때문에 웹 개발시 reload 옵션을 항상 false로 지정해서 사용하고 있다. 메모리 누수가 해결되었다고 하니 자바 웹 애플리케이션 개발 속도가 미약하게나마 진전 되려나?<br><br>그리고 <a target="_blank" href="http://about.digg.com/node/564">Digg.com</a> 이 MySQL을 버리고 Facebook에서 오픈소스로 공개한 NoSQL인 <a target="_blank" href="http://cassandra.apache.org/">Apache Cassandra</a>로 갈아탔다고 한다. 대용량 서비스를 기획하고 있다면 관심있게 봐둬야 할 것으로 보인다.<br><br>그리고 1년전에 영문판으로 봤던 자바 개발자들이 꼭 봤으면 하면 <a href="http://www.yes24.com/24/goods/3732893?scode=032&amp;srank=1">Clean Code 번역판</a>이 출간되었다. 이 책의 내용은 전혀 어렵지 않다. 어떤 습관을 가지느냐에 대한 얘기이다.<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

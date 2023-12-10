@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>자바 프로그램 종료시(JVM 종료시) 특정 작업 무조건 수행하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-02-05 21:53:49</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">자바 프로그램 종료시(JVM 종료시) 특정 작업 무조건 수행하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">자바 어플리케이션을 수행하다가 프로그램을 종료할 때 특정 작업을 무조건 수행해야 할 경우가 있을 수 있다.<br><br>스윙 어플리케이션의 경우 사용자가 차림표에서 "종료"를 선택해서 종료한다면 끝내기 전에 자기가 원하는 작업을 할 수 있을지도 모른다. 하지만 Ctrl-C 로 종료하거나 아니면 웹 어플리케이션 처럼 언제 어떻게 종료할 지 알 수 없는 상황에서도 뭔가를 꼭 해야만 하는 경우가 있을 수도 있다.<br><br>그럴 때 <strong>Runtime.getRuntime().addShutdownHook(Thread t)</strong>를 이용하면 된다.<br><br>JVM이 종료할 때 쓰레드 객체의 run() 메소드가 무조건 실행된다.<br><br>단, kill -9로 프로세스를 죽였을 때는 예외이다.<br><br><div class="h2">일반 어플리케이션에서 예제</div><br>아래는 익명 클래스를 이용한 예제이다.<br><br>프로그램을 실행한 다음 엔터키를 누르거나 Ctrl-C 키로 강제 종료해도 "JVM은 종료중..." 이라는 메시지는 출력된다.<br><br>kill -9 pid 로 하면 메시지가 출력되지 않고 그냥 종료되어 버리는 것을 볼 수 있다.<br><br><blockquote class="src">public&nbsp;class&nbsp;Test&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String&nbsp;args[])&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;JVM이&nbsp;종료할&nbsp;때&nbsp;특정&nbsp;작업&nbsp;무조건&nbsp;수행하기.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Runtime.getRuntime().addShutdownHook(new&nbsp;Thread()&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;run()&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("JVM은&nbsp;종료중...");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("엔터를&nbsp;치면&nbsp;프로그램이&nbsp;종료됩니다.");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.in.read();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(Exception&nbsp;ex)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex.printStackTrace();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}<br></blockquote><br><br><div class="h2">웹 어플리케이션에서는??</div><br>웹 어플리케이션에서는 시작 서블릿의 init() 메소드에서 위와 같이 구현하면 WAS가 종료될 때 지정한 작업이 수행된다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

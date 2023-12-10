@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Hibernate와 MySQL enum</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2009-08-17 14:30:10</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Hibernate와 MySQL enum</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="xhtmlEditorBody"><h2>Hibernate에서 Annotation으로 Java Enum 과 MySQL의 enum 매핑</h2> <p>Hibernate Annotation은 Java의 Enum을 VARCHAR 형태로 잘 지원해준다. 헌데 MySQL에도 enum 타입이 존재하며 MySQL의 enum 타입은 화면 표시는 문자열로 되나 내부적으로 숫자로 처리하여 VARCHAR보다 속도가 더 빠른 것으로 알려져 있다.</p> <p>Hibernate Annotation의 Enum 과 MySQL의 Enum을 함께 사용하려면 약간의 꽁수가 필요하다.</p> <ol class="code"> <li>public enum SomeEnumType {</li> <li>&nbsp;&nbsp;&nbsp; TEST, DEVELOPMENT, PRODUCTION;</li> <li>&nbsp;&nbsp;&nbsp; public static final String COLUMN_DEFINITION = "enum('TEST','DEVELOPMENT','PRODUCTIOIN');</li> <li>}</li> </ol> <p>&nbsp;</p> <ol class="code"> <li><strong>@Enumerated(EnumType.STRING)</strong><br> @Column(name = "some_enum_type", <strong>columnDefinition="enum('TEST','DEVELOPMENT','PRODUCTION')"</strong>)<br> private SomeEnumType someEnumType</li> </ol> <p>&nbsp;</p> <p>columnDefinition에서 상수를 사용한 이유는 SomeEnumType을 여러 엔티티에서 사용할 것에 대비한 것이다.</p> <p>&nbsp;</p> <p>참고로, Enum의 각 값을 뽑아서 enum('',...) 형태로 출력해주는 유틸리티 메소드:</p> <ol class="code"> <li>abstract public class EnumComlumnDefinitionUtils {<br> <br> &nbsp;&nbsp;&nbsp; public static void printEnumColumnDefinition(Class&lt;? extends Enum&lt;?&gt;&gt; enumClass) {<br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Enum&lt;?&gt;[] enums = enumClass.getEnumConstants();<br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; StringBuilder sb = new StringBuilder("\"enum(");<br> <br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; for (Enum&lt;?&gt; enumValue : enums) {<br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; sb.append("'").append(enumValue.name()).append("',");<br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }<br> <br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; sb.deleteCharAt(sb.length() - 1);<br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; sb.append(")\"");<br> <br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; System.out.println(sb.toString());<br> &nbsp;&nbsp;&nbsp; }</li> <li>&nbsp;</li> <li>&nbsp;&nbsp;&nbsp; public static void main(String[] args) {</li> <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 사용법<br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>EnumComlumnDefinitionUtils.printEnumColumnDefinition(SomeEnumType.class);</strong><br> &nbsp;&nbsp;&nbsp; }<br> }</li> </ol> <p style="text-align: right;">이 글은 <a href="http://kwon37xi.springnote.com/pages/4038415">스프링노트</a>에서 작성되었습니다.</p></div></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

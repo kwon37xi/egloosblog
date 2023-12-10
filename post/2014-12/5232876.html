@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>새로운 것을 배워야 좋은 프로그래머인가요?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2014-12-07 14:23:03</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">새로운 것을 배워야 좋은 프로그래머인가요?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">어떤 분이 힘들다고 푸념하면서 <a target="_blank" href="http://kwon37xi.egloos.com/4747016#14631990.01">새로운 것을 배워야만 좋은 프로그래머인거냐고 질문</a>을 올렸길래 답을 달았다.<br><br>일단은 아래와 같이 답을 달았다.<br><quote><strong>항상 새로운 것을 배우는 것은 훌륭한 프로그래머가 아닙니다.(그렇다고 나쁘다는 뜻도 아닙니다. 단지 새로운 것을 배운다는 것 자체가 훌륭한 프로그래머의 정의는 아니다 라는 의미입니다.)<br><br>현재 개발을 하면서 어떤 문제가 반복적인 노가다성 작업인지, 인간의 실수를 유발하는 작업인지를 잘 살피고 그 문제를 해결하기 위해 공부하고 해결책을 제시하는 것은 훌륭한 프로그래머입니다.<br><br>다른 사람들의 반복 적이고 인간이 하기에는 오류가 많은 것을 자동화해주는 "프로그래머"라는 직업에 종사하면서 자기 자신이 겪고 있는 문제조차 공부하기 싫어 외면한다는 것은 좋은 프로그래머가 아닙니다.</strong></quote><br><br>내가 생각하는 좋은 프로그래머는 (특히 서비스 개발쪽에 종사하는 - 주로 웹,모바일 서비스등) 새로운 것을 추구하는 사람이 아니라 주어진 문제에서 발생하는 최적해를 찾아내는 사람이다. 최신 기술이 중요한게 아니라 최적 기술이 더 중요하며 그 와중에도 반복적이고 오류를 발생시키는 문제가 있을 때에는 과감히 새로운 기술을 도입도 할 수 있어야하고, 비록 낡은 기술이라도 현재 상태의 최적해라면 그리고 팀에 의해 정해진 규칙이고 그 규칙이 별다른 문제가 없다면 묵묵히 따를 수도 있어야 한다.<br><br>최신 기술만 추구하는 사람들은 보통 서비스는 제대로 만들지도 못하면서 자기 회사 서비스를 자기 개인 코드 연습장처럼 사용하여 서비스 전체를 아예 오픈도 못해보거나 실제 론칭 후에 발생하는 문제들을 해결하지 못해(너무 신기술이라 폭넓게 검증된 적이 없는 불완전한 상태이고, 기술을 도입시킨 본인도 해당 기술에 대해 제대로 이해를 못한 상태라서) 손을 놔버리는 모습을 보일 때도 있고,<br>공부하려들지 않는 개발자들은 어떻게 어떻게 꾸역꾸역 서비스를 유지하지만 근본적인 문제를 해결하지 못하고 외면하면서 문제의 크기를 계속 키워서 시스템 전체를 손댈 수 없는 지경의 위험에 빠뜨리는 것을 본다.<br><br>이 둘 간의 균형을 어떻게 유지할 것인가?<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

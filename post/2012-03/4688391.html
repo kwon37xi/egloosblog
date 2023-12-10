@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] Eclipse + Maven 조합에서 갑자기 단위테스트가 실행이 안된다.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-03-26 14:54:25</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] Eclipse + Maven 조합에서 갑자기 단위테스트가 실행이 안된다.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Eclipse(3.7.1) + Maven 3, Maven eclipse Plugin(m2eclipse가 아님.)을 사용하는 환경이다.<br><br>갑자기 단위테스트가 안되면서 아래와 유사한 오류가 모든 단위테스트에서 발생하였다.<br><blockquote class="src">Class not found ClassToTest<br>java.lang.ClassNotFoundException: ClassToTest<br>    at java.net.URLClassLoader$1.run(URLClassLoader.java:200)<br>    at java.security.AccessController.doPrivileged(Native Method)<br>    at java.net.URLClassLoader.findClass(URLClassLoader.java:188)<br>    at java.lang.ClassLoader.loadClass(ClassLoader.java:307)<br>    at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:268)<br>    at java.lang.ClassLoader.loadClass(ClassLoader.java:252)<br></blockquote><br><br><a title="" href="http://stackoverflow.com/questions/5974432/classnotfoundexception-when-running-junit-unit-tests-within-eclipse-using-maven" target="_blank">ClassNotFoundException when running JUnit unit tests within Eclipse (using Maven)</a>를 보고 힌트를 얻어 해결하였다.<br><br>근데, 사실 난 뭔 소리인지 정확히는 모르겠고,<br><ol><li>Maven 모듈로 분리된 프로젝트에서 발생하는 버그인 듯 하며,</li><li>해당 모듈 프로젝트를 삭제(내용은 남겨둠)했다가, 다시 Existing project로 import 해주면 해결이 된다.</li></ol><p>이거 때문에 2 뽀모도로 날렸다.</p><p>책임져... 씨...<br></p></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

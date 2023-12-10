@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Mutt와 Sendmail</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-13 02:16:30</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Mutt와 Sendmail</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">mutt 를 사용하기 위해 정말 눈물나는 노력을 했습니다.<br><br>사실 Pine 이라는 프로그램을 사용하면 매우 쉽게 이메일을 이용할 수 있습니다. 하지만 저는 리눅서들 사이에 (제가 느끼기에)매우 좋은 평을 받고 있는 mutt 를 (게다가 메뉴나 설명이 한글로 나옵니다! 한글 패치를 안해도...) 꼭 제대로 사용해 보고 싶었습니다. 그래서 며칠을 뉴스그룹에 글 올리며, 이곳 저곳 홈페이지를 돌아다니며 자료를 얻어 오늘 새벽 드디어 마무리를 지었습니다. 그 기쁨이 가시기 전에 함께 나누고 싶네요.<br><br>일단 mutt 는 매우 많은 리눅서들이 사용하는 듯 보임에도 이상하게 제대로 설명된 설치 안내 문서를 전혀 찾아 볼 수 없었습니다(제 검색 실력탓이겠지요...). 게다가 최초로 부딪힌 문제는 한글이 안 뜬다는 것이었지요. 황당하게도... 둘째로 mutt 는 smtp 서버를 이용하지 않고 리눅스 박스의 sendmail 을 이메일 발신용으로 사용한다는 것입니다. 그게 왜 문제냐면 저 같은 개인 사용자들의 경우 도메인 네임이 없어서 어떤 이메일 수신 프로그램들은 저 같은 사람들의 이메일을 스팸메일로 간주하고 아예 받아들이질 않는다고 하네요. 그것 때문에 또 몇몇 제 친구 이메일 계정으로 mutt 에서의 메일 전송이 안되는 문제에도 부딪혔습니다.<img src='./1427103/b0046915_291987.png'><br><br>자, 물론 그러나 이런 문제들을 다 해결했고(정말 고맙습니다.. 도와주신 분들...) 그 과정을 정리하려 합니다. 참고하시기 바랍니다.<br><br>mutt 의 기본<br>mutt 는 윈도우용 메일 클라이언트와 매우 다르다. 일단 기본 개념이 윈도우용 메일 클라이언트는 POP3 호스트에서 메일을 읽어와서 smtp 서버를 통해서 메일을 전송하는 방식이지만 mutt 는 자신의 리눅스 박스의 계정으로 온 메일을 읽고 또한 리눅스 박스에 설치된 메일 전송 프로그램 sendmail 을 통해서 메일을 보낸다. 그러므로 외부의 POP3 계정을 쓰려면 fetchmail 이라는 프로그램을 이용해서 자신의 리눅스 계정으로 메일을 받아서 읽어야 한다. 사실 mutt 자체가 pop3 기능을 지원하긴 하지만 1개의 호스트만 지원하는 것 같고 기능도 빈약하다고 한다. 설명서에서는 fetchmail 사용을 권장.<br><br>만약, 쓰기 쉽고 html 코드로 된 이메일을 잘 읽고 싶은 사람이라면 Netscape나 Mozila 메일 혹은 Pine 을 사용한다. 특히 Pine 은 mutt 와 함께 리눅스에서 가장 많이 사용되는 이메일 클라이언트일 것이다. Pine은 mutt 처럼 텍스트 상에서 실행됨에도 html 문서를 그냥 보여주고 pop3와 smtp를 지원하여 윈도우에서 쓸때와 비슷한 설정을 하는 등 쉽고 강력하다. 하지만 한글판을 못봤고(아직은) mutt에 비해 약간 느린듯 하다. 혹은 pop3와 smtp를 지원하는 X용 메일 클라이언트들이 많이 나왔으므로(kmail 등..) 그것들을 이용하면 매우 쉽게 사용할 수 있다. http://www.linux.co.kr 의 초보자 코너에 들려보면 쉬운 이메일 클라이언트 사용법을 알 수 있다. Pine과 fetchmail은 이 페이지를 참조하기 바란다.<br><br>mutt 의 설치<br>일단 와우 리눅스 7.0 을 쓴다면 mutt 1.2.5i 버전이 깔려 있다. 문제는 여기서 한글이 안보인다는 것이다.. 새 와우 리눅스나 다른 배포본에서는 어떤지 모르겠다.<br><br>rpm -Uvh mutt-버전.rpm 명령으로 설치를 한다. 그리고 /etc/sysconfig/i18n 이라는 파일을 열고 아래와 같은 내용이 있는지 확인.<br><br>      LANG="ko_KR"<br>      LC_ALL="ko_KR"<br><br>위와 같이 되어 있는데도 mutt 를 실행시켰을 때 한글이 안 나온다면 소스를 받아서 컴파일을 해야 한다. 나는 버전 1.3.19를 써서 컴파일을 했는데 아무 문제없이 쓸 수 있었다. 1.3.19는 www.linux.co.kr에서 구했슴.<br><br>컴파일은 일단 소스를 풀고<br><br>./configure --enable-pop --with-charmaps<br> make install<br><br>을 한다. make 명령은 필요 없다. --enable-pop 은 pop3를 쓰기 위해서 인데 fetchmail 을 쓰는 사람은 필요 없고(mutt 의 pop3 지원은 매우 빈약하다), --with-charmaps 는 인코딩/디코딩을 위한 거라는데 사실 나도 초보인지라 잘모른다. 자, 이 상태에서 mutt 를 실행시켰는데 그래도 한글이 안보이는가?<br>그렇다면...<br><br>./configure --enable-pop --with-charmaps --enable-locales-fix --without-wc-funs<br>make install<br><br>을 해 본다. 나 같은 경우에는 1.2.5i 버전에서 LANG과 LC_ALL을 설정해줬음에도 한글이 안 보여서 위의 방식으로 컴파일 했더니 잘 보였다.<br><br>mutt 의 설정<br>자, 이제 두 가지 문제가 남았다. .muttrc 파일의 작성. 대부분의 리눅스용 프로그램들을 자신의 홈디렉토리에 .어쩌구rc 라는 파일로 환경을 설정한다. mutt도 마찬가지인데 이것도 만만치 않았다. hangul.kldp.org와 김병렬님 알려주신 .muttrc 파일과 참조했슴.<br><br>일단, /usr/local/share/doc/mutt/samples 나 /usr/share/doc/mutt/samples 를 보면 sample.muttrc 라는 파일이 있다. 이것을 홈디렉토리로 복사한다.<br><br>cp /usr/share/doc/mutt/samples/sample.muttrc ~/.muttrc<br><br>그 다음 설명을 보면서 편집하면 된다. 특히 한글 인/디코딩 설정을 잘해야 다른 사람들이 내가 보내는 메일을 올바르게 볼 수 있다.<br><br>sendmail 설정을 통한 유동 IP에서 이메일 보내기<br>마지막 고난... 즉, 개인이 도메인 네임을 정식으로 받지 않은 상태에서 mutt 의 메일 보내기를 쓸경우 어떤 이메일 서비스에서는 그 이메일들을 스팸으로 간주하고 수신을 거부한다. 이것을 해결하기 위해 뉴스그룹을 들락날락했고 많은 분들의 도움으로 해결하게 되었다. 다시 한번 감사.<br>이것을 하려면 /etc/sendmail.cf 를 변경해야 한다. sendmail의 설정은 다른 것을 웬만하면 건들지 말고 리눅스 설치 상태 그대로 두는 게 좋다.. 초보자라면...<br>root 권한으로 /etc/sendmail.cf 에서 DM, DS, Dj 라는 부분을 찾아 수정한다(대소문자 주의).<br><br>      DM자 신의이메일주소도메인<br>      DS자 신의smtp서비스도메인<br>      Dj잘 쓰이지않는이메일서비스도메인<br><br><br>예를 들어 보면 이메일 주소가 myid@myemail.com 일때, 그리고 smtp 서버 주소가 smtpserver.com 일 때, 그리고 잘 쓰이지 않는 이메일서비스의 도메인 네임이 email.com 일때...<br><br>      DMmyemail.com<br>      DSsmtpserver.com<br>      Djemail.com<br><br>이렇게 해준다.<br>여기서 Dj는 sendmail 에 강제로 현재 사용중인 리눅스 박스의 도메인 네임을 인식시키는 것이라고 한다. 여기서 중요한 것은 Dj 의 설정이다. 여기다가는 절대로 자신이 자주 메일을 보내는 곳의 도메인을 보내면 안된다. 그렇게 할경우 그 이메일은 밖으로 나가지 않고 자신의 이메일 박스 안에서만 멤돈다. 그리고 Dj에 설정해준 이메일 서비스에 현재 리눅스박스에서 사용중인 사용자 아이디와 같은 아이디를 갖고 있어야 할 것이다. 그래야 잘못된 이메일이 다시 돌아올 경우 자신의리눅스박스ID@email.com 으로 돌아온다. email.com 은 내가 사용하는 것으로 www.nbci.com 에서 제공하는 웹메일 서비스이다. 아직 저 주소로 이메일 사용하는 사람을 만난적이 없었다.<br><br>참고 : 나중에 확인 결과 DS 부분의 설정은 불필요 했다.<br><br>주소록과 html 형식 메일 보기<br>주소록 파일은 .muttrc 파일에서 설정한다. 위 파일 참조. 나는 .mail_aliases 파일로 설정했다. - linux.sarang.net 1원짜리 팁<br><br>.mail_aliases 파일에 다음과 같은 형식으로 주소를 등록하면 된다.<br><br>alias 별명 실제이름 <이메일주소><br><br>위 와 같이 하여 한 줄에 한 명씩 해주면 된다. mutt 에서 이메일을 보낼 때 To: 부분에서 Tab을 눌러주면 주소창이 뜬다. 그리고 주소창 없이 그냥 To:를 적어줄 때는 그냥 별명만 써줘도 자동으로 실명과 이메일주소로 변환된다.<br><br>이메일 주소 그룹을 만들려면<br><br>alias 그룹약칭 이메일주소, 이메일주소, 이메일주소.....<br><br>메일을 읽다가 보낸이 이메일 주소를 저장하고 싶으면 a 를 누르면 된다.<br><br>html 형식의 메일은 .mailcap 파일에서 설정해 준다. - linux.sarang.net 1원짜리 팁 -<br><br>text/html; lynx -force_html %s; needsterminal;<br><br>이것을 올려주신 분은 내용이 잘 안 보였다고 하는데 나는 잘 보인다. w3m 브라우저를 쓰려면 RedHat의 contrib 사이트에 가면 얻을 수 있다한다. 그리고 .mailcap 파일에다가...<br><br>text/html; w3m -T text/html -F -dump %s; copiousoutput<br><br><br>위 줄을 추가한다(w3m은 테스트해보지 않았슴).<br><br>html 이메일이 도착하면 그 이메일에서 'v' 키를 누르고 html 파일이 나오면 엔터를 친다. 그러면 브라우저가 실행되면서 내용이 보인다.<br><br>mutt 를 사용하기 위한 길고 긴 여정 이었다. 여기서는 제대로 설명안한 .muttrc 파일에 대한 것은 내가 올려 놓은 것을 보면 문제 없을 것이다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

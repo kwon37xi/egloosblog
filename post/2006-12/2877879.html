@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Eclipse와 Cyclic Dependencies(상호의존? 순환의존?)</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-16 00:20:20</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Eclipse와 Cyclic Dependencies(상호의존? 순환의존?)</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://toby.epril.com/?p=263">Toby님의 오늘 블로그에Cyclic Dependencies에 관한 포스트</a>가 올라왔다.<br>자바의 한 패키지가 다른 패키지에 순환적 구조로 의존하면 안된다는 것이다.<br><br>packageA.ClassA 가 packageB.ClassB 를 참조하고, packageA.ClassB가 packageB.ClassA 를 참조하면, packageA와 packageB가 서로 순환적으로 의존하는 관계가 된다.<br><br>사실 이걸 피하기는 많이 어려워보인다(솔직히 이걸 피해야 하나 그런 생각도 잠시 했다). 그러나 그걸 피해야 한다는 것을 설명한 것이 <a title="" href="http://toby.epril.com/?p=263">이번 Toby님의 글</a>이다.<br><br>내가 쓰려는 것은 패키지간의 의존관계를 넘어 <strong>프로젝트의 의존관계</strong>에 문제가 생겼을 때 Eclipse에서 대처하는 방법이다.<br><br>동일 프로젝트 내의 각 패키지 간에도 순환적인 의존성이 있으면 안된다고 이렇게 주장을 하는데, 지금 내가 참여하는 프로젝트는 <strong>프로젝트와 프로젝트 사이에 순환적 의존관계</strong>가 설정되어 있다. 이 때문에 처음에 들어와서 프로젝트의 구성 상태를 보고 매우 당황했다.<br><img src='./2877879/b0046915_12122153.png'><br><br>ProjectA의 projectA.ClassA가 ProjectB의 projectB.ClassB를 사용하고, projectA.ClassB는 projectB.ClassA를 사용하는 식의 순환구조로 되어 있다.<br><br>덕분에 현재 우리 팀원들은 Eclipse를 제대로 사용을 못하고 있다. <strong>Eclipse는 기본적으로 프로젝트와 프로젝트간의 순환적인 의존관계를 허용하지 않기 때문</strong>이다. 아예 컴파일을 중단해 버린다. Eclipse가 아예 허용도 안 해버릴 정도면 이게 얼마나 안 좋은 것인지 대략 감이 올것이다. 아래는 Cyclic Dependecies에 대한 Eclipse의 오류 메시지이다.<br><blockquote class="quote">A cycle was detected in the build path of project: ProjectA</blockquote><br><img src='./2877879/b0046915_12121040.png'><br><br>그리고 단순히 생각해보면, ProjectA를 빌드하는 Ant 스크립트와 ProjectB를 빌드하는 Ant 스크립트가 있다고 해보자.<br>모든 빌드 디렉토리를 clean(*.class 완전 삭제)하고서 깨끗한 상태에서 ProjectA를 Ant 빌드 스크립트로 빌드한다고 보자. 그럴때 ProjectA는 ProjectB의 클래스가 없기 때문에 컴파일을 중간에 오류가 나고 멈추게 된다. ProjectB도 마찬가지이다. ProjectA의 컴파일이 완료가 안됐기 때문에 ProjectB도 그로인해 컴파일 오류가 발생하고 중단된다.<br><br>한마디로 DeadLock 상태에 빠지는것이다.<br><br>현재 우리 팀원들은 이 문제로 각 프로젝트간의 클래스 패스 설정을 이클립스에서 빼버리고 각 프로젝트의 클래스들을 따로 따로 빌드하고, Jar 로 묶은 다음, 각 프로젝트는 서로 다른 프로젝트의 Jar 파일을 참조하게 한다.<br>이로 인해서 ProjectA의 소스 코드를 바꾸는 순간 그것이 ProjectB의 소스에 어떤 영향을 미치는지는 컴파일하고 Jar 로 묶기 전에는 결코 알 수가 없다.<br>더욱 심각한 문제는 ProjectA를 바꾼뒤, Jar로 묶어서 ProjectB에 어떤 영향을 끼치는지 확인하는 작업을 잠시 잊어버려 버릴 때이다. 이 상태로 "음~ 에러가 하나도 안나는군~ 좋아~" 하고서 버전 컨트롤 시스템에 올려버리면, 이 사람은 순간적으로 다른 모든 사람들의 빌드를 실패하게 만들어 버린다(이런일이 몇번 발생했다).<br><br>억지로 이걸 해결할 수는 있다. 다음 처럼 Eclipse(3.2기준)에서 <strong>Circular dependecies에 관한 설정을 Error에서 Warning으로</strong> 살짝 바꾸면 컴파일은 무사히 한다.<br><img src='./2877879/b0046915_12124258.png'><br>이 상태에서는 jar에 대한 빌드 패스 설정을 삭제하고, 프로젝트 상호간에 빌드 패스로 설정해도 괜찮아지긴 한다.<br><br>하지만, <strong><big>Project 간의 순환적인 의존관계는 절대로 피해야 한다.</big></strong> 저것은 어쩔 수 없이, 지금 당장 Eclipse를 사용해서 개발을 해야하기 때문에 사용한 언 발에 오줌누기일 뿐이다.<br><br>단순히 생각해보라... 아무런 클래스도 없이 깨끗해진 상태에서는 제대로 빌드하려면, 빌드 스크립트를 사용할 수 없고 각 클래스를 일일이 javac 명령으로 컴파일 해야한다고.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

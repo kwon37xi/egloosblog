@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>BusinessWeek에 실린 Java가 PHP와 .Net에 입지를 내주고 있다는 글.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-12-15 14:02:24</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">BusinessWeek에 실린 Java가 PHP와 .Net에 입지를 내주고 있다는 글.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">며칠전에 <a title="" href="http://www.businessweek.com/technology/content/dec2005/tc20051213_042973.htm">Business Week에 Java의 입지가 PHP와 .Net에 의해서 줄어 들고 있다</a>는 글이 올라왔다.<br><br>사실 이런 글이 올라온다는 것 자체가 Java의 입지가 현재 그만큼 공고하고, 사용자층이 프로그래밍 언어 중에서 가장 넓다는 것을 반증하는 것이기도 하다.<br><br>어쨌든, 저 글을 읽어 보면 약간 고개를 갸우뚱 할 수 밖에 없다.<br><br>뭔가 냄새가 구리다. <a title="" href="http://www.theserverside.com/news/thread.tss?thread_id=38081">Java와 Ajax, Linux 등을 동일 선상에서 비교를 하는 등의 오류를 범하고 있는 것</a>이, 프로그래밍 언어를 모르는 기자가, 누군가의 마케팅을 위해 사주를 받고 글을 써 준 것이 아닌가 하는 느낌을 지울 수 없게 만들고 있다.<br>(PHP와 .Net 이 함께 나오기 때문에 그 누군가를 약간 혼란스럽게 느끼게 만들수도 있지만, 하나만 나오면 너무 뻔히 속보이지 않나??)<br><br>개인적으로 그다지 언어에 대한 집착은 없다.<br>주도적인 언어가 바뀐다고 바로 사장될 프로그래머가 되고 싶지도 않고. 객체지향 언어가 주된 상황에서 다른 객체 지향 언어로의 이전이 별로 어렵다고 보지도 않기 때문이다. 물론 완전히 다른 패러다임의 언어로 바꿔야 한다면, 헤메는 것은 어쩔 수 없겠지만.<br><br>그렇다쳐도, .Net의 약진은 오픈 소스와 비독점적인 플랫폼을 옹호하는 내 입장에서는 별로 달갑지는 않다.<br><br>그리고 실제로 .Net의 약진은 현재 (최소한 우리나라에서는, 그리고 전세계적으로도 마찬가지이고) 전혀 현실적이지 못한 상황이다.(우리나라에서 가장 많은 SI 프로젝트를 할 것으로 보이는 삼성 SDS나 LG CNS 등에 다니는 사람에게 물어보라. Java와 .Net 중 어느쪽 개발 비중이 더 높은지. 내가 물어본 바로는 .Net은 거의 0%에 가깝다.)<br><br>엔터프라이즈 시장에서 오픈 플랫폼의 약진을 기원한다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

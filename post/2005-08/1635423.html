@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[MySQL] MySQL Index 관리</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-08-11 17:49:05</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[MySQL] MySQL Index 관리</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a target="_blank" href="http://wiki.kwonnam.pe.kr/database/mysql/index">http://wiki.kwonnam.pe.kr/database/mysql/index</a> 이동.<br><br>WHERE절에서 조건으로 쓰이는 컬럼을 인덱스로 만드는 것이 좋고, AND 연산으로 검색되는 컬럼들은<br>모두 하나의 인덱스로 만드는 것이 좋다.<br><br><b><big>Index 생성</big></b><br><ul><br>  <li>테이블 생성시<br><blockquote class="SOURCE">mysql&gt; CREATE TABLE tablename (id CHAR(13) NOT NULL,<br>    passwd CHAR(8) NOT NULL,<br>    name CHAR(8) NOT NULL,<br>    email CHAR(64) NOT NULL,<br>    INDEX (id)<br>);<br></blockquote><br>id 컬럼에 대한 인덱스를 생성한다.<br>두 개 이상의 컬럼에 대해서도 인덱스를 생성할 수 있다.<br><blockquote class="SOURCE">INDEX(id, passwd)<br></blockquote><br>id 컬럼과 passwd 컬럼을 AND 조건으로 검색할 때 인덱스가 작동한다.<br>  </li><li>테이블 생성 후 추가<br><blockquote class="SOURCE">mysql&gt; ALTER TABLE tablename ADD INDEX index_name(col1, col2,...);<br></blockquote><br>index_name으로 인덱스 추가.<br></li></ul><br><br><b><big>인덱스 정보 보기</big></b><br><blockquote class="SOURCE">mysql&gt; SHOW INDEX FROM tablename;<br></blockquote><br><br><br><b><big>인덱스 삭제</big></b><br><blockquote class="SOURCE">mysql&gt; ALTER TABLE tablename DROP INDEX index_name;<br></blockquote><br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

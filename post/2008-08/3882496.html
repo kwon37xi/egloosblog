@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Vim FuzzyFinder Plugin - 파일명으로 찾아 열기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2008-08-28 22:39:23</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Vim FuzzyFinder Plugin - 파일명으로 찾아 열기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://www.vim.org">Vim</a>을 사용하면서 제일 짜증 나는 점은 파일 네비게이션이다.<br>파일 네비게이션이 별로라서 IDE로써 활용하기엔 좀 힘들다.<br>그나마 조금 네비게이션을 편하게 해주는 것으로 나는 <a title="" href="http://www.vim.org/scripts/script.php?script_id=1658">NERD Tree</a>를 사용하고 있다. 이것은 Eclipse에서 프로젝트의 파일과 디렉토리 목록을 보여주는 역할을 한다.<br><br>그런데, 내가 제일 필요로 하는 기능은 Eclipse의 Ctrl-Shift-R/Ctrl-Shift-T 단축키의 기능이다. 이 단축키를 누른뒤에 파일명을 치면 파일명에 해당 문자열을 포함하고 있는 모든 파일 목록이 순차적으로 나오고, 이름을 계속 칠 수록 매칭되는 목록이 줄어들면서 최종적으로 파일을 선택해서 열 수 있게 해준다.<br>또다른 특징중의 하나는 MAC 처럼 대문자를 연속으로 치면 MultiActionController.java 같은 클래스를 자동으로 찾아주기도 한다.<br>이러한 기능이 유명한 Mac용 에디터인 TextMate에도 있다.<br><br>특히, Ruby On Rails나 Java 처럼 디렉토리가 많아지는 프레임워크나 언어를 사용하게되면 이러한 파일명 기반의 검색이 매우 절실하다. 그래서 나는 Java 개발을 할 때거의 vim을 사용하지 않았다.<br><br>그러다가  <a title="" href="http://www.vim.org/scripts/script.php?script_id=1984">FuzzyFinder</a>라는 기막힌 플러그인을 찾았다. 내가 위에서 묘사한 대로, 파일명을 치면 현재 디렉토리/가장 최근에 읽었던 파일목록/현재 열려있는 버퍼 목록에서 일치하는 파일 목록을 보여주고 해당 파일을 열게 해준다.<br><a title="" href="http://photozou.jp/photo/photo_only/175590/10747828">http://photozou.jp/photo/photo_only/175590/10747828</a>에서 이미지를 볼 수 있다.<br><br>:FuzzyFinderFile 명령을 내린후 <strong>**/파일명</strong>을 치면 현재 디렉토리 이하의 파일중에서 해당 문자열이 포함된 파일 목록이 나온다.<br>예를들어 **/mac 라고 치면 m, a, c 가 들어간 모든 파일명이 나온다. 여기에는 macintosh 라는 단어도 되고 MultiActionController 처럼 띄엄띄엄 일치하는 것도 해당돤다.<br><br>아래는 나의 ~/.vimrc 파일이다.<br><blockquote class="src">let&nbsp;g:FuzzyFinderOptions&nbsp;=&nbsp;{&nbsp;'Base':{},&nbsp;'Buffer':{},&nbsp;'File':{},&nbsp;'Dir':{},&nbsp;'MruFile':{},&nbsp;'MruCmd':{},&nbsp;'FavFile':{},&nbsp;'Tag':{},&nbsp;'TaggedFile':{}}<br>"&nbsp;특정&nbsp;파일&nbsp;제외<br>let&nbsp;g:FuzzyFinderOptions.File.excluded_path&nbsp;=&nbsp;'\v\~$|\.o$|\.exe$|\.bak$|\.swp$|\.class$|\.settings$|CVS|((^|[/\\])\.[/\\]$)'<br>"&nbsp;대소문자&nbsp;구분하기&nbsp;(0&nbsp;:&nbsp;대소문자&nbsp;구분,&nbsp;1&nbsp;:&nbsp;대소문자&nbsp;구분&nbsp;안함)<br>let&nbsp;g:FuzzyFinderOptions.Base.ignore_case&nbsp;=&nbsp;0<br><br>"&nbsp;현재&nbsp;디렉토리&nbsp;이하에서&nbsp;파일명으로&nbsp;검색해서&nbsp;읽어오기<br>map&nbsp;&lt;Leader&gt;ff&nbsp;&lt;ESC&gt;:FuzzyFinderFile&nbsp;\*\*\/&lt;CR&gt;<br><br>"&nbsp;버퍼&nbsp;목록에서&nbsp;검색해서&nbsp;이동하기<br>map&nbsp;&lt;Leader&gt;fb&nbsp;&lt;ESC&gt;:FuzzyFinderBuffer&lt;CR&gt;<br></blockquote><br><br>여기서 나는 &lt;Leader&gt;ff를 누르면 자동으로 현재 디렉토리 이하의 모든 디렉토리에서 검색하도록 하였다. **/ 로 지정하지 않으면 현재 디렉토리 이하에서만 찾는다.<br>&lt;Leader&gt;fb 는 현재 열려있는 버퍼 목록에서 찾게 된다.<br>그리고 대소문자를 철저히 구분하도록 변경하였는데, 이렇게 한 것은 MAC 처럼 찾을 때 대문자 MAC만을 정확하게 찾고 싶기 때문이다. 바로... MultiActionController 처럼 자바의 클래스를 검색하기 위함이다.<br><br>즐 Vim~<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

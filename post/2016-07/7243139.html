@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>FindBugs 적용 후 흔히 발생하는 버그 패턴들</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2016-07-15 00:23:54</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">FindBugs 적용 후 흔히 발생하는 버그 패턴들</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">회사의 모든 프로젝트는 <a href="http://findbugs.sourceforge.net/" target="_blank">FindBugs</a> 지표 수집을 하게 돼 있는데 이를 <a href="http://www.sonarqube.org/" target="_blank">SonarQube</a>를 통해 프로젝트 건강성 지표로만 삼고 있었다(findbugs, jacoco code coverage, checkstyle, pmd 등을 수집한다).<br>하지만 지표는 참조일뿐 강제가 아니고, 바쁘면 바쁘다는 핑계로 무시하게 마련이다.<br><br>그러다가 팀원들과 팀 프로젝트에서 <a href="http://findbugs.sourceforge.net/" target="_blank">FindBugs</a> 의 버그 탐지를 단순 지표가 아닌 build 실패로 간주하도록 (빌드가 실패하면 당연히 배포 불가이다) 하기로 논의하여 결정하고 적용했더니 매주 1~2건씩은 배포 전에 버그를 탐지해 막아주고 있다(물론 이 버그들은 코드 Coverage 100%의 테스트를 했다면 발생하지 않았겠지만 그건 다음에...).<br>물론 Build 행위는 <a href="https://jenkins.io/" target="_blank">Jenkins</a> + <a href="http://kwon37xi.egloos.com/4747016" target="_blank">Gradle</a> 조합으로 이뤄지며 <a href="https://wiki.jenkins-ci.org/display/JENKINS/FindBugs+Plugin" target="_blank">Jenkins의 FindBugs 플러그인</a>으로 FindBugs 의 버그가 탐지되면 빌드 실패로 간주하고 배포를 불가능하게 설정하였다.<br><br>FindBugs는 가급적 단순 지표가 아닌 <b>실제 배포 가능 여부를 가늠하는 도구로써 버그 탐지시에는 실질적으로 컴파일이 안 된 것과 마찬가지로 취급하는 것이 좋겠다</b>.<br><br>지금까지 내가 본 흔히 나오는 버그 패턴은 다음과 같다(컴파일은 되지만 100% 버그이므로 따라하면 안됨!!).<br><br><b>1. null 체크해놓고 그 객체 호출하기(보통은 logging 시에 실수로 호출함)</b><br><blockquote class="src">if (a == null) {<br> ....<br>&nbsp;&nbsp;&nbsp; log.debug("a.something {}", a.getSomething()); // 로깅 코드에서 null pointer exception이 발생해서 로그도 안남고 에러가 남.<br>}<br></blockquote><br><br><b>2. 서로 다른 타입간의 equals 호출</b><br><blockquote class="src">Integer a = ..;<br>Long b = ..;<br>if (a.equals(b)) { // 언제나 false<br> ... <br>}<br></blockquote><br><br>또한 흔한게 enum 과 String 비교.<br><blockquote class="src">String enumValue = "..";<br>if (SomeEnum.ENUMVALUE.equals(enumValue)) { // 언제나 false<br> ... <br>}<br></blockquote><br><br>enum은 아예 <code>equals()</code>를 사용하지 말고 <code>==</code> 비교를 하는 게 낫다.<br><br><b>3. 숫자 Wrapper 객체 동일성  <code>==</code> 비교</b><br><blockquote class="src">Integer a = new Integer(1);<br>Integer b = new Integer(1);<br>if (a == b) { ... } // false이다.<br></blockquote><br><br>Wrapper 객체는 <code>equals()</code> 로 비교해야 한다.<br><br><b>4. List/Map 등 컬렉션에서 엉뚱한 객체로 get 하기</b><br>안타깝게도 <code>List.indexOf()와 Map.get()</code>은 인자로 지정된 Generic Type을 받는게 아니라 Object를 받는다. 이로 인해 버그가 발생한다(이렇게 한 이유가 있겠지...).<br><blockquote class="src">List&lt;Integer&gt; integers = ...;<br>Long someLongValue = 1L;<br><br>// Integer 1 값이 리스트에 있어도 올바로 판단 못함<br>if (integers.indexOf(someLongValue) &gt;= 0) { // false이다.<br>...<br>}<br></blockquote><br><br><code>Map.get()</code>도 마찬가지이다. 특히 이 경우의 버그가 많이 발생한다.<br><blockquote class="src">Map&lt;Integer,String&gt;&nbsp;map&nbsp;=&nbsp;new&nbsp;HashMap&lt;&gt;();<br>map.put(<strong>1</strong>,&nbsp;"하나");<br>map.put(2,&nbsp;"둘");<br><br>System.out.println(map.get(<strong>1L</strong>));&nbsp;//&nbsp;null<br></blockquote><br><br>예제에서는 단순화하려고 값을 직접 넣었지만 대부분은 메소드 파라미터로 받았기 때문에 코드의 호출부에서는 파라미터의 타입이 눈에 안 띄어서 버그여부를 인지하기가 쉽지 않다.<br><br>위에서 보다시피<strong>가장 많은 버그는 메소드의 인자가 Object 일 때 발생</strong>한다(<code>equals, List.indexOf, Map.get</code>). 컴파일 에러가 안나기 때문이다.<br><br>FindBugs 가 정착이 다 되면, 이후에는 다음과 같은 것도 해볼까 생각중.<br><ol><li><a href="https://wiki.jenkins-ci.org/display/JENKINS/JaCoCo+Plugin" target="_blank">Jenkins JaCoCo Plugin</a> 을 통해 현 시점의 코드 커버리지를 임계치로 설정하고 임계치보다 떨어지면 빌드 실패하게, 그리고 1주일에 1%씩 임계치 증가시키키(아무튼 최소한 커버리지를 떨어뜨리지는 못하게)<br></li><li><a href="https://wiki.jenkins-ci.org/display/JENKINS/Checkstyle+Plugin" target="_blank">Jenkins Checkstyle</a> 과 <a href="https://wiki.jenkins-ci.org/display/JENKINS/PMD+Plugin" target="_blank">Jenkins PMD</a> 적용하고 임계치를 서서히 증가시키기</li></ol><p>위 툴들은 우리회사에서는 이미 SonarQube를 통해 지표 수집은 다 하고 있는 것들이다. 거기에 강제성을 부여하는 것만 더 하고 싶은 것.</p><p><br></p><p>마지막으로.. <font size="4"><b>FindBugs가 버그를 찾아줬으니 버그가 없다는 착각 따위는 하지 말 것. 결국은 열심히 단위 테스트를 해야 한다.</b></font>.</p><p><font size="4"><b>단점 : 빌드 시간이 너무 길어져서 배포 시간이 증가했다... ㅜㅜ</b></font><br></p></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

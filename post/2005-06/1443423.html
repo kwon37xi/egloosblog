@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>리소스와 클래스(Resource/Class) 의 실제 위치 찾기 JSP</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-17 09:28:13</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">리소스와 클래스(Resource/Class) 의 실제 위치 찾기 JSP</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">의외로 쓸일이 많다.<br>자바 클래스보다는 JSP로 쓸일이 많아서 JSP로 만들어 둔다. JSP 이름은 "resource.jsp"이다.<br><BLOCKQUOTE class="src" style="height: 300px;"><br>&lt;%@page&nbsp;contentType="text/html;charset=euc-kr"&nbsp;%&gt;<br>&lt;html&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;head&gt;&lt;title&gt;JSP&nbsp;Page&lt;/title&gt;&lt;/head&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;　&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;%<br>&nbsp;&nbsp;&nbsp;&nbsp;request.setCharacterEncoding("euc-kr");<br><br>&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;_resource&nbsp;=&nbsp;request.getParameter("resource");<br>&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;_type&nbsp;=&nbsp;request.getParameter("type");<br>&nbsp;&nbsp;&nbsp;&nbsp;%&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;form&nbsp;action="resource.jsp"&nbsp;method="get"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;리소스&nbsp;풀&nbsp;네임&nbsp;:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;name="resource"&nbsp;type="text"&nbsp;size="40"&nbsp;value="&lt;%=&nbsp;_resource&nbsp;!=&nbsp;null&nbsp;?&nbsp;_resource&nbsp;:&nbsp;""&nbsp;%&gt;"&gt;&lt;br&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type="radio"&nbsp;name="type"&nbsp;value="class"&nbsp;checked="true"&gt;클래스<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type="radio"&nbsp;name="type"&nbsp;value="file"&gt;파일&lt;br&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;클래스는&nbsp;"java.lang.String"&nbsp;과&nbsp;같이&nbsp;쓰고,&nbsp;파일은&nbsp;"/resources/ApplicationMessages.properties"와&nbsp;같은<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;형식으로&nbsp;기입한다.&lt;br&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type="submit"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;%<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;path&nbsp;=&nbsp;null;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(_resource&nbsp;!=&nbsp;null)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ResourceLocation&nbsp;rl&nbsp;=&nbsp;new&nbsp;ResourceLocation();<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;("class".equals(_type))&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;=&nbsp;rl.getResourceURL(_resource,&nbsp;true);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;path&nbsp;=&nbsp;rl.getResourceURL(_resource,&nbsp;false);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;%&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;요청&nbsp;리소스&nbsp;:&nbsp;&lt;%=&nbsp;_resource&nbsp;%&gt;&lt;br&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;요청&nbsp;타입&nbsp;:&nbsp;&lt;%=&nbsp;_type&nbsp;%&gt;&lt;br&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;실제&nbsp;리소스&nbsp;경로&nbsp;:&nbsp;&lt;%=&nbsp;path&nbsp;%&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;%<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;%&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/body&gt;<br>&lt;/html&gt;<br><br>&lt;%!<br>/**<br>&nbsp;*&nbsp;&lt;p&gt;<br>&nbsp;*&nbsp;Java&nbsp;Class&nbsp;혹은&nbsp;리소스(클래스패스&nbsp;내에&nbsp;있는&nbsp;파일)의&nbsp;위치를&nbsp;정확히&nbsp;알려준다.<br>&nbsp;*&nbsp;&lt;/p&gt;<br>&nbsp;*&nbsp;<br>&nbsp;*&nbsp;@author&nbsp;Son&nbsp;KwonNam(kwon37xi@yahoo.co.kr)<br>&nbsp;*/<br>private&nbsp;static&nbsp;class&nbsp;ResourceLocation&nbsp;{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;패키지명을&nbsp;포함한&nbsp;클래스&nbsp;풀&nbsp;네임을&nbsp;리소스&nbsp;경로(/package/classname.class)로&nbsp;바꿔준다.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;classFullName<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;클래스&nbsp;풀&nbsp;네임(package.classname)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;리소스&nbsp;경로&nbsp;(/package/classname.class)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;String&nbsp;classFullNameToResourcePath(String&nbsp;classFullName)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;resourcePath&nbsp;=&nbsp;classFullName.replace('.',&nbsp;'/').trim();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resourcePath&nbsp;=&nbsp;"/"&nbsp;+&nbsp;resourcePath&nbsp;+&nbsp;".class";<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;resourcePath;<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;클래스&nbsp;풀&nbsp;네임을&nbsp;받아서&nbsp;실제&nbsp;파일이&nbsp;위치한&nbsp;URL을&nbsp;리턴한다.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;classFullName<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;클래스의&nbsp;풀&nbsp;네임<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;클래스&nbsp;파일의&nbsp;URL<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;String&nbsp;getResourceURL(String&nbsp;classFullName)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;getResourceURL(classFullName,&nbsp;true);<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;/**<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;클래스&nbsp;혹은&nbsp;리소스의&nbsp;이름을&nbsp;받아서&nbsp;실제&nbsp;파일이&nbsp;위치한&nbsp;URL을&nbsp;리턴한다.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;resource<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;리소스&nbsp;이름<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;isClass<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;클래스인지&nbsp;여부<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;리소스의&nbsp;URL<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;String&nbsp;getResourceURL(String&nbsp;resource,&nbsp;boolean&nbsp;isClass)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;refinedResource&nbsp;=&nbsp;null;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;"/dir1/dir2/resource.ext"&nbsp;형태로&nbsp;바꾼다.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(isClass)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;refinedResource&nbsp;=&nbsp;classFullNameToResourcePath(resource);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;if&nbsp;(!resource.startsWith("/"))&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;refinedResource&nbsp;=&nbsp;"/"&nbsp;+&nbsp;resource.trim();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;refinedResource&nbsp;=&nbsp;resource.trim();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("검색할&nbsp;리소스&nbsp;:&nbsp;"&nbsp;+&nbsp;refinedResource);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;java.net.URL&nbsp;resourceUrl&nbsp;=&nbsp;ResourceLocation.class<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.getResource(refinedResource);<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(resourceUrl&nbsp;==&nbsp;null)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;null;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;resourceUrl.getFile();<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}<br>%&gt;<br><br></BLOCKQUOTE></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

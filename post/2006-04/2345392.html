@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>걷기로 살빼기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-04-10 13:29:56</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">걷기로 살빼기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">요즘 헬쓰클럽에 다니면서 운동중이다.<br>두 달 됐지만, 아직 몸무게에는 별다른 변화가 없다.<br>하지만, 뭐 그래도 삶에 활력이 좀더 생기고, 손목 통증과 어깨 통증도 예전보다는 훨씬 줄어들어서 매우 만족스럽니다.<br><br>주로 걷기와 스트레칭을 위주로 하고 있다.<br><br>걷기에 대한 기사가 나와서 그 일부를 옮겨 본다.<blockquote class="quote"><a title="" href="http://kuki1.stoo.com/news/html/000/491/238.html">“‘걷기’다이어트 인기끈다”…일주일에 4일 이상 하면 효과</a><br><br>... 생략 ...<br><br>tip- 걷기에 대한 궁금증<br><br>1. 걷기를 할 때 모래주머니를 차거나 아령을 들고 운동하는 것이 더 효과적인가?<br><br>모래주머니나 아령을 가지고 운동을 하게 되면 에너지 소비량은 더 증가하게 되므로 다이어트에 좀 더 효과적이이다. 하지만 너무 무거운 것을 들고 운동을 하게 되면 근육, 뼈, 관절 에 부상을 가져올 수 있으므로 주의할 것. 또한 다리에 모래주머니를 차고 걸을 때 운동량이 많아지게 되면 종아리 근육이 발달할 수 있으므로 각선미가 신경 쓰인다면 자제하는 것이 좋다.<br><br>2. 걷기운동은 언제부터 효과가 나타나나?<br><br>걷기는 시작하는 순간부터 하는 만큼 효과가 있지만 자신이 느낄 정도가 되려면 최소 1~2주 이상의 시간이 필요하다. 좀 더 감량효과를 보려면 걷기와 함께 식이요법을 병행하는 것이 좋다.<br><br>3. 식이요법으로 무엇이 좋은지?<br><br>지방이나 설탕, 녹말이 많은 흰빵, 과자, 케이크, 아이스크림, 사탕, 청량음료 같은 음식을 줄이고 대신 과일이나 야채, 흰살코기, 생선, 통밀빵이나 현미 같이 정제되지 않은 탄수화물을 섭취하도록 한다. 이런 식품들은 식이섬유를 많이 함유하고 있기 때문에 몸 속에서 오랫동안 소비되어 간식을 먹고 싶은 마음이 들지 않게 한다.<br><br>4. 걷기를 하면서 물을 마셔도 될까?<br><br>30분 이상 걷기를 할 경우에는 수시로 조금씩 물을 마셔 수분을 보충해 주는 것이 좋다. 물은 열량이 없으므로 운동 중에 조금씩 마셔도 다이어트에 영향을 미치지 않는다.<br><br>5. 보폭과 걷기운동과의 상관관계<br><br>보폭을 크게 해서 걷는 것과 작게 해서 걷는 것의 다이어트 효과는 큰 차이가 없지만, 작은 보폭으로 운동하면서 배에 힘을 많이 주면 복부에 더 자극을 주고, 보폭을 크게 하면서 무릎을 쭉 펴게 되면 엉덩이나 허벅지 부분의 탄력을 높이는데 도움이 될 수 있다. 국민일보 쿠키뉴스제휴사/메디컬투데이(www.mdtoday.co.kr) 이윤원 기자 [mybint@mdtoday.co.kr]<br></blockquote></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

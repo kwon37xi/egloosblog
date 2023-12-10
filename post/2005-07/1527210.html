@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>아빠는 밥이나....</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-07-10 17:45:53</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">아빠는 밥이나....</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">오늘 <a href="news://han.rec.humor">news://han.rec.humor</a> 에서 본 미소짓게 만드는 글~<br>elan 이란 분이 쓰셨는데, 구글 검색을 해보니 다른 싸이트에서는 안온다..<br><br>--------------------------------------------------------------------------------<br><br>며칠전 저녁시간<br><br>만 3세된 딸이 저녁밥을 너무 부산하게 먹길래<br><br>부드러운 목소리로...<br><br>"지수야 얌전히 밥먹어라" 그랬더랬습니다.<br><br>대뜸<br><br>"아빠는 밥이나 먹어!" 이러더군요..<br><br>아직 철없는 건 이해하겠지만 화가 확 뻗치기도 하고, 버릇없는 것은 고쳐야겠다는 생각에 큰 소리좀 쳤습니다...<br><br>"어디 쬐끄만게... 아빠한테 말버릇이 뭐야? 너 아빠한테 혼날래?"<br><br>금방 상황파악된 딸 엄마 눈치 슬금슬금 보더니 엄마도 심상치 않은 표정이라 도움 요청도 못하고... 금방 울음을 터트릴 듯 눈물이 그렁그렁 맺히더라구요..<br><br>그러더니 한 마디 하더군요..<br><br><br><br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>.<br>"그럼 아빠는 밥이나 드세요~~" <br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

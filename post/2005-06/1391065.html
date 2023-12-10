@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>
+뱃살좀 빼자!</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-03 10:18:32</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">
+뱃살좀 빼자!</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">한때 50kg 대의 날씬한 몸매였는데.. 지금은.. 흠..<br><br>뱃살좀 빼자!<br><br>올해 나의 목표는  56kg이다.<br><br>원문 :  <a href="http://ucc.media.daum.net/uccmix/news/culture/art/200504/12/ned/v8816555.html?u_b1.valuecate=4&u_b1.svcid=02y&u_b1.objid1=16602&u_b1.targetcate=4&u_b1.targetkey1=17136&u_b1.targetkey2=8816555">복부 비만 탈출!</a><br><br>----<br>▶뱃살 빼기 10계명=대한비만체형학회에서 제시한 뱃살 빼기 10계명만 제대로 따라도 뱃살을 줄이는 데 성공할 수 있다.<br><br>1. 하루 세 끼를 규칙적으로.<br><br>2. 아침, 점심, 저녁의 식사량을 2대3대1로 맞춰라.<br><br>3. 적어도 잠자기 4시간 전에는 음식을 먹지 않는다.<br><br>4. 오이, 토마토 등 야채를 즐기자.<br><br>5. 음식의 간은 싱겁게, 튀김이나 볶음보다는 찜, 조림이나 무침으로 섭취.<br><br>6. 공복 시 물을 충분히 마시자.<br><br>7. 패스트푸드와 인스턴트 음식을 피하자.<br><br>8. 야식과 간식을 피하자.<br><br>9. 주 4~5일 하루 1시간 이내로 운동하라.<br><br>10. 스트레스 받을 때 운동으로 풀라.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

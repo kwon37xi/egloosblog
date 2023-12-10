@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Oracle] Update시 WHERE 조건에서 SELECT할 수 있을까요?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-09-20 21:29:19</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Oracle] Update시 WHERE 조건에서 SELECT할 수 있을까요?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">원문 : <a href="http://database.sarang.net/?inc=read&aid=24130&criteria=oracle&subcrit=qna&id=&limit=20&keyword=&page=1">Update시 WHERE 조건에서 SELECT할 수 있을까요?</a><br><br>이것은 내가 <a href="http://database.sarang.net">DSN</a>에 질문한 것이다.<br><br>Update시 WHERE 조건에서 SELECT할 수 있을까요?<br><br>Oracle 9i 입니다.<br> <br><br>테이블 TA와 TB가 있습니다. TA와 TB에는 모두 동일한 컬럼 C1, C2가 있습니다.<br><br>그리고 TA의 C0를 일정한 값 '0000' 으로 업데이트하려고 합니다.<br><br> 헌데 조건이 있습니다. TA.C1과 TA.C2가 TB.C1, TB.C2와 같아야 하며, TB의 TB.C1 과 TB.C2를 가져오는 조건이 또 따로 있습니다.<br><br>즉, UPDATE의 SET 에서 TB에 있는 컬럼의 값을 사용하는 것이 아닙니다.<br><br>현재 제가하는 방법을 보여드리면,<br><br>SPOOL updatequery.sql<br><br>SELECT 'UPDATE TA SET C0=''0000'' WHERE C1='''||TB.C1||''' C2='''||TB.C2||''';'<br><br>FROM TA, TB<br><br>WHERE TA.C1=TB.C2 AND TA.C2=TB.C2<br><br>AND TB와 관련된 조건들...;<br><br>SPOOL OFF<br><br>뭐 이런식으로 해서 UPDATE 문장들을 뽑아낸다음에 다시 그걸 sqlplus @updatequery.sql 로 실행하고 COMMIT;합니다.<br>아무리봐도 뭔가 한방에 처리할 수 있는 방법이 있을 것 같은데요...<br>대체 이찌해야할까요?<br><br> 도움 부탁드립니다.<br><br> <br>감사합니다.<br>이 글에 대한 댓글이 총 4건 있습니다.<br><br>select ... for update ...  라는 쿼리가 있습니다..<br><br>select 후 자동으로 lock 을 걸고 update 합니다...<br><br>단일테이블에서 select 와 update 를 동시에 가능하게 하는 쿼리입니다.<br>이경환(babocom)님이 2005-09-20 16:18:25에 작성한 댓글입니다.<br>이 댓글은 2005-09-20 16:20:53에 마지막으로 수정되었습니다.<br><br><B>UPDATE ta a<br>   SET a.c0 = '0000'<br> WHERE (a.c1, a.c2) IN (SELECT b.c1, b.c2<br>                          FROM tb b<br>                         WHERE b.c1 = a.c1 AND b.c2 = a.c2 and TB와 관련된 조건들 ... )</B><br>장진주(zozogirl)님이 2005-09-20 16:57:48에 작성한 댓글입니다.<br><br>바로 윗분의 문장과 같은 의미지만..<br><br>TA의 C1과 C2가 PK라면..<br><br>아래와 같은 문장도 가능합니다..<br><br>장점은 조인되는 테이블의 컬럼을 사용할 수 있다는 거죠..<br><br>또한 유리한 조건을 가진 테이블을 드라이브하기가 용이하겠죠..<br><br>수정가능한 조인뷰와 같은 이치입니다..<br><br> UPDATE (<br>       SELECT TA.C1  C1<br>             ,TA.C2  C2<br>             ,TA.C0  C0<br>       FROM TA, TB<br>       WHERE TA.C1 = TB.C1<br>       AND TA.C2 = TB.C2<br>       AND TB와 관련된 조건들...<br>       )<br>SET C0 = '0000'<br> <br>M님이 2005-09-20 17:14:15에 작성한 댓글입니다.<br>이 댓글은 2005-09-20 17:15:31에 마지막으로 수정되었습니다. Edit Ｘ<br><br>감사합니다.<br><br>장진주(zozogirl)님의 손쉽게 쿼리로 해결하였습니다.<br><br>다른분들의 힌트도 새로운걸 알게 해주었습니다.<br><br>모두 큰도움이 되었습니다.<br><br>SELECT .. for UPDATE 같은 경우에는 이걸 찾아보느라 Expert One on One Oracle을 뒤져봤는데, 번역판은 색인이 잘안돼서 못찾고 원서를 찾아보니 색인에 바로 나오더군요..<br><br>흠.. 번역할때 색인도 모범적으로 따라줬으면 좋겠구만..<br><br>권남님이 2005-09-20 20:37:48에 작성한 댓글입니다. Edit Ｘ</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

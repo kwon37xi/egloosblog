@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Sun Java GPL2 라이센스 채택 결정</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-11-13 19:32:26</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Sun Java GPL2 라이센스 채택 결정</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">이미 <a title="" href="http://www.theserverside.com/news/thread.tss?thread_id=43046">The Serverside</a> 등을 통해서 널리 퍼졌겠지만, 나한테는 나름대로 기쁜 소식이니 한 줄 남겨둔다.<br><br>Sun 이 Java의 라이센스를 GPL 2로 결정해서 2007년 부터 차례대로 풀기로 했다고 공식 결정을 내렸다.<br><br>이제 각 리눅스 배포판들이 안심하고 Sun의 자바를 패키징해서 자기 배포판의 일부로 넣는것에 아무 문제가 없어지게 된다.<br><br>흠~ 좋아~<br><br>그런데... Java 가 GPL 이 되면, 자바 기반의 자바 라이브러리를 사용하는 모든 상용 자바 어플리케이션들은 어떻게 되는거지?<br><br>LGPL이라면 Java의 라이브러리를 사용해도 상용 어플리케이션을 GPL로 만들 필요는 없지만, GPL이 되면...??<br><br>뭐.. 알아서 해결 하겠지... ^^;</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

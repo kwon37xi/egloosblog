@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>엽기적 코딩...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-02-05 19:45:22</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">엽기적 코딩...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><big><b>힘들었다..</b></big><br>2주만에 회사에 돌아왔다.<br>지원나갔다가, 엽기적인 코드들에 파묻혀 허우적 거렸다.<br><br>내 짧은 개발자 인생(1년 6개월)에 가장 엽기적이어서 기록을 해두고 싶다.<br><br><big><b>어떻게 엽기적인가??</b></big><br>17000(일만칠천)줄 짜리 자바 클래스이다.<br>처음에는 15500여줄에 인덴트도 안맞고 그래서 대체 반복문이나 try/catch의 끝이 어딘지도 알 수 없을 지경이었다.<br>NetBeans의 Jalopy 플러그인으로 정리했더니 17000줄이 되었다.<br><br>클래스 이름은 wdckkad.java, wdckkad.02_022java, wdckkad_04_004.java 뭐 이런식이다. 클래스 뿐만아니라 JSP 페이지명도 마찬가지이다.<br><br>절대로 개발한 사람이외에는 코드를 모두 읽어 보기 전에는 알 수가 없는 그런 프로젝트였다.<br><br><big><b>가장 큰 폐단 - CVS를 사용하지 않는다</b></big><br><a title="" href="http://wiki.kldp.org/wiki.php/CVS">CVS</a>도 사용하지 않았다. 그렇다고 FTP를 통해 공동개발하는 것도 아니었다. 단 한사람도 완전체 소스코드를 가진 사람이 없었다. 하루에도 몇번씩 어? 왜 소스가 바뀌었지?소리를 남발하고 자기 코드를 바꾼 서로를 원망한다(사실은 자기가 바꾸고도 까먹었을 확률이 높다).<br>당연하다. 누가 왜 바꿨는지 아무도 모른다. 며느리도 모른다.<br>서버에 올려서 돌아가는것을 모두 테스트 하기 전에는 어떻게 돌아갈지 아무도 예측할 수 없다.<br><br>꼭 CVS가 아니더라도 공동개발에서 버전 관리 시스템 사용은 필수라고 생각한다.<br><br>이 CVS 미사용으로 인한 폐단은 이것 뿐만이 아니다.<br><br>서로간에도 서로 다른 버전의 소스코드를 가지고 있지만, 자기 자신도 자기가 가진 소스 코드의 버전을 모른다는 것이 아주 심각한 문제이다. 날짜별 시간별로 수많은 디렉토리로 하드 디스크를 도배하다가 지쳐 방금 수정한 파일이 어느 디렉토리에 있는지 까먹어버린다.<br><br>메소드를 고칠때도 겁이난다. 겁나는게 당연하다. 잘못 고쳐서 되돌리는데 들어가는 에너지 소모는 정말 막대하다. 그래서 메소드 이름에 숫자가 붙기 시작한다. 17000줄 짜리 클래스도 그래서 탄생했다.<br><br>그리고는 그 메소드를 호출하는 부분들을 찾아 메소드 이름을 다 바꿔준다.<br><br>게다가 그 수많은 메소드중 어떤게 진짜 사용되는 메소드인지도 까먹어버렸다. --;<br><br>그래서 어쩔수 없이 모든 번호 붙은 메소드를 유지시켜야만 하게 되어버렸다.<br><br>이 모든 것이 CVS를 쓰면 해결된다.<br><br><big><b>Code Convention?</big></b><br>당연히 코딩 관습따위도 없다. 들여쓰기(indentation)도 하지 않는데 말이다.<br><br>wdkkde.java 라는 클래스 이름만 봐도 알 수 있다.<br>변수명과 클래스명에 규칙이란 없다.(아니다.. 있을지도 모른다. 만든 사람만 아는... 허나 나는 파악할 수 없었다.)<br><br>클래스나 변수/메소드 네이밍에 관해 관습을 정하기 전에 먼저 들여쓰기나 했으면 좋겠다. Eclipse나 NetBeans같은 IDE를 사용하면 어느정도는 자동적으로 해결 될만한 문제이다.<br><br><big><b>....</big></b><br>결론은...<br>다시는 이런거 걸리지 말기를 기도할 따름이다.<br><br>나는 이번 프로젝트를 마감하느라고 태어나서 첨으로 50시간 무취침 작업을 해봤다. 내가 그렇게 할 수 있다는 사실을 알게되어 참 뿌듯하긴 했지만, 내가 한짓의 3분의 2는 사실 안해도 되는 쓰잘데기 없는 짓이었다는 사실 때문에 짜증이 인다.<br><br>허구헌날 날 밤 까는 개발자인가?<br><br>그렇다면 불평하기 전에 CVS와 Eclipse 혹은 NetBeans에 눈을 돌려보시라. 삶이 윤택해지고 공부할 시간도 늘어난다. 게다가 모두 다 자유소프트웨어이다!!<br><br>삽질 그만하고 그 시간에 애인도 좀 만나고 공부도 좀 하자.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>읽을 책들...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-07-08 17:33:55</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">읽을 책들...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="h2">Java</div><br>* <strong>Spring 프레임워크워크북(재독)</strong> : 완독<br>* Professional Java Development with the Spring Framework <br>* JDK 1.4 튜토리얼<br>* Java Collections<br>* Jakarta Commons Cookbook<br>* Java 프로그래밍 실전 테크닉 300<br>* 자바 병행 프로그래밍<br>* Java Performance Tuning(구입 예정)<br>* Thinking in Java 4th ed. (구입 예정)<br>* <del>Java Messaging</del><br>* <del>Core Enterprise Java Beans</del><br><br><div class="h2">Servlet/JSP</div><br>* 파워유저가 알려주는 스트럿츠 프로그래밍 : 읽는중<br>* 스트럿츠 프레임워크 워크북<br>* Struts Cookbook<br>* Java Servlet & JSP CookBook<br>* 자바 서블릿 프로그래밍<br><br><br><div class="h2">올바른 개발을 위해</div><br>* <strong>The Art of Project Management 마음을 움직이는 프로젝트 관리</strong> : 완독<br>* 익스트림 프로그래밍 제2판 : 변화를 포용하라 : 읽는 중<br>* 소프트웨어 프로젝트 생존전략<br>* Code Complete 2nd ed.<br>* 초보자를 위한 UML 객체지향 설계<br>* UML 실전에서는 이것만 쓴다<br>* 초보자를 위한 eXtreme 프로그래밍<br>* 사용자 스토리<br>* 테스트 주도 개발 : Test-Driven Development <br>* 실용적인 소프트웨어 요구사항 : 까다로운 문제와 핵심적인 조언<br>* 조엘이 엄선한 소프트웨어 블로그 베스트 29선<br><br><div class="h2">더 훌륭한 코드를 위해</div><br>* Head First Design Pattern : 완독<br>* 자바 디자인 패턴(Cooper) : 읽는 중<br>* 소프트웨어개발의 지혜 : 원칙,디자인패턴,실천방법<br>* 패턴을 활용한 리팩터링(구입예정)<br>* 실전 코드로 배우는 실용주의 디자인 패턴(구입예정)<br>* 프리팩토링(구입예정)<br>* Refactoring<br>* Design Patterns<br>* 쓰디쓴 자바<br>* Effective Java(재독)<br>* 버그 패턴과 자바(구입예정)<br>* C로 구현한 알고리즘<br>* 생각하는 프로그래밍<br>* 성공과 실패를 결정하는 프로그래밍의 원리<br><br><br><div class="h2">Database</div><br>* 클릭하세요, Oracle 9i<br>* Oracle SQL 핵심 레퍼런스<br>* about Oracle 9i PL/SQL<br>* 오라클 실습(이채남 저)<br>* Perfect! 오라클 실전 튜닝<br><br><div class="h2">HTML/Web</div><br>* Head First HTML with CSS & XHTML<br>* 실용예제로 배우는 웹 표준(재독)<br>* 웹 2.0을 이끄는 방탄웹(구입 예정)<br>* <a title="" href="http://www.mozilla.or.kr/docs/web-developer/standard/">웹 표준 개발 가이드</a><br>* 이용석의 자바스크립트 웹 프로그래밍<br>* Head Rush Ajax(구입예정)<br><br><div class="h2">WebServices</div><br>* 한빛미디어 웹 서비스<br>* 열혈강의 XML 웹 서비스</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

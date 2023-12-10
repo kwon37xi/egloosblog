@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>감정의 소진이 두렵다.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-05-28 21:47:54</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">감정의 소진이 두렵다.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><embed src='http://flvs.daum.net/flvPlayer.swf?vid=HU8lDt1vykU$' width='402px' height='324px' allowScriptAccess='always' type='application/x-shockwave-flash' allowFullScreen='true'></embed><br><br>처음에는 <a title="" href="http://flvs.daum.net/flvPlayer.swf?vid=97Im0E8V854$">김태희가 춤추는 모습을 보고 싶어서 핸드폰 광고 동영상</a>을 봤었는데, 계속 보다보니  김태희의 춤 보다 에픽하이의 노래가 더 좋아졌다.<br>나를 반성하게 하는 노래다.<br><br>나는 지나치게 감정의 소모를 두려워한다.<br>사람을 사귈때나, 회사 생활에서나, 거의 모든일에서 그렇다.<br>Love,Love,Love 음악을 듣다보면, 이 노래의 주인공은 전혀 감정의 소진, 넉다운이 될때까지 발산하기를 두려워하지 않고, 그 처절한 전투를 반복하고 또 끝까지 반복한다.<br><br>감정적,정신적 그리고 육체적으로 그런 끝간데 없는 발산을 해 본 기억이 없는것 같다.<br><br>역시나 오늘도 부럽다는 말 한마디로 끝낼 듯.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

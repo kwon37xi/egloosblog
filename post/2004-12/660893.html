@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>JUnzip - 파일 인코딩 지원 Zip 파일 풀기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-13 14:29:55</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">JUnzip - 파일 인코딩 지원 Zip 파일 풀기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">UTF-8 환경의 리눅스/유닉스 환경에서 윈도우에서 생성한 zip 파일을 풀면,<br>파일 이름에 한글이 들어있을 경우 파일 이름들이 깨져버리게 된다.<br><br>JUnzip 은 압축된 파일의 파일 이름들을 UTF-8 혹은 현재 사용중인 시스템의<br>기본 인코딩으로 바꿔주면서 Zip 파일의 압축을 푼다.<br><br>관련 URL :<br>JUnzip : <a href="http://bbs.kldp.org/viewtopic.php?p=119623">http://bbs.kldp.org/viewtopic.php?p=119623</a><br>JazzLib : <a href="http://jazzlib.sourceforge.net/">http://jazzlib.sourceforge.net/</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

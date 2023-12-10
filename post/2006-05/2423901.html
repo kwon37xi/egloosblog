@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>자바에서 프레임워크??</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-05-15 13:09:14</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">자바에서 프레임워크??</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://okjsp.pe.kr/bbs?act=VIEW&seq=70275&bbs=bbs6&keyfield=content&keyword=&pg=0">OKJSP에 프레임워크에 관한 질문</a>이 올라와서 나름대로 답변한 내용을 블로그에도 남겨둔다.<br><br><a title="" href="http://blog.empas.com/ahnyounghoe/read.html?a=13882946">안영회님의 답변</a>도 함 읽어보면 좋겠다.<br><br><blockquote class="quote"><a title="" href="http://www.aladdin.co.kr/shop/wproduct.aspx?ISBN=8979143893">박재성님의 "Spring Framework 워크북"</a>을 읽어보시기 바랍니다.<br><br>프레임워크의 개념에 대한 설명이 아주 *친절하게* 나옵니다. 그리고 현재 Spring 자체가 다른 프레임워크들을 통합해주는 프레임워크들의 프레임워크 역할도 하고, 현재는 물론 미래에도 가장 유망한 프레임워크이기 때문에 꼭 배웠으면 합니다.<br><br>저는 간단히 프레임워크는 "틀"이다 정도로 볼 수 있지 않을까 싶습니다.<br>지금까지 개발자들이 특별한 규칙없이 마구잡이로 프로그램을 짰다면, 프레임워크는 일정한 "틀" 안에서 프로그램을 짜도록 개발자들을 강제합니다. 모든 개발자들이 잘 짜여진 틀 안에서 개발을 하게되면 프로그램이 일관성을 가지게 되고, 유지보수성이 높아지게 됩니다.<br><br>Spring MVC, Struts, WebWork 등.. : 웹 어플리케이션을 작성하는 기준 틀이 됩니다. 그 틀의 형태는 MVC 패턴이라는 것을 따르고요.<br><br>iBATIS, Hibernate : DataBase 에 접속해서 결과를가져오거나 업데이트하는 틀을 제공해줍니다. 이 프레임워크들을 사용하면 JDBC를 직접 이용할 경우의 난잡한 코딩과 개발자의 실수로 인한 리소스 누수등이 발생하지 않습니다. 쿼리도 알아보기 쉽기 때문에 쿼리가 A4 한페이지가 넘어가도 JDBC를 직접 사용할 때보다 쿼리를 파악하기도 쉽습니다.<br><br>Spring, EJB : 객체를 생성하고, 객체간의 의존관계를 정의하고 라이프 싸이클을 제어하는 틀을 제공해줍니다. Spring은 거기에다 다른 프레임워크들을 서로 연결해주는 역할도 합니다.<br><br>위에서 보시다 싶이 모두 다 "프레임워크" 라고 부르지만 사용되는 분야가 다릅니다. 그렇기 때문에, 가끔 보면 "Spring이 좋아요, Struts가 좋아요?" 이런 질문이 올라오는데, 사실 말이 안되는 질문인거죠..<br><br>그래서 Spring + Struts + iBATIS 의 프레임워크 조합이 가능하며 그런식으로 각 역할을 담당하는 프레임워크들을 조합할 때 더 훌륭한 기능을 하게 됩니다.<br><br>저는 각 프레임워크들을 조율하고, 객체 생성을 일관성을 가지고 하면서도 유연하게 유지보수를 하게 해주는 Spring을 다른 것들보다 먼저 공부해보시고 적극 사용하시길 권장하고 싶네요...<br></blockquote></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

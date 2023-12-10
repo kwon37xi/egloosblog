@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Eclipse] Oh, Mylar! Mylar!</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-21 03:03:40</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Eclipse] Oh, Mylar! Mylar!</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">한 10개월 전 쯤인가 정확한 시기는 기억이 안나지만, 클래스와 JSP 파일이 수북한 웹 어플리케이션을 개발하면서 마우스 휠에 불이날 뻔 한 적이 있다.<br>프로그램을 짜거나 이미 있는 프로그램의 버그를 수정하다보면, 필연적으로 클래스, View파일(JSP 등), 설정파일(*.xml, *.properties) 등 관련파일 2~5 개 정도를 집중적으로 사용하게 되는 현상이 발생하게 된다.<br>이게 해당 프로젝트의 파일 수가 적으면 별 상관 없지만, 파일 개수가 계속 늘어나는 큰 규모의 프로젝트로 가게되면, Eclipse의 패키지 익스플로러나, 내비게이터에서 마우스 휠을 쉴새 없이 움직여가며 작업할 파일을 찾아야 한다. Java 클래스 파일과 그것을 사용하는 JSP 파일 사이의 거리가 100리 처럼 느껴진다. 게다가 비슷한 이름의 파일들이 옹기 종기 모여 있으면 엉뚱한 파일을 열기 일쑤이다. - 이거... 나만의 경험인가?<br><br>뭐, 미리 열어 두면 되지 않느냐고? 열린 창 목록 탭에서 원하는 파일 찾아가는 것도 고역이긴 마찬가지이다.<br><br>아무튼, 그 10개월 전쯤에, Eclipse에서 이에 대한 해결책은 없을까 하여 검색을 하다가 잠깐 <a title="Mylar" href="http://www.eclipse.org/mylar/">Mylar</a>를 만났었다. 그때는 버그가 워낙 많은데다가 사용법 파악도 잘 안되고 해서 금방 지워버렸는데, 얼마전에 1.0 정식 버전이 출시되어 이번에 참여중인 개발에서 벌레 잡기에 동원해보았다.<br><br>결과는... 덕분에 마우스 휠도 편히 쉴 수 있다!! 오~ Mylar! 멋지다!!<br><br>Mylar의 목표는 단순히 원하는 파일을 한 곳에 모으는 것이 아니라, 각 작업(Task) 단위로 일정을 관리하고 특정 이슈에 집중해서 업무를 처리할 수 있도록 도와 주는 것이다. 즉, 현재 하고 있는 작업에 대한 업무 집중도를 높여준다.<br><br>현재 Mylar는 <a title="" href="http://www.atlassian.com/software/jira/">Jira</a>, <a title="" href="http://www.bugzilla.org/">Bugzilla</a>, <a title="" href="http://trac.edgewall.org/">Trac</a> 등의 이슈 트래커를 지원해서, 해당 이슈 트래커에서 자동으로 이슈를 가져오고 검색하고, 해당 이슈에 필요한 파일들의 묶음을 지정해서 보여주고 이슈 트래커를 업데이트하는, 오로지 그 작업에만 집중된 개발 환경을 세팅해 주는 역할을 한다.<br><br>이로인한 생산성 향상은... 직접 경험해 보시라.<br><br>안타깝게도 우리 팀은 이슈 트래커로 Mantis를 이용한다. 내가 알기로 <a title="" href="http://www.mantisbt.org/">Mantis</a>를 사용하는 개발팀이 굉장히 많은데(오픈 소스 버그 트래커중 가장 인기가 좋을 것이다, 아직까지는), <a title="" href="http://www.mantisbt.org/">Mantis</a> 지원도 빨리 추가 됐으면 좋겠다.<br>아, 특정 이슈 트래커를 지원하지 않는다 해도, ISSUE의 웹 페이지 링크를 지정하는 기능을 통해 Eclipse내부에서 해당 ISSUE화면을 볼 수도 있다. 중요한 것은 이슈 트래커 지원이 아니라, 특정 작업시 그 작업에 필요한 파일들만 모아서 볼 수 있다는 점이다.<br><br>아래는 태스크를 지정하고 해당 태스크 수행에 필요한 파일들만 집중에서 보여주는 모습이다. 태스크를 만들고 해당 태스크를 Active로 지정하고, 파일 목록에서 Mark as landmark를 하면 그 파일을 해당 태스크에서 집중 사용하겠다고 지정하는 것이다. 그렇게 필요한 파일들을 지정 한 뒤에, <strong>Focus on Active Task</strong> 아이콘()을 누르면 된다.<br>Java 클래스의 경우에는 클래스 전체는 지정이 안되고 멤버 단위로 지정한다.<br><img src='./2887907/b0046915_10121538.png'><br>저걸 펼쳐 놓은 멀미나는 파일 목록은 굳이 보여주지 않겠다.<br><br><a title="" href="http://www.eclipse.org/mylar/start.php">Mylar의 동영상 프리젠테이션</a>도 있으니 보면 대충 이해가 갈 것 같다.<br><br>Mylar의 설치는 <a title="" href="http://www.eclipse.org/mylar/dl.php">Mylar downloads</a>페이지에 있는 업데이트 주소를 사용하면 된다.<br><br>Mylar를 사용하려면 Eclipse가 <strong>Java 5</strong>상에서 실행되고 있어야한다. 작업하는 프로젝트가 Java 5를 사용할 필요는 없다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

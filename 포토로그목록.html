@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./css/result.css">
+
+        <title>까먹지말자!</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="./images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                    <span class="sub"><img src="./images/logo_sub.png" width="57" height="12" alt="포토로그"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="list-wrap">
+                    <div class="list-body">
+                        <!-- 리스트 -->
+                        <table id="list" class="display" width="100%"></table>
+                        <!-- //리스트 -->
+                    </div>
+
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+        <script>
+            /*<![CDATA[*/
+            var LIST_LENGTH = 100;
+            var LIST_PER_PAGE = 10;
+
+            const dataSet = (() => {
+                var dataList = [{"formatter":{"locale":"en_US","decimalStyle":{"zeroDigit":"0","positiveSign":"+","negativeSign":"-","decimalSeparator":"."},"resolverStyle":"SMART","resolverFields":null,"zone":null,"chronology":null},"monthFormatter":{"locale":"en_US","decimalStyle":{"zeroDigit":"0","positiveSign":"+","negativeSign":"-","decimalSeparator":"."},"resolverStyle":"SMART","resolverFields":null,"zone":null,"chronology":null},"id":0,"blogId":"b0046915","blogUrl":"kwon37xi","serial":"6186","title":"2006\uB144 6\uC6D4 23\uC77C SOA \uC138\uBBF8\uB098","content":"2006\uB144 6\uC6D4 23\uC77C ESB\uC758 \uC544\uBC84\uC9C0\uB85C \uBD88\uB9AC\uC6B0\uBA70, SOA\uC640 ESB \uC804\uB3C4\uC0AC\uC778 David A. Chappell SonicSoftware \uBD80\uC0AC\uC7A5\uC774 \uC640\uC11C SOA \uC138\uBBF8\uB098\uB97C \uD588\uB2E4.\uCC38\uACE0\uB85C, Microsoft .Net \uCABD\uC758 SOA \uCEE8\uC124\uD134\uD2B8\uC778 David Chappell \uB3C4 \uC788\uB2E4. \uAC19\uC740 \uC774\uB984\uC758 \uB450 \uC0AC\uB78C\uC774 Java\uC640 .Net \uC9C4\uC601\uC758 SOA \uCEE8\uC124\uD134\uD2B8(?)\uB85C \uBA85\uC131\uC744 \uB5A8\uCE58\uACE0 \uC788\uB2E4.","writeDate":"2006-06-26 22:52:10","datePath":"2006-06","photoFileInfoList":[{"filename":"b0046915_22511831105.jpg","path":"pmf\/200606\/26\/15\/","url":"http:\/\/pds1.egloos.com\/pmf\/200606\/26\/15\/b0046915_22511831105.jpg","pds":"pds1"},{"filename":"b0046915_225021437333.jpg","path":"pmf\/200606\/26\/15\/","url":"http:\/\/pds2.egloos.com\/pmf\/200606\/26\/15\/b0046915_225021437333.jpg","pds":"pds2"},{"filename":"b0046915_22512131849.jpg","path":"pmf\/200606\/26\/15\/","url":"http:\/\/pds1.egloos.com\/pmf\/200606\/26\/15\/b0046915_22512131849.jpg","pds":"pds1"},{"filename":"b0046915_225137734697.jpg","path":"pmf\/200606\/26\/15\/","url":"http:\/\/pds2.egloos.com\/pmf\/200606\/26\/15\/b0046915_225137734697.jpg","pds":"pds2"},{"filename":"b0046915_225050921178.jpg","path":"pmf\/200606\/26\/15\/","url":"http:\/\/pds1.egloos.com\/pmf\/200606\/26\/15\/b0046915_225050921178.jpg","pds":"pds1"},{"filename":"b0046915_225053406728.jpg","path":"pmf\/200606\/26\/15\/","url":"http:\/\/pds2.egloos.com\/pmf\/200606\/26\/15\/b0046915_225053406728.jpg","pds":"pds2"},{"filename":"b0046915_2317425.jpg","path":"pmf\/200606\/26\/15\/","url":"http:\/\/pds2.egloos.com\/pmf\/200606\/26\/15\/b0046915_2317425.jpg","pds":"pds2"}]},{"formatter":{"locale":"en_US","decimalStyle":{"zeroDigit":"0","positiveSign":"+","negativeSign":"-","decimalSeparator":"."},"resolverStyle":"SMART","resolverFields":null,"zone":null,"chronology":null},"monthFormatter":{"locale":"en_US","decimalStyle":{"zeroDigit":"0","positiveSign":"+","negativeSign":"-","decimalSeparator":"."},"resolverStyle":"SMART","resolverFields":null,"zone":null,"chronology":null},"id":0,"blogId":"b0046915","blogUrl":"kwon37xi","serial":"7843","title":"\uD669\uAE09 \uAC70\uBD81\uC774 3\uB3C8.","content":"\uADDC\uB9CC\uC774 \uC544\uAE30 \uACBD\uD604\uC774\uB97C \uC704\uD55C \uB3CC \uC120\uBB3C. \uBA87\uBA85\uC774 \uBAA8\uC5EC\uC11C \uC0C0\uB2E4.\uCC98\uC74C \uC0AC\uBCF8 \uAE08\uC81C\uD488\uC778\uB370(\uBC18\uC9C0\uB3C4 \uC0AC\uBCF8\uC801\uC774 \uC5C6\uB2E4), \uC774\uB7F4\uC218\uAC00... \uC21C\uAE08\uC774 \uC774\uB807\uAC8C \uAC00\uBCCD\uB2E4\uB2C8.\uBB35\uC9C1\uD55C \uAC83\uC744 \uAE30\uB300\uD588\uB2E4\uAC00 \uC2E4\uB9DD \uAC00\uB4DD.","writeDate":"2006-07-20 11:29:04","datePath":"2006-07","photoFileInfoList":[{"filename":"b0046915_1126255.jpg","path":"pmf\/200607\/20\/15\/","url":"http:\/\/pds1.egloos.com\/pmf\/200607\/20\/15\/b0046915_1126255.jpg","pds":"pds1"},{"filename":"b0046915_11263112.jpg","path":"pmf\/200607\/20\/15\/","url":"http:\/\/pds1.egloos.com\/pmf\/200607\/20\/15\/b0046915_11263112.jpg","pds":"pds1"}]}];
+                var list = new Array();
+                for(var i=0; i<dataList.length; i++) {
+                    var subList = new Array();
+                    subList.push('<a href="./photo/' + dataList[i].datePath + '/' + dataList[i].serial + '.html">' + dataList[i].title + '</a>');
+                    subList.push(dataList[i].writeDate);
+
+                    list.push(subList);
+                }
+
+                return list;
+            })();
+
+            // set data table
+            $('#list').DataTable({
+                stateSave:true,
+                data: dataSet,
+                columns: [
+                    // { title: 'No', type: 'numeric' },
+                    { title: '제목' },
+                    { title: '작성일자' }
+                ],
+                order: [],
+                // lengthMenu: [
+                //   [20, 50, 100, 200, -1],
+                //   [20, 50, 100, 200, 'All'],
+                // ],
+                pageLength: LIST_PER_PAGE,
+                lengthChange: false,
+                searching: false,
+                info: false,
+                pagingTag: 'button',
+                language: {
+                    paginate: {
+                        previous: '이전',
+                        next: '다음',
+                    }
+                }
+            });
+            /*]]>*/
+        </script>
+    </body>
+</html>

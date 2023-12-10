@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>FC3 USB Disk CD-ROM 등 마운트하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-15 23:16:20</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">FC3 USB Disk CD-ROM 등 마운트하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">페도라 코어 3 부터는 USB Disk나 CD-ROM 등에 대해서 HAL Daemon 이라는 것이 자동으로 /etc/fstab 을 생성해준다. 굉장히 편해진거지..<br><br>헌데, 이게 저와 같은 이동식 디스크가 한글을 포함한 파티션일 경우에 마운트는 되는데 ls를 날리면 그대로 그 프로세스가 멈춰버려 도무지 사용할 수가 없었다.<br>그 이유가 내 생각엔 내 FC 3 를 <B>EUC-KR</B>로 설정해서 그런 것 같다. FC 3는 모든 설정이 <B>UTF-8</B> 기준이기 때문에... UTF-8 페도라 사용자들이 우리나라에 더 많은지 <A href="http://kldp.org">KLDP</A>에서 이와 같은 현상에 대한 글을 아직 한 번도 볼 수 없었다. (어쨌든 나는 UTF-8 에서는 테스트해보지 않았다)<br><br>그에 대해 hal daemon의 설정파일을 수정하면 된다는 사실을 알았다. 역시나 구글에 물어보면 언젠가는 답을 얻을 수 있는것.<br><br>아래 설정 파일을 복사해서 <B>/usr/share/hal/fdi/95userpolicy/storage-policy.fdi</B>로 저장하고 root 권한으로 <B>service haldaemon restart</B> 한 뒤에 USB나 CD-ROM 등을 삽입하면 된다.<br><br>모든 이동형 저장장치의 마운트 포인트는 <B>/media</B> 아래에 존재한다.<br><br> * 추가 : UTF-8 사용자는 cp949 대신 <B>utf8</B>을 사용한다.<br><br>관련 링크 : <A href="http://kevinkithk.hp.infoseek.co.jp/storage-policy.fdi">http://kevinkithk.hp.infoseek.co.jp/storage-policy.fdi</A><br><br><B><BIG>$ cat /usr/share/hal/fdi/95userpolicy/storage-policy.fdi</BIG></B><br>파일 다운로드 : <A href="http://bbs.kldp.org/download.php?id=2803">http://bbs.kldp.org/download.php?id=2803</A><br><br><BLOCKQUOTE style="background: wheat;"><br>&lt;?xml&nbsp;version="1.0"&nbsp;encoding="ISO-8859-1"?&gt;&nbsp;&lt;!--&nbsp;-*-&nbsp;SGML&nbsp;-*-&nbsp;--&gt;<br><br>&lt;deviceinfo&nbsp;version="0.2"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;device&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Handle&nbsp;drives&nbsp;with&nbsp;non-partitioned&nbsp;media&nbsp;--&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;match&nbsp;key="storage.no_partitions_hint"&nbsp;bool="true"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;optical&nbsp;drives&nbsp;--&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;match&nbsp;key="storage.drive_type"&nbsp;string="cdrom"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;merge&nbsp;key="storage.policy.mount_option.iocharset=cp949"&nbsp;type="bool"&gt;true&lt;/merge&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/match&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;match&nbsp;key="storage.cdrom.cdr"&nbsp;bool="true"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;merge&nbsp;key="storage.policy.mount_option.iocharset=cp949"&nbsp;type="bool"&gt;true&lt;/merge&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/match&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;match&nbsp;key="storage.cdrom.cdrw"&nbsp;bool="true"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;merge&nbsp;key="storage.policy.mount_option.iocharset=cp949"&nbsp;type="bool"&gt;true&lt;/merge&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/match&gt;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;floppy&nbsp;drives&nbsp;--&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;match&nbsp;key="storage.drive_type"&nbsp;string="floppy"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;merge&nbsp;key="storage.policy.mount_option.iocharset=cp949"&nbsp;type="bool"&gt;true&lt;/merge&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/match&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/match&gt;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Normal&nbsp;volumes;&nbsp;use&nbsp;volume&nbsp;label,&nbsp;uuid&nbsp;or&nbsp;drive_type&nbsp;--&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;match&nbsp;key="block.is_volume"&nbsp;bool="true"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;match&nbsp;key="volume.fsusage"&nbsp;string="filesystem"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;match&nbsp;key="volume.partition.msdos_part_table_type"&nbsp;exists="true"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;merge&nbsp;key="volume.policy.mount_option.iocharset=cp949"&nbsp;type="bool"&gt;true&lt;/merge&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/match&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;skip&nbsp;for&nbsp;drives&nbsp;with&nbsp;the&nbsp;no&nbsp;partitions&nbsp;hint&nbsp;(they&nbsp;are&nbsp;handled&nbsp;above)&nbsp;--&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;match&nbsp;key="@block.storage_device:storage.no_partitions_hint"&nbsp;bool="false"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;Use&nbsp;noatime&nbsp;and&nbsp;sync&nbsp;options&nbsp;for&nbsp;all&nbsp;hotpluggable&nbsp;or&nbsp;removable<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;volumes&nbsp;smaller&nbsp;than&nbsp;2GB&nbsp;--&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;match&nbsp;key="volume.size"&nbsp;compare_lt="2147483648"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;match&nbsp;key="@block.storage_device:storage.removable"&nbsp;bool="true"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;merge&nbsp;key="volume.policy.mount_option.iocharset=cp949"&nbsp;type="bool"&gt;true&lt;/merge&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/match&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/match&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/match&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/match&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/match&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/device&gt;<br>&lt;/deviceinfo&gt;&nbsp;<br><br></BLOCKQUOTE></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

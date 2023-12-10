@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Eclipse] Web Tools Platform 0.7 - Web 개발하기 개요</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-08-03 22:14:10</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Eclipse] Web Tools Platform 0.7 - Web 개발하기 개요</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><B><a href="http://www.eclipse.org">Eclipse</a> 3.1 <a href="http://www.eclipse.org/webtools/index.html">Web Tools Platform</a> 0.7 을 이용해 웹 어플리케이션 개발하기</B><br><br><a href="http://www.eclipse.org">Eclipse</a> 3.1 <a href="http://www.eclipse.org/webtools/index.html">Web Tools Platform</a>(이하 WTP) 0.7 그리고 <a href="http://jakarta.apache.org/tomcat/index.html">Tomcat</a> 5.0 으로 웹 개발 환경 구축하는 방법에 대해 간단히 정리한다.<br><br>Eclipse 3.1 과 WTP가 합쳐진 완전한 개발 환경을 WTP 홈페이지에서 받을 수 있다. MS-Windows 의 경우 <a href="http://www.eclipse.org/downloads/download.php?file=/webtools/downloads/drops/R-0.7-200507290654/wtp-all-in-one-0.7-win32.zip">wtp-all-in-one-0.7-win32.zip</a> 파일을 받아서 설치하면 된다.<br><br>* 차례<br>&nbsp;1. 서버 설정하기<br>&nbsp;2. 새 Web 프로젝트 생성하기<br>&nbsp;3. 웹 어플리케이션 실행과 server.xml 수정<br>&nbsp;4. 디버깅<br>&nbsp;5. Snippets 사용하기<br>&nbsp;6. TCP/IP 모니터링<br>&nbsp;7. Tomcat 매니저 사용하기<br><br>* 용어 정리<br>&nbsp;- $CATALINA_HOME : 톰캣이 설치된 홈 디렉토리<br>&nbsp;- $WORKSPACE : Eclipse의 워크 스페이스(프로젝트들이 모여있는 곳)<br><BIG><B>1. 서버 설정하기</B></BIG><br><B>Windows -> Server -> Installed Runtimes</B> 메뉴에서 "Add" 버튼을 누르고 <B>Apache -> Apache Tomcat v5.0</B>을 선택한다.<br><br>서버 정보를 입력하고, Tomcat의 홈 디렉토리 등도 지정해 준다.<br><br>여기서 선택된 <B>JRE</B>가 JDK가 아니라 JRE이면 문제를 일으킬 수 있으므로, 혹시라도 JRE로 설정되어 있다면 "Installed JREs" 버튼을 눌러 JDK를 설정하고 선택해준다. 그리고는 "Finish"와 "Ok" 등등을 눌러 서버 설정을 완료한다.<br><img src='./1609730/b0046915_22212459.png'><br><br><BIG><B>2. 새 Web 프로젝트 생성하기</B></BIG><br><B>File -> New -> Project</B> 메뉴를 통해서 <B>Web -> Dynamic Web Project</B>를 선택한다.<br><img src='./1609730/b0046915_22253889.png'><br><br>새로운 프로젝트의 이름과 개발하면서 테스트 접속시 사용할 웹 컨텍스트 패스 등을 설정한다. 세부 설정 항목이 안 보이면 "Show Advanced >>" 버튼을 누른다.<br><br>세부설정에서 <B>TargetServer</B>에서는 좀전에 설정한 톰캣을 선택하고, <B>Module Version</B> 에서는 서블릿 스펙 버전을 선택한다. 현재 최신은 2.4이며 톰캣 5.0은 서블릿 스펙 2.4를 지원한다. 만약 Tomcat 4.x 를 사용한다면 서블릿 스펙 2.3을 선택해야 한다.<br><img src='./1609730/b0046915_22285431.png'><br><br>"Finish"를 눌러 마무리 한다.<br>이 과정에서 XML Schemas 파일을 Sun사의 서버에서 내려 받으면서 라이센스 동의를 구하는 경우도 있다. 물론 Ok 해야 한다.<br>새 프로젝트가 생성되면 퍼스펙티브가 J2EE 로 변경되게 된다.<br><br><img src='./1609730/b0046915_2235204.png'><br><br>자 이제 <B>WebContent</B> 디렉토리에서 JSP를 작성하고, 그 아래에 있는 WEB-INF 디렉토리에서 web.xml 을 편집하는 등의 일반적인 웹 개발 작업을 하고, Java 클래스는 <B>JavaSource</B> 디렉토리에서 작성하면 자동으로 컴파일되게 된다.<br>새로운 jar 를 추가하고자 할 때는 WEB-INF/lib 디렉토리에 복사해 넣으면 자동으로 라이브러리 목록에 추가된다.<br>또한 $CATALINA_HOME/common/lib 에 들어간 jar 파일들도 자동으로 라이브러리에 추가된다.<br><br>기억해야 할 것은 컴파일된 자바 클래스는 현재 보이는 화면상의 WEB-INF/classes 에 생성되지 않는 다는 점이다.<br>현재 작성하고 있는 웹 어플리케이션은 <B>프로젝트 홈 디렉토리/.deployables/컨텍스트명</B> 디렉토리에 그대로 복사되고, 컴파일된 클래스도 여기에 들어가게 된다.<br>추가 : WTP 1.0 에서는 <strong>"$WORKSPACE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/webapps/컨텍스트명"</strong>으로 바뀌었다.<br><br>화면상에 보면 왼편에 "Package Explorer" 가 떠 있는데, 원래 기본적으로 Dynamic Web 프로젝트는 "Project Explorer"만 보인다. 개인적으로 Package Explorer를 선호하기 때문에 바꿨다. <B>Window -> Show view -> Other</B> 메뉴에서 <B>Java -> Package Explorer</B>를 선택하면 패키지 익스플로러를 볼 수 있다. 이런 식으로 다른 View 들을 화면상에 나오거나 사라지게 할 수 있다. 기왕이면 <B>Basic -> Snippets</B> 뷰도 보이게 하자.<br><br><BIG><B>3. 웹 어플리케이션 실행과 server.xml 수정</B></BIG><br>이제 웹 어플리케이션을 열심히 작성하고 실행해 보도록 하자.<br>Package Explorer의 프로젝트 이름에다 대고 오른쪽 마우스 단추를 누르고서, <B>Run As -> Run on Server</B>를 선택한다. 그리고는 아까 선택했던 "Apache -> Tomcat 5.0" 서버를 선택하고서 기왕이면 "Set server as project default (do not ask again)"도 선택하고, "Finish" 버튼을 눌러주면 되겠다.<br><br>앞에서도 언급했듯이, 웹 어플리케이션이 실제로 실행되는 디렉토리는 현재 프로젝트 디렉토리가 아니라 <B>프로젝트 홈 디렉토리/.deployables/컨텍스트명</B>이다.<br>추가 : WTP 1.0 에서는 <strong>"$WORKSPACE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/webapps/컨텍스트명"</strong> 으로 바뀌었다.<br><br>톰캣이 실행되면 Eclipse 내장 웹 브라우저가 실행되면서 기본적으로 웹 컨텍스트 홈 디렉토리를 가리키고, Console 뷰를 통해 톰캣 실행 화면을 볼 수 있고, <B>Servers</B> 뷰를 통해 서버를 켜고 끌 수 있다. 이 이후부터는 프로젝트 이름을 통하지 않고 Servers 뷰를 통해 톰캣을 켜고 끌 수 있다.<br><br>그리고, 갑자기 Package Explorer에 <B>Servers</B> 프로젝트가 생성된 것을 볼 수 있다. 이것을 통해 톰캣을 설정할 수 있다.<br><br>톰캣을 이용해서 개발하다면 보면 <B>server.xml</b>과 tomcat-users.xml 그리고 톰캣 디폴트 web.xml을 수정할 필요가 생기기도 한다. 그럴 때는 <B>Servers 프로젝트</B>에서 Tomcat 5.0 디렉토리 아래의 각 해당 xml 파일을 직접 편집하고 <B>Servers 뷰</B>에서 톰캣을 재시작 하면된다.<br><br><img src='./1609730/b0046915_22571642.png'><br><br><BIG><B>4. 디버깅</B></BIG><br>디버깅도 간단하다.<br>단순히 프로젝트 이름에서 오른쪽 마우스 클릭을 하고 <B>Debug As -> Debug on Server</B>를 통해서 톰캣을 실행하면 된다.<br><br>테스트용 JSP 를 만들고 JSP 소스 코드에서 한 줄을 선택해서 소스 코드 편집기의 좌측 영역에서 더블클릭을 하거나 오른쪽 마우스 단추를 클릭하고 <B>Toggle Breakpoints</B>를 해서 브레이크 포인트를 설정할 수 있다.<br><img src='./1609730/b0046915_23313517.png'><br><br>그 상태에서 Debug on Server 를 실행해서 톰캣을 띄우고 웹 브라우저로 브레이크 포인트를 설정한 JSP 페이지를 호출하면 브레이크 포인트가 설정된 JSP 줄을 실행하기 직전, Eclipse의 Debug 퍼스펙티브가 뜨게 된다.<br><br>이 Debug 퍼스펙티브에서 일반 자바 클래스와 JSP 페이지 등을 디버깅하고, 현재 실행중인 클래스의 변수 목록과 그 값을 확인 하는 등의 작업을 할 수 있다.<br>그리고 Debug 퍼스펙티브의 Variables 뷰에서 변수값을 확인하다가 변수에서 오른쪽 마우스 단추를 누르고 "Change Value" 명령을 실행해서 변수 값을 바꾸면 그 바뀐 값으로 프로그램을 실행하는 등의 일도 할 수 있다.<br><img src='./1609730/b0046915_23315856.png'><br><br>참고로 직접 테스트는 안해봤지만, Tomcat 4.x, Servlet 스펙 2.3에서는 Java 클래스나 서블릿 등의 디버깅은 잘 되지만 JSP 페이지 디버깅은 잘 안될것이다. 서블릿 스펙 2.4 부터 JSP 페이지의 줄 번호와 JSP 가 변환된 서블릿 소스 코드의 줄번호를 매칭하는 것이 스펙 자체에 들어갔다고 한다(정확한 설은 아님.. 어디서 듣기에 그렇다고... ^^). 그래서 톰캣 5.0, 서블릿 스펙 2.4 이상에서만 JSP 디버깅이 제대로 돌아간다.<br><br><BIG><B>5. Snippets 사용하기</B></BIG><br>며칠전에 썼던 <a href="http://kwon37xi.egloos.com/1605054">Ecilpse WTP Snippets에 항목 추가하기</a>를 참조한다.<br><br><BIG><B>6. TCP/IP 모니터링</B></BIG><br><a href="http://www.netbeans.org">NetBeans</a>에는 톰캣 서버로 들어가고 나오는 요청/응답 정보를 잡아내서 넷빈즈 자체에서 그 결과를 살펴보거나 동일한 요청을 계속해서 다시 보내는 기능이 있다.<br><br>이러한 기능이 Eclipse WTP에도 TCP/IP Monitoring 이라는 이름으로 들어가 있다.<br><br>하지만 넷빈즈와 약간 방식이 다른데 넷빈즈는 Tomcat에 요청/응답을 갈무리하는 플러그인을 설치하고 웹 브라우저가 톰캣에 접속해서 작업을 하면 톰캣에 있는 플러그인이 넷빈즈로 그 정보를 톰캣에서 전달하는 방식이다. 즉, 웹 브라우저는 넷빈즈의 존재를 알지도 못한다.<br><br>그에 반해 Eclipse TCP/IP Monitoring은 이클립스가 마치 프록시 서버 처럼 떠서 사용자가 웹 브라우저로 TCP/IP 모니터링에 지정된 임시 경유 포트로 접속해서 요청을 보내면 그 요청을 이클립스가 다시 톰캣에 보내고 톰캣은 요청을 처리하여 그 응답을 이클립스에게 보내게 되고 이클립스는 또 다시 그 응답을 있는 그대로 웹 브라우저에 전달하는 방식이다. 그렇기 때문에 톰캣의 설정을 8080 포트를 이용하도록 했을 때 웹 브라우저로 아무리 8080 포트로 요청을 보내봐야 TCP/IP 모니터링은 작동하지 않는다.<br><br>TCP/IP 모니터링은 JSP 디버깅시 상당히 유용하게 사용될 수 있다. 예를들어 폼을 50개 정도 채워야하는 JSP가 버그를 가지고 있을 때, 디버깅을 위해서 폼을 채워서 요청을 보내고 JSP가 어떻게 작동하는지 확인하고 수정한 뒤에 다시 폼을 채워서 요청을 보내야 하는 상황에서 TCP/IP 모니터링이 없다면 아마 미쳐버릴지도 모른다. (물론 폼에 value 속성을 다 줘버린 HTML 페이지등을 따로 만들어서 submit 만 눌러보게 할 수도 있겠지만, 그런짓을 수십 수백개의 JSP 페이지마다 해야 한다면??)<br><br>일단, TCP/IP 모니터링의 개념은 정리가 되었으므로 다음으로 넘어간다.<br><br>JSP 프로젝트가 구성되어 있고, 톰캣을 Run on Server 등을 이용해 실행 했을 때, <B>Servers 뷰</B>에서 톰캣을 선택하고 마우스 오른쪽 단추를 눌러 <B>Monitoring -> Properties</B>를 선택한다. 이제 지정된 톰캣 서버에 대해서 요청/응답 Monitoring을 설정하는 화면을 보게 된다. "Add" 단추를 누른다.<br><br><img src='./1609730/b0046915_922961.png'><br><br>이제 톰캣의 HTTP 포트(이 경우에는 8088이지만 보통은 8080을 사용할 것이다)를 선택하고 임시 경유 포트 8089가 선택되어 있는 것을 확인한다. 물론 경유포트는 자신이 원하는 대로 바꿀 수 있다.<br>"Ok" 단추 누르고, 해당 모니터링 설정을 선택하고서 다시 "Starts" 단추를 누르면 이제부터 톰캣 실행포트(여기서는 8088)을 감시하기 시작하게 된다.<br><br><img src='./1609730/b0046915_9245520.png'><br><br>이제 웹 브라우저에서 http://localhost:<B>8089</B>/FirstWebApp/plus.jsp 와 같은 방식으로 요청을 보내면, 이클립스가 그것을 중계하여 톰캣의 8088포트로 보내고 그 결과를 받아서 <B>TCP/IP Monitor 뷰</B>에 출력하고 다시 웹 브라우저로 보내는 것을 볼 수 있다. 웹 브라우저의 요청포트가 8089임에 주의해야 한다. 여기서는 이클립스 내장 웹 브라우저를 사용했지만 실제로는 다른 외부 웹 브라우저를 사용해도 아무 상관 없다.<br><br><img src='./1609730/b0046915_9305398.png'><br><br>각각의 요청에서 오른쪽 마우스 단추를 누르고 <B>Resend request</B>를 누르면 해당 요청을 그대로 톰캣에 보내고 그 결과를 확인해 볼 수 있다.<br><br>그리고 응답을 보여주는 부분(Response)에서 "Byte"로 되어있는 셀렉트 박스를 <B>"Web Browser"</B>로 바꾸면 응답의 결과를 텍스트가 아닌 웹 브라우저에 출력된 형태로 보여준다.<br><br>헌데, 왜 값을 변경해서 보내는 기능은 안되는거지?? --;<br><br><BIG><B>7. Tomcat 매니저 사용하기</B></BIG><br>자바 클래스 등이 변경되거나 struts-config.xml 과 같은 설정 파일이 변경되었을 때마다 톰캣을 껐다 켰다 해야 한다면 미칠 노릇이다. WTP 설정에 톰캣 매니저를 설정하고 매니저를 이용해서 해당 웹 컨텍스트를 껐다 켰다 하도록 하면 좀 편하고 속도도 빨라진다.<br><br><B>$CATALINA_HOME/conf/Catalina/localhost</B> 디렉토리에 가 보면 <B>manager.xml</B>파일이 있다. 그 파일을 <B>$WORKSPACE/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/conf/Catalina/localhost</B> 디렉토리에 복사만 하면 된다.<br><br>그리고 <B>Servers 프로젝트</B>에서 <B>tomcat-users.xml</B> 파일을 편집해서 다음 처럼 매니저에 로그인 할 수 있는 계정을 생성해 둔다.<br><BLOCKQUOTE class="SOURCE"><br>&lt;?xml version="1.0" encoding="UTF-8"?&gt;<br>&lt;tomcat-users&gt;<br>  &lt;role rolename="manager"/&gt;<br>  &lt;role rolename="admin"/&gt;<br>  &lt;user username="admin" password="admin" roles="manager,admin"/&gt;<br>&lt;/tomcat-users&gt;<br><br></BLOCKQUOTE><br><br>이제 <B>http://localhost:8088/manager/html</B>로 접속해서 웹 컨텍스트별로 관리할 수 있다.<br><br><img src='./1609730/b0046915_9465847.png'></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

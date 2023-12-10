@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] JPA/Hibernate LazyLoading이 설정이 안 먹을 때 간단한 추적 방법</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-02-26 17:14:19</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] JPA/Hibernate LazyLoading이 설정이 안 먹을 때 간단한 추적 방법</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">JPA나 Hibernate에서 특정 필드를 분명히 Lazy Loading 설정하였고, 독립된 코드로 실행할 때는 분명히 LazyLoading이 잘 되는 것을 확인 하였으나, 실제로 작동하는 코드에 넣었더니 Lazy Loading이 안 먹고 어디선가 SQL query를 날리더라 하는 경우가 발생할 것이다.<br><br><span style="font-weight: bold;">즉, Lazy Loading 설정을 잘 마쳤으나, 분명히 Lazy Loading이 되어야 할 웹 페이지 호출 단계의 (컨트롤러나 서비스, 웹페이지) 어딘가에서 Lazy Loading 설정된 필드의 Getter 메소드가 호출된 상황일 경우가 많이 발생한다.</span><br><br>이 때 도대체 어디서 이노무 것이 호출 되었는지 알아내기가 번잡스럽다면 다음 방법을 써본다. 여기서는 엔티티 객체의 contents 필드가 Lazy Loading 설정되어진 상태라고 간주한다.<br><br><blockquote class="src">public&nbsp;String&nbsp;getContents()&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;new&nbsp;NullPointerException("getContents&nbsp;Lazy&nbsp;Loadign&nbsp;추적");<br>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch(Exception&nbsp;ex)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ex.printStackTrace();<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;contents;<br>}<br></blockquote><br><br>즉, <span style="font-weight: bold;">일부러 예외를 발생시켜 getContents()가 호출 될 당시의 StackTrace를 통해서 getContents()를 호출한 코드의 계층 구조를 파악</span>하는 것이다. 당연히 저 코드는 <span style="font-weight: bold; color: rgb(255, 0, 0);">테스트후에 제거해야 한다.</span> 안그러면 성능상에 상당한 불이익을 당하게 될 것이다.<br><br>StackTrace 읽는 것이야 다들 아실테니 패스.<br><br>그리고, 저기 보면 String에 대해서 Lazy Loading을 한 것처럼 했는데, 실제 Hibernate에서는 일반적인 방법으로는 String 필드의 Lazy Loading은 불가능하다. 이에 관해서는 네가지 정도의 방법이 있는데, 나는 주로 <a target="_blank" href="http://wiki.kwonnam.pe.kr/java/jpa/one-to-one#%EA%B2%8C%EC%8B%9C%ED%8C%90_%ED%98%95%ED%83%9C%EC%97%90%EC%84%9C_%EA%B2%8C%EC%8B%9C%EA%B8%80%EC%97%90_%EB%8C%80%ED%95%B4_elementcollection%EC%9D%84_%EC%82%AC%EC%9A%A9%ED%95%9C_lazyloading_%EA%B5%AC%ED%98%84">JPA One-To-One 게시판 형태에서 게시글에 대해 @ElementCollection을 사용한 LazyLoading 구현</a>을 사용한다. 이 외에도 여러 방법이 있지만 복잡도가 높아지므로 @ElementCollection 방법을 권장한다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

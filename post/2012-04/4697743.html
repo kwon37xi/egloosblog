@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>스프링 시큐리티 3</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-04-24 19:08:53</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">스프링 시큐리티 3</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="ttbReview"><table><tbody><tr><td><a href="http://www.aladin.co.kr/shop/wproduct.aspx?ISBN=8992939647&amp;ttbkey=ttbkwon37xi1112002&amp;COPYPaper=1"><img src="http://image.aladin.co.kr/product/826/59/coversum/8992939647_1.jpg" alt="" border="0"></a></td><td style="vertical-align:top;" align="left"><a href="http://www.aladin.co.kr/shop/wproduct.aspx?ISBN=8992939647&amp;ttbkey=ttbkwon37xi1112002&amp;COPYPaper=1" class="aladdin_title">스프링 시큐리티 3</a> - <img src="http://image.aladin.co.kr/img/common/star_s8.gif" alt="8점" border="0"><br>피터 뮬라리엔 지음, 유윤선 옮김/위키북스</td></tr></tbody></table></div><br><br>아마존에서는 이상하게 평가가 나쁜데 나는 매우 좋게 읽은 책이다.<br><br>우리나라에서는 사실상 구할 수 있는 유일한 Spring Security 3 에 관한 책인데다, 설명도 쉽고 차근 차근 잘 하고 있다. 번역 품질도 읽는데 부담 없는 상당히 잘 된 편에 속한다.<br><br>Spring Security는 스프링의 부가 프레임워크들 중에서 가장 어려운 축에 속하는 녀석이다.<br>하지만 제대로 이해하면 그 강력함이 이루 말할 수가 없다.<br><br>예전 프로젝트에서는 이 책도 없고 불친절한 Spring Security 기본 문서를 보다가 때려 치워버렸었는데, 이번에 하고 있는 프로젝트에서는 기본으로 사용하고 있는데다 이 책까지 나와서 참 좋다.<br><br>스프링 시큐리티를 아직 도입하고 있지 않다면 꼭 이 책을 읽고 도입 여부를 타진해보기 바란다. 비록 배우기가 까다롭긴 하지만 매우 만족할 만하게 보안 설정 자동화/집중화를 이룰 수 있을 것이다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

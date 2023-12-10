@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[책] Practical Java</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-01 12:26:17</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[책] Practical Java</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><img src='./2849578/b0046915_12123981.jpg'>Practical Java<br><br>    * 초보에서 중급으로 넘어갈때 읽어보자.<br><br>Practical Java는 약간 쉬운 수준의 Effective Java라고 봐도 될 것 같다.<br><br>사실 프로그램을 짜면서 Effective Java 수준의 주의를 기울여가며 짤 일이 나로써는 흔치 않다.<br>그에 반해 이 책 Practical Java는 대부분의 초 중급 프로그래머들이 흔히 범하는 실수들을 잘 집어내 준다.<br>아직 읽고 있는 책이라 정확한 판단은 안되겠지만, 아무튼 나와 내 주위 사람들과 내가 지원나간 싸이트 사람들이 흔히 범하는 실수들이 꽤 많이 지적되어 있는 느낌이다.<br><br>번역 상태도 나쁘지 않다.<br>초급에서 중급 자바 프로그래머로 넘어가기 위해 읽어보면 좋지 않을 까 싶다. 그리고 이 책을 읽고나서 Effective Java도 읽어보고..<br><br>헌데... 괜찮은 책 내용과 그런대로 준수한 번역에 비해 편집이 너무 조잡하고 오타도 많이 보인다. --;<br>정말 싸구려 책처럼 해놨다..</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

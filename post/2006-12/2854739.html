@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>엔터프라이즈 환경 입문 개발자를 위한 3가지 조언</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-04 13:09:54</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">엔터프라이즈 환경 입문 개발자를 위한 3가지 조언</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">오라클 매거진에 실린 글이다.<br>프로그래밍 기법에 대한 설명이라기 보다는 "개발 환경과 운영 환경관의 괴리"로 인해 발생하는 문제들에 대해 설명한다.<br><br><strong>왜 개발 환경에서는 멀쩡하게 잘 돌아가던 것이 운영서버에서는 안돌아갈까??</strong><br><br>PDF 판 : <a title="" href="http://www.oracle.com/global/kr/magazine/archive/25spring/technology_developer1.pdf">http://www.oracle.com/global/kr/magazine/archive/25spring/technology_developer1.pdf</a><br><br>웹 페이지 : <a title="" href="http://www.dbguide.net/know/know102001.jsp?mode=view&amp;key=subject&amp;idx=2775">http://www.dbguide.net/know/know102001.jsp?mode=view&amp;key=subject&amp;idx=2775</a><br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>책 한 권은 항상 들고 다니자.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2008-04-04 23:51:52</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">책 한 권은 항상 들고 다니자.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">1년 넘게 자동차의 결함을 방치하고 있다가 오늘에서야 고치러 갔다. (쉬는 날이라)<br>그 동안은 게으름과 어깨에 발생한 버그 때문에 운전도 사실 안했다.<br><br>그런데, 그 고장을 재현하기 위해 정비사가 도로를 40km 이상 주행하고(워.. 기름 아까워), 부품 공수해오고 하느라 정비 시간이 무려 3시간 30분.<br><br>시내도 아닌 시 외곽에 있는 종합 정비소에서 정비를 받았더니 도무지 아무것도 할게 없다.<br><br>세시간 넘게 광합성만 하고 있었다.<br><br>어딜 가든.. 책 한 권은 항상 몸에 지니고 다녀야 겠다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

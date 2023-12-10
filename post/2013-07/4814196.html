@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>그냥 나 자신과 이쪽 업계에 새로 들어오시는 분들께 하고 싶던말..</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2013-07-09 23:11:51</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">그냥 나 자신과 이쪽 업계에 새로 들어오시는 분들께 하고 싶던말..</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">오늘 어떤 분이 무려 5년전에 썼던 <a target="_blank" href="http://kwon37xi.egloos.com/3666564#14412069.01">초보 자바 웹개발자들을 위한 학습 로드맵</a> 글에 댓글을 다셨길래 다음과 같은 댓글로 대답하였다.<br>자꾸 공부 안하고 안주하려드는 나 자신에게, 그리고 이쪽 업계의 새내기 분들께 하고 싶던 말이라서 남겨둠.<br><br><blockquote style="font-weight: bold">이제는 Struts2는 사실상 끝난 듯하고 Spring MVC가 장악하였습니다.<br>SVN은 Git으로 바뀌고 있으며, Maven은 Gradle로 대체되고 있습니다.<br>또한 이제 웹 개발의 패권은 Java에서 Python, Ruby, Groovy, Scala 등으로 넘어가고 있습니다.<br>위 4가지 언어 중에 하나는 꼭 Java와 함께 익히기를 권합니다. Java 개발자들이 익히기 쉽고 활용도가 높은 언어는 단연 Groovy입니다(하지만 Groovy가 주요 언어가 된다기보다는 객체지향과 함수형을 모두 쉽게 배울 수 있으며, Java 개발자의 보조 도구 언어로써 크게 빛을 발하고 있습니다. Java에서 그 외의 다른 언어로 넘어가는 징검다리 역할과 편리한 툴 역할을 함께 잘 해낼만한 언어로 보입니다).<br><br>세상은 계속 변합니다. 특히 프로그래밍에서 웹 등의 사용자와 밀접하게 연관이 있는 분야는 더욱 빨리 변합니다.<br><br>지나치게 유행에 민감하고 새것만 좇다보면 실전의 기본기는 없이 말만 많아지는 것 같습니다.<br>기본을 탄탄히 다지면서도 변화의 흐름에 저항하지 말고, 변화의 흐름에 너무 앞서지도 말고, 변화의 흐름을 자기가 배운 것에 갇혀서 보고 싶은대로 보지 말고, 변화를 보여지는 그대로 보면서 따라가시길..<br></blockquote></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

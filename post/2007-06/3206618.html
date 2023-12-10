@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>ITWorkTime - 뭐 이런 잔인한 프로그램이??</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-06-01 19:42:25</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">ITWorkTime - 뭐 이런 잔인한 프로그램이??</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">실질 코딩시간과 휴식 시간 비율을 측정해 보고 싶어서 업무 시간과 휴식시간을 토글하면서 추적해주는 프로그램을 검색하다가, <a title="" href="http://www.freewareland.com/business/1869/">ITWorkTime</a> 이라는 황당한 프로그램을 발견했다.<br><br><blockquote class="quote">Freeware software product which keeps track of employees worktime and makes screenshots of employees' screens to confirm that the time has been spent actually working. It allows you to see what your employees were doing even without the need to always look behind their shoulder.<br><br>ITWorkTime은 프리웨어 소프트웨어 제품으로, 직원의 업무 시간을 추적하고 직원 컴퓨터의 화면을 저장하여 실제로 업무를 수행하며 보냈는지도 확인할 수 있도록 해줍니다. 이를 통해 당신의 직원들이 무엇을 하고 있었는지 매번 어깨 너머로 보지 않고도 항상 알 수 있습니다.<br></blockquote><br>프리웨어랍니다. 자유롭게 사용하세요. --;<br><br>추신: 리눅스에서 업무 시간과 휴식 시간을 토글해가면서 측정할 수 있는 프로그램이 있으시면 추천 부탁드립니다.<br><br><a href="http://www.itpremium.com/images/itworktimer/itworktimer.jpg"><img src="http://www.itpremium.com/images/itworktimer/itworktimer.jpg" border="0" width="500px"></a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>ssh root 로그인 금지하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-08-01 09:33:48</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">ssh root 로그인 금지하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Linux/Unix 서버를 운영할 때는 Telnet과 FTP를 막고, ssh/sftp를 통해 접속하는 것이 보안에 좋다.<br>또한 root 계정으로는 직접 로그인이 안되게 막아야 해킹의 위험으로 부터 좀더 안전해 진다.<br>root 계정은 모든 Linux/Unix 계정에 존재하기 때문에 비밀번호만 유추해서 공격하면 되니까, 하지만 root 계정 로그인을 막으면 계정 ID와 비밀번호를 모두 유추해서 공격해야 하기 때문에 해킹이 훨씬 더 어려워 진다.<br><br><strong>/etc/ssh/sshd_config</strong>파일을 열어 다음을 추가한다.<br><blockquote class="src">PermitRootLogin no<br></blockquote><br>각 시스템별 데몬 재시작 방법에 따라 sshd를 재시작한다. Redhat 계열이라면,<br><blockquote class="src"># service sshd restart<br></blockquote><br><br>참조 : <a title="" href="http://www.linux-noob.com/forums/lofiversion/index.php/t1013.html">http://www.linux-noob.com/forums/lofiversion/index.php/t1013.html</a><br><br>tags: ssh sshd root login 로그인 금지 막기 deny disable</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] Maven Incompatible types 오류</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-06-14 11:34:51</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] Maven Incompatible types 오류</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Maven 으로 컴파일을 하는데 <span style="font-weight: bold;">Incompatible types</span> 오류가 발생하였다.<br><br><blockquote class="src">[ERROR] /private/tmp/framework/src/main/java/org/jboss/narayana/txframework/api/annotation/service/ServiceRequest.java:[32,56] <strong>incompatible types</strong><br>found : <strong>org.jboss.narayana.txframework.api.configuration.service.RequestType</strong><br>required: <strong>org.jboss.narayana.txframework.api.configuration.service.RequestType</strong><br>[INFO] 2 errors<br></blockquote><br><br>잘 보면 found와 required에서 가리키고 있는 클래스가 동일하다는 것을 볼 수 있다. 이미 존재하는데 못찾겠다고 하는 웃기는 상태인 것이다.<br><br>이것은.. JDK 특정 버전의 Annotation Process 버그!<br><br>주로 아래 버전에서 발생하며, 그 외 버전에서도 발생할 가능성이 있다. JDK를 업그레이드하면 발생하지 않는다.<br><blockquote class="src">java version "1.6.0_27" Java(TM) SE Runtime Environment (<strong>build 1.6.0_27-b07</strong>) Java HotSpot(TM) 64-Bit Server VM (build 20.2-b06, mixed mode)<br></blockquote><br><br>참고 : <a title="" href="http://stackoverflow.com/questions/8417633/mvn-install-fails-due-to-incompatible-types" target="_blank">mvn install fails due to “incompatible types”</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

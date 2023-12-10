@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Java Class 가 대체 어디있는거야?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-11-29 09:52:50</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Java Class 가 대체 어디있는거야?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">2004년 10월에 올린 글 입니다.<br><hr /><br><a title="" href="http://www.javaservice.net/~java/bbs/read.cgi?m=devtip&b=javatip&c=r_p&n=1097829349&p=1&s=t#1097829349">참조</a>에서 얻어온 것입니다.<br><br>가끔씩 CLASSPATH가 이리저리 어지럽게 꼬여있을 때, 도무지 내가 사용하는 클래스가 어디 붙어있는지 모를 경우가 있습니다. (사실 이것은 소스 관리가 제대로 안되고 있다는 증거라고 봅니다)<br>이럴경우 내가 사용하고 있는 클래스의 실제 파일이 대체 어디 있는지 알려주는 프로그램 소스가 <a title="" href="http://www.javaservice.net/">JavaService.Net</a>에 올라와 있어서 커맨드 라인에서 사용할 수 있도록 살짝 고쳐서 올립니다.<br><br><div class="h2">ClassLocation.java</div><br><blockquote class="src">import&nbsp;java.util.*;<br><br>public&nbsp;class&nbsp;ClassLocation&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;main(String&nbsp;[]&nbsp;args)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(args.length&nbsp;==&nbsp;0)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;usage();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.exit(-1);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;String&nbsp;reqName&nbsp;=&nbsp;null;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;java.net.URL&nbsp;classUrl&nbsp;=&nbsp;null;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(int&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;args.length;&nbsp;i++)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reqName&nbsp;=&nbsp;args[i];<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reqName&nbsp;=&nbsp;reqName.replace('.',&nbsp;'/').trim();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reqName&nbsp;=&nbsp;"/"&nbsp;+&nbsp;reqName&nbsp;+&nbsp;".class";<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classUrl&nbsp;=&nbsp;ClassLocation.class.getResource(reqName);<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(classUrl&nbsp;==&nbsp;null)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(reqName&nbsp;+&nbsp;"&nbsp;not&nbsp;found");<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("reqName&nbsp;:&nbsp;"&nbsp;+&nbsp;classUrl.getFile());<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;static&nbsp;void&nbsp;usage()&nbsp;{<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Usage&nbsp;:&nbsp;java&nbsp;ClassLocation&nbsp;package.classname&nbsp;[package.classname&nbsp;....]");<br><br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>}<br></blockquote><br>저 같은 경우 자주 겪는 현상 중의 하나가 프라퍼티 파일을 jar파일에 묶고 또 다른 클래스패스에도 두고 해서 프라퍼티 설정사항이 중복되기 때문에 제대로 적용이 안되는 현상을 겪기도 하는데요, 이럴 경우에 프라퍼티 파일이 어디 있는지도 찾아 줄 수 있도록 프로그램을 살짝 수정하여 오늘 저녁이나 내일쯤 다시 올리겠습니다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

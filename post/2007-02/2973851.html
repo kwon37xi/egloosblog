@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Follow - Java로 만든 tail UTF-8 판</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-02-02 11:00:37</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Follow - Java로 만든 tail UTF-8 판</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">긴급 패치다.<br>PHP 로그를 남기는데, 이게 애플리케이션 자체가 UTF-8인지라 로그도 UTF-8로 남는다.<br>개발은 윈도우에서 하는데 윈도우는 CP949다.. --;<br>인코딩이 매치가 안돼서 <a title="" href="http://www.baremetalsoft.com/wintail/">WinTail</a>로는 로그 파일을 볼 수 없다.<br><br><a title="" href="http://follow.sourceforge.net/">Java Swing으로 만들어진 tail 프로그램인 Follow</a>를 사용해서 로그를 보는데, 이 또한 시스템 디폴트 인코딩을 따른다.<br>그래서, 무조건 UTF-8로 로그 파일을 읽도록 소스코드에 5글자 패치를 했다.<br><br>무조건 UTF-8로만 읽으므로 주의할 것! 나중에 시간날 때 UTF-8 지원해달라고 쫄라야지~<br><br>UTF-8 로그 파일용 Tail Follow (Java 1.5 이상 필요) : <a href='http://pds5.egloos.com/pds/200702/02/15//follow1.5_utf8.jar' target='_blank'>follow1.5_utf8.jar</a><br><br>* 주의 : <strong>글꼴 설정이 한글을 지원하는 "굴림"같은 것이 아니면 한글이 출력되지 않는다.</strong></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

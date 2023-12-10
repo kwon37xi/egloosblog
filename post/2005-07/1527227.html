@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>찻잔의 녹차 때 없애기..</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-07-10 17:51:04</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">찻잔의 녹차 때 없애기..</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><img src='./1527227/b0046915_17501934.jpg'><br>살빼기 위한 최소한의 노력으로 녹차 마시기를 하고 있다.<br>물론 운동이나 절식은 전혀 안하고있지만.. ^^<br><br>http://www.mozilla.or.kr 에서 구입한 파이어폭스 머그 컵으로 녹차를 열심히 마시고 있는데, 녹차 때가 며칠만 지나도 장난이 아니다...<br><br>하얀 머그컵의 녹차때는, 하얀 치약에 물을 묻혀서 휴지나 수세미로 문질러주면 금방 없어진다~~<br><br>다시 불여우가 말끔하게 변해서 돌아왔다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

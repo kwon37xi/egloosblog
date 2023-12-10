@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>JSTL &lt;x:transform&gt;의 SAX2 driver class org.apache.crimson.parser.XMLReaderImpl not found</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-02-05 19:49:32</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">JSTL &lt;x:transform&gt;의 SAX2 driver class org.apache.crimson.parser.XMLReaderImpl not found</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">JSTL 1.0 에서 <x:transform> 태그를 사용하고, J2SDK 1.3.x 를 사용한다면<br><blockquote class="src">SAX2 driver class org.apache.crimson.parser.XMLReaderImpl not found<br></blockquote><br><br>이와 같은 오류가 발생합니다.<br><br>이에 대한 해결책은<br><br><blockquote class="src">List: taglibs-user<br>Subject: Summary: <x:transform> and JAXP problems<br>From: Hans Bergsten <hans () gefionsoftware ! com><br>Date: 2002-07-30 20:28:10<br>[Download message RAW]<br><br>Sorry for the barrage of messages about this problem yesterday. I should<br>have waited until I had the complete story, and done my homework better<br>before posting to the list. To make up for this, here's a summary of<br>what I've found by now.<br><br>The visible problem is that the &lt;x:transform&gt; in the Standard library<br>(JSTL RI), versions 1.0 and 1.0.1 throws the following exception when<br>running with JDK 1.3.x (at least 1.3.1_01), on any platform (most<br>likely):<br><br>javax.servlet.jsp.JspException: SAX2 driver class<br>org.apache.crimson.parser.XMLReaderImpl not found at<br>org.apache.taglibs.standard.tag.common.xml.TransformSupport.doStartTag(TransformSupport.java:170)<br>[...]<br><br>In other words, it's looking for the Crimson parser instead of using the<br>bundled Xerces parser. This seems to be related to how factory classes<br>for various XML tasks are located. Xalan looks for a factory for<br>something called a "SAX 2 driver" using the property name<br>"org.xml.sax.driver". I assume that the rules for locating this factory<br>are the same as for the JAXP DocumentBuilderFactory, etc. Since<br>xercesImpl.jar correctly contains an entry for this property in the<br>META-INF/services directory, it should be found but it isn't when using<br>JDK 1.3.x.<br><br>One solution is to define the "org.xml.sax.driver" property explicitly<br>as an option to the java command. For Tomcat 4, the easiest way to do<br>this is to set the CATALINA_OPS environment variable:<br><br><strong>CATALINA_OPTS=-Dorg.xml.sax.driver=org.apache.xerces.parsers.SAXParser</strong><br><br>I also tried another approach. It turns out that the Class-Path<br>header in the META-INF/MANIFEST.MF file in xalan.jar lists dependencies<br>on jaxp.jar and crimson.jar instead of the bundled jaxp-api.jar and<br>xercesImpl.jar. I figured this could cause the problem so I patched the<br>xalan.jar file to use a manifest with Class-Path set to the correct<br>JAR files instead, but no luck.<br><br>Unless someone else has a better solution than the one presented above,<br>I suggest we include it in the README for Standard 1.0.2.<br><br>Hans<br>-- <br>Hans Bergsten hans@gefionsoftware.com<br>Gefion Software http://www.gefionsoftware.com<br>JavaServer Pages http://TheJSPBook.com<br></blockquote></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

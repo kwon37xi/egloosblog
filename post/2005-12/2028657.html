@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] iBatis가 어떤 시스템에서는 알 수 없는 오류를 낸다.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-12-16 10:57:00</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] iBatis가 어떤 시스템에서는 알 수 없는 오류를 낸다.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">현재 개발환경은 <a title="" href="http://www.springframework.org">Spring</a> + <a title="" href="http://ibatis.apache.org/">iBatis</a> + Tomcat 5.0.28 이다. 이 상태에서는 DataSource로 <a title="" href="http://jakarta.apache.org/commons/dbcp/">DBCP</a>를 이용한다.<br>(개발환경과 운영환경의 applicationContext.xml과 web.xml을 이원관리된다. 또한 <a title="" href="http://ant.apache.org/">Ant</a>를 통해 자동적으로 운영서버에 배치할때 운영 서버용 설정 파일로 바꿔치기 해준다.)<br><br>실행 환경은 JRUN4 이고 DataSource는 JRUN4의 자체 DataSource를 JNDI로 가져오게 설정되어 있다.<br><br>이런 상황에서, 각 개발자의 개발 환경에서는 아무 문제 없이 작동하던 것이 운영환경으로 가면 전혀 작동하지 않고, 도무지 알 수 없는 예외를 발생시켰다.<br><br>검색을 아무리 해도 답이 안나온다.<br><br>나중에야 운영환경과 개발환경의 DataSource가 다르다는 것을 생각해내고 개발 환경처럼 바꿨더니 된다.<br><br>사실, 아직도 왜 JRUN4의 DataSource를 사용하면 안되는지는 모른다.. --;<br><br><br>결론은 : 개발과 운영을 최대한 비슷하게 개발하던지, 서로 다른 상황일 경우에서 어느 한쪽에서만 오류가 발생할 경우에는 서로 환경을 하나씩 맞춰가면서 테스트 해 볼것.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

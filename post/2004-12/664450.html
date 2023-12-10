@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>새나루 한글 입력기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-14 09:31:24</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">새나루 한글 입력기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">평소에 리눅스를 주로 사용하면서 리눅스용 한글 입력기가 한/영키와 왼쪽 Shift-Space 키를 이용한 한영 전환을 동시에 지원하기 때문에, 두 키를 한영 전환에 번갈아가며 쓰는 버릇이 생겼다.<br>그런데, 가끔 윈도우에서 작업할 때 그게 안되서 너무 답답했는데, 그에 대한 훌륭한 해결책을 찾았다.<br><br>윈도우용 오픈 소스 한글 입력기 새나루이다.<br><br>세벌식 사용자인 나로서 세벌식 390을 완벽하게 지원해주고 등록정보 창에서 Shift-Space 키를 한영 전환으로 함께 사용할 수 있는 옵션도 제공해준다. 세벌식 이외에도 아주 많은 한글 자판과 드보락 영문 자판도 지원해 준다.<br><br><B>설치 및 사용</B><br>설치는 그냥 배포되는 파일을 실행하면 된다. 윈도우 2000을 기준으로 다음과 같이 하면 새나루를 사용하게 된다.<br><br><font color="#000099">제어판 > 키보드 > 입력 로케일 > 한국어 > 등록정보에서 새나루 한글 입력기 선택</font><br><br>그리고 제어판을 닫고 프로그램들 껐다키니까 적용이 됐다.<br><br>트레이의 한글 입력기 아이콘에서 오른쪽 단추를 눌러 IME 구성을 선택해서 자판이나 이것저것을 설정하면 된다.<br><br><B>모아치기?</B><br>가끔 "가"를 칠 때 자판을 너무 빨리쳐 "ㅏ ㄱ"를 치는 적이 있지 않나?<br>새나루로 바꾼뒤에 그렇게 쳐 보면 "ㅏ ㄱ"로 쳐지지 않고 "가"로 제대로 쳐진다.<br>오타 확률을 최소화 해주는 것이다. (이것은 리눅스용 한글 입력기 나비에서도 옛날부터 되는 거다...)<br><br>한자도 한번 입력해보면 제일 많이 나오는 한자가 일단 입력이 되고, 다시 한번 한자키를 누르면 한자 목록이 나오는 것을 볼 수 있다.(리눅스용 한글 입력기 나비에서는 한자의 뜻도 볼 수 있다. 새나루 개발자와 리눅스용 한글 입력기 개발자들이 함께 일하는 것 같으니, 이 기능도 새나루에 곧 도입되지 않을까 싶다..)<br><br>여러 모로 윈도우 기본 IME보다 편리하다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

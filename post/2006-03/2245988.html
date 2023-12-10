@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] Tomcat 5.0 : Log4J 로그레벨에 따라 파라미터 한글 깨지는 현상</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-03-02 11:52:17</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] Tomcat 5.0 : Log4J 로그레벨에 따라 파라미터 한글 깨지는 현상</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Tomcat 에서 웹 어플리케이션을 운영하는데, 웹 어플리케이션의 Log4j의 로그 레벨을 Debug 로 바꾸면 post 로 넘어온 파라미터가 모두 깨져버리는 현상이 발생했다.<br><br><div class="h2">현재 상황</div><br>* Tomcat 5.0.28<br>* Apache 2 와 mod_jk 로 연동된 상태<br>* server.xml 에서 URIEncoding="euc-kr"을 통해서 GET 방식에 대한 인코딩 지정<br>* 각 JSP 페이지 최 상단에서 request.setCharacterEncoding("euc-kr")수행.(필터 사용 안함)<br>* Root 컨텍스트 웹 어플리케이션에 Log4j 라이브러리와 log4j.properties 가 있다.<br>* log4j.properties 에서 로그 레벨을 DEBUG로 설정하면 로그 양이 늘어나면서, POST 방식으로 넘어오는 파라미터들이 깨짐.<br><br><div class="h2">한글 깨짐 원인</div><br>원인은 단순하다. Tomcat의 로거인 commons-logging이 Root 컨텍스트의 Log4j를 인지해서 톰캣 로그를 그 Log4j 설정(log4j.properties)에 따라서 찍는다.<br>여기서, <strong>Log4j의 로그 레벨이 DEBUG 일 경우에 톰캣은 org.apache.jasper.servlet.JspServlet 클래스에서 각 JSP로 전달된 모든 파라미터를 JSP가 호출되기 전에 로그로 남기는데, 문제는 request.setSetCharacterEncoding() 메소드는 일단 한 번 request.getParameter()가 먼저 호출돼 버리면 그 설정이 작동하지 않는다는 것이다. 그런데 톰캣의 JspServlet가 JSP에 진입해서 request.setCharacterEncoding()을 호출하기 전에 먼저 request.getParameter()를 호출해 파라미터의 값들을 로거로 출력해버리기 때문에 한글이 깨진다.</strong><br><br><div class="h2">해결책은..</div><br>JspServlet 클래스의 로그레벨을 INFO 이상의 레벨로 변경한다.<br>log4j.properties 에,<br><blockquote class="src">log4j.logger.org.apache.jasper=WARN<br></blockquote><br>위와 같은 로거를 추가하면 org.apache.jasper 이하의 클래스들이 찍는 로그는 WARN 레벨이되고, JspServlet 은 DEBUG 레벨에서만 JSP 파라미터를 찍으므로 이 상태에서는 request.getParameter()가 호출이 안된다. 그래서.. 문제 해결~<br><br><div class="h2">또 다른 문제..</div><br>여기서 또 다른 문제가 있는데, 톰캣은 어째서 ROOT 컨텍스트의 클래스와 log4j.properties설정을 ROOT 컨텍스트가 아닌 톰캣 자체의 로그 출력을 위해서 사용하는 것일까?<br>원칙적으로 그래서는 안되고, 현재 윈도우 상에서 Tomcat 5.0.28을 실행하면, ROOT컨텍스트의 log4j.properties는 톰캣 서버 자체를 위한 로깅에는 전혀 사용되지 않는데, 왜 이 상황에서는 그걸 썼을까?<br><br>아직 원인 파악을 못하고 있다.<br><br>tags : tomcat logger log4j debug parameter 한글</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

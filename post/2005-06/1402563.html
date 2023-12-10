@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>C를 배워야하나?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-06 17:48:09</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">C를 배워야하나?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://openlook.org/blog/931">조엘 온 소프트웨어에서 조엘은 C 언어를 배울 것을 강조</a>한다.<br><br>나도 어느 정도는 동감한다.<br><br>난 자바 프로그래머이지만 학교에서는 C를 배웠다.<br><br>회사에 다니면서 자바를 하다 느낀건데, 많은 <B>자바만</B> 한 개발자들 중에 String과 StringBuffer가 왜 퍼포먼스 상에 커다란 차이를 보이는지 이해를 잘 하지 못한다.<br>그래서 별 생각없이 StringBuffer를 써야하는 곳에 String을 사용하거나, StringBuffer를 다음처럼 사용한다.<br><br><BLOCKQUOTE style="background: wheat;"><br>StringBuffer buffer = new StringBuffer("blah blah.." + stringVar1 + "blah .. blah..." + stringVar2 + ..);<br>buffer.append("...." + ...);<br></BLOCKQUOTE><br><br>사실 C 언어를 배워봤다면, 어째서 String과 StringBuffer가 성능에 차이가 날 수 밖에 없는지 단 번에 이해할 수 있다.<br>그리고, 위와 같은 성능에 별다른 향상이 없는 방식으로 StringBuffer 사용도 하지 않을 것이다.<br>(암튼, 주제는 아니지만 문자열 여러개를 합쳐야 할 경우에는 StringBuffer를 사용해야 하며, StringBuffer에 append 할때 +를 사용하면 아무 의미가 없어지게 된다.)<br><br>또 하나 여기에 함께 들어가는 논쟁이 있는데, 사실 저 String/StringBuffer 문제는 C언어를 몰라서라기 보다는 Java 언어에 대한 이해 부족이라고 보는 편이 맞다는 것이다. 이거도 맞는 말 같다.<br>C의 저수준 메모리 관리방법을 모른다 치더라도, Java 자체어서 String이 Immutable(값을 변경할 수 없는) 객체이기 때문에  + 연산을 많이 하면 그 때마다 객체를 새로 생성하고, 객체를 위한 메모리도 새로 생성하게 되며, 그로인해 속도가 저하된다는 사실을 제대로 이해한다면 String 더하기 방식은 피하게 될 것이다.<br><br>개인적으로는 후자 편이다. 저수준 언어를 몰라도 언어의 아키텍쳐를 제대로 이해하려 노력한다면 뭐 별 크게 문제 될 건 없을 것 같다.<br><br>하지만, 역시나 C언어를 안다면 다른 언어를 공부할 때 그 작동 방식을 더 제대로 이해할 수 있다는 사실엔 공감한다.<br><br>그리고, 그 아래 .. 김창준님의 댓글대로...<br>프로그래밍 언어를 이해하는 것 만큼, 어쩌면 그보다 더 중요한 것은, 여럿이 함께 개발하는 데 익숙해지는 것이 아닐까?<br>요즘 계속해서 느끼는 사항이다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Java 6 드디어 나오다.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-12 10:35:50</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Java 6 드디어 나오다.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://java.sun.com">Java 6</a>가 출시되었다.<br><br><a title="" href="http://java.sun.com/javase/downloads/index.jsp">http://java.sun.com/javase/downloads/index.jsp</a>에서 다운로드 하면 된다.<br><br>황장호님께서 Java 6의 새로운 점들을 몇가지 블로그에 올리셨다.<br><a title="" href="http://xrath.com/blog.jsp?cmd=entry&id=300">J2SE 6 이야기 - Provide true double buffering</a><br><a title="" href="http://xrath.com/blog.jsp?cmd=entry&id=301">J2SE 6 이야기 - Selector impl use epoll in Linux 2.6 and newer</a><br><a title="" href="http://xrath.com/blog.jsp?cmd=entry&id=303">J2SE 6 이야기 - ThreadMXBean.findDeadlockedThreads()</a><br><br>* <a title="" href="http://www.javabeat.net/javabeat/java6/resources/index.php#">Java 6 관련 문서 모음</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>어떤 리눅스 배포판을 써야 할까요?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-15 23:03:41</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">어떤 리눅스 배포판을 써야 할까요?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">원문 : http://enterprise.linux.com/article.pl?sid=05/03/01/2248250<br>내 맘대로 번역...<br><BLOCKQUOTE style="background: wheat;"><br>What a choice of distro comes down to, in the long run, is answering the question "which distribution best fits my brain". Asking someone else which distro is best for you is like asking them how you should write a Perl script: there's infinitely more ways than one to do it, and the solution you come up with will undoubtedly look unlike anyone else's.<br>어떤 배포판을 써야 하냐고 묻는 것은, 어떤 방식으로 펄 스크립스를 작성해야 하는지 묻는 것과 같다. 사람에 따라 많은 방법이 있어 딱히 정해진게 있는 것이 아니라 경우에 따라 다르게 써야 한다.<br>In the shorter term, rather than tell newbies to use distro x or y, I tell them what I think was my most important lesson starting out: pick a distro, and stick with it come hell or high water. When you start learning to fix problems instead of reinstalling, only then should you consider trying something else. Different distros treat things differently enough that jumping from distro to distro until you find one that "just works" will only cause you to pull your hair out. Pick *one*, and stick with it. Find the support forums for it, or find a guru who doesn't care what distro you're using. Get it to do what you want, and see if you can get it to do what you want the way you want it done. If nothing else, you'll learn about yourself. You'll learn how you like things to be. Then you can ask in the forums "hey, is there a tool that does what x does, but instead of doing it like y, does it like z?".<br>초보자에 특정 배포판을 쓰라고 말하기 보다는 배포판을 하나 선택해서 제대로 파보라고 권하겠다. 배포판 하나를 붙잡고 산전수전 다 겪어야만 다른 배포판도 잘 다룰 수 있게 된다. 이건 이게 안되네, 저건 저게 안되네 하면서 여러 배포판을 설치만 하다 끝나게 되면 아무것도 남는게 없다. 배포판을 하나 선택하고 배포판 사용자 모임에 가입해서 열심히 파보라. 나중에는 현명하게 질문하는 법을 배우게 될 것이다.<br></BLOCKQUOTE><br><br>옛날에는 Gentoo가 좋았는데, 지금은 페도라만 쓴다. 귀차니즘과 젠투는 아무래도 범용 배포판이 아니라는 생각 때문이다. 나는 누구나 사용할 수 있는 리눅스 배포판을 원하거든... 근데, 어찌됐든, 제대로 열심히 파본 배포판은 없는 거 같다.<br><br>페도라를 한 번 꾸준히 파 봐야겠다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

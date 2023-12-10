@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>좋은 프로그래밍의 원칙들</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2011-09-19 04:14:34</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">좋은 프로그래밍의 원칙들</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://www.artima.com/weblogs/viewpost.jsp?thread=331531">좋은 프로그래밍의 원칙들</a>이라는 글이 올라왔다.<br><br>내가 보기엔 <a href="http://www.aladin.co.kr/shop/wproduct.aspx?ISBN=8991268072&amp;ttbkey=ttbkwon37xi1112002">실용주의 프로그래머</a> 책에 나온 내용을 정리하는 듯한 인상을 주는 내용이다. 다시 한 번 기억할 겸 정리해본다.<br><br><ol><li>DRY - Don't Repeat Yourself : 중복을 허용치 말라. 프로그래머가 기억해야할 가장 중요한 덕목이다.</li><li>추상화의 원칙 : 프로그램에서 각각의 중요한 기능은 소스코드의 한 곳에서만 구현한다.</li><li>KISS(Keep it simple, stupid) : 간결하게!!</li><li>YAGNI(You aren't going to need it) 피하기 : 필요없는 기능을 지금 추가하려 들지말라.</li><li>작동 가능한 가장 간단한 형태로 만들라.</li><li>코드 읽는 이를 생각하게 만들지 말라 : 읽고 이해하기 어려운 코드는 간결하게 바꾸라.</li><li>개방 폐쇄(Open/Closed)의 원칙 : 모듈/클래스/함수 등은 확장에는 열려있고, 수정에는 닫혀있어야 한다. 예를들면, 클래스를 만들때 클래스 사용자가 클래스소스를 수정하게 만들지 말고, 클래스를 상속(확장)해서 쓸 수 있게 만들어라.</li><li>유지보수하는 사람을 위한 코드를 만들라 : 먼 훗날 나 혹은 다른 사람이 유지보수 할 때 문제 없는 코드를 만들라. "내가 짠 코드를 내가 사는 곳이 어딘지를 아는 미친 살인마가 유지보수 할 것이라는 생각을 가지고 코딩하라"</li><li>최소 놀람의 원칙 : 코드가 읽는 이를 놀라게 해서는 안된다. 표준 코딩 컨벤션을 따르고 주석과 명명이 의미 전달을 잘 해야 하며, 잠재적으로 놀래킬 수 있는 부작용을 최소화 하라.</li><li>단일 책임(Single Responsibility) 원칙 : 하나의 컴포넌트는 잘 정의된 하나의 작업만 수행하게</li><li>결합도(Coupling)를 낮추라 : 코드의 한 부분(코드 블럭,함수,클래스 등)은 다른 코드에 의존을 최소화해야 한다. 변수 공유를 최소화 하라.</li><li>응집도(Cohesion)을 높이라 : 비슷한 기능을 하는 코드는 동일한 위치에 두라.</li><li>상세한 구현은 숨기라 : 구현을 숨길수록 해당 컴포넌트를 사용하는 코드에 영향을 최소한으로 주고 수정을 할 수 있게 된다.</li><li>디미터의 법칙(Law of Demeter) : 직접적 관련인 있는 코드만 호출하라.</li><li>조급한 최적화를 피하라.</li><li>코드를 재사용하라.</li><li>관심사의 분리(Separation of Concerns ) : 서로 다른 기능들이 섞이는 것을 최소화 하라. HTML/CSS, AOP 등.</li><li>변화를 포용하라 : 애자일의 원칙중에 하나이며, 위에 나온 많은 원칙들이 코드의 변화를 쉽게하기위한 것들이다.</li></ol><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

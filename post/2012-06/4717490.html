@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>HTTP와 HTTPS를 구분해서 이미지, CSS, Javascript 로딩하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-06-28 23:28:40</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">HTTP와 HTTPS를 구분해서 이미지, CSS, Javascript 로딩하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">다른 브라우저에서는 별 문제 없는데 IE에서는 스키마가 http<span style="color: rgb(255, 0, 0); font-weight: bold;">s</span> 로 된 홈페이지에서 http로 이미지나 CSS, Javascript등의 리소스를 로딩하면 경고가 발생한다. 그래서 현재 주소에 따라 리소스의 주소를 적을때 https인지 http인지 잘 구분해서 적어줘야 한다.<br><br>사실 나는 별로 납득가지 않는데, 일반적으로 암호화 대상이 되는 데이터는 HTML에 거의 다 들어있고, 혹은 폼을 통해 전송하는 데이터에 들어있지 화면을 꾸미는 이미지, CSS, ... 등(이하 리소스 resource)에 들어있는게 아니기 때문이다. 따라서 경고를 안 내는게 맞는 것 같다.<br><b>PS&gt; 2015년 4월, 다시 읽다보니 이 얘기는 잘못된 것이다. HTTPS 에서는 그 대상 리소스도 모두 HTTPS로 읽어야한다. HTT&gt;S가 아니면 중간에 가로채서 내용을 수정할 가능성이 커지는데, HTTPS 웹페이지에서 HTTP로 요청된 CSS나 JS 파일을 변조하여 악성 코드를 심으면 데이터를 빼가는게 가능해지기 때문이다.</b><br><br>아무튼 이런 상황에서 HTTPS인 페이지와 HTTP인 페이지별로 따로 모든 리소스의 경로를 구분해서 줘야 할까?<br><br>당연히 그럴필요 없어서 글 쓴다. 우리가 &lt;img src="/image/something.jpg" /&gt; 이런 형태로 도메인에 상대적인 리소스 주소를 적는 것과 마찬가지로, <span style="font-weight: bold;">스키마(http/https)에 상대적인 주소</span>를 적는것도 가능하기 때문이다.<br><br><font size="5">&lt;img src="<span style="color: rgb(255, 0, 0); font-weight: bold;">//</span><span style="font-weight: bold;">some.domain.com</span>/image/something.jpg" /&gt;</font><br><br>이렇게 <span style="font-weight: bold;">http: 혹은 https: 같은 스키마를 제외하고 //도메인주소/경로</span>를 적는것이 스키마에 상대적인 주소이다.<br>이 주소는 <span style="font-weight: bold;">현재 웹 페이지의 스키마가 자동으로 붙어서</span> 요청이 날라가게 된다.<br><br>이것은 꼼수가 아니라 <a target="_blank" href="http://www.ietf.org/rfc/rfc3986.txt">표준에 명시</a>된 것이다. 모든 브라우저가 지원한다.<br><br>조건문으로 어떨때는 http: 어떨때는 https: 붙이는 고생은 그만하고 상대 스키마를 사용해보시길.<br><br>조건: 브라우저기반 작동시에만 사용할 것. HTML 이메일에 이 방식을 사용하면 보장 못함!<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Eclipse] *.jar 목록을 숨겨라!</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-02 13:29:15</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Eclipse] *.jar 목록을 숨겨라!</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Eclipse로 프로젝트를 하다보면 엄청나게 늘어난 *.jar 라이브러리 목록의 압박으로 인해 정작 소스 코드가 있는 위치를 찾는게 힘들어지는 일이 많다.<br><br>오늘 짜증이 막 올라와서 찾아보니 해결책이 있다.<br><br>참조 : <a title="" href="http://raibledesigns.com/page/rd?anchor=eclipse_tips">http://raibledesigns.com/page/rd?anchor=eclipse_tips</a><br><br>이건 Eclipse 3.0 기준임.<br><br>   1. 패키지 탐색기 패널에서 "패키지 탐색기"라는 레이블의 오른쪽을 보면 아래로 향한 작은 화살표가 있다. 그것을 클릭하고 필터를 선택한다.<br>   2. 필터 패턴 이름 지정(일치하는 이름은 숨겨짐) 항목을 클릭하고, *.jar'''를 입력한다.<br>   3. 보기에서 제외할 요소 선택 항목에서 맨 끝 부분에 보면 참조된 라이브러리가 있다. 여기에 체크를 한다.<br><br>이제는 *.jar는 패키지 탐색기에 더이상 나오지 않는 깔끔한 상태가 된다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[CSS] 출력 내용 한 줄에 보이고 나머지 잘라버리기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-05-29 02:26:08</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[CSS] 출력 내용 한 줄에 보이고 나머지 잘라버리기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://hyeonseok.com/soojung/">현석님의 블로그</a>에서 Recent Entries 등을 소스와 화면출력을 비교해 보면 내용이 긴 줄인데 뒷부분이 잘린 것을 볼 수 있다.<br><br>어떻게 해야 하지? 궁금해서 소스를 봤다..<br>대충 다음과 같다.<br><br>&lt;html&gt;<br>&nbsp;&nbsp;&lt;head&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;style&nbsp;type="text/css"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#sidebar&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size:&nbsp;90%;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width:&nbsp;130px;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#sidebar&nbsp;ul&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin:&nbsp;4px&nbsp;0&nbsp;20px&nbsp;0;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding-left:&nbsp;10px;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;list-style:&nbsp;none;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#sidebar&nbsp;li&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width:&nbsp;100%;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;white-space:&nbsp;nowrap;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;overflow:&nbsp;hidden;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin:&nbsp;0;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;&nbsp;&nbsp;--&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/style&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;css&nbsp;test&lt;/title&gt;<br>&nbsp;&nbsp;&lt;/head&gt;<br>&nbsp;&nbsp;&nbsp;&lt;body&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;id="sidebar"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;아주&nbsp;긴글을&nbsp;써&nbsp;보려고&nbsp;합니다.어떻게&nbsp;될까요?&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;오..&nbsp;뒷&nbsp;부분은&nbsp;삭제된&nbsp;상태로&nbsp;보이는군요..&nbsp;괜찮습니다!&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;이거&nbsp;참&nbsp;괜찮군요!!&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;아무래도&nbsp;white-space:&nbsp;nowrwap;과&nbsp;overflow:&nbsp;hidden;&nbsp;때문인거&nbsp;같습니다.&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;사실&nbsp;저는&nbsp;CSS를&nbsp;잘&nbsp;모르니&nbsp;믿지&nbsp;마세요~&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;from&nbsp;Kwon~&lt;/li&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&lt;/body&gt;<br>&lt;/html&gt;<br><br>저걸 브라우저에서 보면 지정된 폭 이상으로 넘어가는 텍스트는 짤려서 아예 보이지 않는다.<br>그리고 FireFox든 IE든 동일하게 작동한다.<br><br>대충 이해 된거 같다.. ^^; 암튼.. 게시판 같은 거 짤 때 편해졌다~~ 아싸~~<br><br>언능, 표준 HTML이랑 CSS도 익혀야 쓰는데, 요즘 일이 많아서 게다가 대부분의 일이 웹이랑은 무관해서 언제나 본격적으로 공부하게 될른지...<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

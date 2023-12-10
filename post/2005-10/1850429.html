@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Eclipse] Ant View와 Synchronized View</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-10-19 09:28:43</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Eclipse] Ant View와 Synchronized View</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Eclipse 에서 가장 많이 사용하는게 뭘까? 에디터 빼고...<br><br>나 같은 경우에는 Ant 와 CVS Synchronize(동기화) 이다.<br><br>Ant는 특히 톰캣 리로딩을 위해 자주 사용하는 편이다.(톰캣 자동 리로딩 기능을 별로 안좋아한다)<br><br>그리고 Synchronize는 나의 결벽증 때문인지 ... 아무튼 절대로 직접 Commit/Update를 하지 않고 항상 Synchronize를 한 다음에 Commit/Update를 해서 매우 자주 사용하게 된다.<br><br>지금까지 바보같이 Ant build.xml 파일을 열고, Outline에 나온 Ant 태스크 목록에서 오른쪽 단추를 눌러 실행하는 불편함을 감수하고 살았다. Synchronize의 경우에도 프로젝트에서 오른쪽 단추를 눌러서 메뉴를 찾아다니며 했다.<br><br>근데, NewsGroup에 질문해보니 원래 이처럼 자주 쓰이는 메뉴가 뷰로 따로 존재했다..<br><br><blockquote class="src">* Window -> Show View -> Other -> Ant -> Ant<br>* Window -> Show View -> Other -> Team -> Synchronize<br></blockquote><br>엥.. 바로 더블클릭만 하면 원하는 기능이 실행되는걸... --;<br><br>Eclipse 3.1 부터 되는건지 3.0이전 부터 원래 됐던건지는 모르겠다...<br>바보바보바보야~~~<br><br>Show View 목록에 있는 것들 여행좀 해봐야 쓰겠다.<br><br><img src='./1850429/b0046915_9284270.png'></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

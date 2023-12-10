@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[UNIX-SH] 파일에서 줄 끝의 공백을 제거와 기타 Unix 명령행 팁들</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-07-22 10:34:37</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[UNIX-SH] 파일에서 줄 끝의 공백을 제거와 기타 Unix 명령행 팁들</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">파일에서 줄 끝의 공백을 삭제하는 방식으로 VI를 이용할 수도 있고, sed나 awk를 이용할 수도 있다.<br>평소에는 VI로 하는데, 파일이 너무 클 경우에는 sed로 한다.<br><br>VI에서는 <B>:%s/ *$//g</B> 를 이용하면된다.<br><br>VI로 열수 없는 큰 파일은 다음 셸 스크립트를 "rmts"라는 이름으로 만들어서 실행하면 된다.<br><br><BLOCKQUOTE style="background: wheat">#!/bin/sh<br>#&nbsp;Remove&nbsp;trailing&nbsp;spaces<br><br>#&nbsp;If&nbsp;use&nbsp;did&nbsp;not&nbsp;enter&nbsp;a&nbsp;filename,&nbsp;print&nbsp;usage&nbsp;and&nbsp;exit.<br>if&nbsp;[&nbsp;"${1}"&nbsp;=&nbsp;""&nbsp;];&nbsp;then<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;"Usage&nbsp;:&nbsp;rmts&nbsp;filename"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit<br>fi<br><br>mv&nbsp;"${1}"&nbsp;"${1}.rmts.orig"<br><br>sed&nbsp;'s/&nbsp;&nbsp;*$//'&nbsp;"${1}.rmts.orig"&nbsp;>&nbsp;"${1}"<br></BLOCKQUOTE><br><br>기타 Unix 명령행 관련 팁들 : <a href="http://www.nuclearblender.com/leftovers/howto/commandline-spellbook/">Unix command-line reference</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

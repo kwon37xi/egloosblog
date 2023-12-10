@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Vim 모양새</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2008-05-19 07:03:44</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Vim 모양새</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">하얀 바탕에 까만글씨는 살짝 눈이부셔 피로하고, 까만 바탕에 흰글씨는 가독성이 떨어져서 오히려 하얀 바탕보다 더 피로하고... 해서 짜증 났었는데.. 간만에 맘에 드는 Vim 컬러 스킴을 찾았다.<br><br>근데, 알고보니 원래 Vim 싸이트에서도 제일 인기 있는 컬러스킴이었구만..<br><br><a title="" href="http://www.vim.org/scripts/script.php?script_id=1492">pyte color scheme</a><br><img src='./3748780/b0046915_4830a7cc0764b.png'><br>DejaVu Sans Mono 영문글꼴 + 네이버 사전체 한글 글꼴 + pyte color scheme 맘에들어~!<br><br>언제 또 심심할 때 <a title="" href="http://www.cs.cmu.edu/~maverick/VimColorSchemeTest/">Vim Color Scheme Test</a> 싸이트에서 몇 개 보고 직접 붙여서 확인해봐야지.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

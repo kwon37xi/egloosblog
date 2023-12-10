@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[VIM] 백업/스왑 파일 저장 디렉토리 지정</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-11-20 23:43:17</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[VIM] 백업/스왑 파일 저장 디렉토리 지정</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://kwon37xi.egloos.com/1949321">NetDrive를 이용한 MS-Windows에서 FTP를 디스크 드라이브로 매핑</a>하기 때문에 지금까지 모르던 문제를 겪게 됐는데, 그것은 VIM이 파일을 편집할 때와 저장할 때 백업파일과 스왑 파일을 편집하는 파일이 존재하는 디렉토리에 생성한다는 것이다.<br><br>이것은 FTP로 연결한 드라이브에 있는 파일을 편집할 때 상당한 부하로 작용하게 된다.<br><br><a title="Are *.swp and *~ files littering your working directory?" href="http://www.vim.org/tips/tip.php?tip_id=20">Are *.swp and *~ files littering your working directory?</a>를 참조로 하여 VIM의 백업 파일 디렉토리와 스왑 파일 디렉토리를 임의의 위치로 변경할 수 있었다.<br><blockquote class="src">set backupdir=C:/WINDOWS/Temp,./_backup<br>set directory=C:/WINDOWS/Temp,./_backup<br></blockquote ><br>backupdir은 백업 파일 디렉토리를, directory는 스왑 파일 디렉토리를 지정한다. 쉼표에 의해 분리된 순서대로 저장을 시도한다. 실패하면 다음 디렉토리에 저장을 시도한다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

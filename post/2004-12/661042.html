@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[게임] Marbles - 단순한 머리쓰기 게임</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-13 14:56:23</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[게임] Marbles - 단순한 머리쓰기 게임</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><B>Marbles</B><br><br><IMG SRC="http://lgames.sourceforge.net/LMarbles/ss0.jpg" CLASS=IMAGE_MID WIDTH=400 HEIGHT=300 BORDER=0><br><br>리눅스용 게임. 매우 단순한 머리쓰기 게임이다.<br>Atomix 라는 게임의 클론이다.<br><br>    * <a href="http://lgames.sourceforge.net/">http://lgames.sourceforge.net/</a><br>    * SDL로 만들어졌다. 현재 공식 홈페이지에서는 소스 파일과 리눅스, 윈도우, BeOS 버전의<br>바이너리를 받을 수 있다.<br>    * Redhat Linux 사용자는 <a href="http://freshrpms.net">http://freshrpms.net</a> 에서<br>받을 수 있다.<br><br><B>규칙</B><br>화면 오른쪽에 보면 공을 최종적으로 배열해야하는 형태가 나온다.<br><br>화면상의 공들을 화면 오른쪽의 형태로 배치하는 것이 이 게임의 목표이다.<br><br>단, 모든 공들은 한번 움직이기 시작하면 장애물(벽이나 다른 공)을 만날 때 까지<br>멈추지 않는다. 또한, 주어진 이동 회수(Moves) 안에 이동해야 하며, 시간 제한은 없다.<br><br>공을 움직이는 방법은 움직일 공을 마우스로 클릭하고, 화살표가 생겼을 때 클릭하면<br>그 방향으로 움직인다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

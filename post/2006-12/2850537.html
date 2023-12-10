@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>PippoProxy : Tomcat을 위한 정적 데이터 캐시</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-01 22:59:24</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">PippoProxy : Tomcat을 위한 정적 데이터 캐시</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">톰캣으로 웹 어플리케이션을 서비스할 때 지금까지는 주로 아파치 웹 서버에 mod_jk연동을 해서 사용했다.<br>이렇게 하면 정적 컨텐츠는 아파치가, 동적 컨텐츠(JSP,Servlets)는 톰캣이 처리를 하게 되는 것이다.<br><br>이에 대한 100% 순수 자바로 된 아파치 웹서버의 대안이 소개되어있다. - 바로 PippoProxy<br>아직 소개글을 다 읽어보지도 테스트를 해보지도 않았지만, 너무 흥분해서(?) 일단 글을 올린다.<br><br>대충 읽어 본 결과는 서블릿으로서 작동하며, URL Pattern Matching으로 이 특정 서블릿에 지정된 패턴에 해당하는 정적 컨텐츠를 캐싱하는 것으로 보인다.<br>(아직 글을 다 읽어보지 않았으므로 100% 신뢰하지 말 것)<br><br>어쨌든 소개글에 올라온 벤치마크에 따르면 아파치-톰캣 연동보다 더욱 뛰어난 성능을 보여준다.<br>무엇보다도, 연동이 쉽다는 것이 강점인 것 같다.<br><br>나중에 테스트해보고 나름대로의 소개글도 올리도록 해야지~<br><br>Pippo Proxy : <a title="" href="http://sourceforge.net/projects/pippoproxy/">http://sourceforge.net/projects/pippoproxy/</a><br>JavaWorld의 PippoProxy 소개글 : <a title="" href="http://www.javaworld.com/javaworld/jw-02-2005/jw-0228-pippo.html">http://www.javaworld.com/javaworld/jw-02-2005/jw-0228-pippo.html</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

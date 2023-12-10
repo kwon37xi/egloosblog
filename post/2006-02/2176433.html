@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[CVS] &quot;move away &lt;foo&gt;, it is in the way&quot; cvs error</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-02-05 21:44:24</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[CVS] &quot;move away &lt;foo&gt;, it is in the way&quot; cvs error</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="h2">현재 작업 환경</div><br>현재 우리는 프로그램을 작성할 때, 작성은 Eclipse로 윈도우에서 (나는 리눅스에서...) 하고 그것은 리눅스 CVS 에 동기화를 한다.<br>그리고는 CVS와 동일한 리눅스 서버에서 ANT를 이용해 CVS의 자료를 체크아웃해서 웹 어플리케이션을 직접 수행/테스트 한다.<br><br><div class="h2">갑작스런 CVS 오류</div><br>지금까지 몇 달 동안 모두 잘 작동했었다. 헌데 갑자기 클라이언트 측(이클립스)는 정상적으로 CVS에 자료를 업데이트 해주고 또 받고 있는데, 이상하게 리눅스의 ANT를 이용해 업데이트 하는 운영 시스템 쪽은 웹어프리케이션/WEB-INF 디렉토리 이하의 파일들이 최초 업데이트(즉 파일을 모두 삭제하고 처음으로 체크아웃 할 때)는 잘 되는데, 두 번째 업데이트 부터는<br><br><blockquote class="src">move away <파일명>, it is in the way<br></blockquote><br>위와 같은 오류가 나면서 업데이트가 안됐다.<br><br><div class="h2">해결</div><br><a href="http://groups.google.co.kr/groups?hl=ko&lr=&ie=UTF-8&newwindow=1&q=cvs+%22it+is+in+the+way%22&btnG=%EA%B5%AC%EA%B8%80+%EA%B2%80%EC%83%89">위 문제에 관해 뉴스그룹에서 상당한 논의</a>가 오갔다.<br><br>대략 정리해 보면 두 가지 원인이 있는데<br><ol><br>  <li>클라이언트가 윈도우이고 CVS 서버가 유닉스/리눅스 일 경우 줄바꿈 문자가 <br> 과 <br> 으로 다르기 때문에 나타나는 현상이다.</li><br>  <li>클라이언트가 윈도우이고 CVS 서버가 유닉스/리눅스 일 경우 윈도우가 파일 이름의 대소문자를 구분하지 않는데 반해 *nix는 철저하게 구분해서, 동일한 파일명에 대소문자만 다른 파일이 업데이트 될 경우 나는 현상이다.</li><br></ol><br>두 문제는 대략 CVS서버를 최신 버전으로 업그레이드하고, 윈도우의클라이언트에서 파일명 바꿀 때 이름의 알파벳을 바꾸지 않고 대소문자만 바꾸는 그런 행위를 하지 않으면 되는 것 같다.<br><br>하지만 내 경우는 둘다 해당하지 않는 듯 하다.<br>내 경우에는 <strong>운영 시스템 쪽 WEB-INF 의 상위 디렉토리의 CVS/Entries 파일에서 WEB-INF 디렉토리에 관한 정보가 빠져 있었기 때문이다.</strong><br>그래서 다음과 같이 추가해 줬더니 정상 작동한다.<br><br><blockquote class="src">D/WEB-INF////<br></blockquote><br>하지만 왜 WEB-INF 디렉토리에 관한 정보만 빠져버리는지는 아직도 모르겠다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

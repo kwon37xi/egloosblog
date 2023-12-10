@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Google 데스크톱 검색 여럿이서 사용하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-03 10:44:12</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Google 데스크톱 검색 여럿이서 사용하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">회사 등에 중앙 파일 서버를 두고 여러 파일들을 관하는 경우가 많을텐데, 파일 갯수가 많아지면서 웬만큼 철저하게 분류를 관리하지 않는 이상 어느 파일이 어디 있는지 헷갈리는 경우가 생기게 마련이다.<br><br><a href="http://desktop.google.co.kr/">구글 데스트탑 검색(GDS)</a>은 이에 대한 확실한 해결책이다. (물론 파일서버가 윈도우일 경우에)<br><br>덕분에 파일 서버에 부하를 줘가며 검색할 필요가 없어졌다.<br><br>헌데 다른 문제가 있는데, GDS는 꼭, 그 검색 대상 컴퓨터에 가서 검색해야 한다는 것이다.<br><br>구글은 한 컴퓨터를 여러 사람이 검색하는 것에 대해 비용을 요구하는 것 같다.<br>하지만, <a href="http://dnka.com/">http://dnka.com/</a> 를 통해서 그 문제도 해결됐다.(<a href="http://bbs.kldp.org/viewtopic.php?t=55239">http://bbs.kldp.org/viewtopic.php?t=55239</a>)<br><br>dnka를 설치하면 GDS의 플러그인으로 설치되며 중앙 파일서버의 4664 포트로 웹 브라우저를 통해 접속해서 검색이 가능해진다.<br><br>아이디와 비밀번호에 의해 접속을 제한할 수도 있고, IP에 의해 접속을 제한할 수도 있다.<br>우리는 허브를 통해 192.168.1.* 대의 IP를 사용하므로 이 IP 대역을 모두 사용가능하게 설정했다.<br><br>검색 결과는 탐색기로 열리는 것이 아니라 웹 브라우저를 통해 파일을 다운로드하고, 폴더를 살펴볼 수 있다.<br><br>멋지고 편하고 빠르다~~</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

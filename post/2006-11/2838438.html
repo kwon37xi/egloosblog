@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>C# 개발 환경 설정</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-11-25 22:05:40</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">C# 개발 환경 설정</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">이 글은 2005년 3월에 쓴 것임.<br><br>웬만하면 Java만 더 파고 싶은데 어쨌든 걸려오는 태클은 어쩔 수 없다.<br><br>C#을 써서 해야만 하는 작업이 있어서 .Net Framework를 설치하고 .Net Framework SDK도 설치했다.<br>헌데 도무지 C# 컴파일러를 찾을 수가 없었다. 당연히 SDK에 들어 있겠거니 했는데, 그게 아니라 그냥 Framework에 들어 있는 것이었다. (VS .Net 이 없으면 컴파일 조차도 못하는 줄 알고 잠깐 분노.. ^^)<br><br>저런 착각은 자바 프로그래머인 내게는 당연하다. .Net Framework의 역할을 하는 JRE에는 자바 어플리케이션을 실행하는 실행기만 있지 컴파일러가 없기 때문이다. .Net SDK 의 역할을 하는 JDK에 컴파일러가 들어있다.<br><br>현재 .Net Framework의 C#, VB .Net 등의 컴파일러가 있는 디렉토리는 "C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322" 였다.<br><br>저 디렉토리와 .Net Framework SDK 의 Bin 디렉토리를 Path로 설정했다.<br><br>C# 자료를 찾으러 돌아 다니면서 참 안타까운게 있었다. 대부분 열린 읽기/쓰기 정책의 자바 개발자 그룹들과 확인히 달랐다.<br><br>대부분의 국내 C# 커뮤니티들이 상당히 폐쇄적이다. 가입을 안하면 글 읽기 조차 안되게 되어 있다.<br>그나마 <a title="" href="http://www.jabook.net">http://www.jabook.net</a> 이 있어서 다행이었다.<br><br>열린 마음으로 정보를 공유했으면 한다.<br><br><div class="h2">C# 컴파일러 csc.exe 간단 사용법</div><br>원문 : <a title="" href="http://www.wug.or.kr/net/csc.aspx">http://www.wug.or.kr/net/csc.aspx</a><br><blockquote class="src"># csc hello.cs : 컴파일<br># csc /target:library /out:hello.dll hello.cs : DLL 라이브러리 작성<br># csc main.cs /r:hello.dll : hello.dll를 참조하는 main.cs 컴파일<br># csc /? : 도움말<br></blockquote><br><br><div class="h2">VIM과 C#</div><br><blockquote class="src">* 소스코드 작성하고서 :!csc % : 컴파일<br>* :!%:r : 실행<br>* .vimrc<br><br>au&nbsp;BufNewFile,BufRead&nbsp;*.cs&nbsp;map&nbsp;&lt;F6&gt;&nbsp;&lt;ESC&gt;:!cls&lt;ENTER&gt;&lt;ENTER&gt;:!%:r<br>au&nbsp;BufNewFile,BufRead&nbsp;*.cs&nbsp;map&nbsp;&lt;F9&gt;&nbsp;&lt;ESC&gt;:w&lt;ENTER&gt;:!cls&lt;ENTER&gt;&lt;ENTER&gt;:!csc&nbsp;%<br></blockquote></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Java Simple Daemon - 자바로 데몬 만들기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-13 14:33:44</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Java Simple Daemon - 자바로 데몬 만들기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><p><br>Java Simple Daemon은 자바를 이용해서 데몬 프로그램을 작성하도록 도와주는 프레임워크이다(비록 프레임워크라고 부르기엔 너무도 작다 ^^).<br>가끔씩 특정 디렉토리에 들어오는 파일을 감시해서 파일이 들어오면 그 파일을 DB에 넣기만 하거나, 혹은 어떤 방식으로든 메시지를 받아서 받은 메시지를 가공해 다른 쪽에 메시지로 넘겨 주거나 하는 등의 역할을 하는 그런 프로그램을 자바로 짤 경우가 있다.<br>이러한 프로그램들은 일반적으로 그래픽 사용자 인터페이스(GUI)나 화면 출력이 필요 없이 파일로 로그만 남기고 자기 할 작업을 한다. 이러한 프로그램을 데몬(Daemon)이라 부른다.<br>자바로 이러한 데몬을 작성할 경우, 데몬을 실행시키는 것은 문제가 없다.<br></p><br><br>$ nohup java some.Daemon & <br><br><p><br>이러한 식으로 실행하면 된다. 헌데 문제는 종료이다. 프로그램과 의사 소통할 무슨 방법이 없기 때문에 Unix에서 ps -ef명령으로 "java" 프로세스를 찾아서 kill명령을 내리거나 윈도우의 경우에는 프로세스 종료를 시킬 수 밖에 없다. 이러한 문제를 해결하기 위해 만든 것이 Java Simple Daemon(이하 JSD)이다.<br></p><br><br># 홈페이지 : <a href="http://jsd.kldp.net">http://jsd.kldp.net</a><br># 라이센스 : LGPL - 마음껏 복사,수정,사용,배포~~</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Windows XP/2000 과 Apache 2.x Tomcat 4.x 의 mod_jk2를 이용한 연동</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-02-05 19:59:00</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Windows XP/2000 과 Apache 2.x Tomcat 4.x 의 mod_jk2를 이용한 연동</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="h1">Windows(윈도우) XP/2000 과 Apache(아파치) 2.x Tomcat(톰캣) 4.x 의 mod_jk2를 이용한 연동</div><br><br><a href="http://www.okjsp.pe.kr">http://www.okjsp.pe.kr</a> 에 올라왔던 글들과 이것저것을 참고하여 ..<br><br><strong>주의!! : 아파치 재단은 mod_jk2를 단종시켰다. 기존 설정에 대한 변경이라면 참조해도 좋지만 되도록 <a href="http://kwon37xi.egloos.com/1761178">mod_jk 사용</a>을 권장한다.</strong><br><br>Apache와 Tomcat은 준비되어 있다고 간주.<br><br>* Apache와 Tomcat을 설치한다.<br><br>* mod_jk2-*.dll 을 다운로드한다.<br><br>다음 링크에서 적당한것으로 골라잡는다.<br><br><a href="http://mirror.apache.or.kr/jakarta/tomcat-connectors/jk2/binaries/win32/">http://mirror.apache.or.kr/jakarta/tomcat-connectors/jk2/binaries/win32/</a><br><br>나는 jakarta-tomcat-connectors-jk2.0.2-win32-apache2.0.43.zip 를 선택했다.<br><br>* 아파치설치디렉토리modules 에 mod_jk2-2.0.43.dll 을 복사한다.<br><br>* 아파치설치디렉토리confhttpd.conf 파일에 다음을 추가한다.<br><br>LoadModule jk2_module modules/mod_jk2-2.0.43.dll<br><br>* 아파치설치디렉토리confhttpd.conf 파일에서 다음 두 줄을 찾아 편집한다.<br><br><blockquote class="src">DocumentRoot "C:/Program Files/Apache Group/Tomcat 4.1/webapps/ROOT" <br><br>&lt;Directory "C:/Program Files/Apache Group/Tomcat 4.1/webapps/ROOT/"&gt; <br></blockquote><br><br>당연한 얘기지만 "C:Program FilesApache GroupTomcat 4.1webappsROOT"는<br>톰캣 4.1을 기본적으로 깔면 지정되는 톰캣의 / 컨텍스트이다.<br>만약 톰캣 설치 경로가 다르거나 / 컨텍스트의 경로를 바꿨다면, 자기가<br>지정한 경로를 이용하면 된다.<br><br>* 아파치설치디렉토리confhttpd.conf 파일에서 다음을 추가한다.<br><br><blockquote class="src">Alias /examples/ "C:/Program Files/Apache Group/Tomcat 4.1/webapps/examples" <br><br>&lt;Directory "C:/Program Files/Apache Group/Tomcat 4.1/webapps/examples/"&gt; <br>Options Indexes MultiViews <br>AllowOverride None <br>Order allow,deny <br>Allow from all <br>&lt;/Directory&gt; <br></blockquote><br><strong>주의! examples/ 맨 끝의 / 를 빼먹지 말것!</strong><br><br>Alias 는 DocumentRoot에 관계없이 URL을 서버의 전혀 다른 디렉토리에 매핑시키는<br>방법이다.<br>이것은 또한 톰캣의 컨텍스트와 아파치를 연동하는데도 필요하다.<br>즉, 위와 같이 하고서 http://localhost/examples 를 요청하면<br>DocumentRoot로 지정된<br>C:Program FilesApache GroupTomcat 4.1webappsROOTexamples 가 아니라<br>C:Program FilesApache GroupTomcat 4.1webappsexamples 에서 파일을<br>찾는다.<br><br>여기서 예로든 examples 는 또안 톰캣의 웹 컨텍스트이기도 한데, 이것을 톰캣에서<br>처리하게 하려면 또 다른 설정이 필요하다. 계속 읽어나갈 것.<br><br>* 아파치설치디렉토리confhttpd.conf 파일에서 다음부분을 찾아서 index.jsp를<br>추가한다.<br>http://localhost/ 처럼 호출했을 경우 자동으로 http://localhost/index.jsp 를<br>보여준다.<br><br><blockquote class="src">DirectoryIndex index.html index.html.var index.jsp <br></blockquote><br><br>* 아파치설치디렉토리confworkers2.properties 을 생성하고 다음을 추가한다.<br><br><blockquote class="src">[logger.apache2] <br>level=DEBUG <br><br>[shm] <br>file=${serverRoot}/logs/shm.file <br>size=1048576 <br>debug=0 <br>disabled=0 <br><br># Example socket channel, override port and host. <br>[channel.socket:localhost:8009] <br>port=8009 <br>host=127.0.0.1 <br><br># define the worker <br>[ajp13:localhost:8009] <br>channel=channel.socket:localhost:8009 <br><br># Uri mapping <br>[uri:/*.jsp] <br>worker=ajp13:localhost:8009 <br><br>[uri:/examples/*] <br>worker=ajp13:localhost:8009 <br></blockquote><br><br>* 톰캣설치디렉토리confserver.xml 을 편집한다.<br>&lt;Connector&gt; 태그로 시작하는 것은 다음의 것을 제외하고는 모두 불필요하다.<br>다음이 없다면 추가해주고 나머지는 주석처리한다.<br><br><blockquote class="src">&lt;!-- Define a Coyote/JK2 AJP 1.3 Connector on port 8009 --&gt; <br>&lt;Connector className="org.apache.coyote.tomcat4.CoyoteConnector" <br>port="8009" minProcessors="5"maxProcessors="75" enableLookups="true" <br>redirectPort="8443" acceptCount="10" debug="0" <br>connectionTimeout="20000" useURIValidationHack="false" <br>protocolHandlerClassName="org.apache.jk.server.JkCoyoteHandler"/&gt; <br></blockquote><br><br>&lt;Connector&gt; 태그를 추가할 때 주의점은 저 태그는 &lt;Service&gt;태그의 자식으로<br>와야 한다는 것이다. 그렇지 않으면 톰캣 서버가 실행되지 않을 것이다.<br><br>* 톰캣설치디렉토리confjk2.properties 생성<br>이미 존재하는 파일이라면 무시하고 모두 다음과 같은 내용으로 채운다.<br><br><blockquote class="src">handler.list=apr,channelSocket,request,shm <br>channelSocket.port=8009 <br></blockquote><br><br>* workers2.properties 의 uri 에 대한 간단한 설명<br>아파치가 어떤 정보는 톰캣이 처리하게 하고 어떤 정보는 자신이 처리하는지<br>결정하는 기준은 workers2.properties의 uri 항목에 달려있다.<br><br><blockquote class="src">[uri:/*.jsp] <br>worker=ajp13:localhost:8009 <br></blockquote><br>위의 것은 / 이하에 나오는 모든 *.jsp 파일의 처리를 톰캣에게 위임한다는 뜻이다.<br>http://hostname.com/a.jsp 든 http://hostname.com/bbs/list.jsp 든 모두 톰캣이<br>처리한다.<br>만약에 저것을 [uri:/*] 라고 지정한다면 사실상 아파치는 아무 일도 안하고<br>정적(*.html, 이미지, 디렉토리 리스팅 등)인 것과 동적인것(*.jsp, 서블릿) 등<br>모든 처리를 톰캣이 위임받게 된다. 이것은 톰캣을 단독으로 띄우는것과 다름없다.<br>이것은 우리의 목적에 위배된다. 아파치와 톰캣을 연동하는 이유는 정적 컨텐츠는는<br>아파치가 동적 컨텐츠는 톰캣이 나눠 맞게 하려는 것이기 때문이다.<br><br><blockquote class="src">[uri:/examples/*] <br>worker=ajp13:localhost:8009 <br></blockquote><br>이것은 /examples/ 이하의 모든 정적/동적 처리를 톰캣이 맡는다.<br>저렇게 쓰기보다는<br><br><blockquote class="src">[uri:/examples/*.jsp] <br>worker=ajp13:localhost:8009 <br><br>[uri:/examples/servlets/*] <br>worker=ajp13:localhost:8009 <br></blockquote><br>위와 같이 하여 *.jsp 와 서블릿들(서블릿은 모두 /examples/servets/ 에서 호출된다고 가정)만<br>톰캣이 제어토록 한다.<br>안타깝게도.. 톰캣의 examples 컨텍스트는 *Example 이라는 이름의 서블릿을 사용하는데<br>[uri:/examples/*Example] 이라는 패턴은 적용되지 않았다.<br><br>* 톰캣 웹 컨텍스트의 추가와 URL의 연결<br>톰캣에 웹 컨텍스트를 추가 했다고 해서 아파치가 자동으로 그것을 인식하지는 않는다.<br>서로 연결해 주어야 하는데 그 기법은 이미 위에 다 나왔다. 간단한 예를 하나만 더 보인다.<br><br>톰캣의 server.xml 에서 다음과 같은 웹 컨텍스트를 추가했다고 하자.<br><br><blockquote class="src">&lt;Context path="/EclipseTest" reloadable="true" docBase="C:WorkSpaceEclipseTest"/&gt; <br></blockquote><br>저것은 http://hostname/EclipseTest/ 에서 요청되는 파일을 C:WorkSpaceEclipseTest 라는<br>디렉토리에서 찾아서 처리해주라는 뜻이된다.<br>톰캣이 단독으로 움직일때는 당연히 그렇게 되지만 아파치의 입장에서 보면<br>http://hostname/EclipseTest 는 DocumentRoot아래의 EclipseTest 라는 디렉토리에 있는<br>파일들을 요청하는 것으로 보인다.<br>즉, 위에서 아파치를 설정한 대로라면<br>C:/Program Files/Apache Group/Tomcat 4.1/webapps/ROOT/EclipseTest 가 되는 것이다.<br>고로 아파치와 톰캣이 핀트가 안맞으므로 서로 맞춰줄 필요가 있다. (/examples/ 처럼)<br><br>톰캣에 컨텍스트를 추가하고서 아파치의 conf/httpd.conf 에 Alias 와 디렉토리 설정을<br>추가한다.<br><br>또한 디렉토리 설정에서 WEB-INF 디렉토리를 액세스 못하게 만들어줄 필요가 있다.<br>보통 그곳에 중요한 설정 파일등을 넣어두기 때문에 톰캣이 단독으로 뜰때는<br>WEB-INF를 액세스 할 수 없게 하지만 아파치는 그런사실을 모르기 때문에<br>직접 지정해줘야만 한다.<br><br><blockquote class="src">Alias /EclipseTest/ "C:/WorkSpace/EclipseTest/" <br><br>&lt;Directory "C:/WorkSpace/EclipseTest/"&gt; <br>Options Indexes MultiViews <br>AllowOverride None <br>Order allow,deny <br>Allow from all <br>&lt;/Directory&gt; <br><br># WEB-INF 접근을 못하게 막음 <br>&lt;Directory "C:/WorkSpace/EclipseTest/WEB-INF/"&gt; <br>Order allow,deny <br>Deny from all <br>&lt;/Directory&gt; <br></blockquote><br><br>workers2.poperties에 uri 패턴을 설정한다.<br><br><blockquote class="src"># jsp 설정 <br>[uri:/EclipseTest/*.jsp] <br>worker=ajp13:localhost:8009 <br><br># 서블릿 설정 <br>[uri:/EclipseTest/servlet/*] <br>worker=ajp13:localhost:8009 <br></blockquote><br><br>아파치를 재실행하고 http://hostname/EclipseTest 를 요청해본다.<br>참고로 나의 테스트 결과로는 이미 /example/*.jsp 가 설정되어 있을 경우<br>/EclipseTest/*.jsp 를 설정하지 않아도 /EclipseTest/*.jsp 들이 톰캣에<br>의해 실행되어졌었다. 버그인가?<br>모르겠다...<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

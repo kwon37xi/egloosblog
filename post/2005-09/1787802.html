@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[NetBeans] NetBeans 5.0 베타 출시</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-09-29 11:45:51</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[NetBeans] NetBeans 5.0 베타 출시</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://www.netbeans.org">NetBeans</a> 5.0 베타가 출시되었다.<br><br>원래 4.2로 출시되려 했었으나, 워낙에 막강한 기능들을 많이 추가해서 5.0으로 버전을 바꿔버렸다.<br><br>넷빈즈 5.0은 가히 <a href="http://www.eclipse.org">Eclipse</a>의 초강력 도전자라 할 만하다.<br><br>특히 웹 개발쪽에서는 사실 이미 4.1 버전부터 Eclipse를 능가한 상태였고.<br><br>이번에 아래 글에 올린 이메일 일괄 발송 프로그램을 5.0으로 (일반 Java Application 프로젝트) 개발했는데, 내가 가장 아쉬워하는<b>Alt-Enter</b>를 이용한 힌트(Eclipse의 QuickFix Ctrl-1)가 이제 거의 안정적으로 작동했다. 하지만 뭔가.. 키감이랄까? 손맛이랄까? 그런게 Ctrl-1 과는 달리 좀 이질적이다.<br><br>Fix Import는 java.util.* 로 된것을 아직도 클래스 단위로 바꿔주지 못하고 있었다.<br><br>어쨌든, 특히 웹 개발자들은 Eclipse + <a href="http://www.eclipse.org/webtools/">WTP</a> 보다는 넷빈즈가 훨씬 강력하니 꼭 써보라고 권하고 싶다.<br><br>혹시 나중에 기회가 된다면 NetBeans 5.0 리뷰를 한 번 써보고 싶다...</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

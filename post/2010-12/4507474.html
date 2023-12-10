@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>zdnet.co.kr javascript 링크를 일반 링크로 바꾸기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2010-12-09 21:55:39</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">zdnet.co.kr javascript 링크를 일반 링크로 바꾸기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div>나는 <a href="http://www.zdnet.co.kr/" target="_blank">zdnet</a> 기사를 매일 매일 읽는다. 기사 써주는 회사에 대해서 매우 고맙게 생각하지만, zdnet은 IT관련 매채로서는 너무 생각없이(혹은 광고 노출 극대화를 너무 많이 생각해서) 싸이트를 만든 덕분에, 사용자의 불편이 극에 달해있다.</div><div><br></div><div>zdnet 링크는 javascript로 돼 있어서 여러 탭으로 기사를 한꺼번에 열어 두고 읽거나 할 수 없다. 매번 기사를 클릭해 읽고 메인 페이지로 돌아와서 다시 기사 목록을 가리는 배너 광고를 닫아 주고, 기사 읽고 해야 하는 상태이다.</div><div>이는 메인 페이지의 광고를 사용자에게 지속적으로 노출 되게 만들려고, 사용자들의 편의는 모두 무시해 버린 처사이다.</div><div><br></div><div>어쨌든, 자바스크립트 기사 링크를 모두 일반 링크로 바꾸고, 기사를 가리는 둥둥이 배너 광고를 삭제 시켜주는 Google Chrome용 그리스몽키 스크립트를 만들어서 문제를 해소하고 있다.</div><div><br></div><div>firefox 등에서는 이 소스를 참조해서 @require를 사용해서, 소스를 더 간단히 만들어 낼 수 있을 것이다.</div><div><br></div><div><a href="http://wiki.kwonnam.pe.kr/userscripts/zdnetkr" target="_blank"><font class="Apple-style-span" size="4">zdnet.co.kr 링크 보정 chrome용 userscript</font></a></div><div><br></div></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

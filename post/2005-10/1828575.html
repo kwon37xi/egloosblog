@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>iBatis 동적 생성 쿼리(&lt;iterate&gt;)시 이전 컬럼 정보를 가지고 현재 컬럼정보에 강제 매핑하는 현상..</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-10-12 09:54:08</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">iBatis 동적 생성 쿼리(&lt;iterate&gt;)시 이전 컬럼 정보를 가지고 현재 컬럼정보에 강제 매핑하는 현상..</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">iBatis는 일단 쿼리를 실행하고 나면 그 쿼리 ID에 대해 결과를 저장하는 컬럼들 정보를 캐싱하고 있다가, 다음번 쿼리때 그 컬럼 정보들을 재사용한다.<br><br>헌데, 나같은 경우 현재 컬럼 자체를 &lt;iterate&gt;를 이용해 동적으로 생성하기 때문에 동일한 ID의 쿼리라도 실제 쿼리 결과로 돌아오는 컬럼들이 항상 다르다.<br><br>이 경우 iBatis가 예전에 실행된 쿼리의 컬럼 정보에 따라 쿼리 결과로 나온 컬럼 데이터를 매핑하려 들기때문에 현재 쿼리에는 존재하지 않는 컬럼에 대한 결과를 요청하는 사태가 발생한다.<br><br><blockquote class="src">&lt;select  <strong>remapResults="true"</strong> ....<br>어쩌구 저쩌구...<br></blockquote><br><br>위와 같이  remapResults="true" 을 사용하면 컬럼 정보를 쿼리 할 때마다 가져와서 문제가 해결된다.<br><br>그리고 <a href="http://kwon37xi.egloos.com/1825866">http://kwon37xi.egloos.com/1825866</a>에서 말한 현상도 이것 때문이 아닌가 싶다..<br><br>추가 (2006/04/04) : <a title="" href="http://openframework.or.kr/blog/?p=130">이동국님의 블로그에 이에 대한 자세한 설명</a>이 올라와 있다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

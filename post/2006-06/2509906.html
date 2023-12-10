@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Egloos 블로그에 글올릴 때 소스코드 인용하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-06-22 13:25:34</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Egloos 블로그에 글올릴 때 소스코드 인용하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">나 같은 경우 Egloos 블로그에 글을 올릴 때 소스코드 인용하는 경우가 매우 많다.<br><br>나는 주로 HTML직접 입력방식을 선호한다.<br>그래서 소스코드를 올릴 때마다 Tab 을 스페이스로 바꾸고 각 스페이스는 &amp;nbsp; 로 바꾸고, 꺽쇠라도 있을라치면 그것도 바꿔야 하고... 짜증이 이만 저만이 아닌지라, 아예 소스코드를 넣으면 Egloos에 포스팅할 수 있도록 특수문자를 변경해주는 JavaScript를 만들었다.<br><br><a title="" href="http://kr.geocities.com/kwon37xi/egloos-quot.html">Egloos 블로그 소스코드 인용</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>JMS가 뭘까요?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-07-30 01:43:00</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">JMS가 뭘까요?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://www.j2eestudy.co.kr/">J2EE Study</a>에서 지난 주 목요일날(2004년임) 주최한 JMS 강좌를 듣고왔다.<br>일단 내 업무분야이기 때문에 기본은 다 알고 간 상태였지만, 강사의 강의가 이해도 잘 됐을 뿐만 아니라 내게 모자랐던 부분을 잘 잡아줬다.<br><br>이런 좋은 행사가 있었다니.. 열심히 ㅤㅉㅗㅈ아 댕겨야지~<br><br>그리고 강사분께서 JMS에 관한 쉬운 강의 자료를 만들어주셨다.<br><a title="" href="http://www.j2eestudy.co.kr/bbs_data/news01/J2eeSTUDY_20041007.pdf"><br>Enterprise Messaging using JMS</a><br>JMS는 지금도 그렇지만 앞으로도 자바를 이용한 기업용 어플리케이션 통합의 필수 요소가 될 것이기 때문에 SI업체에 근무한다면 언젠가는 만나게 되리라 본다.<br><br>지금 당장 필요없더라도 꼭 한 번 읽어보시라고 강력하게 권하며, 또한 <a title="" href="http://www.hanbitbook.co.kr/look.php?isbn=89-7914-141-6">O'Reilly의 JMS 책</a>도 읽어보시라~<br><br>* 첨부 파일 : <a href='http://pds2.egloos.com/200607/30/15//J2eeSTUDY_20041007.pdf' target='_blank'>J2eeSTUDY_20041007.pdf</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

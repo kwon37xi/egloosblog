@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Fedora 혹은 Redhat Linux 상에서 CVS 구축하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-09-28 10:16:40</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Fedora 혹은 Redhat Linux 상에서 CVS 구축하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Fedora 혹은 Redhat Linux 상에서 CVS 를 pserver 방식으로 구축하기를 정리한다.<br><br>참조 :<br> - <a href="http://www.openseed.net/wiki/Wiki.jsp?page=CVSWithLinux">OpenSeed Wiki CVSWithLinux</a><br> - <a href="https://eclipse-tutorial.dev.java.net/eclipse-tutorial/korean/part2.html">java.net과 이클립스를 이용한 오픈 소스 자바 어플리케이션 개발</a><br><br>CVS가 뭐지 : <a href="http://wiki.kldp.org/wiki.php/FindPage?action=titlesearch&value=CVS">KLDP의 CVS 문서들</a> 이 중에서도 먼저 <a href="http://wiki.kldp.org/wiki.php/CVS">CVS</a> 를 읽어본다.<br><br>* ChangeLog<br>&nbsp;- 2006/07/14 Solaris에서 inetd를 이용할 경우 상황 추가<br><br><div class="h2">1. 패키지 설치</div><br><BLOCKQUOTE class="SOURCE">$ yum install cvs<br></BLOCKQUOTE><br><br><div class="h2">2. 기타</div><br>xinetd 와 Perl도 설치되어 있어야 한다.<br><br><div class="h2">3. CVS 사용자의 생성</div><br><BLOCKQUOTE class="SOURCE"># useradd cvs<br># su - cvs<br>$ mkdir CVS저장소이름<br></BLOCKQUOTE><br>"CVS저장소이름"에 새로운 디렉토리를 생성하고 앞으로 프로젝트의 저장소로 사용할 디렉토리 이름을 지정한다. 사실 그냥 /home/cvs 를 사용해도 상관없지만, 여러가지 프로젝트를 할 경우에 서로 다른 저장소를 사용하고 싶다면 디렉토리를 구분하는 것이 좋다.<br><br><div class="h2">4. /etc/services 설정</div><br><BLOCKQUOTE class="SOURCE">cvspserver      2401/tcp                        # CVS client/server operations<br>cvspserver      2401/udp                        # CVS client/server operations<br></BLOCKQUOTE><br>/etc/services 파일에 위 내용을 추가한다.<br><br><div class="h2">5. /etc/xinetd.d/cvspserver 파일 생성</div><br><BLOCKQUOTE class="SOURCE"># default : on<br># description : The cvsserver serves CVS Password Server sessions; it uses<br>#               unencrypted username/password pairs for authentication.<br>service cvspserver<br>{<br>&nbsp;&nbsp;&nbsp;&nbsp;disable = no<br>&nbsp;&nbsp;&nbsp;&nbsp;flags           = REUSE<br>&nbsp;&nbsp;&nbsp;&nbsp;socket_type     = stream<br>&nbsp;&nbsp;&nbsp;&nbsp;wait            = no<br>&nbsp;&nbsp;&nbsp;&nbsp;user            = <B>cvs</B><br>&nbsp;&nbsp;&nbsp;&nbsp;server          = /usr/bin/cvs<br>&nbsp;&nbsp;&nbsp;&nbsp;server_args     = -f <b>--allow-root=/home/cvs/newproject pserver</b><br>&nbsp;&nbsp;&nbsp;&nbsp;log_on_failure  += USERID<br>}<br></BLOCKQUOTE><br>CVS를 xinetd 의 서비스로 등록한다. "server_args" 부분에서 "-f"와 "pserver" 사이에 <B>--allow-root=저장소경로</B>를 추가함으로써 여러개의 CVS 저장소를 지정할 수 있게 된다. user = cvs 는 cvs 계정을 이용해서 cvs 서버를 사용하겠다는 의미일꺼다... 아마도..<br><BLOCKQUOTE class="SOURCE"># service xinetd restart<br></BLOCKQUOTE><br>xinetd 를 재시작한다.<br><br><div class="h2">5-1. inetd 이용하기</div><br>Solaris의 inetd를 이용해서 CVS서버를 운영할 필요가 있을 경우에, 다른 사항은 모두 같고, xinetd 대신 inetd를 사용하며, /etc/inetd.conf 파일에 다음을 추가한다.<br><blockquote class="src">cvspserver stream tcp     nowait cvs  /usr/local/bin/cvs -f --allow-root=/home/cvs/newproject pserver<br></blockquote><br>그리고 inetd 재시작한다.<br><blockquote class="src"># ps -ef | grep inetd<br># kill -HUP inetd의PID<br></blockquote><br><br><div class="h2">6. 저장소 공간 생성</div><br><BLOCKQUOTE class="SOURCE"># su - cvs<br>$ cvs -d /home/cvs/newproject init<br></BLOCKQUOTE><br>프로젝트 저장소 공간을 초기화 한다. 이제부터 여기다가 소스 파일을 올려놓겠소! 하는 것이다.<br><br><div class="h2">7. 계정 발급하기</div><br>CVS 사용자를 등록해줘야 한다. CVS사용자와 실제 리눅스 운영 시스템 사용자는 분리되어 관리되는데, 그럼에도, <del>CVS 사용자의 사용자명이 리눅스 시스템의 사용자로 존재해야만 한다. 그러니 먼저 사용자 계정을 만들때 <B>useradd 사용자명</B> 명령으로 리눅스 사용자를 추가한 뒤에 아래 작업을 한다.</del>pserver 방식에서 사용하는 CVS 사용자와 실제 Linux상의 사용자는 아무 관련이 없다.<br><br>- /usr/local/bin/cryptpasswd 파일<br><BLOCKQUOTE class="SOURCE">#!/usr/bin/env perl <br>srand(time()); <br>$randletter = "(int (rand (26)) + (int(rand(1) + .5)% 2?65:97))"; <br>$salt = sprintf("%c%c",eval$randletter,eval$randletter); <br>$plaintext =shift; <br>$crypttext = crypt ($plaintext,$salt); <br><br>print "${crypttext}<br>";<br></BLOCKQUOTE><br>CVS에 사용자를 등록하고 그 사용자의 CVS접속 비밀번호를 설정할 때 사용하는 펄 스크립트이다. 만들어서 /usr/local/bin/cryptpasswd 로 저장하고 <B>chmod a+x /usr/local/bin/cryptpasswd</B>로 실행할 수 있게 한다.<br><br>이제 리눅스의 사용자 계정과 별도로 CVS 사용자를 각 저장소 별로 등록할 필요가 있다. <B>저장소경로/CVSROOT/passwd</B>파일에 등록한다. 처음 프로젝트를 생성하면 존재하지 않기 때문에 생성해야 한다.<br>"kwon37xi"라는 사용자를 추가해보자.<br><BLOCKQUOTE class="SOURCE"># useradd kwon37xi<br># su - cvs<br>$ cryptpasswd 1111<br>HJ8V/1Wrr5HpQ<br><br>-- 위 결과는 CVS 저장소 접근용 비밀번호를 생성한 것이다. 비밀번호가 1111일 때에 대한 예이다.<br><br>$ vi /home/cvs/newproject/CVSROOT/passwd<br>kwon37xi:HJ8V/1Wrr5HpQ:cvs<br></BLOCKQUOTE><br>위와 같이 passwd 파일을 만들어주면 사용자가 등록된 것이다. 마지막에 :cvs 는 항상 이렇게 쓴다. cvs 계정을 이용해서 저장소에 접근하라는 의미로 알고 있다.<br><br>이제는 <a href="https://eclipse-tutorial.dev.java.net/eclipse-tutorial/korean/part2.html">Eclipse</a>나 <a href="http://kr.geocities.com/kwon37xi/TortoiseCVS_How-To.pdf">Tortoise CVS</a>등을 이용해서 kwon37xi 사용자가 비밀번호 1111로 /home/cvs/newproject CVS 저장소를 사용할 수 있게 되었다.<br><br><div class="h2">8. 방화벽 설정하기</div><br>사실 pserver 방식은 보안에 취약한 것으로 알려져있다. 데이터 송수신시에 전혀 암호화를 안한다.<br>아무튼 그래도 보호를 해줘야 하니까 회사 내의 특정 아이피들만 접속할 수 있게 설정한다.<br><B>/etc/hosts.allow</B>파일을 없으면 만들어서 다음을 추가한다.<br><BLOCKQUOTE class="SOURCE">cvs: 접속허용IP 192.168.1.* LOCAL<br></BLOCKQUOTE><br>cvs: 뒤에 접속을 허용할 IP 목록을 공백으로 구분하여 적는다.  LOCAL은 리눅스 서버 자체를 의미하고 ALL의 경우에는 아무나 허용한다. 그런뒤에 다시 <B>service xinetd restart</B>를 실행하여 xinetd에 방화벽(?)을 적용한다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

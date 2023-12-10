@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] JRUN4에서 서블릿이 켄텍스트 리스너보다 먼저 실행되는 현상</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-12-16 10:43:34</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] JRUN4에서 서블릿이 켄텍스트 리스너보다 먼저 실행되는 현상</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">JRUN 4 에서 개발을 하는데, Spring applicationContext.xml을 web.xml에 컨텍스트 리스너로 지정해서 읽어오도록 했다.<br><br>이 상태에서 Spring의 bean으로 지정된 DataSource 객체를 Servlet의 init()을 통해 읽어들여 다른 클래스의 static 메소드에 넘겨주는 일을 할 필요가 생겼다.(요즘 자꾸 편법이 등장하는데, 이유는 한 시스템이 아니라 우리가 개발하지 않은 다른 여러 시스템이 한 웹 어플리케이션 콘텍스트 안에 들어가서이다. 자세한 사항은 걍 패스~)<br><br>헌데, 이게 JRUN4에서 작동하지 않는다.<br>JRUN4에서는 load-on-startup으로 지정된 Servlet이 컨텍스트 리스너보다 더 먼저 실행되기 때문에, 내가 짠 서블릿이 Spring 리스너보다 먼저 실행되어 Spring의 설정을 전혀 읽어들일 수 없기 때문이다.<br><br>그래서, 서블릿 대신에 컨텍스트 리스너로 변경하고, 그 리스너를 Spring 리스너 아래에 두어서 문제를 해결했다.<br><blockquote class="src">&nbsp;&nbsp;&nbsp;&nbsp;&lt;listener&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;listener-class&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org.springframework.web.context.ContextLoaderListener<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/listener-class&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/listener&gt;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;listener&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;listener-class&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;com.xxx.ServiceInitListener<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/listener-class&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/listener&gt;<br></blockquote><br>tags : spring servlet jrun4 listener load-on-startup</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

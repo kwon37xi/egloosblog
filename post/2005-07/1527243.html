@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>나의 보물창고 구글 뉴스 그룹 서비스</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-07-10 17:59:16</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">나의 보물창고 구글 뉴스 그룹 서비스</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><B>뉴스그룹?</B><br>뉴스그룹은 유즈넷이라고도 불리우며 웹이 등장하기 전부터 인터넷을 통해 제공되는 게시판 서비스이다.<br><a href="http://user.chollian.net/~driveway/">유즈넷은 내친구</a>를 보면 유즈넷에 대한 많은 사항을 알 수 있다.<br><br>그래도 간단히 소개를 하면,<br><br>뉴스그룹에는 수만개의 게시판이 존재하는데 이 게시판을 "그룹"이라 부른다.<br>각 그룹은 han.rec.humor 처럼 점(.)으로 구분된 이름을 가지고 있다.<br>han 은 한글을 rec 은 아마도 레크레이션을 의미하는 것 같고 humor 는 말그대로 유머다. 즉, 한국어로 유머를 쓰는 게시판인 거다.<br><br>바로 이 뉴스그룹에서 리누스 토발즈가 리눅스 커널을 공개했다. 뉴스 그룹은 리눅스의 모태이기도 하다.<br><br>우리나라의 경우에는 실질적으로 뉴스그룹 사용률이 매우 저조하다. <a href="http://groups.google.co.kr/groups?hl=ko&lr=&newwindow=1&group=han.rec.humor">han.rec.humor</a>를 제외하고는 거의 전멸상태인 듯 하다.<br><br>초고속망이 발달하면서 우리나라에서는 뉴스그룹이 거대파일 공유 시스템으로 인식되고 있다. 지금 이시간에도 파일을 주고 받는 뉴스그룹인 binary 그룹에서는 수많은 영화와 음악들이 공유되고 있다.<br><br><B>구글의 뉴스그룹은?</B><br>나는 <a href="http://groups.google.co.kr">구글의 뉴스그룹 서비스</a>가 없었으면 어떻게 일을 할 수 있었을까 싶다.<br>구글의 뉴스그룹 서비스는 뉴스 서버에 올라온 글을 웹으로 보여주고 웹으로 뉴스 그룹에 글을 올릴 수 있게 해주는 것이다.<br><br>우리나라와는 달리 아직도 쟁쟁한 고수들이 뉴스그룹에 상존하는 외국의 뉴스그룹은 마치 공짜 지식 검색 서비스 같다.<br><br>내가 개발을 하며 무슨 문제에 부딪히면 제일 먼저 구글 검색을 때리고 거기서 즉각적인 답이 안 나오면 바로 구글 뉴스 그룹 검색으로 직행한다.<br><br>그러면 이미 나와 같은 문제로 글을 올린 수많은 사람들과 정성스레 답변한 고수들의 글이 거의 대부분의 경우 나온다.<br>굳이 내가 질문할 필요도 없다.<br><br>개발시에 뭐가 막힌다면 고민하지 말고 구글 뉴스그룹에 발생한 오류 메시지를 검색어로 넣어 보라.<br>답이 보일 것이다.<br><br>물론.. 영어다.. 그건 감수해야한다. 우리나라 사람들은 뉴스그룹을 '''게시판 용도로는''' 거의 안쓰니까.<br><br>그리고 구글이 새로운 <a href="http://groups-beta.google.com">그룹 서비스를 베타 테스팅</a> 한다는 소식을 <a href="http://kr.blog.yahoo.com/jhrogue/1356979.html">jrogue 님의 블로그</a>에서 접했다.<br>이건 보니까 뉴스그룹에다가 다음 까페같은 동호회 서비스를 추가하는 것 같다. 실질적으로 내 관심사는 아니지만 다른 뉴스 그룹 관련 기능도 보강되는 것 같다.<br><br>그래 떠라 구글 뉴스그룹!<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

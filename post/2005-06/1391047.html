@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>꿈(dream)과 비전(vision)의 차이</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-03 10:11:58</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">꿈(dream)과 비전(vision)의 차이</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">가끔씩 배달되는 예병일의 경제노트에서...<br>----<br>2004 베스트 10 : 꿈(dream)과 비전(vision)의 차이<br><br><경제노트 2004 베스트 11 No.10><br><br><br>꿈(dream)은 어떤 것이라도 가능하다.<br>클라우디아 쉬퍼(독일 출신의 세계적인 패션모델)처럼 보이고 싶다는 것도.<br><br>하지만 비전(vision)에는 '이 목표를 이루기 위해 나 자신이 이러이러한 일을 해야 한다'는 구체적인 행동 가능성이 있어야 한다.<br><br>꿈꾸는 사람은 '나도 원래는...' 이라고 말하는 부류다.<br>이들은 항상 자신의 꿈을 말하기는 하지만 '원래는 OO가 되고 싶었는데...'라는 말 뒤에 항상 '그런데 말야'라는 말을 붙인다. 그러면서 왜 그 꿈을 이루지 못했는지에 대한 핑계를 댄다.<br><br>반면 비전이 있는 사람은 '행동'에 가깝다.<br>이들은 계획을 잘 갈고 다듬어 행동으로 옮기고, 과감히 결정하고, 위험을 이겨내며 적극적으로 일한다. 시도하고, 실천하고, 최선을 다하고, 실패를 감안하고, 성공을 축하한다.<br><br>'''자비네 아스고돔의 'Be You!'중에서 (바움, 93p)'''<br>----<br>항상 느끼는 거지만, 아는것은 아무 의미가 없다. 행동하기 전에는.<br><br>연휴가 끝났다.<br><br>행동하는 새해~!<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

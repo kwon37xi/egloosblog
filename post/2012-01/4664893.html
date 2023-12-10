@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Eclipse 파일 Lock 문제 찾는 과정</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-01-10 22:55:57</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Eclipse 파일 Lock 문제 찾는 과정</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">이미 트위터에 여러번 썼는데, MS-Windows환경에서 Eclipse로 개발할때 무수한 파일 락으로 인해 제대로 빌드가 이뤄지지 않는 일이 발생했었다.<br><br>내가 원래는 Ubuntu Linux에서 개발을 해왔기 때문에 파일 락 걸리는 경우를 겪은 적이 없어서 무척이나 당황했었고 짜증이 머리 끝까지 치밀어 올랐었다. 그리고는 문제의 원인을 회사의 윈도우용 보안 솔루션 때문이라고 단정하고는 포기하고 있었다.<br><br>그런데 뭔가 좀 이상한게 있었다. 락 걸린 파일 목록을 스치듯 보다 보니 대부분 properties 파일이었다.<br>그래서 혹시나 해서 <a style="font-weight: bold;" target="_blank" href="http://technet.microsoft.com/en-us/sysinternals/bb896653">Process Explorer</a>를 받아서 <span style="font-weight: bold;">Find -&gt; Find Handle or DLL...</span> 메뉴에서 락 걸린 파일명을 넣고 락을 잡고 있는 프로세스를 찾아 보았더니 이런.... 그게 "javaw.exe"였다. 그 당시 실행된 자바 애플리케이션은 Eclipse 하나 뿐.<br><br>락 걸린 파일들이 모두 프라퍼티 파일들인지라 혹시나 하여 <a target="_blank" href="http://propedit.sourceforge.jp/index_en.html">Properties Editor</a> 플러그인을 삭제하고 재시도 해보고, 다시 깔고 재시도 해보고 하다보니 결국 그 플러그인이 범인이라는 결론이 나왔다.<br><br><a target="_blank" href="http://propedit.sourceforge.jp/index_en.html">Properties Editor</a> 플러그인은 properties 파일에서 한글(Unicode)를 사용할 때 없으면 매우 불편해지는 필수 플러그인 중의 하나이다.<br>하지만 눈물을 머금고 삭제하고, 회사 동료분이 소개해 주신 <a target="_blank" href="http://sourceforge.net/projects/eclipse-rbe/">Eclipse ResourceBundle Editor</a>로 갈아탔다.<br><br><a target="_blank" href="http://sourceforge.net/projects/eclipse-rbe/">Eclipse ResourceBundle Editor</a> 는 <a target="_blank" href="http://propedit.sourceforge.jp/index_en.html">Properties Editor</a>보다는 UI가 불편하지만 어쨌든 유니코드 편집이 되니까.. 하지만 몇몇 버그 때문에 힘들게 하기도 한다.<br><br>가능하면 Properties 파일 대신에 <a target="_blank" href="http://www.ibm.com/developerworks/java/library/j-tiger02254/index.html">Properties XML</a>을 사용하는 방법을 사용할 수 있도록 바꿔가도록 해야겠다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

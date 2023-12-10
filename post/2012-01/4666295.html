@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Pro JPA 2 - JPA 사용자에게 단비 같은 책</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-01-15 14:41:33</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Pro JPA 2 - JPA 사용자에게 단비 같은 책</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="ttbReview"><table><tbody><tr><td><a href="http://www.aladin.co.kr/shop/wproduct.aspx?ISBN=1430219564&amp;ttbkey=ttbkwon37xi1112002&amp;COPYPaper=1"><img src="http://image.aladin.co.kr/product/298/6/coveroff/1430219564_1.jpg" alt="" border="0"></a></td><td style="vertical-align:top;" align="left"><a href="http://www.aladin.co.kr/shop/wproduct.aspx?ISBN=1430219564&amp;ttbkey=ttbkwon37xi1112002&amp;COPYPaper=1" class="aladdin_title">Pro Jpa 2 (1st, Paperback)</a> - <img src="http://image.aladin.co.kr/img/common/star_s10.gif" alt="10점" border="0"><br>Keith, Mike/Springer-Verlag New York Inc</td></tr></tbody></table></div><br>프로그래밍에서 제일 중요한게 뭘까?<br><br>사실상 웹 프로그래머가 가장 많이 하는 일은 데이터를 넣고 보여주고 조작하는 일이다.<br><br>웹 프로그래머이니까 웹 자체에 대한 이해도 물론 중요하지만, 그것 보다 프로그래머가는 데이터 저장소를 어떻게 효율적으로 다루느냐를 제일 먼저 공부해야 하지 않을까? 그리고 웹 개발자에게 있어서 가장 기본이 되는 데이터 저장소는 관계형 데이터베이스일 것이고.<br><br>우리팀은 JPA를 기본 ORM으로 사용하고 있어서 회사 팀원들에게 Pro JPA 2 책 스터디를 제의했고 얼마전에 끝을 냈다.<br><br>이 책은 JPA 사용자들에게 진정 단비와 같다.<br><br>JPA의 구석 구석을 훑고 있으며 설명에 모자람이 거의 없다.<br><br>이 책을 스터디하면서 영문 서적이라 어려움도 많았지만, 많은 사람들이 "도대체 우리가 이걸 모르고 지금까지 어떻게 개발한거지?" 이런 말이 참 많이도 나왔다.<br><br>단, 문제가 있다. 이 책은 기본적으로 EJB 3를 기반으로 설명하고 있다. 따라서 내가 알기로는 EJB 3를 거의 사용안하고 있는 우리나라 환경에서는(현재 추세로 봐서는 EJB 3 사용하는데가 세계적으로도 별로 많을 것 같지는 않다. Spring 3를 쓰겠지) 별로 필요없는 EJB 관련 내용들이 툭툭 튀어 나와서 흐름을 방해한다.<br><br>하지만 Spring Bean 의 기본 개념을 알고 있다면 누구나 EJB의 Stateless Session Bean(스프링의 일반 빈, 단 한 번만 객체 생성)과 Statefull Session Bean(스프링의 프로토타입 스코프 빈, 매번 새로 객체 생성)이 뭔지 금방 깨닫고 Spring에 맞춰서 이해할 수 있을 것이다.<br><br>부족한 부분으로 Spring관련 설정과 OpenSessionInView 등에 대한 것이 있는데, 이는 Spring Reference를 보면 금방 될 것이다. 또한 <a target="_blank" href="http://www.springsource.org/spring-data/jpa">Spring Data JPA</a>도 꼭 살펴보길 권한다.<br><br>JPA 사용자라면 무조건 읽어야 할 책이다.<br><br>이미 본<a target="_blank" href="http://kwon37xi.egloos.com/4636883"> SQL AntiPatterns</a>책도 그렇고, 나는 앞으로도 RDBMS와 SQL에 관한 공부를 좀 더 깊게 할 예정이다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

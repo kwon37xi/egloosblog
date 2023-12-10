@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Code Monkeyism 블로그를 구독해보세요.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2010-03-25 10:01:50</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Code Monkeyism 블로그를 구독해보세요.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://codemonkeyism.com/" target="_blank">Code Monkeyism 블로그</a>를 읽다가 날 새는 줄 모르겠다.<br>자바 개발자라면 꼭 구독하길 권한다.<br><br>특히 <a target="_blank" href="http://codemonkeyism.com/generation-java-programming-style/">Go ahead : Next Generation Java Programming Style</a> 을 읽고 그 글에 링크된 다른 글들을 연쇄적으로 따라가면서 읽어보면 많은 도움이 된다.<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

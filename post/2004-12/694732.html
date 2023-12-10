@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>NetBeans 4.0 한글 깨짐 및 기타 설정</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-21 10:58:30</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">NetBeans 4.0 한글 깨짐 및 기타 설정</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://www.netbeans.org">NetBeans 4.0</a> 에서 한글 디렉토리 명이 깨져보인다.<br><br>이 문제를 해결하기 위해 <B>넷빈즈설치디렉토리/etc/netbeans.conf</B>를 편집하면 된다.<br><br>위 파일에서 <B>netbeans_default_options=</B>의 말미에 <B>--locale EUC-KR</B>를 추가하면 된다.<br><br>그 이외에도 <B>--laf 룩앤필클래스</B>를 이용해서 룩앤필을 지정할 수 있고, <B>--fontsize 12</B>를 이용해서 기본 글꼴 크기도 지정할 수 있다.<br><br>참조 : <a href="http://www.javaservice.net/~java/bbs/read.cgi?m=appserver&b=ide&c=r_p&n=1103249160&p=1&s=t#1103249160">자바 서비스 넷</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

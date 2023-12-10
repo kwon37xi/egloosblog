@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>PostgreSQL SQL Syntax and Use</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-09-12 09:21:37</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">PostgreSQL SQL Syntax and Use</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://www.informit.com">InformIT</a>에 올라은 <a href="http://www.informit.com/articles/article.asp?p=409471&rl=1">PostgreSQL SQL Syntax and Use</a>는 <a href="http://www.postgresql.org/">PostgreSQL</a>에 대한 기초적인 설명서이다.<br><br><a href="http://www.mysql.com/">MySQL</a>의 Library 라이센스가 GPL이 되면서 상용 어플리케이션은 MySQL 사용시 비용지불이 필요한 상태가 되었는데, <a href="http://www.postgresql.org/">PostgreSQL</a>은 상용 어플리케이션에서도 완전히 자유롭게 사용할 수 있는 몇 안되는 오픈 소스 데이터베이스이다. 이미 몇년 전부터 오랬동안 MySQL과 경쟁상대이기도 하고..<br><br>그리고 <a href="http://firebird.sourceforge.net/">FireBird</a> 등이 요즘 뜨고 있는 상용 어플리케이션에서도 자유롭게 사용할 수 있는 또 다른 오픈 소스 데이터베이스이다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

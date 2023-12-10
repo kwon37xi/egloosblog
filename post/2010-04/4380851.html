@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>프로그래밍 언어와 무관하게 웹 서버 부담을 줄이는 몇 가지 방법</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2010-04-22 22:49:26</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">프로그래밍 언어와 무관하게 웹 서버 부담을 줄이는 몇 가지 방법</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">그간 개발한 서비스가 안정화 상태에 들어서면서&nbsp; 요즘에는 로그를 살펴보며 튜닝을 하고 있다.<br><br>프로그래밍 언어나 프레임워크와는 무관하며,&nbsp; 간단하고 상식적인데 쉽게 잊게 되는 성능 튜닝 포인트 몇 가지를 정리한다. 주로 검색 엔진과 Ajax와 관련돼 있다.<br><br>아래 예제는 검색 엔진을 막고 싶지 않을 경우에만 적용된다. 검색 엔진을 아예 막아 버릴 것이라면 사실 크게 상관 없을 수도 있다. 몇몇 robots.txt 를 무시하는 악랄한 녀석들도 있긴 하지만.<br><br><span style="font-weight: bold;"><font size="4">&lt;a&gt;태그에 Ajax 호출 URL을 넣지 말고 Ajax 호출은 되도록 POST 방식으로</font></span><br><br>검색 엔진(특히 Google)을 허용하면서도 성능을 유지하려면 &lt;a&gt; 태그를 매우 조심해서 써야한다. 특히 Ajax 호출 관련된 주소를 &lt;a&gt;태그에 넣으면 안된다. 그때 부터 개발자들의 친구 Google은 적으로 돌변한다. &lt;a&gt;태그의 주소를 어찌 그리 잘 찾아내는지, 열심히도 요청을 날린다(실제로는 Google이 시스템 성능을 봐가면서 요청을 날리는지 큰 부담은 안된다).<br><br>Ajax 호출의 실제 그 결과는 JSON 혹은 XML이라서 검색 결과로 거의 의미도 없다.<br><br>이미 일이 벌어진 상태이고, robots.txt에서 검색 자체를 아예 막을 생각이 없다면, 이 경우 일일이 막을 URL을 찾아서 막아줘야만한다.<br>Ajax 호출 URL은 되도록 숨기도록해야 하며, 가능하면 POST 방식으로 하고, POST 요청이 아닐경우 아예 무시하도록 코드를 짜야 서버측 부담이 덜어진다. SpringMVC 의 경우 컨트롤러에 요청 메소드를 POST로 명시해주면 된다.<br><br><br><span style="font-weight: bold;"><font size="4">URL이 숫자/알파벳 순서를 증가시키는 방식일 경우 Google의 만행</font></span><br><br>우리 서비스의 주소 체계는 http://servername/suburl/<span style="font-weight: bold;">001-00A</span> 뭐 이런식이다.<br>그렇다면 사람이라면 혹시 http://servername/suburl/<span style="font-weight: bold;">002-00A</span> 혹은 ...<span style="font-weight: bold;">001-00B</span> 가 존재한다고 예측할 수 있지 않을까? 구글이 바로 이러한 예측 방식으로 주소를 호출하여 검색 데이터를 취합해 가는 것으로 보인다. 주소 체계가 RESTful 하고 뭔가 규칙성이 있는 것 처럼 보일때 Google이 실제 &lt;a&gt;태그로 외부에 노출되지도 않은 주소를 스스로 예측해서 요청을 날려버리는 것이다.<br><br>사실 이것 자체가 큰 문제는 아닌데, 그에 대한 서버측의 대응이 문제가 되었다. 서버쪽에서 저런 요청이 오면 DB에서 001-00B 에 관한 데이터가 존재하는지 검색을 하고서 그 결과가 존재 하지 않으면 서버에 에러 로그를 남기고 에러 로그를 이메일로 전송을 했다. Google 덕분에 개발자들이 별로 의미도 없는 에러 로그 이메일 폭탄을 맞아버린 것이다.<br>이메일로 에러 로그를 발행하지 않는다 하더라도, 서버 측 로그 파일 용량이 엄청나게 증가했고, 에러 로그의 경우 Stack Trace 까지 함께 남기기 때문에 서버 측의 IO 부담이 가중된다.<br><br>리소스가 존재하지 않는 경우를 비롯한 중요도가 낮은 에러 로그는 Error 레벨이 아니라 Warn 레벨로 남기고 StackTrace도 찍지 않도록 바꿔야 한다.<br><br><span style="font-weight: bold;"><font size="4">비동기 호출과 사용자들의 더블 클릭</font></span><br><br>이미 상식이 된 사실이지만 또 간과하고 지나간 사실이 있다.<span style="font-weight: bold;">&lt;form&gt; 제출이나 비동기 Ajax 호출, 그 중에서도 DB Insert/Update를 가하는 요청을 할 경우에는 필히 더블 클릭 방지를 해야 한다.<br><br></span>Ajax의 비동기 호출 방식은 살짝 인내심이 떨어지는 사용자를 만나게 되면 서버에 극한의 부하를 줄 수도 있다. 바로 결과가 나올 때까지 계속되는 클릭질 때문이다. 특히 윈도우에서 더블클릭이 일상화된 사용자들은 대부분 단일 클릭만 해도 되는 웹 상에서도 습관적으로 더블 클릭을 한다.<br>데이터를 가져오기만 하는 요청에 대한 더블 클릭은 살짝 부하만 일으키기 때문에 시스템이 넉넉한 상태라면 큰 문제가 안된다. 실제 문제는 DB Insert/Update가 일어나는 경우이다. 이 경우에 Javascript 수준에서 더블 클릭에 대한 방어가 안돼 있으면 쓰레기 데이터 혹은 동일 데이터를 두 번 넣어서 발생하는 오류 폭탄을 맞게 된다.<br><br>더블 클릭을 방지하는 간단한 Javascript 코드를 잊지 말고 넣어주자.<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

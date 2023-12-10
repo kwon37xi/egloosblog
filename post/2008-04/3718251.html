@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>티스토리 Blog API 지원.. 이거 너무한데..</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2008-04-25 23:34:44</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">티스토리 Blog API 지원.. 이거 너무한데..</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">헐, Blog API를 지원하는 싸이트에 티스토리 계정을 등록하려고 하면 <strong>티스토리의 아이디와 비번을 그대로</strong> 해당 싸이트에 알려줘야만 한다.<br><br>이거 Blog API 기능을 사용하라는건가 말라는 건가?<br><br>Egloos 좀 본 받아서 어서 빨리 API용 키 발급 방식으로 바꾸기 바란다.<br><br>이거 때문에 이번 서비스 개편에서 블로그로 내보내기 기능을 만들면서, 차마.. 사용자들이 입력하는 Tistory 비밀번호를 그대로 DB에 날로 저장하는 만행을 범할 수는 없기에 암호화를 해서 저장하고 있다. 암호화를 하더라도 키 값을 알고 있는 절대권력자인 개발자는 알아내고자 하면 알 수 밖에 없는 찜찜함이 남아있다. (내 서비스에 로그인하는 비밀번호라면 이중 MD5를 통해서 복호화가 -사실상- 불가능하게 변경을 하겠지만, 이번 경우에는 API를 통해 그 비밀번호를 전송해야 하므로 복호화를 할 수 있어야만 한다.)<br><br>Egloos도 가능하면 키를 제공하는 것과 더불어, API 호출을 통한 기능에 제약을 둘 수 있는 옵션을 주었으면 좋겠다.<br><br>예를들면, Blog API를 이용해서는 블로그 포스팅과 카테고리 목록 가져오기 기능만 된다든가 하는 식으로. Key가 노출되어도 함부로 내 개인 데이터를 볼 수 없게 해야 할 것 같다.<br><br>다른 싸이트라면 뭐 권한 제약까지는 별로 할 생각이 없을 것 같은데, 블로그라는 절대 개인적인 공간에 대해서만큼은 비밀번호 대신 API키를 사용하고, 읽기 권한에 제약을 가해서 함부로 내 개인 데이터가 노출되지 않게 했으면 좋겠다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

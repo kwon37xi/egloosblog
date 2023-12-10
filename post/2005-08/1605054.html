@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Ecilpse WTP Snippets에 항목 추가하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-08-02 17:00:42</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Ecilpse WTP Snippets에 항목 추가하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Eclipse 3.1 + Web Tools Project 0.7 에는 Snippets 라는 기능이 있다.<br><br>자주 쓰이는 내용들을 속에 값만 채워서 에디터에 삽입하게 해주는 기능인데, 자신의 자주쓰는 항목들을 XML 파일로 Import/Export 해서 다른 개발자의 Eclipse로 복사할 수도 있다.<br><br>원래 MyEclipseIDE에 있는건데 그대로 갖다 썼나보다. MyEclipseIDE에 기본 제공되는 Snippets 항목들을 Export 해서 WTP 0.7 에서 Import 했더니 잘 돌아간다.<br><br><B>Snippets 켜기</B> : Window -> Show view -> Snippets<br><br><B>Snippets 에 항목 XML 파일 Import 하기 </B>: Snippets 창에서 오른쪽 클릭 -> Customize -> Import<br><br><a href="http://okjsp.pe.kr/bbs?act=DOWN&maskname=1122981833303&fileName=snippets.zip">MyEclipseIDE의 Snippets들.</a><br><br>나중에 JSTL도 추가해봐야겠다.<br><img src='./1605054/b0046915_1791374.png'></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[맛집] 천호동에 있는 소문난집...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-02-26 22:28:39</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[맛집] 천호동에 있는 소문난집...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">외근을 나갔다가 같이 간 과장님이 과장님 집 근처의 맛있는 식당에 데려가서 밥을 사주셨다.<br><br>8호선 천호역 5번출구에서 조금만 가면 천호 로데오 거리가 나온다.<br>거리를 따라 50미터쯤 가면 첫번째 왼쪽으로 들어가는 골목이 나오고, 거기서 다시 50미터쯤 가면 오른쪽 1층에 "소문난집"이라는 간판이 달린 허름한 식당이 나온다.<br><br>거기서는 김치국 백반을 3500원에 팔고, 달걀 후라이를 추가하면 500원 더내고 먹으면 된다.<br>두 명이 가면 각각 따로따로 반찬이 다른게 10종류 정도가 나온다. 김치와 나물등이 대부분이지만, 정말 맛있고 김치국도 너무 시원하다.<br><br>김치국 외의 다른 메뉴도 다 맛있다고 한다.<br>시간날 때 가서 하나씩 먹어봐야지~<br><br>역시나 나 말고도 <a title="" href="http://blog.naver.com/tabby5849?Redirect=Log&logNo=10001463215">벌써 소개해 둔 사람</a>도 있다.<br><br>참.. 자리 없으면, 다른사람이랑 합석해야 한다.. ^^;;</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

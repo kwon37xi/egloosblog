@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>JSP에서 난 에러 디버깅 하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-12-26 16:21:03</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">JSP에서 난 에러 디버깅 하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://www.okjsp.pe.kr">OKJSP</a>에 올라온 <a title="" href="http://okjsp.pe.kr/seq/109223"> [질문]jsp는 에러를 어떻게 잡나요?</a>라는 질문에 대한 답변으로 쓴 것인데, 다른 JSP 개발자들에게도 도움이 될 것 같아 옮겨둔다.<br><br>1. JSP에서 예외가 발생해서 Stack Trace가 잔뜩 출력되면 <a title="" href="http://okjsp.pe.kr/lecture/lec10/debug01.html">kenu님이 정리해 둔 문서</a>에 따라 예외를 해결한다.<br><br>2. 그러나, 근본적으로 JSP페이지에서는 복잡한 로직에 의한 예외가 발생하지 않게 하는 것이 좋다. 즉, <strong>MVC 패턴에 따라 모든 로직을 JSP외부로 분리하고 JSP에는 화면에 출력하기 위한 로직만 남겨둔다.</strong><br>View에만 관련된 로직에서 난 에러는 굳이 Servlet Class 파일까지 분석하지 않아도 눈대중으로 잡아내는 것이 가능하다.<br><br>3. <strong>JSP Spec 2.0/Servlet Spec 2.4 이상(Tomcat 5이상)을 사용한다.</strong> web.xml 선언을 Servlet Spec 2.4로 해야만한다. 이렇게 하면 JSP에서 오류가 발생할 경우, 컴파일된 서블릿의 줄 번호가 아니라 JSP의 줄 번호를 정확하게 집어준다.<br>이 외의 방법으로는 템플릿 엔진으로 Velocity나 Freemarker를 사용한다. Freemarker는 아직 안써봐서 모르지만 Velocity도 에러가 난 줄을 정확하게 집어준다. <a title="" href="http://velocity.apache.org/">Velocity</a>나 <a title="" href="http://freemarker.org/">Freemarker</a>는 Servlet/JSP 스펙에 상관없이 사용할 수 있기 때문에 Servlet Spec 2.3 이하 사용자들도 문제없이 사용할 수 있다. 개인적으로 Velocity는 HTML 템플릿 엔진으로써는 권하고 싶지 않다(하지만 그래도 JSP 1.2보다는 낫다). Freemarker 권장.<br><br>4. JSP를 사용했는데 분명히 오류가 발생하긴 했는데 그냥 하얀 백지 화면이 출력되거나, 혹은 내용이 상위 일부만 출력되고 HTML 뚝 잘려 나온다면, 그것은 Buffer 때문이다. <strong>JSP의 기본 버퍼 설정인 8KB 가 넘어가는 내용을 이미 출력한 상태에서 예외가 발생하면 지금까지 출력된 내용들 때문에 예외 Stack Trace는 화면에 출력되지 않는 현상이 나타난다.</strong><br>이럴때는 JSP의 맨 처음과 맨 아래를 try/catch로 감싸고 catch 문에서 발생한 예외의 Stack Trace를 printStackTrace()로 출력해서 보면된다.<br>그리고 이를 무시하는 방법으로 JSP의 buffer size를 증가시켜줄 수도 있다.<br><blockquote class="src">&lt;%@ page buffer="100kb" %&gt;</blockquote><br>Buffer size를 증가시키면 예외가 발생할 때까지 출력된 내용이 버퍼 사이즈 이내라면 그 내용을 무시하고 예외를 찍는다.<br><br>결론은.. 되도록 MVC로 작성하라는거..<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

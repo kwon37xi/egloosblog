@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>생각하는 시간을 코딩하는 시간보다 길게 하자?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-09-12 09:35:28</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">생각하는 시간을 코딩하는 시간보다 길게 하자?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://kimsone.com/erik/index.php?pl=158">프로그램 작성에 변화를 주자</a>를 보면, 먼저 생각하고 프로그램을 짜자고 한다.<br><br>나도 동감이다. 아무 생각없이 프로그램을 짜기 시작하면 아주 작은 요구 사항 변화에도 엄청난 고생을 하며 프로그램을 수정하게 된다.<br>내가 짠 프로그램은 절대로 변하지 않는다고? 바로 그 생각이 개발자들을 밤새게 만든다. 이쪽에서 6개월만 일해도 알 수 있는 당연한 법칙... <B>변하지 않는 사실은 변한다는 사실 뿐이다.</B>를 아직도 모르는 사람이다.<br><br>하지만, 3개월짜리 일을 두달 넘게 생각하고, 1,2주만에 코딩한다는 것에 대해서는 회의가 든다.<br><br>천재가 아닌 이상 사람이 구체적인 일의 증거 없이 생각만으로 몇달 혹은 단 며칠을 지내게 되면 집중력이 흐트러지고 목표가 무엇인지에 대한 인식이 흐려지는 경향이 있다.<br><br>일단 잘 그러나 너무 길지않게 생각한 뒤에 유연성을 가진 코딩을 하고 변경 사항이 생기거나 더 나은 방식이 떠오를때 코드를 수정하는 방식이 더 낫다고 보며, 나는 그런 방식을 더 선호한다(이게 아마 <a href="http://www.xper.org">XP</a>에서 말하는 방식인 것으로 알고 있다).<br><br>생각을 하긴 하되 길지 않게 하고, 과감히 결정하고, 구현하되 유연성있게(결합도가 낮게) 구현하고, 나중에 고쳐야 할 부분을 고친다.<br><br>뭐 이런얘기지..<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

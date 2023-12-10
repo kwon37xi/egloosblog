@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>SQL AntiPatterns 프로그래머를 위한 SQL 책</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2011-10-21 18:44:01</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">SQL AntiPatterns 프로그래머를 위한 SQL 책</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="ttbReview"><table><tbody><tr><td><a href="http://www.aladin.co.kr/shop/wproduct.aspx?ISBN=8966260047&amp;ttbkey=ttbkwon37xi1112002&amp;COPYPaper=1"><img src="http://image.aladin.co.kr/product/1208/69/coveroff/8966260047_1.jpg" alt="" border="0"></a></td><td style="vertical-align:top;" align="left"><a href="http://www.aladin.co.kr/shop/wproduct.aspx?ISBN=8966260047&amp;ttbkey=ttbkwon37xi1112002&amp;COPYPaper=1" class="aladdin_title">SQL AntiPatterns</a> - <img src="http://image.aladin.co.kr/img/common/star_s8.gif" alt="8점" border="0"><br>빌 카윈 지음, 윤성준 옮김/인사이트</td></tr></tbody></table></div>내가 DBA는 아니지만 이 책을 DBA가 본다면 "뭐 이런 기초적인걸?"하고 조소를 보낼 수도 있을 것 같은 느낌이 든다. 사실 이 책이 다루는 내용이 그렇게 어려운 것들은 아니라는 얘기다.<br><br>이 책은 서문에서도 밝히고 있지만 DBA를 위한 책이 아니라 DBA없이 데이터베이스 코드를 작성하고 있는 애플리케이션 프로그래머들을 위한 책이다.<br><br>이 책의 역자 서문을 보면 다음과 같은 내용이 나온다.<br><br><blockquote>"많은 개발자들이 기본적인 사용법만 익힌 상태에서 데이터베이스를 사용하고, 그 이상으로 공부하지 않습니다. 데이터베이스를 잘 알지도 못하는 상태에서 별 것 아니라고 생각하기도 합니다."<br></blockquote><br><br>나 또한 역자의 말에 뜨끔하다. 지금까지 개발을 하면서 항상 위와 같은 상태에서 개발했고, 대부분의 프로그래머들도 나와 별반 다를 바 없었다(그렇다고 전체 개발자들이 나 처럼 SQL을 다룬다는 매도는 아니다. 많은 경우 그랬다는 거고, 지금도 나는 그러고 있다는 것이지).<br><br>이 책이 다루는 여러 안티패턴들은 지금도 내가 저지르고 있고, 몰랐다면 저질렀을지 모르는 것들이다. 그에 비해 해결책은 사실 알면 "뭐 이런거였어?" 할 수도 있겠다.<br><br>지금 저지르고 있는 그 "해결책이 그다지 어렵지도 않을지 모르는" 실수들을 어서 빨리 바로 잡도록 하자. 당신이 ORM을 사용한다고 해서 이 책을 안 읽어도 된다고 생각하진 말자. 나는 2007년부터 ORM만 사용해서 코딩했지만 이 책에 나온 실수들을 했다.<br><br>이에 관해 간략한 정리를 <a target="_blank" href="http://wiki.kwonnam.pe.kr/database/sqlantipatterns">http://wiki.kwonnam.pe.kr/database/sqlantipatterns</a>에 해 두었다. 자신이 저 목록에 있는 안티패턴을 저지르고 있거나 그게 잘못된 것이었는지 모르고 있었다면 이 책을 꼭 읽어보길 권한다.<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

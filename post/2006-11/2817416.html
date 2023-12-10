@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Windows PowerShell 1.0 출시</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-11-15 00:29:46</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Windows PowerShell 1.0 출시</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://blogs.msdn.com/powershell/archive/2006/11/14/windows-powershell-1-0-released.aspx">Windows PowerShell 1.0 이 정식으로 출시</a>되었다고 한다.<br>Windows 의 명령행 인터페이스는 Unix 계열에 비하면 너무 짜증이 나고 불편한데, 그에 대해서 MS 에서도 인지를 하고 PowerShell 이라는 것을 만들고 있었다.<br><br>정식 출시는 되었다고 하는데 아직 한글판을 다운로드 받을 수는 없었다.<br><br>일단 다운로드 페이지는 생성되어 있다 : <a title="" href="http://go.microsoft.com/fwlink/?LinkID=75285&clcid=0x09">http://go.microsoft.com/fwlink/?LinkID=75285&clcid=0x09</a><br><br>추가, <a title="" href="http://www.codeplex.com/PowerShellCX">PowerShell Community Extension</a> 을 설치하면 윈도우 탐색기의 디렉토리에서 오른쪽 마우스 버튼을 클릭하면 <strong>Open PowerShell Here</strong> 메뉴가 나타난다. 그걸 클릭하면 해당 디렉토리로 이동한 PowerShell 이 실행된다.<br><br>추가, 11월 15일 현재 다운로드 가능하다. 간단한 스크린 샷을 첨부한다. MS 역시... 매뉴얼을 벌써 다 우리말로 번역해서 배포했다. 한동안 이거 갖고 놀 수 있을 것 같다.<br>PowerShell 에서 Vim 등도 전혀 문제 없이 실행된다.<br><br><img src='./2817416/b0046915_03110564.png'></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

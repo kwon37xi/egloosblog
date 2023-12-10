@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>TinyMCE 버튼 목록 위로 놓기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-07-06 20:50:30</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">TinyMCE 버튼 목록 위로 놓기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">--> <a title="" href="http://kwon37xi.springnote.com/pages/351400">TinyMCE 관련 정리 Springnote 페이지</a><br><a title="" href="http://tinymce.moxiecode.com/">TinyMCE</a> 에디터를 사용하면서 버튼 목록을 위가 아닌 아래에 두었었다.<br><br>왜냐하면, 사람들이 글을 쓸 때 제목을 적고 Tab키를 눌러서 바로 편집 영역으로 들어가는데, 만약 버튼들을 편집 영역 위에 두게되면 사용자가 Tab키를 눌렀을 때 그 많은 버튼들을 일일이 다 지나쳐야 편집 영역에 도착해서 사용성이 떨어지기 때문이다.<br><br>이렇게 사용성이 떨어지는 것을 해결하는 방법이 생겨서 버튼을 위로 올렸다.<br><blockquote class="src">function disableToolbarTabindex() {<br>&nbsp;&nbsp;&nbsp;&nbsp;// prototype.js 이용<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>$$('.mceToolbarContainer a').each(function(elem) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elem.setAttribute('tabindex', '-1')</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;})<br>}<br><br>tinyMCE.init({<br>&nbsp;&nbsp;&nbsp;&nbsp;language : "ko",<br>&nbsp;&nbsp;&nbsp;&nbsp;mode : "exact",<br>&nbsp;&nbsp;&nbsp;&nbsp;elements : 'content',<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>theme : "advanced",</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;//.......<br>&nbsp;&nbsp;&nbsp;&nbsp;<strong>init_instance_callback : disableToolbarTabindex</strong><br>});<br></blockquote><br>위와 같이 버튼들의 tabindex를 -1로 지정하면 Tab키를 건너뛴다.<br>Simple theme는 항상 버튼이 아래에 나오므로 advanced로 변경한다.<br><br>원문 : <a title="" href="http://www.iamzed.com/2007/06/20/using-jquery-to-skip-the-tinymce-editor-toolbar-when-using-the-tab-key/">http://www.iamzed.com/2007/06/20/using-jquery-to-skip-the-tinymce-editor-toolbar-when-using-the-tab-key/</a><br>원문에서는 prototype.js가 아니라 jQuery를 사용한다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

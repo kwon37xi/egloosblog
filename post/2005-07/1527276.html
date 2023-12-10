@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[책] 향수</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-07-10 18:11:17</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[책] 향수</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">평가 : 정말 재밌다~<br><br><img src='./1527276/b0046915_189413.gif'><br><br>파트리크 쥐스퀸트의 책 대부분이 이미 우리나라에서 굉장한 베스트셀러이므로 말이 필요 없을 듯 하다.<br><br>향수는 어느 천재적인 향수 제조자의 살인 이야기 이다.<br><br>정말 재미있게 술술 읽히는 책.<br><br>작가의 묘사력과 역자의 물흐르는 듯한 번역..<br><br>코를 벌름 거리면서 읽었다.<br><br>뭔가 철학적인 듯한 냄새도 풍기는데, 나 처럼 가볍게 책 읽는 사람에게 그다지 껄끄럽게 다가오지도 않는다. <br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

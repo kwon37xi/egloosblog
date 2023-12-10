@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>MS-Windows에서 데스크탑 워크스페이스 나누기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-14 09:26:40</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">MS-Windows에서 데스크탑 워크스페이스 나누기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">리눅스 사용자에게는 매우 익숙하지만 윈도우 사용자에게 매우 안 익숙한 기능이 하나 있는데,<br>바로 워크 스페이스 개념이다.<br><br>흠.. 간단히 말해 윈도우의 데스크탑 화면이 여러개인 것처럼 보이는 것이다.<br>각 워크스페이스상에 있는 프로그램 창들은 다른 워크스페이스로 이동하면 안보이게 된다.<br><br>이 개념은 모든 리눅스에 다 들어 있지만 아직 윈도우에는 안들어 있었는데, 이제 조금씩 도입하려는 시도들이 생기는 것 같다.<br><br>이거 정말 편리하다..<br><br>특히 프린젠테이션 하면서 어떤 프로그램의 실행 화면을 보여주거나 해야 할 경우, 이 워크스페이스를 이용하면 프리젠테이션 화면과 프로그램 실행화면이 전혀 간섭없이 왔다 갔다 할 수 있게 된다.<br><br><br>다음 싸이트에서 구할 수 있다. : <a href="http://www.kipple.pe.kr">http://www.kipple.pe.kr</a><br><br>워크스페이스간 전환은<B> Ctrl-Alt-좌우화살표</B>이다.<br><br>이 싸이트에 가면 알집을 풀어주는 오픈 소스 프로그램도 구할 수 있다.<br><br>멋지다~</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

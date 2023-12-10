@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>RPM 사용하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-06-22 21:20:49</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">RPM 사용하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">RPM은 레드햇 계열의 리눅스에서 패키지(프로그램?)를 설치하고 삭제하는 등의 작업을 하는 프로그램이다. 여기서는 알짜리눅스 5.2 바이블 책에 나온 RPM 사용법을 실질 사용 예를 위주로 정리한다.<br><br>&nbsp;&nbsp;* 가장 많이 사용하는 - 설치하기 옵션!<br>&nbsp;&nbsp;&nbsp;: rpm -Uvh 패키지파일이름 : 업그레이드(기존의 것을 삭제하고 설치)하며 그 과정을 자세히 보여준다.<br>&nbsp;&nbsp;* 가장 많이 사용하는 - 삭제하기 옵션!<br>&nbsp;&nbsp;&nbsp;: rpm -e 패키지이름 : 설치된 패키지의 삭제. 버전번호등을 제외하고 패키지의 이름만 적어준다.<br>&nbsp;&nbsp;* 일반 패키지 설치<br>&nbsp;&nbsp;&nbsp;: rpm -i 패키지파일이름 : 설치한다. (기존의 것 삭제 안함)<br>&nbsp;&nbsp;* 업그레이드<br>&nbsp;&nbsp;&nbsp;: rpm -U 패키지파일이름 : 업그레이드한다. 업그레이드 과정을 자세히 보여주지 않는다.<br>&nbsp;&nbsp;* 설치 거부할 경우 강제 설치하기<br>&nbsp;&nbsp;&nbsp;: rpm -Uvh 패키지파일이름 --force : 동일하거나 더 높은 버전의 패키지가 이미 설치되어 있는 경우라도 강제로 기존의 것을 삭제하고 설치한다.<br>&nbsp;&nbsp;* 의존성을 무시하고 설치하기<br>&nbsp;&nbsp;&nbsp;: rpm -Uvh 패키지파일이름 --nodeps : 의존관계에 있는 다른 패키지가 설치되어 있지 않다해도 강제 설치한다.<br>&nbsp;&nbsp;* 의존성과 버전을 무시하고 강제설치하기<br>&nbsp;&nbsp;&nbsp;: rpm -Uvh 패키지파일이름 --nodeps --force : 걸림없이 무조건 설치!<br>&nbsp;&nbsp;* 의존성 무시하고 삭제하기<br>&nbsp;&nbsp;&nbsp;: rpm -e 패키지이름 --nodeps : 이 패키지를 필요로 하는 다른 패키지가 있더라도 무시하고 패키지를 삭제한다.<br>&nbsp;&nbsp;* 테스트만 해보기<br>&nbsp;&nbsp;&nbsp;: rpm [설치/삭제 등의 옵션들] --test : 실제로 작업을 하지 않고 작업 결과에 대한 테스트만 해볼 때 사용한다.<br>&nbsp;&nbsp;* 설치된 모든 패키지 보기<br>&nbsp;&nbsp;&nbsp;: rpm -qa : 모든 패키지 리스트 출력<br>&nbsp;&nbsp;&nbsp;: rpm -qa | wc -l : 총 설치된 패키지 개수 출력<br>&nbsp;&nbsp;* 설치된 패키지의 정보 보기<br>&nbsp;&nbsp;&nbsp;: rpm -qi 패키지이름<br>&nbsp;&nbsp;* 특정 패키지가 포함하고 있는 파일 목록은?<br>&nbsp;&nbsp;&nbsp;: rpm -ql 패키지이름<br>&nbsp;&nbsp;* 패키지 파일이 포함하고 있는 파일 목록은?<br>&nbsp;&nbsp;&nbsp;: rpm -qlp 패키지파일이름<br>&nbsp;&nbsp;* 이 파일은 어느 패키지에 포함된 걸까?<br>&nbsp;&nbsp;&nbsp;: rpm -qf 파일이름<br>&nbsp;&nbsp;* 패키지 파일에서 패키지 정보 출력<br>&nbsp;&nbsp;&nbsp;: rpm -qip 패키지파일이름<br>&nbsp;&nbsp;* 패키지 검사하기<br>&nbsp;&nbsp;&nbsp;: rpm -V 패키지이름 : 설치된 패키지 검사하기. 설치 후 어떤 파일이 어떻게 바꼈는지 알 수 있다.<br>&nbsp;&nbsp;* 의존성에 문제있는 패키지는?<br>&nbsp;&nbsp;&nbsp;: rpm -Va --nofiles : 설치된 모든 패키지를 검사하여 의존성에 문제가 있는 것을 찾아낸다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

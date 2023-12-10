@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] JSP의 web.xml에서 error-page 를 설정했으나 예외 정보를 출력하지 못한다.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-11-14 13:54:48</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] JSP의 web.xml에서 error-page 를 설정했으나 예외 정보를 출력하지 못한다.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">JSP 페이지에서 직접 &lt;%@ page errorPage="/error/error.jsp" %&gt; 와 같은 형식으로 에러 페이지를 지정할 경우 error.jsp에서는 그냥 <strong>error</strong>라는 객체를 사용해서 예외 사항을 출력하는 등의 작업을 할 수 있다.<br><br>하지만 JSP에 일일이 에러 페이지를 지정하는 대신 web.xml 에 다음과 같은 형식으로 에러 페이지를 설정할 수 있다.<br><blockquote class="src">&nbsp;&nbsp;&nbsp;&nbsp;&lt;error-page&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;exception-type&gt;java.lang.Throwable&lt;/exception-type&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;location&gt;/error/error.jsp&lt;/location&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/error-page&gt;<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;error-page&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;error-code&gt;404&lt;/error-code&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;location&gt;/error/404.jsp&lt;/location&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/error-page&gt;<br></blockquote><br>위와 같은 형식으로 Throwable 로 넘어오는 모든 예외를 특정 JSP로 넘기게 했을 경우, <strong>error.jsp에서는 더이상 "error" 객체를 사용할 수 없다.</strong><br><br>이유는 JSP 스펙에서는 예외 객체를 "javax.servlet.jsp.jspException" 라는 request 속성(attribute)로 저장해서 그것을 "exception" 이라는 객체로 넘기지만 서블릿 스펙에서는 "javax.servlet.error.exception"라는 속성으로 저장하기 때문이라고 한다.<br><br>web.xml 에서 예외 날리기를 설정할 경우 서블릿 스펙을 따르나 보다.<br><br>나 같은 경우 error.jsp 에서 예외를 로그로 남기고, 개발시에는 화면에 예외를 뿌리기까지 하는데(물론 개발 끝나면 페이지를 사용자 친화적으로 바꾼다) 그러기 위해서 다음 처럼 예외 객체를 가져올 수 있게 해야 한다.<br><br><blockquote class="src">Throwable throwable = (Throwable)request.getAttribute("javax.servlet.error.exception");<br></blockquote><br>JSP 2.0 에서는 서블릿을 기준으로 속성이름을 통일해 버렸다고 한다. (참조 : <a title="" href="http://kr.geocities.com/kwon37xi/jsp20/WhatsNewJSP20-2.html">http://kr.geocities.com/kwon37xi/jsp20/WhatsNewJSP20-2.html</a>)<br>참조 : <a title="" href="http://forum.java.sun.com/thread.jspa?threadID=539616&messageID=2613770">http://forum.java.sun.com/thread.jspa?threadID=539616&messageID=2613770</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

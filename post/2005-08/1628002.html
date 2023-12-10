@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[UNIX] root 이외의 계정으로는 ftp 로그인이 안돼요!</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-08-09 14:04:45</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[UNIX] root 이외의 계정으로는 ftp 로그인이 안돼요!</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">HP-UX 상에서 작업 중인데, root 외의 계정으로는 로그인이 안된다.<br><br><a href="http://docs.hp.com/en/B2355-90778/index.html">HP-UX 의 FTP 관련 문서</a>를 찾아보고, <br>/etc/ftpd/ftphosts를 다음과 같이 설정했는데도 불구하고 작동하지 않았다.<br><br><BLOCKQUOTE class="SOURCE"> allow   username   myip<br> allow   root   myip<br></BLOCKQUOTE><br><br>그러면서 ftp 클라이언트가 내는 오류라고는, "530 User username access denied..." 가 끝... --;<br><br>결론은 내가 사용하는 계정의 셸 때문이었다.<br><br>/bin/ksh 를 셸로 사용하는데, Telnet 로그인에는 문제가 없지만 FTP 로그인은 안됐다.<br><br><B>/etc/shells</B>에 다음과 같이 추가해주니 잘 된다.<br><BLOCKQUOTE class="SOURCE">/bin/sh<br>/bin/ksh<br></BLOCKQUOTE><br><br>이 문제는 아마 거의 모든 *nix 계열에 적용될 것 이다. 그리고 root 는 거의 모든 *nix 에서 항상 /bin/sh를 셸로 사용한다.<br><br>참조 : <a href="http://groups.google.co.kr/group/comp.sys.hp.hpux/browse_thread/thread/342784eae04fbf4a/e2743ecc70f5e5ff?lnk=st&q=hpux+ftpd+530+User+access+denied...&rnum=3&hl=ko#e2743ecc70f5e5ff">구글 그룹스</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>궂이? 구지? 굳이??</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-13 15:33:03</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">궂이? 구지? 굳이??</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><B>구지 xxx 하실 필요까지는 없습니다.</B><br><br>저.. 구지...가 참 구질구질하다.<br>맨날 쓸 때마다 헷갈린다.<br><br>정확한 표기는 궂이도, 구지도 아닌 <B>굳이</B>이다.<br><br>아래는 야후! 사전의 검색결과이다.<br><hr /><br>굳이 [새창]<br>굳이[구지] <부사> ①단단한 마음으로 굳게. ¶～ 거절하다.<br>②고집스럽게 구태여. ¶～ 그럴 필요까지는 없다.<br><hr /><br>내가 저걸 굳이 찾아본 이유는, 쓸 때마다 찜찜하고, 웬만하면 우리말을 제대로 쓰고 싶고,<br>우리말을 제대로 써야 뭔가 있는 놈 티가 나기 때문이다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

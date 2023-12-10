@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>격돌!「모질라 파이어폭스 1.0 vs. MS 익스플로러 6」</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-14 09:32:24</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">격돌!「모질라 파이어폭스 1.0 vs. MS 익스플로러 6」</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://www.zdnet.co.kr">ZDNet</a>에 올라온 기사로, IE 6과 파이어폭스 1.0을 비교한다.<br><br>기사원문 : <a href="http://www.zdnet.co.kr/review/software/desktop_sw/0,39024849,39131624,00.htm">http://www.zdnet.co.kr/review/software/desktop_sw/0,39024849,39131624,00.htm</a><br><br>기사 자체가 우리나라사람이 쓴게 아니기 때문에 우리나라 현실과 약간 다를 수 있다.<br><br>외국 사이트들은 액티브액스를 거의 안쓰고, 대부분 표준에 맞게 써서, 파이어폭스에서 아무 문제없이 사용가능하다. 기사 내에서도 보면 거의 100% 작동한다고 나온다.<br><br>하지만 MS 노예국 - 대한민국은 그렇지 못하다.<br><br>대한 독립 만세를 외치고 싶다...<br><br>어쨌든 기사 결론은.... 파이어폭스가 더 좋다! - 당연한거 아닌감?</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

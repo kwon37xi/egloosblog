@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>HPJmeter로 Java 어플리케이션의 퍼포먼스 튜닝(Perfomance Tuning)</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-02 13:33:30</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">HPJmeter로 Java 어플리케이션의 퍼포먼스 튜닝(Perfomance Tuning)</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">HP-UX 상에서 HP의 자바 퍼포먼스 튜닝 도구를 이용하는 방법에 대해 설명한다.<br>꼭 HP-UX가 아니더라도 HPJmeter등을 사용할 수 있다.<br><br>이 글 자체가 어디서 퍼온거 같은데 원문 출처가 표시되어 있지 않다..<br><br>원문 : <a title="" href="http://blog.naver.com/jaemy98.do?Redirect=Log&logNo=80005525468">http://blog.naver.com/jaemy98.do?Redirect=Log&logNo=80005525468</a><br>또한 동일한 글이 파워 포인트로 작성되어 <a title="" href="http://test.digital.co.kr/hprc/mc_file/40/Java_Seminar_Part2.ppt">http://test.digital.co.kr/hprc/mc_file/40/Java_Seminar_Part2.ppt</a> 여기에 올라와 있다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

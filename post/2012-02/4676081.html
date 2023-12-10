@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] Spring 3.0 -&gt; 3.1 업그레이드시 발생한 오류</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-02-16 11:59:42</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] Spring 3.0 -&gt; 3.1 업그레이드시 발생한 오류</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://forum.springsource.org/showthread.php?122577-XML-Validation-Problems-A-schema-cannot-contain-two-global-components-with-the-same">http://forum.springsource.org/showthread.php?122577-XML-Validation-Problems-A-schema-cannot-contain-two-global-components-with-the-same</a> 참조<br><br>applicationContext*.xml 에서 다음과 같은 오류가 발생한다.<br><br>이유는 Spring-data-jpa 가 Spring 3.0 스키마에 대해 명시적 의존을 하는 상황이기 때문이라고 한다. 현재 이 버그는 Spring Data JPA에서 고쳐지긴 했는데, 문제는 정식 버전으로 아직 배포가 안된 상황이다. 곧 해결 될 듯.<br><br>유효성 검사에서만 오류가 발생하고 실제 사용에는 문제가 없다. Eclipse에서 XML/XSD 관련 유효성 검사를 끄면 에러를 안 볼 수 있다.<br><br><blockquote class="src">Error Description<br>--------------------------<br>The errors below were detected when validating the file "spring-context-3.0.xsd" via the file "applicationContext-jpa.xml". In most cases these errors can be detected by validating "spring-context-3.0.xsd" directly. However it is possible that errors will only occur when spring-context-3.0.xsd is validated in the context of applicationContext-jpa.xml.<br><br>Error<br>--------------------------<br>Description Resource Path Location Type<br>Referenced file contains errors (jar:file:/C:/Users/m061385/.m2/repository/org/springframework/spring-beans/3.1.0.RELEASE/spring-beans-3.1.0.RELEASE.jar!/org/springframework/beans/factory/xml/spring-beans-3.0.xsd). For more information, right click on the message in the Problems View and select "Show Details..." applicationContext-jpa.xml /boss/src/main/resources/META-INF/spring line 1 XML Problem<br><br>Error Details<br>--------------------------<br>sch-props-correct.2: A schema cannot contain two global components with the same name; this schema contains two occurrences of 'http://www.springframework.org/schema/beans,identifiedType'.<br></blockquote></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

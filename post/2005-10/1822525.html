@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Java] 파일 다운로드 클래스 - 한글 처리 포함</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-10-10 13:48:03</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Java] 파일 다운로드 클래스 - 한글 처리 포함</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">아래 클래스는 MS IE, Mozilla, Opera 등을 위해 한글 파일명 다운로드 처리까지 된 다운로드 도우미 클래스이다.서블릿에서 download() 메소드를 호출하여 사용하면 된다.현재 Tomcat 5.0.28 에서 MS IE 6.0, FireFox 1.0.6, Opera 8.5, 한글 인코딩 EUC-KR 일때 한글 파일명이 제대로 다운로드 되는 것을 확인하였다.<br><br>Egloos HTML 편집기 버그 때문에 제대로 내용이 안나와서 소스 이전 : <a target="_blank" href="http://wiki.kwonnam.pe.kr/java/servlet/download">http://wiki.kwonnam.pe.kr/java/servlet/download</a><br><br>추가(2010/08/30) : response.setHeader("Content-Transfer-Encoding", "binary"); 도 함께 할 것.<br>추가(2011/11/09) : userAgent null 체크 추가. 가끔 웹 다운로더 플러그인들이 User-Agent 헤더를 안보내주는 현상이 있다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

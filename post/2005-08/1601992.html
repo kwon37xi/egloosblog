@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>12억개의 레코드를 날려먹을 뻔...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-08-01 20:29:32</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">12억개의 레코드를 날려먹을 뻔...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">20분 전 쯤에, 실제 운영서버에서 12억개의 레코드를 날려먹을 수 있는 쿼리를 날렸다가 급히 복구(??)했다.<br><br>아무리 시간이 지나도 결과가 안나와서 봤다가 까무라치는줄 알았다.<br><br>다행히 롤백 했지만....(롤백하는데 까지 거의 30분 걸림...)<br><br>시스템 관리를 직접 DB에 쿼리날리는 식으로 하는 것의 위험성을 절감했다.<br><br>프로그램좀 잘 마무리하고(사실 이 시스템은 프로그램 자체 보다는 업무 프로세스의 복잡성 때문에 프로그램이 자동으로 해결 못해주는 경향이 더 강하다) 업무 프로세스를 간소화하지 않으면, 언제 한 번 크게 당할 것 같은 느낌이다.<br><br>그리고...<br><br>ROOT권한과 DB 제어 권한을 가지고 작업할 때는 무조건 잠도 푹자고, 술도 안마신 상태에서만...!<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

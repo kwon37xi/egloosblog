@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[책] Headfirst Design Patterns</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-10-24 21:44:17</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[책] Headfirst Design Patterns</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://www.aladdin.co.kr/shop/wproduct.aspx?ISBN=8979143400&partner=egloos" target="_NEW"><img class="image_left" src="http://image.aladdin.co.kr/coveretc/book/coveroff/8979143400_1.jpg" border="0" align="left" alt="" />Head First Design Patterns</a><br>에릭 프리먼 외 지음, 서환수 옮김 / 한빛미디어<br>나의 점수 : ★★★★★<br><br>쵝오야~<br><br>도대체 내가 디자인 패턴을 공부한다고 한지가 언제인데, 이제서야 이 책을 다 읽었는지, 한심스럽다.<br>게다가 이 책을 다 읽은 후에는, 더더욱 내가 한심스럽게 느껴졌다.<br><br>책을 읽는 내내, 예전 프로젝트에서 내가 어떻게 클래스를 구성해야 할지 막막해 하며 두서 없이 구현했던 코드들이 마구 부끄럽게 느껴져서 얼굴이 화끈 거렸다. (누가 그 코드 보면 어쩌나... ㅜㅜ)<br><br>디자인 패턴은 내 생각에 자바를 배우고 실전에 들어가기 전에 꼭 공부해야 하지 않을까 싶다.<br><br>이 책을 보면 패턴의 기본이 머릿속에 쏙쏙들어올 것이다. 번역 상태도 매우 좋아서 읽는데 부담이 없다.<br><br>그리고, 이 책은 꼭 끝까지 보기 바란다. 지나치게 패턴에 집착하면 안되는 이유까지도 읽어봐야 할 듯. 나 스스로도 예전에 확장성을 고려한답시고 너무 복잡한 방식을 썼던 적이 있어서 개발 기간만 잡아먹고 소스 코드를 알아보기 힘들게 만든적이 있다. Keep it Simple~!<br><br>앞으로도 이 책을 재독 삼독 할 예정이고, 다른 패턴과 리팩토링 책들을 4~5권 더 볼 예정인데, 패턴 입문서로 헤드퍼스트 디자인 패턴은 너무도 훌륭하지 않은가 싶다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

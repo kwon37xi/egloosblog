@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Lombok을 사용하여 Java 소스의 가독성을 높이고 코딩량도 줄이자.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-06-03 17:44:43</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Lombok을 사용하여 Java 소스의 가독성을 높이고 코딩량도 줄이자.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://projectlombok.org/" target="_blank">Lombok</a>은 나온지 꽤 오래되었다. <a title="" href="http://wiki.kwonnam.pe.kr/java/lombok" target="_blank">내 위키의 Lombok 관련 정리</a>.<br><br>우리가 자바 클래스를 만들때 기본적으로 만드는(특히 DTO 혹은 Entity)의 Getter/Setter 메소드를 자동생성해준다.<br><br>그 외에도 hasCode(), equals(), toString() 등도 적합하게 만들어주며, @Slf4j 같은 어노테이션을 사용하면 log 객체도 적절하게 생성되어 바로 log.debug(..)를 사용할 수 있게 된다. 그 외에도 강력한 기능들이 많은데 홈페이지를 참조하자.<br><br>예를 들면 다음과 같은 코드 만으로 이미 getXXX(), setXXX() 등이 컴파일 타임에 모두 자동으로 만들어진다. 실제 소스상으로는 존재하지 않는 상태로.<br><br><blockquote class="src">@Data<br>public class SomeEntity {<br>&nbsp;&nbsp;private String name;<br>&nbsp;&nbsp;private int birthYear;<br>&nbsp;&nbsp;private int birthMonth;<br>&nbsp;&nbsp;private int birthDay;<br>&nbsp;&nbsp;private String phoneNumber;<br>&nbsp;&nbsp;private Sex sex;<br>}<br></blockquote><br><br>요즘 Eclipse 같은 IDE들이 getter/setter를 다 자동으로 만들어주는데 저게 뭐 그렇게 중요할까?<br><br>첫째는 소스 가독성이다.<br><br>습관적으로 getter/setter를 만들다 보면 사실 정말 똑같은 코드가 반복해서 생성되게 된다. 이 상황에서 유달리 다른 로직이 들어간 getter/setter가 가끔 있게 마련인데 이 때 이 특별히 튀는 이 코드를 찾아내는 것이 여간 번거로운 것이 아니다.<br><br>lombok을 사용하면 @Data 어노테이션 만으로 기본 getter/setter가 자동 생성되고, 로직이 들어가는 일부 getter/setter만 직접 구현하면 된다. 따라서 소스 코드 가독성이 매우 높아지고 유지보수성도 증대된다.<br><br>둘째로 아무리 IDE가 자동으로 getter/setter를 자동 생성해줘도 코딩 도중 지속적으로 추가되는 필드에 대해서 단순 반복 노가다를 한다는 점은 변함이 없다. 노가다 량이 줄긴 하지만. lombok은 @Data 어노테이션만 주면 그 뒤로는 신경쓰지 않아도 된다.<br><br>Lombok을 사용한지 1년이 넘은 것 같은데 이제와서 추천하는 이유는, 1년간 사용하면서 그 안정성과 편리성을 확신하게 되었기 때문이다.<br>아무리 편해도 안정적이지 않고 코딩시 특히 IDE와의 결합이 잘 안되면 짜증을 유발하기 마련인데, Lombok은 이제 거의 완숙 단계에 다달았다.<br><br><strong>최소한 Eclipse, Maven, JPA, Hibernate 등과 사용하는데 아무 문제 없음을 1년 넘는 프로젝트 기간동안 확신하게 되었다.</strong><br><br>Eclipse의 경우 가끔 이름 Refactoring시에 엉뚱한 변경이 가해지는 경우가 빈번히 발생했었는데, 이제는 그런 현상도 거의 다 사라졌다. 단, <strong>AspectJ 와 함께 사용할 때는 문제가 있다.</strong><br><br>강력히 추천한다. Lombok!</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

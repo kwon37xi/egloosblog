@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>리눅스에서 플래시가 깔린 파이어폭스가 자주 다운된다면..</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2008-04-13 20:19:24</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">리눅스에서 플래시가 깔린 파이어폭스가 자주 다운된다면..</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">리눅스(Linux)에서 플래시(Flash)가 깔린 파이어폭스(FireFox)가 아래 동영상과 비슷한 현상을 보이며 자주 다운된다면,<br><br><object width="425" height="355"><param name="movie" value="http://www.youtube.com/v/hk5_4WoBy54&hl=en&color1=0x006699&color2=0x54abd6"><param name="wmode" value="transparent"><embed src="http://www.youtube.com/v/hk5_4WoBy54&hl=en&color1=0x006699&color2=0x54abd6" type="application/x-shockwave-flash" wmode="transparent" width="425" height="355"></object><br><br><strong>/etc/firefox/firefoxrc</strong> 파일에 다음을 추가한다.<br><blockquote class="src">XLIB_SKIP_ARGB_VISUALS=1</blockquote><br>이제 플래시가 쌩쌩 돌아간다.<br><br>보통 Compiz + Flash + FireFox 조합을 사용하는 경우 나타나는 버그라고 한다.<br><br><a href="https://bugs.launchpad.net/ubuntu/+source/firefox/+bug/14911">참조1</a>, <a href="http://grumpymole.blogspot.com/2006/10/ubuntu-firefox-flash-crash-this-fix.html">참조2</a><br><br>휴~ 이제 쾌적한 브라우징을 할 수 있게 되었다~</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

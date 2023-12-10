@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>시대착오적인 설정 파일 *.properties를 버리자</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-01-12 23:58:07</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">시대착오적인 설정 파일 *.properties를 버리자</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">추가 : Java 6부터 properties 파일에 대해 다양한 문자셋의 일반 텍스트 파일을 사용할 수 있는 <a href="http://docs.oracle.com/javase/6/docs/api/java/util/Properties.html#load%28java.io.Reader%29">load(Reader reader)</a>가 추가되었고 Spring Framework도 Encoding명시를 통해 이를 지원함.<br>단, <code>@PropertySource</code>는 이를 지원하지 않는 것으로 보임.<br><blockquote class="src">public static void main(String [] args) throws Exception {<br>&nbsp;&nbsp;&nbsp;&nbsp;Properties props = new Properties();<br>&nbsp;&nbsp;&nbsp;&nbsp;InputStream is = new FileInputStream("a.properties");<br>&nbsp;&nbsp;&nbsp;&nbsp;props.load(new InputStreamReader(is, "UTF-8"));<br>&nbsp;&nbsp;&nbsp;&nbsp;props.list(System.out);<br>}<br></blockquote><br><br>-- 이후 원문<br><a target="_blank" href="http://kwon37xi.egloos.com/4664893">Eclipse의 파일 Lock 문제</a>를 찾으면서 처음에는 <a target="_blank" href="http://propedit.sourceforge.jp/index_en.html">Properties Editor Plugin</a>을 원망했다. 게다가 대체품으로 선택한 <a target="_blank" href="http://sourceforge.net/projects/eclipse-rbe/">Eclipse-RBE</a>는 다소 불편한 인터페이스에 자꾸 NullPointerException을 떨궈서 사람 짜증나게 만들기 까지.<br><br>하지만 그러다가 곧 생각이 바뀌어 버렸다.<br><br><span style="font-weight: bold;">진짜 문제는 우리가 설정 파일로 시대착오적인 *.properties를 사용하고 있다는 그 사실이다.</span><br><br>자바의 *.proerties 파일은 텍스트 파일을 가장한 바이너리 파일이라고 보면 된다. 특수한 편집기나 변환기가 없으면 비영문권 사용자에게는 결코 텍스트 파일로써 다뤄질 수 없는 설정 파일 형식이다. 이런 것을 사용하면서 이를 편집하게 도와주는 플러그인을 탓한 것이다.<br><br>지금은 XML이나 YML 같은 잘 정형화되어있고 어느 편집기에서나 열어서 볼 수 있는 훌륭한 설정 파일 포맷이 나온지 이미 몇 년이 지난 시점이다. 그런 와중에 properties를 사용하는 나 자신을 탓하지 않고 플러그인을 탓하다니. 습관이 무섭다.<br><br>Java도 또한 이 문제점을 인지하고 Properties 객체를 XML 파일을 통해서 생성할 수 있게 만든지 이미 오래전이다. Properties XML은 형식도 매우 직관적이다. <a target="_blank" href="http://wiki.kwonnam.pe.kr/java/properties">http://wiki.kwonnam.pe.kr/java/properties</a> 를 참조하자.<br><br><span style="font-weight: bold;">게다가 더욱 훌륭한 것은 Spring Framework를 사용할 경우 &lt;context:property-placeholder/&gt;, &lt;util:properties/&gt;, 그리고 메시지 Resource Bundle 등이 모두 다 이 XML 형식의 프라퍼티를 완벽하게 지원한다는 것이다.</span><br><br>추가(2013/02/06) : XML 프라퍼티 형식을 사용하면 국제화지원이 안된다는 댓글이 있는데, Spring의 Resource번들은 이를 잘 지원하며 JDK 6 기본 ResourceBundle의 경우 <a href="http://www.webreference.com/programming/Globalize-Web-Applications15_Java6/index.html">Using Java 6 to Access Translatable Text in XML Files</a>를 참고해보시기 바랍니다.<br><br>그래서 오늘은 <a target="_blank" href="http://wiki.kwonnam.pe.kr/_media/java/propertiestoxml.7z">특정 디렉토리의 모든 *.properties를 XML Properties로 변환해주는 간단한 툴</a>을 만들고, Spring Bean 설정 파일에서 properties를 사용하는 부분들을 모두 XML 파일을 가리키도록 고쳐서 팀 프로젝트의 모든 *.properties 파일을 없애버렸다. 생각보다 오래걸리지도 않았다. 그리고 log4j.properties도 삭제해 버리고 <a target="_blank" href="http://wiki.kwonnam.pe.kr/java/log4j/xml">log4j.xml</a>로 전면 교체해 버렸다.<br><br>다른 Java 개발자들에게도 꼭 권한다. 프로젝트에서 *.properties를 삭제해 버리자. 어렵고 복잡한 일도 아니면서 설정 파일 읽기와&nbsp; 편집 효율성이 훨씬 더 증대된다.<br><br>그리고 하면서 느끼게 된 사실이 또 있는데, <span style="font-weight: bold;">Spring의 &lt;context:property-placeholder/&gt; 사용하지 말자.</span> 이일민씨의 블로그 글에도 보면 되도록 <a href="http://toby.epril.com/?p=968">&lt;util:properties/&gt;와 SpEL을 사용하자는 것</a>이 있는데. 이번에 수정하면서 약간은 다른 이유로 매우 동감하게 되었다.<br><br>properties-placeholder는 부모 자식 관계에 있는 Application Context XML 설정파일들의 경우에도 동일한 properties 파일임에도 모든 Bean 설정 파일에 property-placeholder를 명시해줘야 하는 문제가 있다.<br><br>하지만 &lt;util:properties/&gt;를 사용하게 되면 부모 컨텍스트에 딱 한번만 설정하고 그 외에는 SpEL로 명시해주면 된다. 그 외에도 SpEL을 쓰게 되면 어노테이션 기반 객체 주입시에도 사용이 가능하지만 properties-placeholder는 억지로 String 등의 Bean 객체로 생성하지 않는 이상 어노테이션에서 직접 읽을 방법이 없다(내가 아는한. 있다면 좀 댓글로 알려주세요).<br><br>따라서 <span style="font-weight: bold;">나는 &lt;context:property-placeholder/&gt;를 버리고 &lt;util:properties/&gt;와 SpEL 사용을 강력하게 권한다.</span><br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

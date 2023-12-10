@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>웹의 정적 리소스의 버전 명시를 통한 캐시 전략</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-09-02 19:18:07</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">웹의 정적 리소스의 버전 명시를 통한 캐시 전략</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">나는 언제부터인가 웹의 정적 리소스(*.js,*.css, *.jpg,...) 들은 항상 1년간 캐시하도록 설정을하고 있다.<br>이렇게 할 경우 일단 한 번 읽은 리소스는 다시 읽지 않기 때문에 대역폭을 아끼고 성능을 향상 시키는데 크게 일조를 한다.<br><br>하지만 여기에는 심각한 문제가 있다.<br>css가 수시로 변경되고 *.js 파일들도 개발하면서 계속 변경된다. 동일한 이름일 경우에는 1년간 캐시가 적용되므로 일반 사용자들이 명시적으로 새로 고침하기 전에는 변경된 소스를 읽어들이지를 못한다.<br><br>이 때 많은 사람들이 아래와 같은 기법을 사용한다.<br><blockquote class="src">&lt;link rel="stylesheet" type="text/css" href="/common/css/common.css<b>?v=20120902</b>" /&gt;<br></blockquote><br>URL 뒤에 인자로<b> v=소스의버전</b>을 주게되면 저 값이 달라질 때마다 캐시를 무시하고 새로운 css를 읽게 되는 것이다.<br>하지만 나는 이 방식을 권장하지 않는다.<br><br>예를 들어보자. common.css 안에 다음과 같은 구문이 있다고 할 때,<br><blockquote class="src">body { url('/my_bg.gif');}<br></blockquote><br>만약 my_bg.gif 자체가 변경된다면 무슨일이 생길까?<br><br>common.css?v=xx 에서 버전 값을 아무리 변경해봐야 이미 캐시된 my_bg.gif 는 사용자들에게 과거 버전이 나가게 된다. 이를 해결하려면 <b>url('/my_bg.gif?v=20120902')</b> 형태로 함께 버전을 넣어줘야만 한다.<br><br>물론 "하면 되지" 하지만 그게 그렇게 잊지않고 될까?<br>내가 지금까지 경험한 바로는 절대 버전 번호를 완벽하게 항상 바꾸지 못한다에 100원 건다. 프로젝트 참여자 중에서 누군가는 저 버전 번호값을 바꿔야 함을 까먹게 된다.<br><br>그래서 나는 다른 전략을 취한다.<br><blockquote class="src">&lt;link rel="stylesheet" type="text/css" href="/<b>resources-20120902</b>/common/css/common.css" /&gt;<br>body { url('<b>../../</b>my_bg.gif');}<br></blockquote>뒤에 파라미터를 붙이는 것이 아니라, 앞에 경로를 바꿔주는 것이다. 그리고 CSS에서는 항상 상대 경로를 /resources-XX를 제외한 위치까지만 지정하도록 한다. 마크업 작업자들은 버전 번호 바꾸는 것은 까먹어도 항상 상대 경로를 사용한다는 프로젝트의 기본 규칙에 대한 인식을 한 번 하고 나면 거의 까먹는 경우가 없다.<br><br>이렇게 하면 <b>버전 번호가 바뀔 때 맨 앞의 절대 경로가 변경되므로 무조건 캐시를 방지</b>할 수 있다.<br><br><a target="_blank" href="https://httpd.apache.org/docs/2.2/ko/misc/rewriteguide.html">Apache 등은 설정을 통해 앞의 경로가 뭐로 바뀌어도 항상 지정된 파일을 읽게 만드는 것이 가능</a>하다. Spring MVC의 경의 <a href="http://www.imaso.co.kr/?doc=bbs/gnuboard.php&amp;bo_table=article&amp;wr_id=35794"><b>&lt;mvc:resources&gt;</b></a> 를 사용하여 정적 리소스 앞에 prefix를 지정할 수 있는 기능을 주고 있다.<br><br><b>예상 질문 1.</b> 이렇게 하면 my_bg.gif 가 안바뀌어도 resources 버전이 바뀌면 새로 내려받아서 효율이 떨어지지 않나?<br>- 맞다. 하지만 유지보수성은 증대된다. my_bg.gif를 어쩌다 새로 받는 것과, 자칫 실수하면 사용자에게 엉뚱한 이미지를 보여줄 지도 모르는 유지보수상의 실수 중 나는 실수를 줄이는 쪽에 더욱 무게를 둔다. 그리고, 실제로 저걸 새로 받는 것은 사이트를 업그레이드 하는 주기에 따라 달라지기 때문에 그리 자주 업데이트 되지도 않는다.<br><br><b>예상 질문 2.</b> 버전 번호를 그럼 모든 정적 리소스 마다 다 준단 말인가? 너무 노가다 아닌가?<br>- 무슨 소리.. JSP의 경우 JSTL Function 을 통해서 쉽게 해결된다. 내가 참여하고 있는 프로젝트에서는<br><blockquote class="src">&lt;link rel="stylesheet" type="text/css" href="<b>${url:resource('/common/css/common.css')}</b>" /&gt;<br></blockquote>와 같은 형태로 모든 Javascript, CSS, 이미지 파일들의 URL 을 지정한다. 버전은 프로그램이 자동으로 붙여준다. 이 경우 common.css 가 안 바뀌더라도 일단 프로젝트가 업데이트되면 버전번호가 무조건 갱신된다. 이것도 마찬가지로 유지보수성이 약간의 성능 저하보다 중요하므로 무시한다.<br><br>거의 모든 템플릿 엔진이 위와 유사한 사용자정의 함수 기능을 제공하므로 그것을 사용하면 된다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

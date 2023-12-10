@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Linux 혹은 Unix를 처음 접하는 당신에게...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-11-24 09:38:15</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Linux 혹은 Unix를 처음 접하는 당신에게...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://www.zdnet.co.kr">ZDNet</a>에 올라온 <a title="" href="http://www.zdnet.co.kr/builder/platform/nix/0,39031679,39141605,00.htm">리눅스 설치시 꼭 알아야할「10가지 노하우」</a>라는 기사가 있다.<br><br>현재 리눅스는 그 사용성이 대폭 향상된데다가 워낙 설치도 쉽다.<br>그럼에도 Linux를 처음 접하는 사용자를 당황하게 만드는 것은 리눅스/Unix의 개념과 MS-Windows의 개념적 차이 때문인 경우가 많다.<br><br>가장 흔한게 디스크 마운트 개념, CD-ROM을 일단 넣고 마운트 하면 리눅스에서는 CD가 안빠진다. 프로그램이 사용하는 데이터를 안전하게 보호하기 위해서 이다. 이걸 모르고 리눅스는 씨디 넣으면 안빠진다고 불평하는 사람들을 종종 본다.<br><br>이 기사는 이처럼 초보자들이 리눅스/Unix를 사용하기 위해 꼭 알아야 하는 개념들을 쉽게 설명해 놓았다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

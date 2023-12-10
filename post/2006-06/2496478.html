@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Cygwin] Open SSH 설치하고 sshd 서비스로 등록하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-06-16 15:05:04</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Cygwin] Open SSH 설치하고 sshd 서비스로 등록하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">아래는 2006년도의 글이며 2013년 현재 Windows 7 + Cygwin SSH Server 설정은 <a target="_blank" href="http://www.howtogeek.com/howto/41560/how-to-get-ssh-command-line-access-to-windows-7-using-cygwin/">http://www.howtogeek.com/howto/41560/how-to-get-ssh-command-line-access-to-windows-7-using-cygwin/</a> 문서를 참조한다.<br>====<br>Cygwin 에 OpenSSH를 설치하고 sshd를 윈도우 서비스로 등록해서 사용하고 있다.<br>요즘, 리눅스를 지워버린 상태기 때문에 Cygwin을 사용해서 이런 저런 일 하는 경우가 많다.<br><br>참조 문서 : <a title="" href="http://pigtail.net/LRP/printsrv/cygwin-sshd.html">http://pigtail.net/LRP/printsrv/cygwin-sshd.html</a><br><br>1. 일단, Cygwin의 setup.exe 에서 <strong>openssh</strong>를 선택해서 설치한다.<br><br>2. <strong>내컴퓨터-&gt;속성-&gt;고급-&gt;환경변수-&gt;시스템 변수</strong>에서 <strong>CYGWIN=ntsec</strong>을 설정한다. "ntsec"은 Cygwin이 Windows의 보안 규칙을 사용해서 파일 등의 접근 권한을 설정함을 의미한다.(참조 : <a href="http://pigtail.net/LRP/printsrv/ntsec.html">http://pigtail.net/LRP/printsrv/ntsec.html</a>)<br><br>3. 윈도우의 각 사용자에게 비밀번호를 지정한다.<br><br>4. Cygwin 셸을 실행하고서 <strong>ssh-host-config</strong>명령을 실행한다. 그리고 모든 질문에 yes 로 대답한다. 마지막에 CYGWIN 옵션을 물을 때는 "ntsec"을 지정한다.<br><blockquote class="src">kwon37xi@kwonnam ~<br>$ <strong>ssh-host-config</strong><br>Generating /etc/ssh_host_key<br>Generating /etc/ssh_host_rsa_key<br>Generating /etc/ssh_host_dsa_key<br>Generating /etc/ssh_config file<br>Privilege separation is set to yes by default since OpenSSH 3.3.<br>However, this requires a non-privileged account called 'sshd'.<br>For more info on privilege separation read /usr/share/doc/openssh/README.privsep.<br><br>Should privilege separation be used? (yes/no) <strong>yes</strong><br>Warning: The following function requires administrator privileges!<br>Should this script create a local user 'sshd' on this machine? (yes/no) <strong>yes</strong><br>Generating /etc/sshd_config file<br>Added ssh to C:WINDOWSsystem32driversetcservices<br><br><br>Warning: The following functions require administrator privileges!<br><br>Do you want to install sshd as service?<br>(Say "no" if it's already installed as service) (yes/no) <strong>yes</strong><br><br>Which value should the environment variable CYGWIN have when<br>sshd starts? It's recommended to set at least "ntsec" to be<br>able to change user context without password.<br>Default is "ntsec".  <strong>CYGWIN=ntsec</strong><br><br>The service has been installed under LocalSystem account.<br>To start the service, call `net start sshd' or `<strong>cygrunsrv -S sshd</strong>'.<br><br>Host configuration finished. Have fun!<br></blockquote><br>5. 제어판의 서비스에서 Cygwin sshd를 끄고 켤 수 있으며, Cygwin 셸에서는 <strong>cygrunsrv -S sshd</strong> 명령이나, 윈도우 명령창에서 <strong>net start sshd</strong>으로 마찬가지로 sshd를 켤 수 있다.<br><br>6. <a title="" href="http://www.chiark.greenend.org.uk/~sgtatham/putty/">Putty</a> 등으로 Cygwin sshd 가 실행중인 컴퓨터에 접속할 수 있다.<br><br>7. 외부에서 접속이 안될 때는 윈도우의 방화벽을 확인하고, <strong>22</strong>포트를 열어준다.<br><br>8. 윈도우에 여러명의 사용자가 있을 경우, Cygwin과 동기화를 하려면 Cygwin 셸에서<br><blockquote class="src"># 사용자 동기화하기<br>$ mkpasswd   --local   &gt;   /etc/passwd<br>$ mkgroup   --local    &gt;   /etc/group<br></blockquote><br>안될경우 권한 설정 : <a target="_blank" href="http://old.nabble.com/openssh-5.1p1-3---ssh-host-config-dependency-and-permission-issues-p19865924.html">http://old.nabble.com/openssh-5.1p1-3---ssh-host-config-dependency-and-permission-issues-p19865924.html</a><br><br>tags: cygwin sshd openssh windows service 서비스 윈도우<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

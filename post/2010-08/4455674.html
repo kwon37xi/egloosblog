@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Eclipse 3.6 Helios 이상 Java WebApp의 의존 프로젝트/Jar가 배포 안되는 문제</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2010-08-27 13:45:52</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Eclipse 3.6 Helios 이상 Java WebApp의 의존 프로젝트/Jar가 배포 안되는 문제</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="xhtmlEditorBody"><p>Eclipse 3.6 Helios 이상 버전에서 자바 웹 애플리케이션(WTP 플러그인 사용)을 톰캣에 올려 실행할 때 의존하는 프로젝트의 클래스 Jar 가 배포 안되는 문제가 발생하고 있다.</p> <p>버그인 것 같으며, 이와 같은 문제는 Maven, Ivy 같은 의존성 관리 플러그인을 사용할 경우에도 나타날 가능성이 있는것으로 보인다.</p> <p>&nbsp;</p> <p>이런 일이 발생하면 웹 프로젝트의 <strong>Project Properties -&gt; Deployment Assembly</strong> -&gt; [Add...]를 통해서 의존 프로젝트와 기타 Jar 들을 명시적으로 배포하라고 지정할 수 있다.</p> <p>&nbsp;</p> <p>"Deployment Assembly" 는 과거 버전의 "J2EE Module Dependency" 메뉴가 바뀐것이라고 한다.</p> <p>그게 바뀌었든 안 바뀌었든 의존 프로젝트를 제대로 배포해주지 못하는 것은 버그라고 밖에 볼 수 없다.</p> <p>&nbsp;</p> <p>&nbsp;</p> <p style="text-align:right">이 글은 <a href="http://kwon37xi.springnote.com/pages/6311291">스프링노트</a>에서 작성되었습니다.</p></div></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

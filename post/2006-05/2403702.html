@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>CVS Tag 목록 보기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-05-06 00:41:36</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">CVS Tag 목록 보기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Eclipse 혹은 GUI 도구 없이 CVS 를 사용하다 보면, Tag(혹은 Branch) 목록을 보고 싶을 때 매우 난감하다. --;<br><br>아래 Perl Script 를 현재 CheckOut 하여 작업중인 프로젝트 디렉토리에서 <strong>lstag.pl -l</strong>으로 실행하면, 모든 태그 목록을 볼 수 있다.<br><br><img src='./2403702/b0046915_0405556.png'><br><br>파일 다운로드 : <a href='http://pds2.egloos.com/200605/06/15//lstag.pl' target='_blank'>lstag.pl</a><br><br>이 파일은 <a title="" href="http://docs.codehaus.org/display/ninja/List+CVS+Tags">여기</a>서 구했는데, 이 사람도 자기가 이걸 어디서 구했는지 모른단다. -_-;<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

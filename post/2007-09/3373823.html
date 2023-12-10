@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>헉~ Ubuntu 감동이야~ ant build.xml 자동완성이 되다니~</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-09-05 21:33:13</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">헉~ Ubuntu 감동이야~ ant build.xml 자동완성이 되다니~</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">개발시 대부분의 시간을 Eclpse와 보내고 Eclipse에서 Ant 빌드 파일을 실행하기 때문에 몇 달 동안 개발 하면서도 몰랐는데..<br><br>오늘 우연히 개발 서버 상에서 Ant 스크립트를 실행하려고 하다가 발견 했다.<br><br>Ubuntu 리눅스는 build.xml 이 있고, 시작 명령이 "ant" 일 경우 build.xml 을 자동으로 파싱하여 "ant co&lt;Tab&gt;" 하면 "ant compile" 식으로 자동완성을 시켜준다. 물론, 탭을 한 번 더 눌러주면 일치하는 모든 target 항목들이 출력된다.<br><br>물론 이 기능은 Bash 의 기능이다.<br><br>어쨌든, 이러한 기능이 디폴트로 들어가 있다니, 감동이다~~ 우분투 멋져~<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

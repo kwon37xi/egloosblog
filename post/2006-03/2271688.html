@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[NetBeans] C/C++ Pack Preview</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-03-11 13:35:29</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[NetBeans] C/C++ Pack Preview</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://cnd.netbeans.org/">NetBeans C/C++ 팩</a>이 출시될 예정이라고 한다.<br><br>이미 있던 Sun Studio의 소스코드를 기반으로 하는 것이라고 하니까, 좀 빨리 나올 수도 있을 것 같다.<br><br>일단 프리뷰는  <a title="" href="http://blogs.sun.com/roumen">Roumen</a> 의 블로그에서 볼 수 있다.<br> * <a title="" href="http://blogs.sun.com/roller/page/roumen?entry=first_preview_of_netbeans_c">NetBeans C/C++ 팩 프리뷰</a><br> * <a title="" href="http://blogs.sun.com/roller/page/roumen?entry=how_to_compile_and_run">XP에서 C/C++ 컴파일해보기</a><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

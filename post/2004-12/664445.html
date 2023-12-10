@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>윈도우 탐색기의 왼쪽 폴더 부분이 회색으로 나옵니다.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-14 09:29:18</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">윈도우 탐색기의 왼쪽 폴더 부분이 회색으로 나옵니다.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://kdaq.empas.com/dbdic/dbdic_abandon_view.tsp?num=3649967&ps=a&pq=">엠파스 지식검색에 올라온 '윈도우 탐색기의 왼쪽 폴더 보기 부분이 회색으로 나오는 현상'에 대해 내가 답변한 것</a>이다.<br><br><B>질문</B><br>윈도우 탐색기를 열면...표준단추에 검색, 폴더, 기록 이런 메뉴가 있잖아요...<br>검색이나 기록을 누르면 탐색기 왼쪽에 검색과 기록 항목이 뜨는데요...<br>폴더를 누르면 회색바탕으로 아무것도 안나오고 오른쪽에만 뜹니다..<br>물론 오른쪽에서 다 조작할 수는 있지만...왼쪽의 폴더 항목이 안나오니까 답답하네요..<br><br>도구 -> 폴더옵션 -> 파일형식 들어가서 N/A 폴더와 N/A 파일폴더 항목은 기본값 설정으로 했습니다..<br><br>다른 방법을 아시는 분은 답변해 주세요..<br><br><B>답변</B><br>윈도우 탐색기의 폴더항목을 표시하도록 설정 했음에도 불구하고 회색의 빈칸으로 나오는 버그가 있을 수 있습니다.<br><br>그럴때는 먼저 Internet Explorer를 재설치해보세요. 아마도 그게 가장 쉬운 방법일 것 같습니다.<br><br>두번째로 더 간단하고 빠르지만 약간의 지식을 요하는 방법으로 레지스트리 편집기를 이용하는 방법입니다.<br><br>regedit 프로그램을 실행하고서<br><br><B>HKEY_CLASSES_ROOTCLSID{EFA24E64-B078-11d0-89E4-00C04FC9E26E}InProcServer32</B><br><br><br>위 키를 찾습니다. 가운데부분이 좀 복잡하지만 그래도 완전히 동일한 이름의 레지스트리 키를 찾아야합니다.<br><br>(팁, 레지스트리편집기의 메뉴에서 편집->찾기 를 선택하고 검색어로 {EFA24E64-B078-11d0-89E4-00C04FC9E26E} 를 입력해보세요.)<br><br>그리고 기본값에서 오른쪽 마우스 단추를 누르고 "수정"을 클릭하고는 데이타 부분에 인터넷 익스플로러 5.5의 경우에는 Browseui.dll 를 그 외의 브라우저의 경우에는 Shdocvw.dll 파일의 정확한 경로를 적어줘야 합니다.<br><br>저의 경우(Windows XP, IE 6.0) %SystemRoot%System32shdocvw.dll 가 입력되어 있습니다.<br><br>여기서 %SystemRoot% 란 윈도우 버전과 어떻게 설치했느냐에 따라 의미가 다릅니다. 일반적으로 XP의 경우에는 C:Windows 를 의미하고 윈도우 2000의 경우에는 C:WINNT 를 의미합니다.<br>저 같은 경우는 직접 C:WindowsSystem32shdocvw.dll 해도 동일한 의미를 갖습니다. 윈도우 2000이라면 C:WINNTSystem32shdocvw.dll 라고 해도 되구요.<br><br>각자 자신의 익스플로러버전에 맞는 파일의 경로를 정확히 적어주고서 재부팅은 필요없고 단지 로그아웃하고 다시 로그인 하면 정상작동하는 것을 확인할 수 있습니다.<br><br>출처 : <a href="http://forums.techguy.org/printthread.php?threadid=113867">http://forums.techguy.org/printthread.php?threadid=113867</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

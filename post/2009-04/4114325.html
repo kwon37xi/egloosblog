@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Kenai - Git 을 지원하는 오픈 소스 프로젝트 호스팅 서비스</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2009-04-13 21:37:33</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Kenai - Git 을 지원하는 오픈 소스 프로젝트 호스팅 서비스</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">요즘 <a href="http://git-scm.org/">Git</a> 에 대한 인기가 높아져 가고 있다. 우리 회사에서도 Git 스터디나 Git을 사용한 프로젝트를 개인적으로 하는 사람도 있고.<br>오늘 <a href="http://weblogs.java.net/blog/editors/archives/2009/04/netbeans_ide_67.html">Netbeans 6.7 M3 릴리스 관련 글</a>을 보다가 <a href="http://kenai.com/">Kenai</a>라는 것에 대한 얘기가 있어서 살펴보니 Sun Microsystems에서 구축한 오픈 소스 호스팅 프로젝트 였다.<br>다른 서비스들과 마찬가지로 포럼, 메일링 리스트, 이슈 트래킹, 위키 등을 지원하며 게다가... 소스 코드 저장소를 무려 5가지를 지원한다. <span style="font-weight: bold;">그 중에 Git 도 있다.<br><br></span>물론 <a href="http://github.com/">GitHub</a>가 있지만, GitHub는 소스 코드 저장외의 다른 기능은 그다지 지원하지 못하는 것으로 알고 있다.<br><br>그리고 특징적인 것으로 이슈 트래커로는 무려... 상용인 Jira와 오픈 소스인 Bugzilla 중에 선택할 수 있다고 한다. 오호라~<br><br><a href="http://kenai.com/projects/help/pages/KenaiOverview">Kenai에 대한 소개</a>를 보면 더 자세히 알 수 있다.<br><br>그리고 Kenai는 <a href="http://www.infoq.com/news/2008/09/kenai-project-hosting">Glassfish 위에서 돌리는 Ruby On Rails로 구축되어 있다고 한다</a>. 그리고 Kenai 자체에서 <a href="http://kenai.com/projects/jruby">JRuby를 오픈소스로 호스팅</a> 하고 있다.<br><br>Git에 관심있으면서 오픈 소스 프로젝트 호스팅을 하고 싶다면 Kenai를 사용해보자.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

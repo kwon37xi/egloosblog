@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title> KoffieNew - 유즈넷으로 영화 받자!! (Newsgroup, Usenet, 뉴스그룹)</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-03 10:37:43</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title"> KoffieNew - 유즈넷으로 영화 받자!! (Newsgroup, Usenet, 뉴스그룹)</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">감동의 물결이 밀려온다!!<br>드디어(이미 작년에) 리눅스를 비롯한 비 MS 계열에서도 유즈넷을 통해 대용량 파일 전송이 가능해졌다.<br>바로 <a href="http://sourceforge.net/projects/koffienews/">KoffieNews</a> 덕분이다.<br><br>유즈넷 뉴스그룹으로 대용량 파일 전송 : <a href="http://user.chollian.net/~driveway/">유즈넷은 내친구 참조</a><br><br>윈도우에서는 XNews 라는 프로그램으로 파일을 전송할 수 있었지만, 리눅스에서는 그게 잘 안됐다. Pan 이라는 프로그램이 있긴하지만 그림 파일은 잘 전송하지만 대용량 파일에서는 맥을 못 추는것 같다.<br><br>KoffieNews Java 5.0(JDK 1.5)기반의 바이너리 뉴스그룹 파일 전송 프로그램이다.<br>자바로 만들어져 있으므로 당연히 JDK 1.5가 깔리는 모든 플랫폼에서 돌아간다.<br><br><B>장점</B><br><br>   1. Java 기반으로 다양한 플랫폼 지원.<br>   2. 더 쉽다. XNews는 초보자가 사용하기에 상당히 까다롭다. KoffieNews는 더 쉽다.<br>   3. 여러 기사로 나눠 전송된 한개의 파일을 제목 한 개로 보여주는 기능이 있다. 원하는 파일 찾기가 훨씬 쉬워진 것이다. (아직은 불완전 한 듯)<br><br><B>단점</B><br><br>   1. 한글 등 유니코드 지원이 안돼서 제목이 깨져 나온다. 물론 파일에는 아무 이상 없다.<br>   2. 메모리 소모가 상당히 심해서 성능이 좀 딸리는 컴퓨터에서는 상당히 버벅댈 듯 하다. 하지만 이건 XNews도 마찬가지다. 파일을 잘게 잘라 올리기 때문에 한개의 뉴스그룹에 수만개의 기사가 올라와 버리기 때문에 생기는 현상이다.<br><br><B>사용하기</B><br>Linux를 기준으로 한다.<br><br>   1. 먼저 http://java.sun.com 에서 JRE 1.5 혹은 JDK 1.5를 받는다.<br>   2. <a href="http://sourceforge.net/projects/koffienews/">http://sourceforge.net/projects/koffienews/</a> 에서 KoffieNews 파일을 받는다.<br><br>ZIP 파일의 압축을 풀고, 원하는 디렉토리로 복사하면 설치 끝이다.<br><br>   1. 다음 스크립트를 작성한다.<br><BLOCKQUOTE><br>#!/bin/sh<br>export JAVA_HOME=/usr/local/jdk1.5.0_01<br>$JAVA_HOME/bin/java -Dswing.aatext=true -Xms256m -Xmx256m -jar koffienews.jar<br></BLOCKQUOTE><br><br>          * JAVA_HOME은 당연히 Java가 설치된 디렉토리이다.<br>          * -Xms와 -Xmx 옵션을 빼먹으면 엄청나게 느린 속도에 시달릴 수 있다. 256MB가 너무 많은것 같으면 128m 등으로 알아서 조절해서 최적 속도를 찾아본다.<br>          * -Dswing.aatext=true는 AntiAliased 글꼴로 출력시키라는 뜻이다.<br><br>   2. 저 셸 스크립트를 실행하면 된다.<br>   3. [유즈넷은 내친구에 나온 바이너리 뉴스그룹 서버를 적어준다. 자신의 인터넷 서비스 제공업체가 바이너리 뉴스그룹을 지원하지 않으면 사용할 수 없다.<br>   4. 뉴스그룹 이름에 korea를 포함하는 뉴스그룹을 구독신청하고 어떤 파일이 올라와 있는지 확인해서 받으면 된다.<br>   5. 사용법은 알아서... ^^;<br>주말에 빈둥거리다가...<br>권남.<br><br><img src='./1391115/b0046915_10311361.png'><br><br><img src='./1391115/b0046915_10312652.png'><br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

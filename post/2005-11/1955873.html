@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>쿼리 깔끔하게 정리하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-11-22 21:22:47</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">쿼리 깔끔하게 정리하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Google 에서 <a title="" href="http://www.google.co.kr/search?client=firefox-a&rls=org.mozilla%3Ako-KR%3Aofficial_s&hl=ko&q=sql+formatter&lr=&btnG=Google+%EA%B2%80%EC%83%89">SQL Formatter</a> 로 검색하면 많은 SQL문장 정리 싸이트들이 나온다.<br><br>그 중에서 나는<a title="" href="http://www.sqlinform.com/"> http://www.sqlinform.com</a>가 제일 괜찮은 것 같다.<br><br>자바 애플릿으로 Java 언어 등에서 String 으로 연결된 문자열을 그냥 던져줘도 알아서 SQL문만 뽑아내서 정리해준다.<br>반대로 SQL 문장을 Java 문자열로 연결해주기도 한다.<br><br>뭐 iBatis나 Hibernate 등을 사용한다면 자바에서 직접 문자열로 쿼리 구성할 일은 없겠지만.<br><br>쿼리 만든 다음에 깔끔하게 정리해서 iBatis SQLMap 설정 파일에 넣으려고 찾아봤다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

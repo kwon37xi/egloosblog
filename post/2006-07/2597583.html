@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>프레임워크(Framework)가 뭔가요?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-07-30 23:04:00</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">프레임워크(Framework)가 뭔가요?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">프레임워크가 뭔가요? 라고 물어보면 정말 딱히 뭐라고 대답하기 곤란하다.<br>뭔가... 머리속으로 알듯 말듯하지만, 말로 풀어내기는 뭐한...<br><br>오늘 마이크로소프트웨어 2006/8월호를 구입했다. 거기 130쪽 "프레임워크 활용전략"을 보자.<br><blockquote class="quote">IT 분야에서 사용하는 용어는 여러 가지 의미를 가지거나 모호한 단어들이 많기 때문에 정확한 용어의 의미를 이해하지 않고서는 글의 내용을 올바로 이해하기 힘들다. GoF의 디자인 패턴으로 유명한 랄프 존슨(Ralph Johnson) 교수는 프레임워크를 "소프트웨어의 구체적인 부분에 해당하는 설계와 구현을 재사용이 가능하게끔 일련의 협업화된 형태로 클래스들을 제공하는 것"이라고 정의하였다. 프레임워크는 라이브러리와 달리 애플리케이션의 틀과 구조를 결정할 뿐 아니라, 그 위에 개발된 개발자의 코드를 제어한다. 프레임워크는 구체적이며 확장 가능한 기반 코드를 가지고 있으며, 설계자가 의도하는 여러 디자인 패턴의 집합으로 구성되어 있다.<br></blockquote><br>지금까지 읽어본 중에서는 가장 이해가 되게 정리한 문장같다.<br>근데, 나는 랄프 존슨의 말보다 그 뒤에 나온 해설이 더 와 닿는데.. 나만 그런건가??</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

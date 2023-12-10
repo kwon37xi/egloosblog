@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[mod_jk] Apache 2 + Tomcat 5.0 + mod_jk 1.2 on Linux 연동</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-09-20 19:33:57</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[mod_jk] Apache 2 + Tomcat 5.0 + mod_jk 1.2 on Linux 연동</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Apache 2 + Tomcat 5.0 + mod_jk 1.2 on Linux 연동할 일이 생겨서 정리해둔다.<br>이미 내가 예전에 정리했던 문서들을 참조하는 것도 도움이 될것이다.<br><br>왜 mod_jk2 가 아니라 mod_jk로 선택했는가? mod_jk2 는 자카르타 프로젝트에서 단종되었다.<br><br>현재 이 문서 작성시 작업한 리눅스는 CentOS 3.4 이다.<br><br>톰캣과 연동시 컨텍스트는 "/" 이다.<br><br>참조 URL:<br> * <a href="http://johnturner.com/howto/apache2-tomcat4112-sol8-howto.html">http://johnturner.com/howto/apache2-tomcat4112-sol8-howto.html</a><br> * <a href="http://galatea.com/flashguides/home">http://galatea.com/flashguides/home</a><B><BIG>Apache 2</BIG></B><br>패키지로 설치했다.<br><br>그외에 libtool과 autoconf 등이 설치되어 있어야 한다.<br><br><BLOCKQUOTE class="src">$ yum install httpd httpd-devel<br></BLOCKQUOTE><br>아파치2를 직접 컴파일하고자 하는 경우 다음과 같이 한다.<br><blockquote class="src"># ./configure --with-layout=Apache --prefix=/usr/local/apache2 --enable-module=most                       --enable-mods-shared=most<br># make<br># make install<br></blockquote><br>이 경우 "/usr/local/apache2" 디렉토리에 아파치가 설치된다.<br><br><B><BIG>mod_jk 컴파일</BIG></B><br><a href="http://ftp.apache-kr.org/jakarta/tomcat-connectors/jk/source/">http://ftp.apache-kr.org/jakarta/tomcat-connectors/jk/source/</a>에서 최신 버전의 mod_jk 를 받는다. 리눅스에서 작업하려면 소스를 받고, 그 외의 플랫폼에 이미 컴파일된 바이너리가 있다면 그것을 사용해도 된다.<br><br><BLOCKQUOTE class="SOURCE">$ cd jakarta-tomcat-connectors-1.2.버전-src/jk/native<br>$ ./configure --with-apxs=/usr/sbin/apxs --enable-EAPI<br>$ make<br>$ cd apache-2.0<br>$ ls mod_jk.so<br>$ cp mod_jk.so /usr/lib/httpd/modules/<br></BLOCKQUOTE><br><br>mod_jk의 컴파일이 끝났고, ./apache-2.0 디렉토리로 이동해서 보면 mod_jk.so 파일이 생성되었음을 볼 수 있다. 이 파일을 아파치 모듈 디렉토리(/usr/lib/httpd/modules, 아파치를 직접 컴파일하거나, 다른 배포판을 사용한다면 다를 수 있다)에 복사한다.<br><br><B><BIG>workers.properties 설정</BIG></B><br>/etc/httpd/conf/workers.properties 파일을 다음과 같이 생성한다. 물론 디렉토리 경로는 아파치의 설치 형태에 따라 달라질 수 있다.<br><BLOCKQUOTE class="SOURCE"># BEGIN workers.properties<br>worker.list=ajp13<br>worker.ajp13.port=8009<br># change this line to match apache ServerName and Host name in server.xml<br>worker.ajp13.host=localhost<br>worker.ajp13.type=ajp13<br># END workers.properties<br></BLOCKQUOTE><br><br><B><BIG>httpd.conf의 설정</BIG></B><br>/etc/httpd/conf/httpd.conf 파일에서 LoadModule 항목이 모여있는 곳에서 다음을 추가한다.<br><BLOCKQUOTE class="SOURCE">LoadModule jk_module modules/mod_jk.so<br></BLOCKQUOTE><br><br>DocumentRoot "/var/www/html" 항목을 찾아서 JSP 컨텍스트 루트 디렉토리로 바꿔준다.<br>ServerName 을 통해 호스트이름과 아파치 접속 포트를 지정한다. 기본은 당연히 80 이다.<br>그리고 HTML 파일을 지정하지 않고 디렉토리만 지정했을 때 기본적으로 읽어들이는 인덱스 파일 목록에 index.jsp를 추가한다.<br><BLOCKQUOTE class="SOURCE">DocumentRoot "/home/tomcat/website"<br>ServerName 웹호스트이름:80<br>DirectoryIndex index.jsp index.html<br><br># Default Charset<br>AddDefaultCharset EUC-KR<br></BLOCKQUOTE><br><br>그리고 mod_jk와 웹 컨텍스트 관련 설정을 다음과 같이 추가한다.<br><BLOCKQUOTE class="SOURCE"># mod_jk 설치 설정<br>&lt;IfModule mod_jk.c&gt;<br>JkWorkersFile "/etc/httpd/conf/workers.properties"<br>JkLogFile "/var/log/httpd/mod_jk.log"<br>JkLogLevel emerg<br><br># / 웹 컨텍스트에 *.jsp 요청이 들어올 경우 톰캣으로 넘기라는 설정<br>JkMount /*.jsp ajp13<br>&lt;/IfModule&gt;<br><br># 보안을 위해 WEB-INF 접근 불가설정<br>&lt;Location "/WEB-INF/*"&gt;<br>AllowOverride None<br>deny from all<br>&lt;/Location&gt;<br><br># 보안을 위해 META-INF 접근 불가설정<br>&lt;Location "/META-INF/*"&gt;<br>AllowOverride None<br>deny from all<br>&lt;/Location&gt;<br><br># 아래는 examples 웹 컨텍스트에 대한 설정 예제이다.<br>Alias /examples "/usr/local/jakarta-tomcat-5.0.28/webapps/examples"<br><br>&lt;Directory "/usr/local/jakarta-tomcat-5.0.28/webapps/examples"&gt;<br>Options Indexes FollowSymLinks<br>DirectoryIndex index.html index.htm index.jsp<br>&lt;/Directory&gt;<br><br>&lt;Location "/examples/WEB-INF/*"&gt;<br>AllowOverride None<br>deny from all<br>&lt;/Location&gt;<br><br>&lt;Location "/examples/META-INF/*"&gt;<br>AllowOverride None<br>deny from all<br>&lt;/Location&gt;<br><br>JkMount /examples/jsp/security/protected/j_security_check ajp13<br>JkMount /examples/CompressionTest ajp13<br>JkMount /examples/SendMailServlet ajp13<br>JkMount /examples/servletToJsp ajp13<br>JkMount /examples/snoop ajp13<br>JkMount /examples/*.jsp ajp13<br>JkMount /examples/servlet/* ajp13<br><br></BLOCKQUOTE><br><br>기왕이면 <a href="http://kwon37xi.egloos.com/1717906">rotatelogs</a> 로 로그 파일도 매일 바뀌게 설정한다.<br><br><B><BIG>톰캣 server.xml 수정</BIG></B><br>Tomcat 5.x 의 경우 &lt;Connector&gt;에서 설정한 값에 의해 GET 방식의 인코딩이 결정된다. 다음처럼 por="8009"의 커넥트 설정 부분에 URIEncoding="euc-kr" 설정을 추가해야 한다. <a href="http://kwon37xi.egloos.com/1714976">참조</a>.<br><BLOCKQUOTE class="SOURCE">&lt;Connector port="8009"<br>&nbsp;&nbsp;&nbsp;&nbsp;enableLookups="false" redirectPort="8443" debug="0"<br>&nbsp;&nbsp;&nbsp;&nbsp;protocol="AJP/1.3" URIEncoding="euc-kr"/&gt;<br></BLOCKQUOTE><br><br><B><BIG>실행한다</BIG></B><br>이제 아파치와 톰캣을 실행하면 된다.<br><BLOCKQUOTE class="SOURCE">$ service httpd start<br># 혹은 apachectl start<br><br>$ cd /usr/local/jakarta-tomcat-5.0.28/bin/<br>$ startup.sh<br></BLOCKQUOTE><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

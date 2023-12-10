@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Java 예외(Exception)가 어디로 간거지??</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-02-05 21:39:32</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Java 예외(Exception)가 어디로 간거지??</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="h2">이런! 예외가 Catch되지 않는다!!!</div><br>얼마전 지원나간 싸이트에서 이상하게 예외가 전혀 Catch 되지 않는 사태가 발생했다.<br><br>정말 황당했는데, 소스 코드를 보니... 흠...<br><br><blockquote class="src">try {<br>...<br>// 여기 어딘가에서 MyException 예외 발생<br>// 나는 이 예외를 상위 메소드로 넘겨주기를 원한다.<br>// 그러므로 MyException 에 대해서는 catch를 작성하지 않는다.<br>} catch (OtherException oe) {<br>...<br>} finally {<br>return result;<br>}<br></blockquote><br>보다시피 finally 에서 return을 해버렸다.<br><br>절대로 어떠한 예외도 상위로 전달되지 않는다!!<br>이 경우 마치 정상적으로 예외 없이 처리된 듯, 메소드가 정상적으로 리턴되어 버린다.<br><br><strong>finally 에서는 return 사용 절대 절대 절대 절대 결코 결코 네버 네버 금지!!</strong><br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

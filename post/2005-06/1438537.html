@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>고정폭 글꼴 벌어짐 현상 제거하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-15 23:07:51</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">고정폭 글꼴 벌어짐 현상 제거하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">리눅스의 XFT의 문제점 중 하나는 고정폭 글꼴에서 영어 글꼴이 한글 글꼴의 폭에 맞춰 벌어져서 출력된다는 거다.<br>물론 해결책은 있다.<br><br>원래 <a href="http://hellocity.net/~sangu/moniwiki/wiki.php/Fedora/%EA%B8%80%EA%BC%B4">상구님 홈페이지의 볼드 글꼴 설치</a>에 있는 내용이다.<br><br>귀찮아서 볼드 패치는 안따라했다..<br><br>이젠 은 글꼴이 너무 정겨워서 한양 굴림체가 별로 아쉽지 않다.<br><br>다음을 '''~/.fonts.conf''' 또는 '''/etc/fonts/local.conf'''에 추가한다.<br><br><BLOCKQUOTE style="background: wheat;"><br>&lt;match&nbsp;target="font"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;test&nbsp;name="family"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;string&gt;GulimChe&lt;/string&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;string&gt;DotumChe&lt;/string&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;string&gt;BatangChe&lt;/string&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/test&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;edit&nbsp;name="globaladvance"&gt;&lt;bool&gt;false&lt;/bool&gt;&lt;/edit&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;edit&nbsp;name="spacing"&gt;&lt;int&gt;0&lt;/int&gt;&lt;/edit&gt;<br>&lt;/match&gt;<br><br></BLOCKQUOTE></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

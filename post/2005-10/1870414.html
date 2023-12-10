@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Oracle] Dummy Insert - 실제 효과는 없는 insert statement</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-10-25 22:27:25</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Oracle] Dummy Insert - 실제 효과는 없는 insert statement</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">iBatis로 작업하다가 insert를 하긴 해야 하는데, 실제 아무 효과는 없는 insert를 해야 하는 상황이 생겼다.<br>(왜 생겼는지는 묻지 말아주세용~ 나두 잘 몰라요..)<br><br>암튼, 그래서 insert 효과가 없는 insert 문이 뭘까 고심하다가 Usenet에 질문을 올렸더니 아래 답이 왔다.<br><br>멋지다!!<br><br><a href="http://groups.google.co.kr/group/comp.databases.oracle.server/browse_frm/thread/229a6b9de915f258/7512d63649e3b696?lnk=st&q=KwonNam&rnum=1#7512d63649e3b696" title="">내가 질문한 내용과 답변 원문</a><br><blockquote class="src"><br>>>Is there a insert statement which has no effect?<br><br>Maybe something like this?<br><br>sql> create table dummy ( dummy1 varchar2(1));<br><br>Tabla creada.<br><br>sql> <strong>insert into dummy select 'x' from dual where 1=0;</strong><br><br>0 filas creadas.<br></blockquote></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

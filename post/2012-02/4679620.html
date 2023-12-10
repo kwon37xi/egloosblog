@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Annotation 인스턴스 생성하여 단위테스트하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-02-28 12:00:53</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Annotation 인스턴스 생성하여 단위테스트하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">단위 테스트를 작성하는데 해당 모듈이 Java Annotation을 가지고 조건 분기를 한다면 당연히 어노테이션의 인스턴스를 생성해야만 정상적인 테스트가 가능해진다.<br><br>이것 때문에 처음에는 단위테스트에 별개의 비어있는 클래스와 메소드 등을 만들고 거기다 어노테이션을 원하는 조합으로 지정한 뒤에 그것을 리플렉션으로 어노테이션 인스턴스를 뽑아내서 사용했었는데, 역시나 뭔가 삽질 같았다.<br><br>그러다가 아주 당연한 것을 깨닫는다. <span style="font-weight: bold;">Java의 어노테이션은 일종의 interface(@interface)이다!</span> <a title="" href="http://stackoverflow.com/questions/266903/create-annotation-instance-with-defaults-in-java" target="_blank">Create Annotation instance with defaults, in Java 참조</a><br><br>인터페이스이므로 <span style="font-weight: bold;">클래스로 구현해서 인스턴스를 생성</span>하면 되는 것이다.<br><br>아래와 같이 간결하게 해결이 된다. 그 외에 내가 썼던 해결책들은 <a target="_blank" href="http://wiki.kwonnam.pe.kr/java/annotation">http://wiki.kwonnam.pe.kr/java/annotation</a> 에 함께 기록해 두었다.<br><br><blockquote class="src">//&nbsp;아래와&nbsp;같은&nbsp;어노테이션이&nbsp;있을&nbsp;때!<br>@Target(ElementType.PARAMETER)<br>@Retention(RetentionPolicy.RUNTIME)<br>@Documented<br>public&nbsp;@interface&nbsp;LoginUser&nbsp;{<br>&nbsp;&nbsp;boolean&nbsp;required()&nbsp;default&nbsp;true;<br>&nbsp;&nbsp;SomeValue&nbsp;[]&nbsp;someValues()&nbsp;default&nbsp;{};<br>}<br>&nbsp;<br>//&nbsp;아래와&nbsp;같이&nbsp;클래스로&nbsp;구현한&nbsp;뒤에&nbsp;해당&nbsp;클래스의&nbsp;인스턴스를&nbsp;생성하면&nbsp;된다.<br>public class&nbsp;FakeLoginUser&nbsp;<span style="font-weight: bold;">implements&nbsp;LoginUser</span>&nbsp;{<br>&nbsp;<br>&nbsp;&nbsp;private&nbsp;boolean&nbsp;requiredValue&nbsp;=&nbsp;true;<br>&nbsp;<br>&nbsp;&nbsp;private&nbsp;SomeValue[]&nbsp;someValueValue&nbsp;=&nbsp;{};<br>&nbsp;<br>&nbsp;&nbsp;public&nbsp;FakeLoginUser(boolean&nbsp;requiredValue,&nbsp;SomeValue[]&nbsp;someValueValue)&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;this.requiredValue&nbsp;=&nbsp;requiredValue;<br>&nbsp;&nbsp;&nbsp;&nbsp;this.someValueValue&nbsp;=&nbsp;someValueValue;<br>&nbsp;&nbsp;}<br>&nbsp;<br>&nbsp;&nbsp;@Override<br>&nbsp;&nbsp;public&nbsp;Class&lt;?&nbsp;extends&nbsp;Annotation&gt;&nbsp;annotationType()&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;LoginUser.class;<br>&nbsp;&nbsp;}<br>&nbsp;<br>&nbsp;&nbsp;@Override<br>&nbsp;&nbsp;public&nbsp;boolean&nbsp;required()&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;requiredValue;<br>&nbsp;&nbsp;}<br>&nbsp;<br>&nbsp;&nbsp;@Override<br>&nbsp;&nbsp;public&nbsp;SomeValue[]&nbsp;someValue()&nbsp;{<br>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;someValueValue;<br>&nbsp;&nbsp;}<br>}<br></blockquote></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

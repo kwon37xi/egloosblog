@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Django를 사용하여 20분만에 위키 만들기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-07-26 20:37:17</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Django를 사용하여 20분만에 위키 만들기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Python의 대표적인 웹 애플리케이션 프레임워크인 <a title="" href="http://www.djangoproject.com/">Django</a>를 사용하여 <a title="" href="http://www.showmedo.com/videos/video?name=1100000&amp;fromSeriesID=110">20분만에 Wiki 만들기</a>가 올라왔다.<br><br>RoR의 등장이후 요즘, 너무 흔한게 20분만에 뭐 만들긴데, 식상하긴 하지만 Django가 어떤 형태인지 감 잡을 수 있게 해준다.<br><br>여기서는 단 세개의 컨트롤러 함수를 평균 7줄 이내로 작성(총 3*7= 21줄, HTML코딩 제외)하였다. 실제 설정과 import 구문 등을 다 합쳐도 30줄 정도 된다.<br><br>설명하는 사람이 인도 사람인지 영어도 느린편이고 알아 듣기도 괜찮고 Python을 몰라도 코드를 보면 대충 알아볼 수 있을 만큼 간결하다.<br><br>Django는 생산성과 변경 용이성이 매우 높은 프레임워크이다. 단일 DB(MySQL, PostgreSQL, SQLite 등) 모델만을 필요로 하는 웹 애플리케이션(거의 대부분의 웹 애플리케이션이라고 볼 수 있다)을 작성한다면, 나는 거의 무조건 Django나 RoR을 사용해서 만들고 편히 쉬는 길을 택할 것 같다.<br><br>참고로, <a title="" href="http://wiki.rubyonrails.org/rails/pages/Framework+Performance">Django는 RoR에 비해 압도적으로 빠른 수행속도</a>를 보여준다. Python 자체가 빠른 편이기 때문이 아닌가 싶다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

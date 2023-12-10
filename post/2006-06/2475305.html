@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] Spring + iBATIS 사용시 WAS가 Hang 이 걸려요!</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-06-07 14:50:33</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] Spring + iBATIS 사용시 WAS가 Hang 이 걸려요!</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">근본적으로 이런 문제를 겪은 이유는 Spring 책을 제대로 안 읽었기 때문이 아닌가 싶다.<br>웬만하면 관련 서적은 완독한 후에 프로젝트에 적용하는 것을 원칙으로 하는데, (변명하자면 워낙 책이 두꺼운데다 영어인지라) 이번엔 그렇지 못해서, 역시나 몇 주동안 삽질했다. --;<br><br>Professional Java Development with the Spring Framework에서 본 한 줄 때문에 해결했다.<br><blockquote class="quote">Alternatively, a DAO implementation could also use the provided SqlMapClient instance directly, without Spring's SqlMapClientTemplate. However, this would involve manual exception translation and checks for existing Spring transactions; therefore, it is usually advisable to stick with SqlMapClientTemplate.<br></blockquote><br><div class="h2">Spring + iBATIS + Spring Transaction Manager 사용시, com.ibatis.util.Throttle.increment() 에서 Lock 걸리는 현상</div><br><blockquote class="quote">Spring에서 iBATIS를 사용하고 Spring Transaction Manager를 사용하다가 다음과 같이 모든 WAS Thread에 락이 걸리는 현상이 발생했습니다.<br><br>"jrpp-2237" prio=5 tid=0x537340 nid=0x905 in Object.wait() [c9a80000..c9a819bc]<br>&nbsp;&nbsp;&nbsp;&nbsp;at java.lang.Object.wait(Native Method)<br>&nbsp;&nbsp;&nbsp;&nbsp;at java.lang.Object.wait(Object.java:426)<br>&nbsp;&nbsp;&nbsp;&nbsp;at com.ibatis.common.util.Throttle.increment(Throttle.java:69)<br>&nbsp;&nbsp;&nbsp;&nbsp;- locked <d669b430> (a java.lang.Object)<br>&nbsp;&nbsp;&nbsp;&nbsp;at com.ibatis.common.util.ThrottledPool.pop(ThrottledPool.java:60)<br>&nbsp;&nbsp;&nbsp;&nbsp;at com.ibatis.sqlmap.engine.impl.SqlMapExecutorDelegate.popSession(SqlMapExecutorDelegate.java:910)<br>&nbsp;&nbsp;&nbsp;&nbsp;at com.ibatis.sqlmap.engine.impl.SqlMapSessionImpl.<init>(SqlMapSessionImpl.java:50)<br><br>Throttle 객체는 객체 내부에 count 값을 가지고 있으면서 쿼리가 실행될때마다 increment()를 실행하면서 count 값을 증가시키고 쿼리가 끝날때 decerement() 메소드를 호출하여 count 값을 감소 시킵니다.<br>이런 상황에서 increment()는 count 값이 지정된 최대값을 넘어갈경우 다른 쓰레드에서 decerement()가 호출되어 count 값을 줄일 때까지 쓰레드에 락을 걸어 실행을 중단하도록 설계 되어 있습니다.<br>헌데, 쿼리가 실행될때 increment()만 실행되고 쿼리 종료후에 decrement()가 실행되지 않는 현상이 발생했으며 Throttle 객체에 로그를 추가하여 추적하여 원인을 발견하였습니다.<br><br>Spring을 통해서 iBATIS를 호출할 경우 getSqlMapClient() 메소드를 통하거나 getSqlMapClientTemplate() 메소드를 통해 호출할 수 있는데, Spring의 트랜잭션 매니져를 사용할 경우에는 일관성 있게 getSqlMapClientTemplate()을 사용해야만 합니다.<br>그런데 이 경우 <strong>코드상에서 getSqlMapClient()와 getSqlMapClientTemplate()을 한개의 트랜잭션에서 호출</strong>하는 부분이 있었고, 이로 인해 해당 트랜잭션이 비정상 종료되어 decrement()가 정확히 호출되지 않는 문제가 발생하여, 시간이 지날 수록 Throttle 객체의 count 값이 증가하였고 최대값에 다달았을 때 Lock이 걸려버렸습니다.<br><br>결론은 모든 <strong>쿼리 호출 부를 getSqlMapClientTemplate()을 사용</strong>하도록 해서 최종적으로 문제가 해결되었습니다.<br></blockquote></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

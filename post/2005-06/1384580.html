@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Ctrl-C &amp; Ctrl-V</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-01 19:11:33</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Ctrl-C &amp; Ctrl-V</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://blog.naver.com/heogn/140013525679">kenu님이 참여하신 웹 어플리케이션 프로젝트에 <I>System.exit(1);</I> 코드</a>가 있었다네요.<br><br>저는 Ctrl-C & Ctrl-V 했을 확률 51.9% 넘는다고 확신합니다.<br><br>어떤 회사였더라...<br>소프트웨어 개발해 관해 썼던 어떤 책에서는 이유 여하를 막론하고 <B>소스 코드 복사&붙여넣기 하는 것을 금지</B>한다라고 했던 글을 읽은 적이 있습니다.<br><br>복사&붙여넣기 식의 코딩은 자기가 짠 프로그램을 자신이 이해하지 못하게 만들 뿐만 아니라, 도무지 원인을 파악하기 힘든 버그를 양산해내죠.. 내가 짠 프로그램의 버그도 찾기 힘든데, 남이 짠데다, 소스를 제대로 확인않고 복사만 한 것을 어떻게 제대로 이해할 수 있겠습니까...?<br><br>차라리 소스를 인쇄 해 놓고, 코드를 따라가며 베껴 쓰는 방식을 쓰는 것이 더 시간을 아끼는 길이 아닐까 하는 생각이 듭니다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

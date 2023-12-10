@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>NetBeans 4.1 시작시 Jar 스캐닝 백그라운드로 하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-16 15:36:53</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">NetBeans 4.1 시작시 Jar 스캐닝 백그라운드로 하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">넷빈즈는 처음 시작할 때 클래스패스 내에 있는 Jar 들의 변경 사항을 검사한다. (Eclipse도 마찬가지로 알고 있다.)<br>그런데 이게 이클립스는 백그라운드로 하는데 반해 넷빈즈는 아예 딴짓 못하게 모달 다이얼로그를 띄워서 한다.<br>짜증나지..<br>그걸 <B>netbeans.conf의 netbeans_default_options</B>에 다음을 추가하여 해결 할 수 있다.<br><br><BLOCKQUOTE style="background: wheat;">-J-Dnetbeans.javacore.background_scanning=true</BLOCKQUOTE><br><br>차기 넷빈즈 부터는 기본적으로 백그라운드로 실행 한다고 한다.<br><br>그리고 짜증나는 넷빈즈의 CVS 인터페이스가 차기 버전부터 획기적으로 바뀐다고 한다. 크하하~~<br>이클립스 3.1과 NetBeans 4.2 누가 이길까? (아직은 Eclipse가 더 좋다.. ^^)<br><br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Hero</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-07-24 22:32:10</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Hero</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><embed src="http://www.youtube.com/v/3pymAUtT3Dc" type="application/x-shockwave-flash" width="425" height="350"></embed><br><br>마침내 너는 진실을 보게 될거야,<br>네 안에 영웅이 잠자고 있음을...<br><br><blockquote class="quote"><strong>Mariah Carey's Hero</strong><br>There's a hero<br>If you look inside your heart<br>You don't have to be afraid<br>Of what you are<br>There's an answer<br>If you reach into your soul<br>And the sorrow that you know<br>Will melt away<br>And then a hero comes along<br>With the strength to carry on<br>And you cast your fears aside<br>And you know you can survive<br>So when you feel like hope is gone<br>Look inside you and be strong<br>And you'll finally see the truth<br>That a hero lies in you<br>It's a long road<br>When you face the world alone<br>No one reaches out a hand<br>For you to hold<br>You can find love<br>If you search within yourself<br>And the emptiness you felt<br>Will disappear<br>And then a hero comes along<br>With the strength to carry on<br>And you cast your fears aside<br>And you know you can survive<br>So when you feel like hope is gone<br>Look inside you and be strong<br>And you'll finally see the truth<br>That a hero lies in you<br>Lord knows<br>Dreams are hard to follow<br>But don't let anyone<br>Tear them away<br>Hold on<br>There will be tomorrow<br>In time<br>You'll find the way<br>And then a hero comes along<br>With the strength to carry on<br>And you cast your fears aside<br>And you know you can survive<br>So when you feel like hope is gone<br>Look inside you and be strong<br>And you'll finally see the truth<br>That a hero lies in you<br><br>&nbsp; &nbsp; lyrics from <a title="" href="http://www.lyricsondemand.com/m/mariahcareylyrics/herolyrics.html">Lyrics on demand</a><br></blockquote></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

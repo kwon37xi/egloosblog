@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Oracle JDeveloper 10g 무료화 추진</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-24 01:12:06</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Oracle JDeveloper 10g 무료화 추진</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://www.line56.com/articles/default.asp?articleID=6658&TopicID=4">Line56</a>의 기사에 의하면  다음주부터 Oracle JDeveloper 10g 가 무료화 된다고 한다. (무료가 곧 오픈소스는 아니다)<br><br>뭐 사실상 거의 모두가 무료로 쓰고 있지 않았나.. ^^;<br><br>Eclipse 와 NetBeans의 파워 때문에 상용 개발툴들이 살아갈 토양을 잃어 가는 듯도 하고...<br><br>어쩌면 JBuilder의 최근 결정 처럼 Eclipse나 혹은 NetBeans를 기반으로 이 두 오픈소스 개발툴에 투자를 하는 대신 더 큰 기능을 돈주고 사도록 유도할 수도 있을 것 같기도 하다.<br><br><BLOCKQUOTE style="background: wheat;"><br>"We're making our complete SOA development environment, JDeveloper 10g, available for free to all developers," says Rick Schultz, VP of Oracle Fusion Middleware. "It's more than a Java development environment, it includes Web services functionality, UML modeling, service orchestration, and business process flows."<br><br></BLOCKQUOTE><br><br>대충 써본바로는 JDeveloper가 상용인 만큼, Eclipse보다는 훨씬 다양한 기능들을 갖추고 있다. 뭐 그래서 이클립스보다 약간 무겁고, 다른 WAS와 연동해서 사용하는게 쉬운가...? 제대로 써보진 않아서 잘 모르겠지만 암튼 OC4J를 기준으로 개발툴이 구성되어 있는 듯 보이는게 약간 싫은점이다.<br><br>함 쓰봐야징~<br><br><B>추가</B><br><a href="http://www.oracle.com/technology/products/jdev/collateral/papers/10g/as_supportmatrix.html">Application Servers supported by JDeveloper</a>에 따르면 거의 모든 WAS를 지원한다. 국산인 JEUS는 빠져있지만.. ^^;</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

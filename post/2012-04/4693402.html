@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] IE 9이하에서 textarea의 포커스가 다른 요소로 이동시, textarea의 커서위치 및 선택영역 초기화 되는 문제</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-04-10 16:36:15</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] IE 9이하에서 textarea의 포커스가 다른 요소로 이동시, textarea의 커서위치 및 선택영역 초기화 되는 문제</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">IE 8, 9 등에서 textarea에서 글을 쓰거나 특정 영역을 선택했다가 다른 레이어의 요소로 포커스가 이동하면 기존 textarea의 커서의 위치와 선택영역이 초기화 되는 현상이 발생한다.<br><br>포커스를 받는 요소들 input/button 혹은 다른 textarea 등으로 이동할 때 발생하는 버그로 보인다.<br><br>해소 방법은 포커스 이동전에 기존 커서의 위치와 선택 영역을 기억하고 있다가 포커스가 돌아오면 복구시켜주는 정도..<br>복구는 <a target="_blank" href="http://www.jquery-plugin.buss.hk/my-plugins/jquery-caret-plugin">jCaret</a>을 이용하면 쉽게 된다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

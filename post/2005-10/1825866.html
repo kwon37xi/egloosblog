@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] iBatis, JDBC, 쿼리결과 헤더 정보에서 특정 컬럼의 사라짐 현상</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-10-11 13:07:08</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] iBatis, JDBC, 쿼리결과 헤더 정보에서 특정 컬럼의 사라짐 현상</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">- iBatis, JDBC, iterator, disappear column header<br><br>iBatis로 프로젝트 진행중인데, <iterate>로 생성하는 컬럼중에서 마지막 컬럼이 쿼리 결과에서 사라지는 현상이 일어났다.<br><br>iterate의 conjunction 속성을 "," 로 줬더니 그런다.<br><B>", "</B>로 해서 쉼표뒤에 공백을 두었더니 컬럼이 사라지는 현상이 없어졌다.<br><br>iBatis의 문제는 아닌것 같고, JDBC의 문제 같은데...<br>흠~</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

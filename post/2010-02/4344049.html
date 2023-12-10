@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>kwon37xi의 2010-02-22 북마크</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2010-02-22 06:01:02</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">kwon37xi의 2010-02-22 북마크</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><div class="blog-margarin-posts"><ul><li class="blog-margarin-post blog-margarin-odd"><a href="http://tgrove.com/2008/03/06/piped-log-program-pl-failed-unexpectedly" class="blog-margarin-link"><font class="blog-margarin-link-text">piped log program [.pl] failed unexpectedly</font></a> <a href="http://mar.gar.in/kwon37xi/perl" class="blog-margarin-tag"><font class="blog-margarin-tag-text">perl</font></a> <a href="http://mar.gar.in/kwon37xi/apache" class="blog-margarin-tag"><font class="blog-margarin-tag-text">apache</font></a> <a href="http://mar.gar.in/kwon37xi/apache2.log" class="blog-margarin-tag"><font class="blog-margarin-tag-text">apache2.log</font></a> <a href="http://mar.gar.in/kwon37xi/pl" class="blog-margarin-tag"><font class="blog-margarin-tag-text">pl</font></a> <a href="http://mar.gar.in/kwon37xi/perl" class="blog-margarin-tag"><font class="blog-margarin-tag-text">perl</font></a><span class="blog-margarin-note"> Apache 2 에서 CustomLog를 펄 스크립트로 남길 때 &quot;apache piped log program failed unexpectedly&quot; 이런 오류가 발생할 수 있다. 원인은 Apache 2가 펄을 스크립트가 아닌 데몬으로 실행하기 때문이라고 한다.<br>방법은 while(@input = &lt;STDIN&gt;) { ... } 형태로 파이프로 들어온 스트림을 완전히 소진하고 마지막에 exit(0); 를 해주면 된다.</span></li><li class="blog-margarin-post blog-margarin-even"><a href="http://stackoverflow.com/questions/923295/how-to-truncate-a-datetime-in-sql-server" class="blog-margarin-link"><font class="blog-margarin-link-text">MS SQL Server 날짜 truncate</font></a> <a href="http://mar.gar.in/kwon37xi/mssql" class="blog-margarin-tag"><font class="blog-margarin-tag-text">mssql</font></a> <a href="http://mar.gar.in/kwon37xi/date" class="blog-margarin-tag"><font class="blog-margarin-tag-text">date</font></a> <a href="http://mar.gar.in/kwon37xi/truncate" class="blog-margarin-tag"><font class="blog-margarin-tag-text">truncate</font></a> <a href="http://mar.gar.in/kwon37xi/date" class="blog-margarin-tag"><font class="blog-margarin-tag-text">date</font></a><span class="blog-margarin-note"> </span></li></ul></div></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

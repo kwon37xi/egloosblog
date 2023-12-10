@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[DEBUG] Hibernate에서 갑자기 발생하는 NullPointerException의 정체는?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-04-02 13:43:07</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[DEBUG] Hibernate에서 갑자기 발생하는 NullPointerException의 정체는?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Hibernate의 Query.list() 혹은 Hibernate를 구현체로 사용하는 JPA에서 이에 상응하는 메소드에서 다음과 같은 오류가 발생하고 있다. 줄번호는 하이버네이트 버전별로 다르다.<br><br><blockquote class="src"><br>Exception in thread "main"<span style="color:#ff0000;"><strong> java.lang.NullPointerException</strong></span><br>at org.hibernate.persister.entity.AbstractEntityPersister<span style="color:#ff0000;"><strong>.loadByUniqueKey(AbstractEntityPersister.java:1641)</strong></span><br>at org.hibernate.type.EntityType.loadByUniqueKey(EntityType.java:608)<br>at org.hibernate.type.EntityType.resolve(EntityType.java:382)<br>at org.hibernate.engine.TwoPhaseLoad.initializeEntity(TwoPhaseLoad.java:116)<br>at org.hibernate.loader.Loader.initializeEntitiesAndCollections(Loader.java:842)<br>at org.hibernate.loader.Loader.doQuery(Loader.java:717)<br>at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:224)<br>at org.hibernate.loader.Loader.doList(Loader.java:2211)<br>at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2095)<br>at org.hibernate.loader.Loader.list(Loader.java:2090)<br></blockquote><br><a target="_blank" href="https://hibernate.atlassian.net/browse/HHH-2624">NullPointerException when Query.list()</a> 에 버그 리포팅이 된 상태이며 아직도 해결이 안되고 있다.<br><br>일단 문제는&nbsp; <span style="font-weight: bold;">엔티티간의 연관 관계가 있을 때 발생하는 것으로 보이나</span>, 일관성은 없다.<br><br>우리의 경우 아래와 같이 @OneToOne에 @Id를 지정한 관계를 가진 엔티티(아래 선언에서 Something 엔티티)의 목록을 가져올 때(list()) 발생하였다.<br><br><blockquote class="src"><span style="font-weight: bold;">@Id</span><br>@OneToOne<br>private Something somethimg;<br></blockquote><br>일단은, ID를 Long형으로 하고, OneToOne은 그냥 관계로서만 두도록 하니까 문제늘 발생하지 않았다.<br><br>우리팀은 JPA 구현체로서 하이버네이트를 사용하기 때문에 해결이 안되는데 <a href="https://forums.hibernate.org/viewtopic.php?f=1&amp;t=969331">loadByUniqueKey error and many-to-many w/join table</a>의 댓글에 따르면 아무일도 안하는 하이버네이트 필터를 만들어 끼워 넣으면 땜빵 해결이 되긴 한다고 한다.<br><br><blockquote class="src">&lt;filter&nbsp;name="myFilter"&nbsp;condition="1=1"&gt;&lt;/filter&gt;<br><br>&lt;filter-def&nbsp;name="myFilter"&gt;<br>&lt;/filter-def&gt;<br><br>currentSession.enableFilter("myFilter");<br></blockquote><br><br>빨리 해결 되기를.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

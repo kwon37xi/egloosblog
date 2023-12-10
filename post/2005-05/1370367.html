@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[UNIX-SH] 현재 디렉토리 이하 특정 파일의 문자 인코딩 일괄 변환</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-05-29 02:28:59</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[UNIX-SH] 현재 디렉토리 이하 특정 파일의 문자 인코딩 일괄 변환</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://www.okjsp.pe.kr/bbs?act=VIEW&bbs=bbs3&seq=56725">http://www.okjsp.pe.kr/bbs?act=VIEW&bbs=bbs3&seq=56725</a> 에 모든 JSP 파일의 인코딩을 어떻게 UTF-8로 바꿀 수 있는지에 대한 질문의 답변으로 올린 글이다.<br><HR><br>리눅스에서는 간단하게 끝낼 수 있습니다.<br><br>[kwon37xi@dev test]$ cat codechange<br><br><B>#!/bin/sh<br>for cfile in `find . -name "*.${1}"`<br>do<br>    echo Processing ${cfile}<br>    iconv -f "$2" -t "$3" "$cfile" > "${cfile}_"<br>    mv "${cfile}_" "$cfile"<br>done</B><br><br>저 셸 스크립트를 만들고서<br><br><B>$ sh codechange jsp euc-kr utf-8</B><br><br>위와 같이 실행하면 현재 디렉토리 이하의 모든 *.jsp 파일의 인코딩을 utf-8로 바꿔줍니다. 물론 반대도 가능합니다. <br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Wiki 도입하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-11-29 10:09:38</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Wiki 도입하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">2004년 11월에 쓴 글 입니다.<br><hr /><br><img src="http://joone.net/comics/cut/wiki_proposal.jpg" /><br><br>완벽하지는 않지만 우리회사는 위키위키 도입에 어느 정도 성공했다.<br><br>처음에는 물론 나 혼자 쇼했다.<br><br>아무도 쓰지 않았고 나 혼자 내가 발견한 정보들을 하나 하나 혼자서 적어 나갔다.<br>사람들이 나에게 뭘 물어보면 직접 대답하지 않고 위키 페이지 주소를 알려줬다.<br>내가 없어도 내가 얻은 정보를 다른 사람들이 스스로 찾아 낼 줄 알아야 하기 때문이다.<br><br>이제 위키의 쉽고 강력한 힘은 자연스럽게 다른 사람들을 설득시켰다.<br>모두 다는 아니지만 직원의 반은 이제 위키를 사용한다.(실제 사용법도 굉장히 쉽다. 20분 만에 사용법 교육이 끝났다.)<br><br>중요한 정보와 문서들이 속속 회사 위키에 정리되었고, 위키 자체를 인터넷만 되면 어디서나 접속할 수 있기 때문에, 다른 곳에 나가서 얻은 정보도 위키를 통해 나눠 둘 수 있어서 참 좋다.<br><br>현재 우리 회사가 사용하는 위키는 <a title="" href="http://moniwiki.kldp.net/">MoniWiki</a>이다.<br><br>회사에서 돌고 도는 정보들을 자기 머릿속이나 컴퓨터 속 어딘가에 유기시켜두지 말고 위키에 함께 적어보자.<br><br>나중에 몇 시간 동안 낭비할 시간을 1분으로 단축시켜 주는 성과를 거둘 때도 있을 것이다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

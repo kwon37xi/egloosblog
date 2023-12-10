@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[MySQL] MySQL 기본 명령어 정리</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-08-11 13:34:04</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[MySQL] MySQL 기본 명령어 정리</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a target="_blank" href="http://wiki.kwonnam.pe.kr/database/mysql/basic">http://wiki.kwonnam.pe.kr/database/mysql/basic</a><br><br>MySQL의 기본 명령어와 SQL문 정리. 내가 RDBMS에 완전 문외한이기 때문에 기본 SQL쿼리까지...<br>Redhat Linux 7.3, MySQL 3.23.58 에서 테스트함.<br>설치는 Redhat 기본 제공 RPM으로 했다.<br><br><b><big>데이터베이스 접속</big></b><br><blockquote class="SOURCE">$ mysql -u 사용자명 -p dbname<br></blockquote><br>설치 직후에는 root 사용자에 비밀번호가 없으므로 다음과 같이 접속하여 MySQL을 관리할 수 있다.<br><br><blockquote class="SOURCE">$ mysql -u root mysql<br></blockquote><br><br><b><big>비밀번호 변경</big></b><br>MySQL을 설치한 직후에는 root 계정에 암호가 지정되어 있지 않다.<br>다음 세가지 방법으로 비밀번호를 변경 할 수 있다.<br><ul><br>    <li>mysqladmin이용<br><blockquote class="SOURCE">$ mysqladmin -u root password 새비밀번호<br></blockquote><br>    </li><li>update문 이용<br><blockquote class="SOURCE">$ mysql -u root mysql<br><br>mysql&gt; UPDATE user SET password=password('새비밀번호') WHERE user='root';<br>mysql&gt; FLUSH PRIVILEGES;<br></blockquote><br><br>    </li><li>Set Password 이용<br><blockquote class="SOURCE">SET PASSWORD FOR root=password('새비밀번호');<br></blockquote><br></li></ul><br>일단 root 비밀번호가 설정된 상태에서는 mysql이나 mysqladmin 명령을 실행할 때 -p 옵션을 붙여주고 기존 비밀번호를 입력해야만 한다.<br><br><b><big>사용자 추가/삭제</big></b><br><blockquote class="SOURCE">mysql&gt; GRANT ALL PRIVILEGES ON dbname.* TO username@localhost IDENTIFIED BY 'password';<br></blockquote><br>username 이라는 사용자를 password라는 비밀번호를 갖도록 하여 추가한다. username은 dbname이라는<br>데이타베이스에 대해 모든 권한을 가지고 있다.<br>username 사용자는 로칼 호스트에서만 접속할 수 있다. 다른 호스트에서 접속하려면<br><blockquote class="SOURCE">GRANT ALL PRIVILEGES ON dbname.* TO username@'%' IDENTIFIED BY 'password';<br></blockquote><br>위를 또한 번 실행한다. '%'에서 홑따옴표를 주의한다.<br><b><del>추가 : '%'를 호스트네임으로 지정해도 모든 호스트에서 접속할 수 없었다. 각 호스트별로 다 지정해야 했다.</del></b><br><b> <span style="text-decoration: line-through;">아래 댓글에서 rukikuki님이 알려주셨습니다.</span><br style="text-decoration: line-through;"><span style="text-decoration: line-through;">GRANT ALL PRIVILEGES ON testdb.* TO 'username'@'%' IDENTIFIED BY 'password' ;</span><br style="text-decoration: line-through;"><span style="text-decoration: line-through;">처럼 'username' 이런식으로 홑따옴표를 username 에도 붙여야 하더군요..</span> <br><br></b><a target="_blank" href="http://tech.zhenhua.info/2009/01/mysql-error-104528000-access-denied-for.html">http://tech.zhenhua.info/2009/01/mysql-error-104528000-access-denied-for.html</a> 에 따르면 '%'란 localhost 를 제외한 모든 호스트를 뜻한다고 한다. 즉, localhost에 대해서는 명시적으로 따로 권한을 지정해야 한다.<br><br>불필요한 사용자 삭제는<br><blockquote class="SOURCE">mysql&gt; DLETE FROM user WHERE user='username';<br>mysql&gt; FLUSH PRIVILEGES;<br></blockquote><br><br><b><big>데이터베이스 생성/보기</big></b><br><ul><br>    <li>데이터베이스를 생성하고,<br><blockquote class="SOURCE">mysql&gt; CREATE DATABASE dbname;<br></blockquote><br>    </li><li>현재 존재하는 데이터베이스 목록을 보여준다.<br><blockquote class="SOURCE">mysql&gt; SHOW DATABASES;<br></blockquote><br>    </li><li>특정 데이타베이스를 사용하겠다고 선언한다.<br><blockquote class="SOURCE">mysql&gt; USE dbname;<br></blockquote><br>    </li><li>쓸모 없으면 과감히 삭제한다.<br><blockquote class="SOURCE">mysql&gt; DROP DATABASE [IF EXISTS] dbname;<br></blockquote><br>    <b> IF EXISTS</b> 옵션은 비록 데이타베이스가 없더라도 오류를 발생시키지 말라는 의미이다.<br></li></ul><br><br><b><big>테이블 생성/보기</big></b><br><ul><br>    <li>테이블을 생성하고,<br><blockquote class="SOURCE">mysql&gt; CREATE TABLE tablename (<br>    column_name1 INT,<br>    column_name2 VARCHAR(15),<br>    column_name3 INT );<br></blockquote><br>    </li><li>현재 데이타베이스의 테이블 목록을 보고<br><blockquote class="SOURCE">mysql&gt; SHOW TABLES;<br></blockquote><br>    </li><li>테이블 구조를 살펴본다.<br><blockquote class="SOURCE">mysql&gt; EXPLAIN tablesname;<br>혹은<br>mysql&gt; DESCRIBE tablename;<br></blockquote><br>    </li><li>이름을 잘못 지정했으면 이름을 변경할 수도 있다.<br><blockquote class="SOURCE">mysql&gt; RENAME TABLE tablename1 TO tablename2[, tablename3 TO tablename4];<br></blockquote><br>    </li><li>필요 없으면 삭제한다.<br><blockquote class="SOURCE">mysql&gt; DROP TABLE [IF EXISTS] tablename;<br></blockquote><br></li></ul><br><br><b><big>현재 상태 보기</big></b><br><blockquote class="SOURCE"><br>mysql&gt; status<br><br>--------------<br>mysql  Ver 11.18 Distrib 3.23.58, for pc-linux (i686)<br><br>Connection id:          26<br>Current database:       study<br>Current user:           study@localhost<br>Current pager:          stdout<br>Using outfile:          ''<br>Server version:         3.23.58<br>Protocol version:       10<br>Connection:             Localhost via UNIX socket<br>Client characterset:    latin1<br>Server characterset:    euc_kr<br>UNIX socket:            /var/lib/mysql/mysql.sock<br>Uptime:                 2 hours 9 min 59 sec<br><br>Threads: 1  Questions: 160  Slow queries: 0  Opens: 28  Flush tables: 1<br>Open tables: 1 Queries per second avg: 0.021<br>--------------<br><br></blockquote><br><br><b><big>INSERT</big></b><br><blockquote class="SOURCE">mysql&gt; INSERT INTO tablename VALUES(값1, 값2, ...);<br><br>혹은<br><br>mysql&gt; INSERT INTO tablename (col1, col2, ...) VALUES(값1, 값2, ...);<br></blockquote><br><br><b><big>SELECT</big></b><br><blockquote class="SOURCE">mysql&gt; SELECT col1, col2, ... FROM tablename;<br></blockquote><br>컬럼명을 *로 하면 모든 컬럼 의미.<br><br><blockquote class="SOURCE">mysql&gt; SELECT col1 AS '성명', col2 AS '국어점수' FROM grade;<br></blockquote><br>컬럼의 이름을 바꿔서 출력.<br><br><blockquote class="SOURCE">mysql&gt; SELECT * FROM tablename ORDER BY col1 DESC;<br>mysql&gt; SELECT col1, korean + math english AS '총점' FROM tablename ORDER BY '총점' ASC;<br></blockquote><br><b>DESC</b>는 내림차순 <b>ASC</b>는 오름차순.<br><br><blockquote class="SOURCE">mysql&gt; SELECT * FROM grade WHERE korean &lt; 90;<br></blockquote><br>조건줘서 SELECT.<br><br><blockquote class="SOURCE">mysql&gt; SELECT * FROM grade LIMIT 10;<br></blockquote><br>결과중 처음부터 10개만 가져오기<br><br><blockquote class="SOURCE">mysql&gt; SELECT * FROM grade LIMIT 100, 10;<br></blockquote><br>결과중 100번째부터 10개만 가져오기. <b>첫번째 레코드는 0번 부터 시작</b>한다.<br><br><b><big>UPDATE</big></b><br><blockquote class="SOURCE">mysql&gt; UPDATE tablename SET col1=새값 WEHER 조건<br></blockquote><br><br><b><big>DELETE</big></b><br><blockquote class="SOURCE">mysql&gt; DELETE FROM tablename WEHRE 조건<br></blockquote><br><br><b><big>mysql에서 쿼리 결과 세로로 보기</big></b><br><b>-E</b> 옵션을 줘서 실행한다.<br><blockquote class="SOURCE">$ mysql -E -u root -p mysql<br></blockquote><br><br><b><big>mysql에서 발생한 오류나 경고 다시 보기</big></b><br><blockquote class="src">mysql&gt; show errors;<br>mysql&gt; show warnings;<br></blockquote></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

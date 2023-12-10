@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[뮤지컬] 렌트 오리지날</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-01-23 00:05:50</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[뮤지컬] 렌트 오리지날</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">회사 사람들과 <a title="" href="http://www.rent2006.co.kr/">뮤지컬 렌트 오리지날</a>을 보았다.<br>두명이 갑자기 안나와서 위기 일발 이었지만, 다행히 표를 팔아서 별 손해 본 것 없이 보았다.<br><br>대충 줄거리는 삶은 빌려온 것, 돌려줄 시간이 얼마남지 않았으니, 바로 지금 이 순간 사랑하며 살라 뭐 그런 것 같다.<br><br><a title="" href="http://www.rent2006.co.kr/">홈페이지</a>에 가면 주제가를 들어볼 수 있다.<br><br>멋지 노래로 대단한 가창력을 가진 멋진 배우들로 이루어진 뮤지컬 공연이었지만, 올림픽홀에서 플라스틱 의자로 된 VIP석에서 봤다는 사실이 참 찝찝하다.<br><br>게다가 브로드웨이 오리지날 뮤지컬을 본 것은 오늘이 처음이었는데, 상당히 힘들다.<br><br>자막이 좌우에 상당히 치우쳐서 나눠서 나오는데 정말 자막읽으랴, 배우들 노래와 춤보랴 정신 없다. (영화 자막 읽는 것과는 다르다)<br>멋진 공연임에도 그러한 점 때문에 상당히 재미가 반감되었다.(이건 공연 잘못이 아니라 영어를 못 알아듣는 내 잘못이지만)<br><br>만약 굳이 렌트 오리지날을 보고 싶다면, 영어를 네이티브 수준으로 알아듣거나, 내용을 모두 숙지 하고 가서 자막 보다는 배우들에게 집중해서 보거나, 여러번 보고 이해할 것을 각오하는 것이 좋을 것 같다.<br><br>이 공연 내가 보자고 바득바득 우겨서 본 것인데(^^;) 자막과 씨름하느라 고생하면서도 즐겁게 즐겨주신 분들께 너무 감사한다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

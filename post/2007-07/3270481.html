@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Solr : Lucene을 더 쉽고, 확장성 높게 사용하자!</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2007-07-06 21:00:53</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Solr : Lucene을 더 쉽고, 확장성 높게 사용하자!</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://lucene.apache.org">Lucene</a>을 검색 엔진으로 쓰다보면  Lucene이 RDBMS처럼 서버가 아니라 API이기 때문에 확장성에 문제가 생기게 된다. 서버가 한 대이면 상관 없지만 두 대 이상의 WAS를 사용하게 되면 인덱싱 정보를 저장하는 영역이 두개로 갈라지게 되버리는 것이다.<br><br>예전엔, RMI를 사용해서 확장을 해볼까도 생각했었는데, 꽤 괜찮은 해결책이 Lucene의 서브 프로젝트로 들어와 있다.<br><br>바로 <a href="http://lucene.apache.org/solr/">Solr</a>다.<br>Solr는 Tomcat Jetty같은 WAS 위에서 웹 애플리케이션으로 수행되며 인덱싱과 검색 요청을 HTTP 프로토콜을 통해서 받아서 Lucene에 전달해주는 역할을 한다.<br>따라서 전혀 Java 라는 언어에 종속적이지 않게 된다.<br>(현재 나는 Python으로 개발 중이다.)<br>그리고 Solr 자체도 리플리케이션이 가능하다고 한다.<br><br>설정도 그다지 어렵지 않다. 오히려 순수 Lucene만 사용할 때 보다 더 빨리 실제 운영 환경 구축이 가능했다.<br><br>각 언어별 HTTP 프로토콜을 감싸는 바인딩도 있다(약간은 불안하지만 소스를 보고 고치면 별 문제 없다).<br><br><a title="" href="http://kwon37xi.springnote.com/pages/335478">Solr 스프링노트 페이지</a>에 Solr 설정에 관해 정리해 두었다.<br>웬만하면 웹 애플리케이션을 작성한다면 HTML Strip 필터도 넣어 두는게 좋다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

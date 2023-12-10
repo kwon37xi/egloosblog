@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>프로그래밍 안티 패턴</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2011-10-16 10:33:06</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">프로그래밍 안티 패턴</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a target="_blank" href="http://glenndejaeger.wordpress.com/2010/04/05/programming-antipatterns/">Programming AntiPatterns</a>라는 블로그 글이 올라와서 정리해 본다. 항상 말하지만, 정리는 참조만 하고 원문을 볼 것.<br><br><span style="font-weight: bold;">안티 패턴</span>이란? - 문제에 대해 자주 사용되는 해결책이지만 안 좋은 결과를 가져오는 것.<br>안티패턴을 사용하는 이유는 관리자나 프로그래머가 더 나은 지식이 없고, 특정 타입의 문제에 대해 지식과 경험이 부족하거나 혹은 완벽한 패턴을 잘못된 상황에 적용할 때 발생하게 된다.<br><br><font size="4"><span style="font-weight: bold;">◆ 바퀴의 재발명</span><br><font size="2"><br><span style="font-weight: bold;">이미 있는 라이브러리나 프레임워크를 다시 만들지 말라.</span><br>유용한 프레임워크나 라이브러리의 존재를 잘 몰라서 발생하는 안티패턴. <a target="_blank" href="http://commons.apache.org/lang/">Apache Commons Lang</a> 혹은 <a target="_blank" href="http://commons.apache.org/collections/">Commons Collections</a>는 모든 자바프로젝트에서 포함되어야 한다. 리플렉션이 필요하면 <a target="_blank" href="http://commons.apache.org/beanutils/">Apache Commons Beanutils</a>나 스프링의 <a target="_blank" href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/beans/BeanUtils.html">BeanUtils</a>와 <a target="_blank" href="http://static.springsource.org/spring/docs/3.0.x/javadoc-api/org/springframework/beans/BeanWrapperImpl.html">BeanWrapper</a>를 사용하라.<br>권남 주 : 요즘에는 <a target="_blank" href="http://code.google.com/p/guava-libraries/">Google Guava</a>가 Apache Commons를 대체하는 중.<br><br><br><font size="4"><span style="font-weight: bold;"></span></font></font></font><font size="4"><span style="font-weight: bold;">◆ </span></font><font size="4"><font size="2"><font size="4"><span style="font-weight: bold;">화물 숭배(Cargo Cult) 프로그래밍</span></font><br><br><a target="_blank" href="http://ko.wikipedia.org/wiki/%EC%B9%B4%EA%B3%A0_%EC%BB%AC%ED%8A%B8_%EA%B3%BC%ED%95%99">화물 숭배</a><br><span style="font-weight: bold;">왜 그런지 이유도 모르면서 특정 방식이나 패턴을 사용하지 말라.</span><br>보통 스킬과 경험이 부족한 프로그래머들이 복사해서 붙여넣기하면서 발생한다.<br><br>안티패턴 예:</font></font><font size="4"><font size="2"><br></font></font><ul><li><font size="4"><font size="2">스스로 설명하는 코드(self-explanatory code)에 불필요한 주석달기</font></font></li><li><font size="4"><font size="2">문제 없이 가비지 컬렉션되는 객체에 삭제 코드 추가하기</font></font></li><li><font size="4"><font size="2">간단한 객체를 생성하려고 팩토리 만들기</font></font></li></ul><font size="4"><font size="2"><br><font size="4"><span style="font-weight: bold;"></span></font></font></font><font size="4"><span style="font-weight: bold;">◆ </span></font><font size="4"><font size="2"><font size="4"><span style="font-weight: bold;">예외에 기반한 코딩/예외 처리(Exception Handling)</span></font><br><br>어떤 사람들은 값의 특별한 형태(null 같은)를 검사하지 않고 catch블록에서 NullPointerException을 검사하여 로직을 수행하게 짠다(예외 처리).<br>예외는 정말로 나쁜 상황이 발생했다는 것을 알려주려고 존재하는 것이며, 자주 발생하면 안된다. 그래서 "예외(exception)"이라고 부르는 것이다. 예외는 주의깊게 다뤄야하고, 과용하면 안된다.<br><span style="font-weight: bold;">간단한 if-else 검사로 수행할 수 있는 로직을 예외를 사용해 처리하지 말라.</span><br><br><font size="4"><span style="font-weight: bold;"></span></font></font></font><font size="4"><span style="font-weight: bold;">◆ </span></font><font size="4"><font size="2"><font size="4"><span style="font-weight: bold;">예외 삼키기</span></font><br><br>예외가 발생했다는 것은 무언가 기대치 않은 사건이 발생했다는 것이다. 예외의 정보를 가지고 처리를 하는 대신 예외를 삼켜버리는 것이 안티패턴이다.<br><span style="font-weight: bold;">예외는 먹는게 아니다. 삼키지마.</span><br><br>권남 주: finally 블록에서 return 구문을 써도 예외가 먹힌다. finally에서는 절대로 return하면 안된다.<br><br></font></font><font size="4"><span style="font-weight: bold;">◆ </span></font><font size="4"><font size="2"><font style="font-weight: bold;" size="4">상속의 지옥</font><br><br>상속은 매우 주의해서 다뤄야 한다. 상속이 비대해졌다면 뭔가 잘못된 것이다. 단 하나의 특별한 경우 때문에 추상 클래스를 만들지 말라.<br><span style="font-weight: bold;">상속 대신 구성(composition)을 사용하라.</span> <a href="http://en.wikipedia.org/wiki/Strategy_pattern%20">전략 패턴(strategy pattern)</a>이 도움이 될 것이다.<br><br>권남 주: <a target="_blank" href="http://www.javaworld.com/javaworld/jw-08-2003/jw-0801-toolbox.html">자바의 아버지 제임스 고슬링이 어느 컨퍼런스에서 "자바를 다시 만든다면 뭘 바꾸겠습니까?" 물었을 때 클래스의 상속을 없애겠다고 했다한다(정확히는 클래스를 없애겠다고 말했다가, 다시 고쳐서 구현의 상속-클래스 상속-을 없애고 싶다 했다고 한다).</a> 가능하면 구현 상속보다는 인터페이스 상속을 사용하라.<br><br><font size="4"><span style="font-weight: bold;"></span></font></font></font><font size="4"><span style="font-weight: bold;">◆ </span></font><font size="4"><font size="2"><font size="4"><span style="font-weight: bold;">금 도금과 너무 이른 최적화(Gold Plating &amp; Premature Optimization)</span></font><br><br>사용자가 요청하지도 않은 요구사항을 구현하는 행위를 금 도금(gold plating)이라고 한다. 헛된 짓이로다.<br><br>금 도금의 일종으로 너무 이른 최적화도 있다. 너무 이른 최적화는 당장은 아무 문제도 없지만 미래에 발생할지도 모르는 이슈를 미리 고민하는 것이다. 미래의 언젠가 필요한 것 말고 요청 받은 것 필요한 것만 생각하라. 자주 일어나는 너무 이른 최적화로는 너무 이른 성능 최적화가 있다. 지금 현재 성능 이슈가 없다면 최적화는 문제가 발생할 때까지 미루라.<br><br>권남의 주관적 해석 : 너무 이른 최적화를 잘못 해석할 수도 있어보인다. 너무 이른 성능 최적화를 하지말라는 것은 성능 측정을 하지말라는 것과는 다르다. 현재의 요구 사항을 만족하는지 성능 측정을 하고 그것을 만족시키는 최적화를 해야한다. 그러나 현재의 요구 사항을 넘어서는 측정을 진행하고 최적화를 하는 것은 "너무 이른 성능 최적화"에 해당한다.<br><br><br><a target="_blank" href="http://en.wikipedia.org/wiki/Anti-pattern#Programming_anti-patterns">http://en.wikipedia.org/wiki/Anti-pattern#Programming_anti-patterns</a> 에서 더 볼 수 있다.<br></font></font></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

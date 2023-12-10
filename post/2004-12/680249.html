@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Cygwin] Bash에서의 한글과 ls에서 컬러로 파일명 보기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-17 21:21:31</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Cygwin] Bash에서의 한글과 ls에서 컬러로 파일명 보기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><b>bash 한글 환경 설정</b><br><br>  * ~/.inputrc<br><p style="background-color: rgb(255, 255, 153); padding-top: 3px;"><b>set meta-flag on<br>set input-meta on<br>set convert-meta off<br>set output-meta on<br></b></p><br><b>컬러 ls</b><br><br> * ~/.bashrc 혹은 /etc/profile<br><p style="background-color: rgb(255, 255, 153); padding-top: 3px;"><b>alias ls='ls -F --show-control-chars --color=tty'<br></b></p></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

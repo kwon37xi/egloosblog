@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Hibernate/ORM의 치명적 문제점</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2010-06-02 10:59:16</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Hibernate/ORM의 치명적 문제점</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Hibernate 혹은 기타 ORM을 쓰다보면 자주 부딪히는 아주 치명적인 문제가 있다(나만 그럴지도... --;).<div><br><div>ORM은 클래스와 객체/프라퍼티 기반으로 쿼리를 날린다.</div><div>그래서 특히 클래스/프라퍼티 이름을 그대로 테이블/컬럼 이름으로 쓰지 않고 따로 테이블/컬럼 이름을 설정할 경우,&nbsp;클래스에 대응하는 테이블 이름과 프라퍼티에 대응하는 컬럼 이름에 오타가 있어도 그냥 계속 클래스만 바라보고 코딩하게 되어 오타를 전혀 모르고 지나가게 된다.</div><div><br></div><div>그리고는.. 한참 나중에 <a href="http://squirrel-sql.sourceforge.net/" target="_blank">SQuirrelSQL</a> 같은 쿼리 툴로 직접 쿼리를 날렸을 때 테이블이나 컬럼이 없다는 오류에 직면, 한참을 헤메게 된다.</div><div><br></div><div>이거 농담인거 다들 아시죠?</div><div><br></div><div>아직 늦지 않았습니다 투표하세요~</div></div></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>JUnit 간단 정리</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-09-17 22:17:03</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">JUnit 간단 정리</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><B><BIG>테스트 클래스 작성</BIG></B><br>JUnit Test 클래스는 <B>junit.framework.TestCase</B> 를 상속받고, <B>public void test*()</B> 형태의 테스트 메소드를 작성한다.<br><br><B><BIG>JUnit 테스트의 골격</BIG></B><br><blockquote class="quote">1. junit.framework.* 을 코드에 반영하기 위한 import 문<br>2. 테스트 클래스가 TestCase를 상속하는 extends 문(되도록 TestCase를 상속하는 다른 클래스를 만들고, 그 클래스로 다시 상속 받아 테스트 클래스를 만드는 것이 좋다)<br>3. super(string)을 호출해 주는 생성자<br></blockquote><br><br><B><BIG>테스트 수행</BIG></B><br>&nbsp;* 텍스트 : junit.textui.TestRunner TestClass<br>&nbsp;* AWT : junit.awtui.TestRunner TestClass<br>&nbsp;* SWING : junit.swingui.TestRunner TestClass<br><br><B><BIG>테스트 수행 메소드 부르기</BIG></B><br><BLOCKQUOTE class="SOURCE">public static void main(String[] args) {<br>&nbsp;&nbsp;&nbsp;&nbsp;junit.swingui.TestRunner.run(AllTest.class);<br>}<br></BLOCKQUOTE><br><br><B><BIG>Assertions</BIG></B><br><BLOCKQUOTE class="SOURCE">각 메소드는 맨 처음 인자로 문자열 설명을 가질 수 있다.<br><br>assertEquals(primitive expected, primitive actual);<br>assertEquals(Object exprected, Object actual);<br>assertSame(Object exptected, Object actual); // 두 객체가 같은가?<br>assertNotSame(Object exptected, Object actual);<br>assertNull(Object object); // 객체가 NULL인가?<br>assertNotNull(Object object);<br>assertTrue(boolean condition);<br>assertFalse(boolean condition);<br><br>fail(String str); : 무조건 실패<br></BLOCKQUOTE><br><br><B><BIG>테스트 클래스의 값 초기화</BIG></B><br>테스트 클래스에 <B>public void setUp()</B> 메소드를 만들어주면 각 테스트 메소드가 실행되기 전에 먼저 setUp() 메소드가 실행된다.<br><br>테스트 클래스에 <B>public void tearDown()</B> 메소드를 만들어주면 각 테스트 메소드가 종료할 때마다 tearDown() 메소드가 실행된다.<br><br><B><BIG>suite()</BIG></B><br>테스트할 메소드를 명시적으로 지정하고 싶을 때 테스트 클래스에 <code>public static Test suite()</code> 메소드를 만든다.<br><blockquote class="src">public static Test suite() {<br>&nbsp;&nbsp;&nbsp;&nbsp;TestSuite = new TestSuite();<br>&nbsp;&nbsp;&nbsp;&nbsp;suite.addTest(new TestClass("testMethod1")); // 테스트할 메소드 이름<br>&nbsp;&nbsp;&nbsp;&nbsp;suite.addTest(new TestClass("testMethod2"));<br><br>&nbsp;&nbsp;&nbsp;&nbsp;return suite;<br>}<br></blockquote><br><br><B><BIG>JUnit과 ANT</BIG></B><br><BLOCKQUOTE class="SOURCE"><br>&lt;junit&nbsp;printsummary="true"&nbsp;haltonfailure="no"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;classpath><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;pathelement&nbsp;path="${classes.dir}"/><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/classpath><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;test&nbsp;name="helloproject.junit1.DayCounterTest"/><br>&lt;/junit><br><br></BLOCKQUOTE><br><br><B>haltonfailover="yes"</B> 이면 테스트가 하나라도 실패하면 거기서 테스트를<br>중지해버린다.<br><br>여러 테스트를 수행하려면<br><BLOCKQUOTE class="SOURCE"><br>&lt;junit&nbsp;printsummary="true"&nbsp;haltonfailure="no"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;classpath><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;pathelement&nbsp;path="${classes.dir}"/><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/classpath><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;formatter&nbsp;type="xml">&nbsp;&lt;!--&nbsp;결과를&nbsp;XML로&nbsp;내보냄&nbsp;--><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;batchtest&nbsp;todir="${test.dir}">&nbsp;&lt;!--&nbsp;XML결과가&nbsp;저장될&nbsp;Directory&nbsp;--><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fileset&nbsp;dir="${classes.dir}"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;include&nbsp;name="**/*Test*.class"/><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/fileset><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/batchset><br>&lt;/junit><br><br></BLOCKQUOTE><br><br>테스트 결과 XML을 이용해 HTML로 결과 보고서 만들기 - Xalan 2 필요<br><BLOCKQUOTE class="SOURCE"><br>&lt;junitreport&nbsp;todir="${test.dir}"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;fileset&nbsp;dir="${test.dir}"><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;include&nbsp;name="TEST**.xml"/><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/fileset><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;report&nbsp;format="frames"&nbsp;todir="${test.dir}/html"/><br>&lt;/junitreport><br><br></BLOCKQUOTE></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

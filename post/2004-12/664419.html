@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>MS-Windows 2000 대용량 HDD(160GB 이상) 인식시키기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-14 09:22:18</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">MS-Windows 2000 대용량 HDD(160GB 이상) 인식시키기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://www.seagate4u.co.kr/service/service03.html?BID=906&BCID=15&apptype=1&index=14">원문</a><br><br>160GB 이상의 제품을 사용하실 경우 사용하시려는 운영체계에서 48bit LBA를<br>지원하는지 먼저 확인하시기 바랍니다.<br>현재 48bit LBA를 기본적으로 지원하는 운영체계는 Windows 2003만이 지원하며,<br>이전의 운영체계에서는 48bit LBA patch를 하셔야 합니다.<br><br>Windows 2000 및 Windows XP에서는 아래와 같이 patch하시면 사용이 가능하며,<br>WinME 및 Win98(SE 포함)에서는 48bit LBA를 지원하지 않습니다.<br><br>-. Windows2000은 SP3 이상을 설치하셔야 하며, Windows XP인 경우 SP1을 설치하신후 레지스트리를 수정하셔야 48bit LBA가 활성화 됩니다.<br>수정하시는 방법은 아래와 같습니다.<br><br>1.시작 --> regedit 실행<br><br>2.아래의 위치로 이동<br><br><B>HKEY_LOCAL_MACHINESYSTEMCurrentControlSetServicesAtapiParameters</B><br><br><br>3.우측창에서 마우스 오른쪽 버튼을 클릭하여 새로만들기 선택후 DWORD값을 선택<br><br>이 름 : EnableBigLba<br>이름을 위와 같이 입력한 후 이름을 더블클릭하여 아래의 값을 수정<br>종 류 : REG_DWORD<br>값 : 1<br><br>4. 레지스트리 편집기 종료<br><br><br>위와 같이 작업을 하셔야 정상적으로 사용이 가능하며, 이러한 작업이 되어 있지 않을 경우 데이터의 손실이 발생될수 있습니다.<br>또한, 이러한 48bit LBA작업을 하신 상태에서 사용중이더라도 48bit LBA 작업이 되어 있지 않은 PC에 이동, 연결하여 사용할 경우에도 데이터의 손실이 발생될수 있습니다.<br><br>위의 작업에 따른 그 어떠한 문제에 대해 대원컴퓨터에서는 데이터에 대한<br>보증을 하지 않으니, 데이터는 항시 백업을 하시기 바랍니다.<br><br>자세한 내용은 아래의 site에서 참조하시기 바랍니다.<br>감사합니다.<br><br>Windows 2000<br><a href="http://http://support.microsoft.com/default.aspx?scid=kb;en-us;305098">http://support.microsoft.com/default.aspx?scid=kb;en-us;305098</a><br><br>Windows XP<br><a href="http://support.microsoft.com/default.aspx?scid=kb;en-us;303013">http://support.microsoft.com/default.aspx?scid=kb;en-us;303013</a></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

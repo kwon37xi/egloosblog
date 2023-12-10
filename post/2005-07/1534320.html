@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>CVSNT 2.x 설치와 Tortoise CVS 클라이언트 사용하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-07-12 17:10:20</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">CVSNT 2.x 설치와 Tortoise CVS 클라이언트 사용하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">웹을 뒤적이고 다니다가 CVSNT 2.x 설치방법에 관한 글을 읽었다.<br>엥? 근데 이거 내가 썼다네??<br>뭐지? 하고 찾아보니, 2003년에 내가 써서 <a href="http://okjsp.pe.kr">http://okjsp.pe.kr</a> 에 올린글이었다.<br><br>그 당시 나는 회사에 CVS를 사용하자고 몇달째 건의하고 있었는데, (물론 씹혔다.. ;) ) 그러면서 실질적으로 CVS를 설치하고 사용하는 방법을 보여주기 위해 CVSNT 설치방법과 윈도우용 CVS 클라이언트로는 제일 쉬운 Tortoise CVS 의 사용법을 정리해 둔적이 있었다는게 기억났다.<br><br>아무튼, CVS는 2004년이 넘어가서야 회사에 도입되었다. 클라이언트는 물론 Eclilpse. Tortoise CVS 보다 Eclipse의 CVS가 더욱 직관적이다. CVS 서버는 Redhat Linux 7.3 이다.<br><br>그 때 OKJSP에 올렸던 그 글을 찾아서 다시 올려놨다.<br><br>    * CVSNT 2.x 설치 사용기 : <a href="http://kr.geocities.com/kwon37xi/CVSNT_HowTo.pdf">http://kr.geocities.com/kwon37xi/CVSNT_HowTo.pdf</a><br>    * TortoiseCVS 사용법 : <a href="http://kr.geocities.com/kwon37xi/TortoiseCVS_How-To.pdf">http://kr.geocities.com/kwon37xi/TortoiseCVS_How-To.pdf</a><br><br>그리고 내가쓴 설치기를 보완해서 올려두신 분이 계시다. : <a href="http://blog.naver.com/hermeswing/140003531589">http://blog.naver.com/hermeswing/140003531589</a><br><br>근데 대체 내가 왜??? PDF로 만들어서 올려둔거지?? 아.. 그때 오픈오피스에서 PDF 만들어진다고 자랑할려고 일부러 그랬나보다...</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Tomcat의 Logger(로거)가 이상해요..</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-02-05 21:36:20</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Tomcat의 Logger(로거)가 이상해요..</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Tomcat의 로거가 다음과 같은 오류를 내며 작동하지 않는다면...<br><br><blockquote class="src">log4j:WARN No appenders could be found for logger (org.apache.commons.digester.Digester).<br>log4j:WARN Please initialize the log4j system properly.<br></blockquote><br><br>혹은 내가 작성한 Log4j 를 사용하는 웹 어플리케이션의 로거가 내가 설정하지 않는 프라퍼티를 읽으려 들거나 한다면, 그것의 거의 log4j-*.jar가 의도하지 않게 클래스패스로 잡혀 있기 때문이다.<br><br>웹 어플리케이션의 log4j-*.jar 는 "WEB-INF/lib" 디렉토리 아래에만 둔다. 결코 "$CATALINA_HOME/common/lib" 등에 두지 말아야 한다.<br><br>또한 log4j-*.jar를 클래스 패스로 지정하지도 말고, $JAVA_HOME/jre/lib/ext 디렉토리에 둬서도 안된다.<br><br>이거 때문에 며칠 삽질... --;<br><br>절대 명심해야 할 사항중에 하나는 <strong>스스로 절대적인 확신이 없으면 $JAVA_HOME/jre/lib/ext 디렉토리에는 절대로 다른 *.jar 파일을 넣어 두면 안된다!!!</strong> 항상 수동으로 클래스패스를 설정하도록 하고, TOMCAT의 경우 WEB-INF/lib를 자기 스스로 클래스패스를 잡아주니, 그곳을 이용하도록 한다.<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

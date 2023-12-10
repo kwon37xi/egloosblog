@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>실수</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-06-15 16:46:30</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">실수</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><blockquote class="quote">"경기를 하면 굉장히 많은 실수를 하다가 실수 과정 끝에 하나가 성공하면 그것 때문에 이기는 것이다, 실수도 하나의 과정인데 `쟤 빼~`라고 말하며, 축구 외적인 것으로 인신공격하는 것은 문제다"<br></blockquote><br><a title="" href="http://news.media.daum.net/entertain/broadcast/200606/15/joynews24/v13049524.html"><br>응원할 때 꼴불견 1위라면서 "김C"가 했다는 말</a>이다.<br><br>절대 공감한다.<br><br>성공은 수 많은 실수 위에 이뤄지는 것.<br><br>실수를 두려워하면 도전도 없고 성공도 없다.<br><br>실수를 두려워하면 수천번의 실수 끝에 전구를 만든 에디슨도 없다.<br><br>실수를 두려워하지도 말고, 실수하는 사람을 비난하지도 않는다.<br><br>얼마전에 아드보카트가 했다는 말 중에 "한국 선수들은 서로 비난하지 않는다." 했는데, 이 말도 너무 좋다.<br><br>서로 실수를 보듬어주고, 격려하는 자세가 개개의 선수들이 실수를 두려워 하지 않고 더 많이 시도하게 만들고, 그 더 많은 실수들 중 하나를 골로 연결시켜 줄 것이다.<br><br>선수들이 실수를 하지 않으려고 움츠러든 그 순간,<br>우리나라는 이미 진 것이고,<br>우리 팀은 이미 와해된 것이고,<br>내 인생은 이기는 것도 지는 것도 없는, 무미건조함 그 자체가 될 것이다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

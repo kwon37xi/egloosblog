@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>링크 : 웹 표준, 대체 무슨 책을 읽어야 합니까?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-12-19 14:25:09</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">링크 : 웹 표준, 대체 무슨 책을 읽어야 합니까?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a title="" href="http://naradesign.net/wp/2006/12/18/103/">웹 표준, 대체 무슨책을 읽어야 합니까?</a>에 웹 표준 관련 문서와 책에 대한 정보가 정리되어 있다.<br><br>위 링크에는 없지만, 웹의 기초가 부족한 나는 무엇보다 먼저 <a title="" href="http://www.aladdin.co.kr/shop/wproduct.aspx?ISBN=8979144105">Head First HTML with CSS and XHTML</a> 를 제일 먼저 읽어야지.<br><br>웹 프로그래밍의 세계로 빠져들어 볼 기회가 나에게 생기려나?</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

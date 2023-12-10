@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>어떤 웹 어플리케이션 프레임웍을 사용할 것인가?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-06-08 17:33:37</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">어떤 웹 어플리케이션 프레임웍을 사용할 것인가?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">Matt Raible 이라는 다양한 Java 웹 어플리케이션 프레임웍을 사용해본 아자씨의 말에 의하면,<br>일반적으로는 <a href="https://appfuse.dev.java.net/">AppFuse(Struts)</a> (<a href="http://nude.nudejava.net/nudewiki/Wiki.jsp?page=AppFuse">한국어</a>),<br>대규모 어플리케이션에서는 <a href="http://jakarta.apache.org/tapestry/">Tapestry</a>(재사용성이 좋으나 배우기가 어렵다고 한다), 오픈 소스 개발자라면 <a href="http://www.opensymphony.com/webwork/">WebWork</a>를 사용하라고 한다.<br><br><a href="http://equinox.dev.java.net/framework-comparison/WebFrameworks.pdf">Comparing Java Web Frameworks</a><br><br><a href="http://blog.empas.com/ahnyounghoe/read.html?a=8996425">이건 이번에 나온 새로운 글</a>이고, 옛날 판도 있다.<br><br>그건 영호(회?)님의 블로그에 번역본이 있다. <br><br><a href="http://blog.empas.com/ahnyounghoe/search.html?a=4512407&f=all&k=%BA%F1%B1%B3&p=5&v=title">구판 웹 어플리케이션 프레임워크 비교 (완결)</a><br><br>근데.. 뭐 별로 결과가 다르지 않다.<br><br>Struts가 가장 대세이고, 스터럿츠의 HTML 태그를 강력하게 추천하는 것 같고 또한, 직업을 구할 때도 미국이나 우리나라나 Struts 한다고 하면 딴 것보다는 메리트가 있기 때문에,<br><br>일단은, 스트럿츠나 열심히 하자~</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

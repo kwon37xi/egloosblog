@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[Excel] 65536 줄이 넘는 큰 텍스트(CSV 혹은 탭 Tab 으로 나뉜) 읽기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-09-25 01:24:21</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[Excel] 65536 줄이 넘는 큰 텍스트(CSV 혹은 탭 Tab 으로 나뉜) 읽기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">데이터베이스에서 쿼리한 결과를 Tab 혹은 다른 특수문자로 각 컬럼을 구분해서 파일로 저장했는데, 그 결과가  수십만건이다.<br>그리고 그것을 고객이 Excel 파일로 만들어서 주길 원한다.<br>헌데 엑셀은 한 시트가 65536(이것은 프로그래머들에게 특별한 의미가 있는 숫자이지..) 행 이상 저장할 수 없다.<br><br>아래는 커다른 텍스트 파일을 읽어서 65530 줄마다 새로운 시트를 생성해 엑셀로 읽어들이는 Excel VBA 스크립트이다.<br><br>새로운 엑셀 문서를 생성하고, <B>도구->매크로->VisualBasic Editor(Alt-F11)</B>을 실행한 뒤에, VBAProject 에서 <B>삽입->모듈</B>로 아래 소스를 삽입하고 적당한 이름을 준뒤에 빠져나와서, 다시 매크로에서 지정된 매크로를 실행시키고 읽어들일 텍스트 파일을 지정하면 된다.<br><br>원래 소스코드는 <a href="http://www.danielklann.com/excel/importing_large_text_files_into.htm">http://www.danielklann.com/excel/importing_large_text_files_into.htm</a>에서 온 것이며, 아래부분은 시트 나누기를 65530 행으로, 시트를 자동으로 오름차순 정렬하도록(원래 소스는 내림차순 정렬한다) 수정 한 것이다.<br><br>이걸 실행하고 나면 텍스트 파일이 각 열로 나뉘어서 읽히지 않고 단일 열로 읽히게 된다. 그 단일 열을 모두 선택하고서 <B>데이터->텍스트 나누기</B>를 이용하면 탭 혹은 쉼표 등을 기준으로 해서 열로 나누기를 할 수 있게 된다.<br><br>워크시트 정렬에 관한 정보는 <a href="http://www.ozgrid.com/VBA/sort-sheets.htm">http://www.ozgrid.com/VBA/sort-sheets.htm</a>에서 얻었다.<br><br>이것 때문에 삽질 많이 했는데, 쉽게 해결됐다. 엑셀이 기능이 다양하긴 다양하구나..<br><br>주의 : <B>텍스트 파일의 첫 줄은 읽히지 않는다!! 꼭 첫줄은 무의미한 내용으로 한 줄 삽입한다음에 실행한다!</B><br><br><BLOCKQUOTE class="SOURCE"><br>Sub ImportLargeFile()<br>'Imports text file into Excel workbook using ADO.<br>'If the number of records exceeds 65536 then it splits it over more than one sheet.<br><br>Dim strFilePath As String, strFilename As String, vFullPath As Variant<br>Dim lngCounter As Long<br>Dim oConn As Object, oRS As Object, oFSObj As Object<br><br><br>'Get a text file name<br>vFullPath = Application.GetOpenFilename("Text Files (*.txt),*.txt", , "Please select text file...")<br><br>If vFullPath = False Then Exit Sub 'User pressed Cancel on the open file dialog<br>Application.ScreenUpdating = False<br><br><br>'This gives us a full path name e.g. C:folderfile.txt<br>'We need to split this into path and file name<br>Set oFSObj = CreateObject("SCRIPTING.FILESYSTEMOBJECT")<br><br>strFilePath = oFSObj.GetFile(vFullPath).ParentFolder.Path<br>strFilename = oFSObj.GetFile(vFullPath).Name<br><br><br>'Open an ADO connection to the folder specified<br>Set oConn = CreateObject("ADODB.CONNECTION")<br>oConn.Open "Provider=Microsoft.Jet.OLEDB.4.0;" & _<br>"Data Source=" & strFilePath & ";" & _<br>"Extended Properties=""text;HDR=Yes;FMT=Delimited"""<br><br>Set oRS = CreateObject("ADODB.RECORDSET")<br><br>'Now actually open the text file and import into Excel<br>oRS.Open "SELECT * FROM " & strFilename, oConn, 3, 1, 1<br>While Not oRS.EOF<br><B> Sheets.Add.Move after:=Sheets(Sheets.Count)<br> ActiveSheet.Range("A1").CopyFromRecordset oRS, 65530</B><br>Wend<br><br>oRS.Close<br>oConn.Close<br><br>Application.ScreenUpdating = True<br><br><br>End Sub<br><br></BLOCKQUOTE></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

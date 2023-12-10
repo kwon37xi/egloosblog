@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[책] 실용예제로 배우는 웹 표준 - 두 번째</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-08-19 15:56:36</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[책] 실용예제로 배우는 웹 표준 - 두 번째</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><A HREF=http://www.aladdin.co.kr/shop/wproduct.aspx?ISBN=8989975778&partner=egloos TARGET=_NEW><IMG SRC=http://image.aladdin.co.kr/coveretc/book/coveroff/8989975778_1.jpg BORDER=0 ALIGN=LEFT>실용예제로 배우는 웹 표준</A><br>댄 씨더홈 지음, 박수만 옮김, 드류 맥르란 감수 / 에이콘출판<br>나의 점수 : ★★★★★<br><br>열심히 공부해서 표준적인 홈페이지를 만들자~<br><HR><br><a href="http://kwon37xi.egloos.com/1631883">지난 번 글</a>에서 별 네개만 줬었던거 이번 달 저지른 내 큰 실수중의 하나인 것 같다.<br><br>전철을 타고 다니면서 열심히 읽었는데, 오.. 이런 감동이다.<br><br>이 책이 다루는 것이 <B>웹 표준 + CSS</B> 인데, 사실 요즘 이 둘은 서로 떼 놓고 생각하기가 어려운 것 같다.<br><br>주된 관점은 CSS에 있는데, CSS를 이용해서 웹 페이지를 디자인하게 되면 자연스럽게 표준에 관한 이야기로도 흘러가는 듯..<br><br>CSS를 이용해서 보여주는 현란한 웹 페이지 제작 기법들은 정말 대단하고 감동적이다. 내가 왜!!!!??? 사람들이 왜!!!!???? 이 쉽고 편하고 강력한 CSS를 놔두고 말도 안되는 TABLE 태그들과 자바 스크립트 떡칠을 해왔는지...<br><br>CSS를 이용한 디자인과 Table을 제거하고 CSS로 하는 레이아웃 디자인이 얼마나 개발 속도와 요구 사항 변경시 페이지 수정 속도를 빠르게 하는지 이 책 죽 한번 편함 맘으로 읽어보면 가슴에 콕 박힐 것이라고 장담한다.<br><br>덤으로 접근성에 대해서 더 이야기 하자면(이것은 또한 웹 페이지 접근성에 대한 책이기도 하다) 그 화려한 디자인을 하면서도 장애인 등을 위한 페이지를 전혀 만들지 않고, 웹 표준 준수 + CSS 를 통해 장애이들이 홈페이지를 사용하는데도 전혀 문제가 없는 그러한 기법들을 설명한다.<br><br>어렵지도 않고 오히려 웹 표준 준수를 통해 개발속도가 증가한다.<br><br><B>즉, 웹 표준 준수 + CSS 개발은 개발 속도 증가와 유지 보수 편의 그리고 장애인들을 위한 웹 접근성 향상, 코드양이 줄어들기 때문에 대역폭 점유율이 줄어 돈도 아끼고 속도도 빨라지는 효과를 보게 된다.</B><br><br>아... 우리는 구원이 필요하고, 이 책은 충분히 구원자의 역할을 해줄 것이다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

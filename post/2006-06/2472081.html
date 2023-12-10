@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>DBCP JDBC Connection Pool의 커넥션이 자꾸 끊어진다.</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-06-06 00:51:29</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">DBCP JDBC Connection Pool의 커넥션이 자꾸 끊어진다.</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">이것은 <a title="" href="http://www.okjsp.pe.kr/bbs?act=VIEW&bbs=bbs3&seq=71050">http://www.okjsp.pe.kr 에 올라온 질문</a>에 대한 나의 답변이다. 실제로 매우 많이 발생하는 문제이므로 적어 둔다.<br><br>DB Connection Pool을 사용하다가, 어쩌다가 가끔 커넥션이 끊겨 버리는 오류가 발생하기도 한다.<br>아래는 <a title="" href="http://jakarta.apache.org/commons/dbcp/">Jakarta Commons DBCP</a> 커넥션 풀을 사용하면서 그런 현상이 발생했을 때의 대처 방법이다.<br><hr /><br>어떤 서버는 소켓이 열린상태로 장시간 아무런 데이터 이동없이 방치될경우 소켓을 강제로 닫아버리는 경우도 있습니다.<br><br>보름에 한 번정도 발생한다는 것은 아마도, 보름에 한 번 정도 아무 사용자도 없는 상태가 장시간 계속되었기 때문일 것으로 예상됩니다.<br><br>DBCP를 사용하시는 것으로 보이는군요.<br>그렇다면 설정을 통해 손쉽게 해결할 수 있습니다.<br><br> * <a title="" href="http://jakarta.apache.org/commons/dbcp/configuration.html">DBCP 설정하기</a> 참조<br><br>상세 설정은 DBCP를 어떻게 호출하느냐(Spring, 혹은 Tomcat DataSource 설정, 기타 등등)에 따라 전혀 달라지기 때문에 알아서 하시구요, 아래 파라미터를 정확히 설정하면 됩니다.<br><br>DBCP의 설정 옵션에서 다음 세가지를 세팅하면 문제가 해결될것으로 보입니다.<br><br> * <strong>validationQuery</strong>는 커넥션이 살아 있는지 체크 하는 쿼리로 오라클의 경우에는 "select 1 from dual", MySQL의 경우에는 "select 1" 정도로 하면되는데 MS SQL은 어떤지 모르겠네요. 가장 부하가 적고 의미없는 쿼리로 설정합니다.<br><br>* <strong>testWhileIdle</strong>은 커넥션에 아무런 데이터 송수신이 없을 경우 테스트를 할지 여부를 결정합니다. 물론 true로 놓습니다.<br><br>* <strong>timeBetweenEvictionRunsMillis</strong>는 커넥션이 쉬고 있을 때 커넥션 체크 쿼리를 실행하는 시간 간격을 설정합니다. 밀리 세컨드로 설정하며, 저는 보통 60000(1분)을 줍니다.<br><br>위 설정을 하고서 테스트 해보시고, 그래도 안되면.. 다른 방법을 모색해 봐야 할 듯 하네요.<br><br>아참, 혹시라도 커넥션 풀을 사용하지 않는다면, 퍼포먼스를 위해 커넥션 풀 사용을 권장하구요, 뭘 사용해야 할지 모르겠으면 그냥 Jakarta Commons DBCP를 사용하십시오. ^^; <br><br>tags: jakarta commons DBCP 커넥션 풀 connection pool jdbc 끊김 drop reset</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

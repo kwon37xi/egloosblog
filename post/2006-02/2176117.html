@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Log4J의 메시지에서 클래스이름이 안보인다?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-02-05 19:40:48</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Log4J의 메시지에서 클래스이름이 안보인다?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">오늘 매우 당황했었습니다.<br><br>Ant로 컴파일을 무사히 끝내고.. ant 명령 하나로 깔끔하게 모든 일처리가 끝내는 것에 만족하고 있었는데, 로그에 클래스의 이름과 줄번호가 모두 물음표 처리되어버렸더군요..<br><br><br>Log4J에서 클래스 이름과 줄번호의 로그를 남기려면 컴파일할때 <strong>debug</strong> 옵션을 줘야합니다.<br><br>Ant 에서는 컴파일러 설정(&lt;Javac debug="on"&gt;)이 필요하고요..<br><br>javac 은 <strong>javac -g</strong> 로 디버깅 정보를 추가해줍니다.</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>사진 찍어볼까...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-08-09 10:17:35</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">사진 찍어볼까...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">여자 친구도 없고..<br>그닥 취미랄 것도 없고.<br>TV 보는 건 별로 안 좋아하고.<br>그래서 주말에 딱히 할 일이 없다.<br><br>그러면서도 주말엔 정말 공부하기가 싫다.<br><br>사실 주말 이틀 중 하루라도 제대로 논다면 그 나머지 하루는 열심히 공부할 것 같은데...<br>하루도 알차게 제대로 놀지 못하니, 나머지 하루도 흐지부지 되는 것 같다.<br><br>취미를 가져볼까... 하여.<br><br>내 동생의 디지탈 카메라를 강탈! 했다.<br><a title="" href="http://dcinside.com/webdc/goods/review.php?pid=2654&cc1=10&cc2=10&cc3=0"><br>Nikon Coolpix 4500</a>.<br><br>지금은 싸구려지만, 그래도 처음 살 때는 비싸고 잘 나가던 거였다고 한다.<br><br>난, 제일 좋은 것, 비싼 것 보다는, 그래도 중간은 가는 것을 가지고 알차게 제대로 활용하기 뭐 이런걸 좋아한다.<br><br>2000원으로 밥상 차리기.. 이런거... 내 성격이랑 잘 맞는다. 요즘엔 신라면 맛있게 끓이기... 이런거 연구 하고 있다. --;<br><br>400만 화소의 오래된 디카로 이뿐 사진 찍기.<br><br>함 해봐야지.<br><br><img src='./2618103/b0046915_10173944.png'></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

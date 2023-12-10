@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>프로젝트의 폭주, 그리고 병들어가는 팀원들</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2006-03-13 13:44:54</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">프로젝트의 폭주, 그리고 병들어가는 팀원들</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">류한석님 칼럼에 새로 올라온 글 <a title="" href="http://www.zdnet.co.kr/itbiz/column/anchor/hsryu/0,39030308,39144952,00.htm">프로젝트의 폭주, 그리고 병들어가는 팀원들</a>...<br><br>글 한자 한자에 공감한다.. ㅜㅜ<br>내가 PM이 되거나 했을 때 꼭 잊지 말고 다시 읽어보기를 바란다.<br><blockquote class="quote">그러나 프로젝트에 존재하는 모순 중 하나는, 시간이 몹시 부족한 프로젝트일수록 시간이 낭비되는 경우가 많다는 것이다. 어쩌면 합리적인 시간 관리의 개념이 전혀 없기 때문에, 그렇게 말도 안 되는 시간을 할당한 후 엉망으로 관리하고 있는 것인지도 모른다. 시간 관리는 프로젝트 매니저의 중요한 역할인데, 시간 관리 능력이 떨어지는 프로젝트 매니저가 배정된 프로젝트만큼 괴로운 것도 없다. 일부 몰지각한 프로젝트 매니저들 중에는 팀원들이 낭비하는 시간에 대해 전혀 이해하지 못하는 사람도 있다.<br><br>예를 들면 1분 1초가 아까운데 무의미한 회의를 하루 종일 진행하고, 불분명하거나 갑자기 변경되는 요구사항으로 인해 팀원들이 재작업을 반복하고, 실무 개발에 어울리지 않는 현학적인 방법론에 따라 무의미한 증거 문서들을 만들고, 그런 비생산적인 업무들을 수행하느라 야근 및 휴일 근무를 지속한 나머지 건강이 상하여 팀원들이 일명 ‘종합병원(온갖 병을 다 갖고 있는 팀원을 칭하는 속어)’으로 변해버린 프로젝트를 종종 목격한다. 그런 상황에서도 나쁜 프로젝트 매니저는 팀원들이 일주일에 80시간 이상 일하지 않는다며 분개한다.<br><br>...<br><br>잘 할 가치가 있는 일을 열심히 하고, 잘 할 가치가 없는 일은 적절하게 무시하는 스마트함이 요구된다. 주어진 일에 대해 선후(先後), 경중(輕重), 완급(緩急)을 파악하지 않은 채로 무조건 열심히 하는 사람을 옆에서 바라보고 있는 것은 꽤나 괴로운 일이다.<br></blockquote></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

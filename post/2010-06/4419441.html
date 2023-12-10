@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>granularity란?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2010-06-24 19:02:14</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">granularity란?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">데이터와 관련하여 등장하는 granularity 란 "데이터 분할의 정도"를 의미한다.<br><br><a target="_blank" href="http://en.wikipedia.org/wiki/Granularity#Data_granularity">http://en.wikipedia.org/wiki/Granularity#Data_granularity</a><br><br><p>The <i>granularity</i> of data refers to the fineness with which data fields are sub-divided. For example, a postal address can be recorded, with <i>low granularity</i>, as a single field:</p><ol><li>address = 200 2nd Ave. South #358, St. Petersburg, FL 33701-4313 USA</li></ol><p>or with <i>high granularity</i>, as multiple fields:</p><ol><li>street address = 200 2nd Ave. South #358</li><li>city = St. Petersburg</li><li>postal code = FL 33701-4313</li><li>country = USA</li></ol>주소를 문자열 하나로 표현 할 수도 있고, 국가,시/군/구, 거리 등으로 분할하여 표현할 수도 있다. 이 두가지 방식은 granulirity가 서로 다른 것이다.<br><br>궁금해서 찾아봤다. 딱 한마디로 뭐라 표현해야 할지는 모르겠네.<br><br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

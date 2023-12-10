@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>Spring MVC @SessionAttributes를 통한 객체 수정은 올바른가?</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2012-12-05 03:49:02</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">Spring MVC @SessionAttributes를 통한 객체 수정은 올바른가?</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">요즘 <a href="http://www.aladin.co.kr/shop/wproduct.aspx?ISBN=8960773433">토비의 스프링 3.1</a> 읽기 모임을 통해 여러 사람들이 즐겁게 공부하고 있다. 그런데 오늘 여기서 논쟁의 중심에 선 주제가 하나 있다. 예전에 3.0 판을 혼자 읽을 때는 그렇구나 하고 별 생각없이 지나갔었는데 사람들이 모여서 읽다가 여러 이야기를 나누다보니 더 깊게 생각하게 되었다. 잠 안오는 새벽에 대충 갈겨 쓰느라 정리가 될지는 모르겠지만 암튼 생각을 써 내려가 보면...<br><br>주제는 Vol. 2. 517쪽에 나오는 <strong>"@SessionAttributes"를 통한 수정 폼 다루기</strong> 문제이다. 이일민님은 책에서 다른 방법들보다 세션을 통한 폼 수정을 권장하고 있다.<br><br><blockquote class="quote">추가 : 역시 스프링과 이일민님은 이런 큰 보안 문제를 그냥 넘겨버리지 않았다.<br><strong>일민님이 댓글에 언급해주신 대로 Vol. 2. 563쪽, WebDataBinder 설정 항목의 allowedFields와 dsiallowedFields를 통해 아래에 제시한 문제를 해결할 수 있다.</strong><br>하지만 이 글 자체는 책을 읽다 말고 @SessionAttributes를 적용했을 때 어떤 큰 문제가 발생할 수 있는지에 대한 반면 교사가 되어 줄 것이기에 글 내용은 그대로 남겨둘 것이며, 끝까지 읽어 보기를 권한다.<br></blockquote><br><br>결론부터 말하면, 이일민님의 의견과는 달리 나는 <b>"@SessionAttributes을 통한 폼 수정은 해서는 안된다"</b>는 입장이며 513쪽의 <b>"DB 재조회" 방법을 사용해야만 한다</b>고 본다.<br><br>@SessionAttributes를 모르겠다면, 그리고 토비의 스프링 3.1 책을 보지 않았다면 책을 읽어야 아래 내용이 이해가 될 것이다.<br><br>책 518쪽 중간 쯤에 보면 다음과 같은 내용이 있다.<br><br><blockquote class="quote">submit()에서는 세션에 저장된 User 오브젝트를 가져와 <span style="color:#ff0000;"><strong>폼에서 전송해준 파라미터만 바인딩</strong></span> 한 뒤에 컨트롤러의 user 파라미터로 넘겨준다. DB에서 처음 가져왔던 오브젝트를 그대로 사용해서 <font color="#ff0000"><b>변경된 프로퍼티만 바인딩</b></font>해줬으니 <span style="color:#ff0000;"><strong>폼에 출력하지 않았던 프로퍼티 값도 그대로 유지</strong></span>된다.</blockquote><br>여기에 바로 크나큰 함정이 있다. 즉, <b>사용자가 폼을 직접 생성해서 자기가 조작하고자 하는 프라퍼티를 넣어서 보내도 검증할 방법이 없다</b>는 것이다. 이는 <b>히든 필드를 통한 객체 수정시와 동일한 보안 문제</b>를 일으킨다.<br><br>예를 들어보자. 게시글이 있는데, 게시글 객체의 <b>hot 프라퍼티가 true</b>이면 이게 홈페이지 메인에 뜨게되는 웹 애플리케이션이 있고 이 시스템은 @SessionAttributes를 통해 수정 폼을 제어한다고 해보자. 보통때의 hot 필드는 일반 사용자는 접근할 수 없어야 하고 관리자만 true/false 값을 변경할 수 있어야 한다.<br><br>바로 느낌이 오지 않는가? 관리자가 아닌 일반 사용자가 자신의 글을 쓴 뒤에 수정모드로 가서&nbsp; <b>강제로 hot 필드를 생성하고 거기에 true를 넣어서 폼을 전송</b>하면 자기의 글을 메인으로 띄울 수 있는 것이다. 이런 방식을 사용하면 심지어는 자기가 글을 써두고, 수정을 눌러서 욕을 잔뜩 쓴 뒤에 userId 필드의 값을 바꿔치기 함으로써 글의 소유자를 바꿔 다른 사람을 모함에 빠뜨리는 것도 가능하다.(사실 수정까지 갈 필요도 없다. 생성시에도 세션을 사용해서 폼을 만들었다면.)<br><br>물론 검증을 하거나 약간의 꼼수로 막을 수도 있다. JPA2를 사용한다면 "updatable=false"로 지정한 필드는&nbsp; 수정대상에서 제외 된다. 하지만 위에서 예로 든 hot 필드는 관리자에 의해 수정 가능해야 하므로 이 규칙을 적용할 수 없다. 그리고 수정시가 아닌 생성시(insertable=true)에 세션을 사용했을 경우에도 바로 무력화된다.<br><br>꼭 검증을 하려고 한다면 데이터베이스에서 원본 데이터를 읽어와서 고치면 안되는 데이터가 고쳐졌는지 확인해보면 된다. 하지만 이것은 결국 513쪽의 "DB 재조회"와 "계층 사이의 강한 결합"을 일으키게 된다. 그러니까 <b>결론은 다시 DB 재조회를 써야만 한다</b>가 되는 것이다.<br><br>그래서 오늘 밤 내가 내린 결론은 <b>@SessionAttributes 를 통한 도메인 객체의 수정은 정말 단순하고 보안에 문제를 일으키지 않을 데이터에만 써야 하고, 사실 그런 경우를 판단하기 힘드므로 그냥 무조건 DB 재조회 방식을 쓰는게 낫다</b>는 것이다. 중요한 도메인 객체가 아닌 잠시 상태유지가 필요한 임시 데이터 등에만 세션 어트리뷰트를 사용하는 것이 좋겠다.<br><br>그리고 더불어 <strong>도메인 객체를 통해 폼을 채우고 그 값을 전달 받는다면 항상 도메인 객체 생성시 특정 필드의 초기값이 조작되지는 않았는지 확인해야 한다. 앞서 예를 든 hot,userId  필드 등은 세션과 무관하게 도메인 객체로 폼을 전달 받는 모든 경우에 (특히 깜빡하고 넘어가기 쉬운 객체 생성 시점에) 검증하지 않으면 필드 조작의 가능성이 항상 남게 된다.<br><br></strong></blockquote></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

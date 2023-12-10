@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>[UNIX-SH] *NIX Shell Script 디버깅하기</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2004-12-17 21:08:57</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">[UNIX-SH] *NIX Shell Script 디버깅하기</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content">오늘 셸스크립트 오류 때문에 10여분 헤메다가 일을 끝냈다.<br><br>셸 스크립트를 디버깅 하려면, 셸 스크립트의 처리기를 지정하는 부분을 다음과 같이 지정하면 명령이 실행 될 때마다 어떤 명령이 실행되는지 화면에 찍어준다.<br><br><B>$ sh -x 실행할셸스크립트</B><br>혹은,<br><B>$ sh -v 실행할셸스크립트</B><br><br><B>-v</B> 옵션이 더욱 자세히 보여준다.<br><br>이 이외에도,<br><br><B>$ set -xv<br><br>(실행하고자 하는 명령들을 실행한다)<br><br>$ set -<br></B><br>위와 같이해도 된다.<br></div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>

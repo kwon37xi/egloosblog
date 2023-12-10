@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/result.css">
+
+        <title>좋은 코드는...</title>
+    </head>
+    <body>
+        <section id="wrap">
+            <header>
+                <h1 class="logo-title">
+                    <span class="main"><img src="../../images/logo_egloos.png" width="105" height="34" alt="이글루스"></span>
+                </h1>
+                <div class="user-info">
+                    <strong class="name">권남</strong> 님 (<strong class="name">kwon37xi</strong>)
+                </div>
+            </header>
+            <main>
+                <article class="post-wrap">
+                    <!-- 게시물 정보 : 날짜 -->
+                    <div class="post-info">
+                        <span class="time">2005-09-28 09:19:45</span>
+                    </div>
+                    <!-- 게시물 제목 -->
+                    <h2 class="post-title">좋은 코드는...</h2>
+                    <!-- 게시물 본문 -->
+                    <div class="post-body">
+                        <div class="content"><a href="http://www.oreillynet.com/pub/wlg/7915">The Properties of Good Code</a>라는 글에서 이 블로거가 생각하는 좋은 코드에 대해 정의한다..<br><br><B>- 좋은 코드는 그것이 해결할 문제를 반영한다.<br>- 좋은 코드는 해당 언어에 대한 경험이 없는 프로그래머들조차도 쉽게 이해할 수 있어야 한다.<br>- 좋은 코드는 대체로 짧다.<br>- 좋은 코드는 이해하는데 많은 시간이 들지 않는다.<br>- 좋은 코드는 결합도가 낮다.<br>- 좋은 코드는 응집도가 높다 - 필요한 함수와 타입(형)의 정의가 소프트웨어 전체에 퍼져있어서는 안된다.<br>- 좋은 코드는 적합한 사용을 위한 요구사항을 잘 문서화 한다.<br>- 좋은 코드는 지금 가지고 있는 의미 그대로 1년 후에도 동일한 의미로 이해될 수 있어야 한다.<br></B><br><br>번역상의 문제가 있을 수 있으니 꼭 원문을 비교해 볼것.<br><br>나는 위 말들을거의 올인해서 지지한다.<br><br>마틴 파울러가 말했던, <B>컴퓨터가 이해하는 프로그램은 어느 바보라도 짤 수 있다. 훌륭한 프로그래머는 사람이 이해하는 프로그램을 짠다</B>와 일맥상통한다.<br><br>내가 보통 새로운 개발을 하기 보다는 주로 남이 짜놓은 프로그램을 보면서 유지보수,개선 하는 업무를 하다보니 유지보수성이 좋은 프로그램이 좋은 프로그램이라는 개념이 머리속에 확 박혀버렸다.<br><br>언제나 생각한다.<br><br>이 프로그램을 1년후에 봐도 내가 바로 이해할 수 있을까?<br><br>이 프로그램을 다른 사람들이 쉽게 이해할 수 있을까?<br><br>내가 짠 코드들이 위의 조건들을 만족하기 위해 항상 노력한다.<br><br>물론 쉽지는 않다.. 오늘 짠 소스가 내일보면 새롭게 느껴지는건...<br><br>내공부족을 심히 느끼고 있다..<br><br>어여 열심히 디자인 패턴 등도 공부해야할 텐데...</div>
+                        <div class="post-footer">
+                            <button class="btn" onclick="button_click();">목록</button>
+                        </div>
+                    </div>
+                </article>
+            </main>
+        </section>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+        <script>
+            function button_click() {
+                if(history.length > 1) {
+                    history.back();
+                } else {
+                    document.location.href = "../../블로그포스트목록.html";
+                }
+            }
+        </script>
+    </body>
+</html>
